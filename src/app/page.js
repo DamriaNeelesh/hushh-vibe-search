@@ -216,17 +216,17 @@ export default function Home() {
           </Text>
           </motion.div>
           </AnimatePresence>
-          <HStack spacing={10} mt={16}>
-            {slides.map((_, index) => (
-              <Circle
-                key={index}
-                size="10px"
-                bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
-                onClick={() => handleSlideChange(index)}
-                cursor="pointer"
-              />
-            ))}
-          </HStack>
+          <HStack spacing={10} mt={16} position="absolute" bottom="60px"> 
+    {slides.map((_, index) => (
+      <Circle
+        key={index}
+        size="10px"
+        bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
+        onClick={() => handleSlideChange(index)}
+        cursor="pointer"
+      />
+    ))}
+  </HStack>
         </Box>
       </Box>
     </>
