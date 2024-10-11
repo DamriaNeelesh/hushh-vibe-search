@@ -17,6 +17,7 @@ import AppleIcon from "./components/svg/appleIcon.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import VibeText from './components/svg/vibeText.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
@@ -159,6 +160,10 @@ export default function Home() {
           justifyContent="center"
           position="relative"
           flexDirection="column"
+          minW={'650px'}
+          // minH={'490px'}
+          // maxW="640px"
+          // maxH={'540px'}
         >
           <Image
             src={slides[currentSlide].image}
