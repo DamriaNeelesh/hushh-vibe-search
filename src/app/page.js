@@ -161,7 +161,7 @@ export default function Home() {
 
         <Box
           flex={1}
-          bg="#C7DAE9"
+          bg="#F4F3F1"
           display="flex"
           alignItems="center"
           justifyContent="center"
