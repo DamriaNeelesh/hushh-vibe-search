@@ -5,7 +5,7 @@ import { Box, Flex, IconButton, Input, Button, Text } from '@chakra-ui/react';
 import SearchIcon from '../components/svg/searchIcon.svg';
 import CameraIcon from '../components/svg/cameraIcon.svg'
 import axios from 'axios';
-import styles from './Search.module.css';
+import styles from './search.module.css';
 import Header from '../components/header';
 import Image from 'next/image';
 import Footer from '../components/footer';
