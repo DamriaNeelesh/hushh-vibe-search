@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.10.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@supabase/supabase-js": "^2.45.4",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.7",
     "next": "14.2.15",
@@ -20,6 +21,8 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/node": "22.7.5",
+    "@types/react": "18.3.11",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
