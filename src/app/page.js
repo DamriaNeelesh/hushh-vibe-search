@@ -55,7 +55,7 @@ export default function Home() {
           <span style={{fontWeight:'700'}}>Hushh Labs </span>is revolutionizing online shopping with a <span style={{fontWeight:'700'}}>powerful search engine that understands you.</span>
         </Text>
         <Text color={'#596168'} fontWeight={'400'} lineHeight={'21.6px'} fontSize={{md:'18px',base:'0.85rem'}}>
-          By decoding <span style={{fontWeight:'700'}}> natural language, we're personalizing your product discovery journey.</span>
+          By decoding <span style={{fontWeight:'700'}}> natural language, we&apos;re personalizing your product discovery journey.</span>
         </Text>
         <Text color={'#596168'} fontWeight={'400'} lineHeight={'21.6px'} fontSize={{md:'18px',base:'0.85rem'}}>
           Launch is just around the corner - be among the first to experience smarter shopping.
