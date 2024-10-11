@@ -14,7 +14,7 @@ import SearchGif from './components/gif/searchGif.gif';
 const slides = [
   { image: Slide1, text: "Shop Smoothly,",text2:"Save the Maze for Game Night" },
   { image: Slide2, text: "Type like you talk,",text2:" Vibe gets it" },
-  { image: Slide3, text: "Spot a style you love?" , text2:"Let's find its twin"},
+  { image: Slide3, text: "Spot a style you love?" , text2:"Let&apos;s find its twin"},
 ];
 
 export default function Home() {
