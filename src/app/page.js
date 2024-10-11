@@ -33,6 +33,7 @@ export default function Home() {
   }, []);
 
   return (
+    <>
     <Box display="flex" flexDirection={{ base: "column", md: "row" }} minH="100vh">
       <VStack
         align="start"
@@ -132,5 +133,6 @@ export default function Home() {
       </HStack>
     </Box>
     </Box>
+    </>
   );
 }
