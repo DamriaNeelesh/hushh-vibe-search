@@ -29,7 +29,7 @@ const slides = [
   {
     image: Slide3,
     text: "Spot a style you love?",
-    text2: "Let&apos;s find its twin",
+    text2: "Lets find its twin",
   },
 ];
 
@@ -42,11 +42,18 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1000); // Show modal after 1 second
+
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // 5 seconds delay
+    }, 5000); // 5 seconds delay for slide change
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -164,14 +171,26 @@ export default function Home() {
           // minH={'490px'}
           // maxW="640px"
           // maxH={'540px'}
+          as={motion.div}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
+          <AnimatePresence mode='wait'>
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
           <Image
             src={slides[currentSlide].image}
             alt="Slide illustration"
             width={"579px"}
             height={"286px"}
-            style={{ zIndex: "1" }}
-          />
+            style={{ zIndex: '1', margin: '0 auto', display: 'block' }}
+            />
           <Text
             fontSize={{ md: "2rem", base: "1.15rem" }}
             fontWeight="700"
@@ -195,6 +214,8 @@ export default function Home() {
           >
             {slides[currentSlide].text2}
           </Text>
+          </motion.div>
+          </AnimatePresence>
           <HStack spacing={10} mt={16}>
             {slides.map((_, index) => (
               <Circle
