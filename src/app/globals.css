@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Figtree', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Search.module.css */
+
+.vibeContainer {
+  font-family: 'Roboto', sans-serif;
+}
+
+.vibeContainer input::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.vibeContainer input {
+  transition: border-color 0.3s;
+}
+
+.vibeContainer input:focus {
+  border-color: #9f7aea; /* Chakra's purple.500 color */
+}
+
+.vibeContainer .button:hover {
+  cursor: pointer;
+  background-color: #9f7aea; /* Chakra's purple.500 color */
+}
+
+/* Popup Modal CSS */
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  max-height: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: for a dimmed background */
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+/* .modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+} */

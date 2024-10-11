@@ -1,0 +1,24 @@
+/* Search.module.css */
+
+.vibeContainer {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .vibeContainer input::placeholder {
+    color: #aaa;
+    opacity: 1;
+  }
+  
+  .vibeContainer input {
+    transition: border-color 0.3s;
+  }
+  
+  .vibeContainer input:focus {
+    border-color: #9f7aea; /* Chakra's purple.500 color */
+  }
+  
+  .vibeContainer .button:hover {
+    cursor: pointer;
+    background-color: #9f7aea; /* Chakra's purple.500 color */
+  }
+  
