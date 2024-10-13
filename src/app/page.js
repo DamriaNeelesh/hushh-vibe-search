@@ -19,6 +19,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchGif from "./components/gif/searchGif.gif";
 import services from "./services/services";
+import VibeText from './components/svg/vibeText.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
@@ -35,18 +37,26 @@ const slides = [
 ];
 
 export default function Home() {
-  // const isMobile = useBreakpointValue({ base: true, md: false });
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
+
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
   };
+
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1000); // Show modal after 1 second
+
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // 5 seconds delay
+    }, 5000); // 5 seconds delay for slide change
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -55,6 +65,7 @@ export default function Home() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
+        position="relative"
       >
         <VStack
           align="start"
@@ -64,15 +75,9 @@ export default function Home() {
           spacing={4}
           flex={1}
           bg="white"
+          position="relative"  // Allow for absolute positioning inside
         >
-          <Text
-            color={"#0C0C0C"}
-            fontSize={{ md: "4.5rem", base: "2.25rem" }}
-            lineHeight={{ md: "86.4px", base: "45px" }}
-            fontWeight="700"
-          >
-            VIBE
-          </Text>
+          <Image src={VibeText} alt="Vibe Search" />
           <Text
             mb={{ md: "2rem", base: "0.5rem" }}
             color={"#000000"}
@@ -96,33 +101,19 @@ export default function Home() {
               lineHeight={"21.6px"}
               fontSize={{ md: "18px", base: "0.85rem" }}
             >
-              <span style={{ fontWeight: "700" }}>Hushh Labs </span>is
-              revolutionizing online shopping with a{" "}
               <span style={{ fontWeight: "700" }}>
-                powerful search engine that understands you.
+                Launching Oct 20th 2024!{" "}
               </span>
-            </Text>
-            <Text
-              color={"#596168"}
-              fontWeight={"400"}
-              lineHeight={"21.6px"}
-              fontSize={{ md: "18px", base: "0.85rem" }}
-            >
-              By decoding{" "}
-              <span style={{ fontWeight: "700" }}>
-                {" "}
-                natural language, we&apos;re personalizing your product discovery
-                journey.
-              </span>
-            </Text>
-            <Text
-              color={"#596168"}
-              fontWeight={"400"}
-              lineHeight={"21.6px"}
-              fontSize={{ md: "18px", base: "0.85rem" }}
-            >
-              Launch is just around the corner - be among the first to
-              experience smarter shopping.
+              <Text
+                color={"#596168"}
+                fontWeight={"400"}
+                lineHeight={"21.6px"}
+                fontSize={{ md: "18px", base: "0.85rem" }}
+              >
+                Vibe Search understands you. We decode natural language to
+                personalize your product discovery. Get ready for a smarter
+                shopping experience.
+              </Text>
             </Text>
             <Text
               color={"#596168"}
@@ -134,76 +125,75 @@ export default function Home() {
               access and exclusive updates.
             </Text>
           </VStack>
+          <Button
+            textAlign={"left"}
+            justifyContent={"flex-start"}
+            gap={{ md: "1rem", base: "0.5rem" }}
+            color={"#0000008A"}
+            bg={"#FFFFFF"}
+            fontWeight={"500"}
+            fontSize={{ md: "1.25rem", base: "1rem" }}
+            p={"0.6rem"}
+            w={{ md: "20rem", base: "10rem" }}
+            borderRadius={"10px"}
+            boxShadow=" 0px 2px 3px 0px #0000002B"
+          >
+            <Image src={GoogleIcon} alt="Google Sign Up" /> Sign Up with Google
+          </Button>
 
-          <VStack spacing={4}>
-            <Button
-              textAlign={"left"}
-              justifyContent={"flex-start"}
-              gap={{ md: "1rem", base: "0.5rem" }}
-              color={"#0000008A"}
-              bg={"#FFFFFF"}
-              fontWeight={"500"}
-              fontSize={{ md: "1.25rem", base: "1rem" }}
-              p={"0.6rem"}
-              w={{ md: "20rem", base: "10rem" }}
-              borderRadius={"10px"}
-              boxShadow=" 0px 2px 3px 0px #0000002B"
-              onClick={() => {
-                services.authentication.googleSignIn();
-              }}
-            >
-              <Image src={GoogleIcon} alt="Google Sign Up" />
-              Sign Up with Google
-            </Button>
-            <Button
-              textAlign={"left"}
-              justifyContent={"flex-start"}
-              gap={{ md: "1rem", base: "0.5rem" }}
-              color={"#FFFFFF"}
-              bg={"#000000"}
-              fontWeight={"500"}
-              fontSize={{ md: "1.25rem", base: "1rem" }}
-              p={"0.6rem"}
-              w={{ md: "20rem", base: "10rem" }}
-              borderRadius={"10px"}
-              boxShadow=" 0px 2px 3px 0px #0000002B"
-            >
-              <Image src={AppleIcon} alt="Sign Up with Apple" />
-              Sign Up with Apple
-            </Button>
-          </VStack>
-          <Link href={"wwww.hush1one.com"}>
-            {" "}
-            <Text
-              fontFamily={"Figtree"}
-              mt={{ md: "2rem", base: "1rem" }}
-              color={"#0000008A"}
-              fontSize={{ md: "1rem", base: "0.75rem" }}
-              fontWeight={"400"}
-              lineHeight={"11px"}
-            >
-              Powered by hushh.ai
-            </Text>
-          </Link>
+          {/* Footer-like text at bottom left */}
+          <Box
+            position="absolute"
+            bottom="0" // Align to the bottom
+            left="0"   // Align to the left
+            p={4}      // Add padding
+          >
+            <Link href={"www.hush1one.com"}>
+              <Text
+                fontFamily={"Figtree"}
+                color={"#0000008A"}
+                fontSize={{ md: "1rem", base: "0.75rem" }}
+                fontWeight={"400"}
+                lineHeight={"11px"}
+              >
+                Powered by <span style={{ fontWeight: "700", color: "#0000008A" }}>hushh.ai</span>, a Hushh Labs project
+              </Text>
+            </Link>
+          </Box>
         </VStack>
 
         <Box
           flex={1}
-          bg="#C7DAE9"
+          bg="#F4F3F1"
           display="flex"
           alignItems="center"
           justifyContent="center"
           position="relative"
           flexDirection="column"
-          // gap={{ md: '2rem', base: '1rem' }}
+          minW={'650px'}
+          // minH={'490px'}
+          // maxW="640px"
+          // maxH={'540px'}
+          as={motion.div}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
+          <AnimatePresence mode='wait'>
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
           <Image
             src={slides[currentSlide].image}
             alt="Slide illustration"
             width={"579px"}
             height={"286px"}
-            style={{ zIndex: "1" }}
-          />
+            style={{ zIndex: '1', margin: '0 auto', display: 'block' }}
+            />
           <Text
             fontSize={{ md: "2rem", base: "1.15rem" }}
             fontWeight="700"
@@ -212,7 +202,6 @@ export default function Home() {
             lineHeight={{ md: "41.6px", base: "35px" }}
             letterSpacing="-1%"
             fontFamily="Figtree"
-            // mx={{ md: '70%', base: '0.5rem' }}
             mt={{ md: "3rem", base: "0.5rem" }}
           >
             {slides[currentSlide].text}
@@ -225,22 +214,22 @@ export default function Home() {
             lineHeight={{ md: "41.6px", base: "35px" }}
             letterSpacing="-1%"
             fontFamily="Figtree"
-            // mx={{ md: '70%', base: '0.5rem' }}
-            // mt={{ md: '3rem', base: '0.5rem' }}
           >
             {slides[currentSlide].text2}
           </Text>
-          <HStack spacing={10} mt={16}>
-            {slides.map((_, index) => (
-              <Circle
-                key={index}
-                size="10px"
-                bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
-                onClick={() => handleSlideChange(index)}
-                cursor="pointer"
-              />
-            ))}
-          </HStack>
+          </motion.div>
+          </AnimatePresence>
+          <HStack spacing={10} mt={16} position="absolute" bottom="60px"> 
+    {slides.map((_, index) => (
+      <Circle
+        key={index}
+        size="10px"
+        bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
+        onClick={() => handleSlideChange(index)}
+        cursor="pointer"
+      />
+    ))}
+  </HStack>
         </Box>
       </Box>
     </>
