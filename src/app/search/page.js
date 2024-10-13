@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Flex, IconButton, Input, Button, Text } from "@chakra-ui/react";
-// import { SearchIcon } from '@chakra-ui/icons';
+import { Box, Flex, Input, Button } from "@chakra-ui/react";
 import SearchIcon from "../components/svg/searchIcon.svg";
 import CameraIcon from "../components/svg/cameraIcon.svg";
 import axios from "axios";
@@ -13,8 +12,7 @@ import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
 
-const Search = ({ openMenu, query }) => {
-  // const [query, setQuery] = useState('');
+const Search = () => {
   const [fileImg, setFile] = useState(null);
   const [fileInputElement, setFileInput] = useState(null);
   const [userImage, setUserImage] = useState("");
@@ -24,7 +22,6 @@ const Search = ({ openMenu, query }) => {
     setFileInput(document.getElementById("searchBox__fileInput"));
   }, []);
 
-  console.log(query);
   const router = useRouter();
 
   const handleSearch = () => {
@@ -39,7 +36,6 @@ const Search = ({ openMenu, query }) => {
   };
 
   useEffect(() => {
-    // Simulate fetching user data from session
     const fetchUserData = async () => {
       try {
         const response = await axios.get("/api/user/session");
@@ -73,7 +69,6 @@ const Search = ({ openMenu, query }) => {
         <Box
           width={{ base: "90%", md: "60%", lg: "40%" }}
           padding={{ base: "2", md: "4" }}
-          // boxShadow="lg"
           backgroundColor="white"
           border={"1px solid #DFE1E5"}
           borderRadius="md"
@@ -83,7 +78,6 @@ const Search = ({ openMenu, query }) => {
             <Input
               placeholder="Search for fashion..."
               type="text"
-              // className={`${styles.searchBox__search} cabin`}
               id="searchBox__search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -95,10 +89,6 @@ const Search = ({ openMenu, query }) => {
               borderRadius="full"
               flexGrow={1}
               border="none"
-              // style={{
-              //   textOverflow: "ellipsis",
-              //   opacity: openMenu ? 0 : 1,
-              // }}
               _focus={{ outline: "none", boxShadow: "none" }}
             />
             <Image
@@ -106,7 +96,6 @@ const Search = ({ openMenu, query }) => {
               src={CameraIcon}
               onClick={handleSearch}
               marginLeft="2"
-              // _hover={{ backgroundColor: 'purple.600' }}
               borderRadius="full"
             />
           </Flex>

@@ -2,7 +2,7 @@
 
 import styles from "./HomeScreen.module.css";
 // import Components from "../../Components";
-import Resources from "@/app/resources/resources";
+import Resources from "../../resources/resources";
 import { useEffect, useState } from "react";
 import services from "../../services/services";
 import Utilities from "../Utilities/Utilities";
