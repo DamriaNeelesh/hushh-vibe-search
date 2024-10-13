@@ -1,6 +1,6 @@
 import config from "./config/config"
 
-const resources={
+const Resources={
     config: config
 }
-export default resources
+export default Resources
