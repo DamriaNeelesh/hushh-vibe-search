@@ -111,7 +111,7 @@ export default function Home() {
               By decoding{" "}
               <span style={{ fontWeight: "700" }}>
                 {" "}
-                natural language, we're personalizing your product discovery
+                natural language, we&apos;re personalizing your product discovery
                 journey.
               </span>
             </Text>
