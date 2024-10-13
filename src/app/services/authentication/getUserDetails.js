@@ -5,5 +5,6 @@ export default async function getUserDetails(setUserDetails) {
   let userDetails = {
     data: localCredsJSON,
   };
-  setUserDetails(userDetails);
+  setUserDetails? setUserDetails(userDetails): '';
+  return userDetails;
 }
