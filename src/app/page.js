@@ -27,7 +27,7 @@ import VibeText from "./components/svg/vibeText.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "antd/es/modal/Modal";
 import Resources from "./resources/resources";
-
+import VibeSearchGif from '../app/resources/images/VibeSearch.gif'
 const slides = [
   {
     image: Slide1,
@@ -35,7 +35,7 @@ const slides = [
     text2: "Save the Maze for Game Night",
   },
   {
-    image: Resources.images.VibeSearchGif,
+    image: VibeSearchGif,
     text: "Type like you talk,",
     text2: " Vibe gets it",
   },
@@ -89,7 +89,7 @@ export default function Home() {
 
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // 5 seconds delay for slide change
+    }, 10000); // 5 seconds delay for slide change
 
     return () => {
       clearTimeout(timer);
