@@ -26,8 +26,6 @@ export default function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
 
-  console.log(query);
-
   useEffect(() => {
     services.getAccessToken(setAccessData);
     if (localStorage) setSecondQuery(localStorage.getItem('image-file'));
@@ -119,9 +117,6 @@ export default function SearchResults() {
       </div>
     );
   }
-
-  console.log("dataFetched: " + dataFetched);
-  console.log(searchResults);
 
   return (
     <div className={`${styles.SearchResults__ParentContainer}`}>

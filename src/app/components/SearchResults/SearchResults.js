@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import utilities from "../utilities/utilities";
+import utilities from "../utilities/utilities"
 import {
   Box,
   Text,
@@ -39,6 +39,7 @@ export default function SearchResults() {
   useEffect(() => {
     async function callVibeIt() {
       const search = searchParams.get("query");
+      services.history.saveToHistory(search)
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
         search ? search : "",
@@ -78,7 +79,6 @@ export default function SearchResults() {
         >
         <div className={`${styles.SearchResults__Filters}`}>
           <FiltersAndHistory></FiltersAndHistory>
-
           <Text fontWeight="bold" fontSize="lg" mt={4}>
             PRICE
           </Text>
