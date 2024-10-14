@@ -8,7 +8,14 @@ import {
   Circle,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import {Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Slide1 from "./components/svg/slideImage1.svg";
@@ -20,8 +27,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchGif from "./components/gif/searchGif.gif";
 import services from "./services/services";
-import VibeText from './components/svg/vibeText.svg';
-import { motion, AnimatePresence } from 'framer-motion';
+import VibeText from "./components/svg/vibeText.svg";
+import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
@@ -60,10 +67,9 @@ export default function Home() {
       await services.authentication.googleSignIn();
       setIsSignedUp(true);
     } catch (error) {
-      console.error('Error signing in:', error);
+      console.error("Error signing in:", error);
     }
   };
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -86,7 +92,7 @@ export default function Home() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
-        gap={{base:'2rem',md:'0'}}
+        gap={{ base: "2rem", md: "0" }}
         position="relative"
       >
         <VStack
@@ -95,9 +101,9 @@ export default function Home() {
           p={8}
           ml={4}
           spacing={4}
-          flex={{md:1,base:2}}
+          flex={{ md: 1, base: 2 }}
           bg="white"
-          position="relative"  // Allow for absolute positioning inside
+          position="relative" // Allow for absolute positioning inside
         >
           <Image src={VibeText} alt="Vibe Search" />
           <Text
@@ -148,43 +154,46 @@ export default function Home() {
             </Text>
           </VStack>
           <div>
-      {!isSignedUp && (
-        <Button
-          textAlign={"left"}
-          justifyContent={"flex-start"}
-          gap={{ md: "1rem", base: "0.5rem" }}
-          color={"#0000008A"}
-          bg={"#FFFFFF"}
-          fontWeight={"500"}
-          fontSize={{ md: "1.25rem", base: "1rem" }}
-          p={"0.6rem"}
-          w={{ md: "20rem", base: "14rem" }}
-          borderRadius={"10px"}
-          boxShadow="0px 2px 3px 0px #0000002B"
-          onClick={handleGoogleSignIn}
-        >
-          <Image src={GoogleIcon} alt="Google Sign Up" /> Sign Up with Google
-        </Button>
-      )}
+            {!isSignedUp && (
+              <Button
+                textAlign={"left"}
+                justifyContent={"flex-start"}
+                gap={{ md: "1rem", base: "0.5rem" }}
+                color={"#0000008A"}
+                bg={"#FFFFFF"}
+                fontWeight={"500"}
+                fontSize={{ md: "1.25rem", base: "1rem" }}
+                p={"0.6rem"}
+                w={{ md: "20rem", base: "14rem" }}
+                borderRadius={"10px"}
+                boxShadow="0px 2px 3px 0px #0000002B"
+                onClick={handleGoogleSignIn}
+              >
+                <Image src={GoogleIcon} alt="Google Sign Up" /> Sign Up with
+                Google
+              </Button>
+            )}
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Thank You!</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            Thank you for registering! We'll notify you by email when we launch on October 20th and keep you updated on other exciting developments.
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </div>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Thank You!</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  Thank you for registering! We&apos;ll notify you by email when
+                  we launch on October 20th and keep you updated on other
+                  exciting developments.
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </div>
 
           {/* Footer-like text at bottom left */}
           <Box
             position="absolute"
             bottom="0" // Align to the bottom
-            left="0"   // Align to the left
-            p={4}      // Add padding
+            left="0" // Align to the left
+            p={4} // Add padding
           >
             <Link href={"www.hush1one.com"}>
               <Text
@@ -194,7 +203,11 @@ export default function Home() {
                 fontWeight={"400"}
                 lineHeight={"11px"}
               >
-                Powered by <span style={{ fontWeight: "700", color: "#0000008A" }}>hushh.ai</span>, a Hushh Labs project
+                Powered by{" "}
+                <span style={{ fontWeight: "700", color: "#0000008A" }}>
+                  hushh.ai
+                </span>
+                , a Hushh Labs project
               </Text>
             </Link>
           </Box>
@@ -203,12 +216,12 @@ export default function Home() {
         <Box
           flex={1}
           bg="#F4F3F1"
-          display={{md:"flex",base:'none'}}
+          display={{ md: "flex", base: "none" }}
           alignItems="center"
           justifyContent="center"
           position="relative"
           flexDirection="column"
-          minW={'650px'}
+          minW={"650px"}
           // minH={'490px'}
           // maxW="640px"
           // maxH={'540px'}
@@ -217,7 +230,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <AnimatePresence mode='wait'>
+          <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
               initial={{ opacity: 0 }}
@@ -225,49 +238,49 @@ export default function Home() {
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-          <Image
-            src={slides[currentSlide].image}
-            alt="Slide illustration"
-            width={"579px"}
-            height={"286px"}
-            style={{ zIndex: '1', margin: '0 auto', display: 'block' }}
-            />
-          <Text
-            fontSize={{ md: "2rem", base: "1.15rem" }}
-            fontWeight="700"
-            textAlign="center"
-            zIndex="2"
-            lineHeight={{ md: "41.6px", base: "35px" }}
-            letterSpacing="-1%"
-            fontFamily="Figtree"
-            mt={{ md: "3rem", base: "0.5rem" }}
-          >
-            {slides[currentSlide].text}
-          </Text>
-          <Text
-            fontSize={{ md: "2rem", base: "1.15rem" }}
-            fontWeight="700"
-            textAlign="center"
-            zIndex="2"
-            lineHeight={{ md: "41.6px", base: "35px" }}
-            letterSpacing="-1%"
-            fontFamily="Figtree"
-          >
-            {slides[currentSlide].text2}
-          </Text>
-          </motion.div>
+              <Image
+                src={slides[currentSlide].image}
+                alt="Slide illustration"
+                width={"579px"}
+                height={"286px"}
+                style={{ zIndex: "1", margin: "0 auto", display: "block" }}
+              />
+              <Text
+                fontSize={{ md: "2rem", base: "1.15rem" }}
+                fontWeight="700"
+                textAlign="center"
+                zIndex="2"
+                lineHeight={{ md: "41.6px", base: "35px" }}
+                letterSpacing="-1%"
+                fontFamily="Figtree"
+                mt={{ md: "3rem", base: "0.5rem" }}
+              >
+                {slides[currentSlide].text}
+              </Text>
+              <Text
+                fontSize={{ md: "2rem", base: "1.15rem" }}
+                fontWeight="700"
+                textAlign="center"
+                zIndex="2"
+                lineHeight={{ md: "41.6px", base: "35px" }}
+                letterSpacing="-1%"
+                fontFamily="Figtree"
+              >
+                {slides[currentSlide].text2}
+              </Text>
+            </motion.div>
           </AnimatePresence>
-          <HStack spacing={10} mt={16} position="absolute" bottom="60px"> 
-    {slides.map((_, index) => (
-      <Circle
-        key={index}
-        size="10px"
-        bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
-        onClick={() => handleSlideChange(index)}
-        cursor="pointer"
-      />
-    ))}
-  </HStack>
+          <HStack spacing={10} mt={16} position="absolute" bottom="60px">
+            {slides.map((_, index) => (
+              <Circle
+                key={index}
+                size="10px"
+                bg={currentSlide === index ? "#1E1E48" : "#BBBBCA"}
+                onClick={() => handleSlideChange(index)}
+                cursor="pointer"
+              />
+            ))}
+          </HStack>
         </Box>
       </Box>
     </>
