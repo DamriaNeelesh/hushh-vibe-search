@@ -62,13 +62,7 @@ export default function SearchResults() {
         p={4}
       >
         {/* Left Filter Section */}
-        <VStack
-          align="start"
-          p={4}
-          minW={{ base: "100%", md: "300px" }}
-          bg="gray.100"
-          borderRadius="md"
-        >
+        <div className={`${styles.SearchResults__Filters}`}>
           <FiltersAndHistory></FiltersAndHistory>
 
           <Text fontWeight="bold" fontSize="lg" mt={4}>
@@ -81,7 +75,7 @@ export default function SearchResults() {
             <SliderThumb />
           </Slider>
           <Text>$10 - $1050</Text>
-        </VStack>
+        </div>
 
         {/* Main Content Section */}
         <Box flex={1} p={4} display="flex" flexDirection="column">
