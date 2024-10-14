@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import { ChakraBaseProvider } from "@chakra-ui/react";
+import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ChakraBaseProvider>{children}</ChakraBaseProvider>
+        <ChakraBaseProvider><ChakraProvider>{children}</ChakraProvider></ChakraBaseProvider>
       </body>
     </html>
   );

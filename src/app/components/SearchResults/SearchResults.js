@@ -25,6 +25,9 @@ import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
+import VibeText from "../svg/vibeText.svg";
+
+
 export default function SearchResults() {
   let [searchResults, setSearchResults] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
@@ -88,13 +91,14 @@ export default function SearchResults() {
         </VStack>
 
         {/* Main Content Section */}
-        <Box flex={1} p={4} display="flex" flexDirection="column">
+        <Box bg={'white'} zIndex={10} flex={1} px={{md:4,base:1}} pb={{md:4,base:1}} display="flex" flexDirection="column">
           {/* Header Section */}
-          <HStack mb={4} spacing={4} justifyContent="space-between">
+          <HStack bg={'white'} py={{md:2,base:1}} pos={'sticky'} zIndex={11} mt={{md:4,base:1}}  top={'0'} mb={{md:4,base:1}} spacing={4} justifyContent="space-between">
             <HStack spacing={4}>
-              <Text fontSize="2xl" fontWeight="bold">
+              {/* <Text fontSize="2xl" fontWeight="bold">
                 Vibe
-              </Text>
+              </Text> */}
+              <Image src={VibeText} objectFit="cover" alt="Vibe Search"/>
               <utilities.SearchBox></utilities.SearchBox>
             </HStack>
             <HStack spacing={4}>
