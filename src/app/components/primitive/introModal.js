@@ -46,7 +46,7 @@ function IntroModal() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         zIndex="10"
-        bg="#C7DAE9"
+        bg="#F8F4F2"
         p={6}
         display={'flex'}
         flexDirection={'column'}
@@ -78,9 +78,9 @@ function IntroModal() {
               <Image
                 src={slides[currentSlide].image}
                 alt="Slide illustration"
-                width="441px"
-                height="217px"
-                style={{ zIndex: '1', alignItems: 'center', justifyContent: 'center' , width:'441px !important',height:'217px !important'}}
+                width={"579px"}
+                height={"286px"}
+                style={{ zIndex: "1", margin: "0 auto", display: "block" }}
               />
            
           <Text

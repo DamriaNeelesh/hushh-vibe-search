@@ -89,7 +89,7 @@ export default function Home() {
 
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 10000); // 5 seconds delay for slide change
+    }, 7000); //7 seconds delay for slide change
 
     return () => {
       clearTimeout(timer);
