@@ -29,6 +29,7 @@ import SearchGif from "./components/gif/searchGif.gif";
 import services from "./services/services";
 import VibeText from "./components/svg/vibeText.svg";
 import { motion, AnimatePresence } from "framer-motion";
+import isLoggedIn from "./services/authentication/isLoggedIn";
 
 const slides = [
   {
@@ -62,10 +63,15 @@ export default function Home() {
     }
   }, [isSignedUp]);
 
+  useEffect(() => {
+    setInterval(() => {
+      isSignedUp ? "" : services.authentication.isLoggedIn(setIsSignedUp);
+    }, 1000);
+  }, []);
+
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
-      setIsSignedUp(true);
     } catch (error) {
       console.error("Error signing in:", error);
     }

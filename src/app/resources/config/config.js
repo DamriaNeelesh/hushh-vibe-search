@@ -6,6 +6,7 @@ const config = {
     "supabaseClient": null,
     "vibesearchAPIEndpoint":" https://vibe-search-version3-yxfa6ba3aq-uc.a.run.app",
     "guestModeAccessToken": "P2H8RNXPvIiPoeM0iJEDjJ2Skk37h5pScMQF5oMRUXm3dKoUC2wxrWImx5ccA9VOrOoeaLcMQqn57vYDPucTkYnkkH6icUQy09vtd5eIrAIXhBtmUfAmPI3thD2OoUeF",
+    //"redirect_url":"https://vibesearch.ai",
     "redirect_url":"http://localhost:3000"
 }
 
