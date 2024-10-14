@@ -37,24 +37,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8"
-        />
-
-        <script id="google-analytics">
-          {`
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8	"></script>
+<script
+          dangerouslySetInnerHTML={{
+            __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', ${'${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}'});
-          `}
-        </script> 
-        <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8"
-      ></script>
-      <GoogleTagManager gtmId="G-JG6C3FQ2N8" />
+              gtag('config', 'G-JG6C3FQ2N8');
+            `,
+          }}
+        />
+      <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
