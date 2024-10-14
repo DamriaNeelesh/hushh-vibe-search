@@ -174,7 +174,7 @@ export default function Home() {
               </Button>
             )}
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <Modal isOpen={false} onClose={() => setIsModalOpen(false)}>
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>Thank You!</ModalHeader>
