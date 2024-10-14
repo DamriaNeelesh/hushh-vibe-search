@@ -9,14 +9,7 @@ import {
   Circle,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Slide1 from "./components/svg/slideImage1.svg";
@@ -30,8 +23,7 @@ import SearchGif from "./components/gif/searchGif.gif";
 import services from "./services/services";
 import VibeText from "./components/svg/vibeText.svg";
 import { motion, AnimatePresence } from "framer-motion";
-import isLoggedIn from "./services/authentication/isLoggedIn";
-
+import Modal from "antd/es/modal/Modal";
 const slides = [
   {
     image: Slide1,
@@ -70,6 +62,10 @@ export default function Home() {
     }, 1000);
   }, []);
 
+  useEffect(() => {
+    isSignedUp ? setIsModalOpen(true) : "";
+  }, [isSignedUp]);
+
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
@@ -95,6 +91,111 @@ export default function Home() {
 
   return (
     <>
+      <Modal
+        title="Welcome Aboard!"
+        open={isModalOpen}
+        footer={null}
+        closable={false}
+      >
+        <p>
+          Thank you for registering!
+          <br></br>We'll notify you by email when we launch on{" "}
+          <strong>October 20th</strong> and keep you updated on other exciting
+          developments.
+          <br></br>
+          In the meantime, You can go over &nbsp;
+          <a href="https://hushh.ai" target="_blank">
+            hushh.ai
+          </a>
+          &nbsp; to learn more about us.
+          <br></br>
+          <br></br>
+          <svg
+            width="400"
+            height="250"
+            viewBox="0 0 400 250"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="400" height="250" rx="20" fill="#1A1A1A" />
+            <g filter="url(#filter0_d)">
+              <rect
+                x="20"
+                y="20"
+                width="360"
+                height="210"
+                rx="10"
+                stroke="#333333"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+              />
+            </g>
+            <text
+              x="40"
+              y="120"
+              fill="white"
+              fontFamily="Operetta, sans-serif"
+              fontSize="52"
+              fontWeight="bold"
+            >
+              Vibe
+            </text>
+            <text
+              x="40"
+              y="170"
+              fill="white"
+              fontFamily="Figtree, sans-serif"
+              fontSize="18"
+            >
+              Early Access Pass
+            </text>
+            <text
+              x="40"
+              y="210"
+              fill="#999999"
+              fontFamily="Figtree, sans-serif"
+              fontSize="14"
+            >
+              20 Oct 2024
+            </text>
+            <defs>
+              <filter
+                id="filter0_d"
+                x="15"
+                y="15"
+                width="370"
+                height="220"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </p>
+      </Modal>
       <Box
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
@@ -180,19 +281,6 @@ export default function Home() {
                 Google
               </Button>
             )}
-
-            <Modal isOpen={false} onClose={() => setIsModalOpen(false)}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Thank You!</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  Thank you for registering! We&apos;ll notify you by email when
-                  we launch on October 20th and keep you updated on other
-                  exciting developments.
-                </ModalBody>
-              </ModalContent>
-            </Modal>
           </div>
 
           {/* Footer-like text at bottom left */}
