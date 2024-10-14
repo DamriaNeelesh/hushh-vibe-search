@@ -25,6 +25,9 @@ import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
+import VibeText from "../svg/vibeText.svg";
+
+
 export default function SearchResults() {
   let [searchResults, setSearchResults] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
@@ -59,9 +62,20 @@ export default function SearchResults() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
-        p={4}
+        px={{md:4,base:1}}
+        pb={{md:4,base:1}}
       >
         {/* Left Filter Section */}
+        <VStack
+          align="start"
+          p={4}
+          minW={{ base: "100%", md: "300px" }}
+          // bg="gray.100"
+          h={'100vh'}
+          position={'sticky'}
+          borderRadius="md"
+          top={'0'}
+        >
         <div className={`${styles.SearchResults__Filters}`}>
           <FiltersAndHistory></FiltersAndHistory>
 
@@ -78,13 +92,14 @@ export default function SearchResults() {
         </div>
 
         {/* Main Content Section */}
-        <Box flex={1} p={4} display="flex" flexDirection="column">
+        <Box bg={'white'} zIndex={10} flex={1} px={{md:4,base:1}} pb={{md:4,base:1}} display="flex" flexDirection="column">
           {/* Header Section */}
-          <HStack mb={4} spacing={4} justifyContent="space-between">
+          <HStack bg={'white'} py={{md:2,base:1}} pos={'sticky'} zIndex={11} mt={{md:4,base:1}}  top={'0'} mb={{md:4,base:1}} spacing={4} justifyContent="space-between">
             <HStack spacing={4}>
               <Text fontSize="2xl" fontWeight="bold">
                 Vibe
               </Text>
+              {/* <Image src={VibeText} objectFit="cover" alt="Vibe Search"/> */}
               <utilities.SearchBox></utilities.SearchBox>
             </HStack>
             <HStack spacing={4}>
@@ -133,6 +148,7 @@ export default function SearchResults() {
                     p={2}
                     transform="translateY(100%)"
                     transition="transform 0.3s ease"
+                    cursor={'pointer'}
                   >
                     Add to Favorites
                   </Box>
