@@ -143,6 +143,7 @@ export default function SearchResults() {
                     p={2}
                     transform="translateY(100%)"
                     transition="transform 0.3s ease"
+                    cursor={'pointer'}
                   >
                     Add to Favorites
                   </Box>
