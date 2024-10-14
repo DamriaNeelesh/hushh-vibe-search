@@ -24,13 +24,19 @@ import services from "./services/services";
 import VibeText from "./components/svg/vibeText.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "antd/es/modal/Modal";
+import Resources from "./resources/resources";
+
 const slides = [
   {
     image: Slide1,
     text: "Shop Smoothly,",
     text2: "Save the Maze for Game Night",
   },
-  { image: Slide2, text: "Type like you talk,", text2: " Vibe gets it" },
+  {
+    image: Resources.images.VibeSearchGif,
+    text: "Type like you talk,",
+    text2: " Vibe gets it",
+  },
   {
     image: Slide3,
     text: "Spot a style you love?",
@@ -270,7 +276,7 @@ export default function Home() {
                 color={"#0000008A"}
                 bg={"#FFFFFF"}
                 fontWeight={"500"}
-                cursor={'pointer'}
+                cursor={"pointer"}
                 fontSize={{ md: "1.25rem", base: "1rem" }}
                 p={"0.6rem"}
                 w={{ md: "20rem", base: "14rem" }}

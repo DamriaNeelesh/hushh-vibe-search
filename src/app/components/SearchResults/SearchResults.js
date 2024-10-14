@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import utilities from "../utilities/utilities";
 import {
   Box,
   Text,
@@ -19,11 +20,10 @@ import {
   Link,
   useToast,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
 import { FiHeart, FiUser } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
-
+import FiltersAndHistory from './FiltersAndHistory/FiltersAndHistory'
 export default function SearchResults() {
   let [searchResults, setSearchResults] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
@@ -52,7 +52,12 @@ export default function SearchResults() {
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
 
   return (
-    <Box display="flex" flexDirection={{ base: "column", md: "row" }} minH="100vh" p={4}>
+    <Box
+      display="flex"
+      flexDirection={{ base: "column", md: "row" }}
+      minH="100vh"
+      p={4}
+    >
       {/* Left Filter Section */}
       <VStack
         align="start"
@@ -61,16 +66,8 @@ export default function SearchResults() {
         bg="gray.100"
         borderRadius="md"
       >
-        <Text fontWeight="bold" fontSize="lg">
-          BRAND
-        </Text>
-        {["Mango", "Van Heusen", "Allen Solly", "Louis Vuitton", "Gucci", "Prada"].map(
-          (brand) => (
-            <Checkbox key={brand}>{brand}</Checkbox>
-          )
-        )}
-        <Text color="purple.500">+ 23 more</Text>
-
+        <FiltersAndHistory></FiltersAndHistory>
+        
         <Text fontWeight="bold" fontSize="lg" mt={4}>
           PRICE
         </Text>
@@ -91,17 +88,7 @@ export default function SearchResults() {
             <Text fontSize="2xl" fontWeight="bold">
               Vibe
             </Text>
-            <Input
-              placeholder="dark academia outfits for men"
-              size="lg"
-              w="full"
-            />
-            <IconButton
-              icon={<SearchIcon />}
-              aria-label="Search"
-              bg="purple.500"
-              color="white"
-            />
+            <utilities.SearchBox></utilities.SearchBox>
           </HStack>
           <HStack spacing={4}>
             <Icon as={FiHeart} w={6} h={6} color="gray.500" />
@@ -110,10 +97,7 @@ export default function SearchResults() {
         </HStack>
 
         {/* Product Results */}
-        <Grid
-          templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
-          gap={6}
-        >
+        <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={6}>
           {Object.values(searchResults).map((product, index) => (
             <Box
               key={index}

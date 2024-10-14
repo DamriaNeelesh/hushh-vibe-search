@@ -1,62 +1,16 @@
-.searchBox {
-    width: 356px;
-    height: 51px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.SearchBox {
+  width: 46vw;
+  height: 48pt;
+  border-radius: 10pt;
+  border-color: #DFE1E5;
+  border-width: 1pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.searchBox__search {
-    width: 234px;
-    text-align: start;
-    overflow-x: scroll;
+.SearchBox .SearchBox__Input {
+  width: 30vw;
 }
-
-.searchBox__leftContainer {
-    background-color: #E7E7E7;
-    height: 51px;
-    width: 293px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 12px;
-}
-
-@media screen and (max-width: 500px) {
-    .searchBox {
-        width: 90vw;
-    }
-    .searchBox__search{
-        width: 50vw;
-    }
-    .searchBox__leftContainer{
-        width: 70vw;
-    }
-}
-
-
-
-.searchBox__cameraImage {
-    width: 28.05px;
-}
-
-.searchBox__go {
-    width: 24px;
-    height: 24px;
-}
-
-.searchBox__fileInput {
-    display: none;
-}
-
-
-
-.searchBox__rightContainer {
-    background-color: #E7E7E7;
-    height: 51px;
-    width: 51px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-}
+.SearchBox .SearchBox__Input:focus {
+  outline: none;
+}/*# sourceMappingURL=SearchBox.module.css.map */
