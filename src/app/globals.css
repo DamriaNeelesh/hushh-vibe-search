@@ -75,3 +75,14 @@ body {
   max-height: 90%;
   overflow: auto;
 } */
+
+
+/* Search Results Products blocks CSS */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container:hover .favorite-button {
+  transform: translateY(0);
+}

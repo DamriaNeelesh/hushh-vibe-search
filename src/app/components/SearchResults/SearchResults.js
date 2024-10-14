@@ -123,63 +123,83 @@ export default function SearchResults() {
           </HStack>
 
           {/* Product Results */}
-          <Grid
-            templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
-            gap={{ md: 14, base: 5 }}
-            mt={{md:'2rem',base:'1rem'}}
-            mb={{md:'6rem',base:'2rem'}}
+
+<Grid
+  templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
+  gap={{ md: 14, base: 5 }}
+  mt={{ md: '2rem', base: '1rem' }}
+  mb={{ md: '6rem', base: '2rem' }}
+>
+  {Object.values(searchResults).map((product, index) => (
+    <Box
+      key={index}
+      position="relative"
+      borderRadius="10px"
+      overflow="hidden"
+      bg="#F8F4F2"
+      minH="350px"
+      className="product-card"
+    >
+      <Box position="relative" className="image-container">
+        <Link href={product.product_url} isExternal>
+          <Image
+            src={product.image || "/path/to/default-image.jpg"}
+            alt={product.product_title}
+            width="100%"
+            minH="300px"
+            maxH="300px"
+            objectFit="cover"
+          />
+        </Link>
+        <Box
+          className="favorite-button"
+          position="absolute"
+          bottom="0"
+          width="100%"
+          bg="#624737"
+          color="white"
+          textAlign="center"
+          p={2}
+          transform="translateY(100%)"
+          transition="transform 0.3s ease"
+        >
+          Add to Favorites
+        </Box>
+      </Box>
+      <Box p={3} bg={'#F8F4F2'}>
+        <Text
+          fontWeight="600"
+          color={"#000000"}
+          noOfLines={1}
+          fontSize={{ md: "18px", base: "12px" }}
+          mt={2}
+        >
+          {product.product_title}
+        </Text>
+        <Text
+          fontSize={{ md: "14px", base: "9px" }}
+          noOfLines={1}
+          fontWeight={"600"}
+          color="#757575"
+        >
+          {product.description}
+        </Text>
+        {product.price_available && (
+          <Text
+            fontWeight="600"
+            color={"#9F9F9F"}
+            noOfLines={1}
+            fontSize={{ md: "15px", base: "8px" }}
+            mt={2}
           >
-            {Object.values(searchResults).map((product, index) => (
-              <Box
-                key={index}
-                borderRadius="10px"
-                overflow="hidden"
-                bg="#F8F4F2"
-                minH="350px"
-              >
-                <Link href={product.product_url} isExternal>
-                  <Image
-                    src={product.image || "/path/to/default-image.jpg"}
-                    alt={product.product_title}
-                    width="100%"
-                    minH="300px"
-                    maxH="300px"
-                    objectFit="cover"
-                  />
-                </Link>
-                <Box p={3} bg={'#F8F4F2'}>
-                  <Text
-                    fontWeight="600"
-                    color={"#000000"}
-                    noOfLines={1}
-                    fontSize={{ md: "18px", base: "12px" }}
-                    mt={2}
-                  >
-                    {product.product_title}
-                  </Text>
-                  <Text
-                    fontSize={{ md: "14px", base: "9px" }}
-                    noOfLines={1}
-                    fontWeight={"600"}
-                    color="#757575"
-                  >
-                    {product.description}
-                  </Text>
-                  {product.price_available && (
-                    <Text
-                      fontWeight="600"
-                      color={"#9F9F9F"}
-                      noOfLines={1}
-                      fontSize={{ md: "15px", base: "8px" }}
-                      mt={2}
-                    >
-                      {product.currency} {product.price}
-                    </Text>
-                  )}
-                </Box>
-              </Box>
-            ))}
-          </Grid>
+            {product.currency} {product.price}
+          </Text>
+        )}
+      </Box>
+    </Box>
+  ))}
+</Grid>
+
         </Box>
       </Box>
       <Footer />
