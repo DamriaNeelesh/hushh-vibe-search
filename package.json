@@ -14,6 +14,7 @@
     "@eduardosmarcal/webcam-easy": "^2.0.3",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@next/third-parties": "^14.2.15",
     "@supabase/supabase-js": "^2.45.4",
     "antd": "^5.21.3",
     "axios": "^1.7.7",

@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { ChakraBaseProvider } from "@chakra-ui/react";
+import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,19 +37,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <Script
+      <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8"
         />
 
-        <Script id="google-analytics">
+        <script id="google-analytics">
           {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', ${'${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}'});
           `}
-        </Script>
+        </script> 
+        <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8"
+      ></script>
+      <GoogleTagManager gtmId="G-JG6C3FQ2N8" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
