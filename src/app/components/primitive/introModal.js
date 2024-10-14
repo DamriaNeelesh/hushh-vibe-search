@@ -6,11 +6,11 @@ import Slide1 from '../svg/slideImage1.svg';
 import Slide2 from '../svg/slideImage2.svg';
 import Slide3 from '../svg/slideImage3.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import Gif from '../../resources/images/VibeSearch.gif'
 const slides = [
   { image: Slide1, text: "Shop Smoothly,",text2:"Save the Maze for Game Night" },
-  { image: Slide2, text: "Type like you talk,",text2:" Vibe gets it" },
-  { image: Slide3, text: "Spot a style you love?" , text2:"Let&apos;s find its twin"},
+  { image: Gif, text: "Type like you talk,",text2:" Vibe gets it" },
+  { image: Slide3, text: "Spot a style you love?" , text2:"Lets find its twin"},
 ];
 
 function IntroModal() {
@@ -28,7 +28,7 @@ function IntroModal() {
 
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // 5 seconds delay for slide change
+    }, 7000); // 5 seconds delay for slide change
 
     return () => {
       clearTimeout(timer);
@@ -53,10 +53,7 @@ function IntroModal() {
         alignItems={'center'}
         justifyContent={'center'}
         textAlign={'center'}
-        minW={'940px'}
-        minH={'490px'}
-        maxW="940px"
-        maxH={'540px'}
+        
         borderRadius="md"
         boxShadow="lg"
       >
@@ -66,6 +63,10 @@ function IntroModal() {
         justifyContent="center"
         flexDirection="column"
         p={4}
+        minW={'940px'}
+        minH={'490px'}
+        maxW="940px"
+        maxH={'579px'}
         display={'flex'}>
           <AnimatePresence mode='wait'>
             <motion.div
@@ -80,7 +81,7 @@ function IntroModal() {
                 alt="Slide illustration"
                 width={"579px"}
                 height={"286px"}
-                style={{ zIndex: "1", margin: "0 auto", display: "block" }}
+                style={{ zIndex: "1",maxHeight:'286px',maxWidth:'579px', margin: "0 auto", display: "block" }}
               />
            
           <Text

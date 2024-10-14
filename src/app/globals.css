@@ -60,8 +60,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 500px;
-  max-height: 250px;
-  height: 100%;
+  max-height: 200px;
+  /* height: 100%; */
   background-color: rgba(0, 0, 0, 0.5); /* Optional: for a dimmed background */
   z-index: 1000; /* Ensure it is above other content */
 }
