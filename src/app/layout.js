@@ -48,6 +48,11 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+
+<meta
+        name="google-site-verification"
+        content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
+      />
       <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
