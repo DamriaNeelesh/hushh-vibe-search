@@ -59,15 +59,19 @@ export default function SearchResults() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
-        p={4}
+        px={{md:4,base:1}}
+        pb={{md:4,base:1}}
       >
         {/* Left Filter Section */}
         <VStack
           align="start"
           p={4}
           minW={{ base: "100%", md: "300px" }}
-          bg="gray.100"
+          // bg="gray.100"
+          h={'100vh'}
+          position={'sticky'}
           borderRadius="md"
+          top={'0'}
         >
           <FiltersAndHistory></FiltersAndHistory>
 
