@@ -270,6 +270,7 @@ export default function Home() {
                 color={"#0000008A"}
                 bg={"#FFFFFF"}
                 fontWeight={"500"}
+                cursor={'pointer'}
                 fontSize={{ md: "1.25rem", base: "1rem" }}
                 p={"0.6rem"}
                 w={{ md: "20rem", base: "14rem" }}
