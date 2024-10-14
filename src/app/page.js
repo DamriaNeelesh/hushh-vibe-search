@@ -8,6 +8,7 @@ import {
   Circle,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import {Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Slide1 from "./components/svg/slideImage1.svg";
@@ -39,10 +40,30 @@ const slides = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
   };
+
+  useEffect(() => {
+    // Check if the user has just signed up
+    if (isSignedUp) {
+      setIsModalOpen(true);
+    }
+  }, [isSignedUp]);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await services.authentication.googleSignIn();
+      setIsSignedUp(true);
+    } catch (error) {
+      console.error('Error signing in:', error);
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,6 +86,7 @@ export default function Home() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
+        gap={{base:'2rem',md:'0'}}
         position="relative"
       >
         <VStack
@@ -73,7 +95,7 @@ export default function Home() {
           p={8}
           ml={4}
           spacing={4}
-          flex={1}
+          flex={{md:1,base:2}}
           bg="white"
           position="relative"  // Allow for absolute positioning inside
         >
@@ -125,21 +147,37 @@ export default function Home() {
               access and exclusive updates.
             </Text>
           </VStack>
-          <Button
-            textAlign={"left"}
-            justifyContent={"flex-start"}
-            gap={{ md: "1rem", base: "0.5rem" }}
-            color={"#0000008A"}
-            bg={"#FFFFFF"}
-            fontWeight={"500"}
-            fontSize={{ md: "1.25rem", base: "1rem" }}
-            p={"0.6rem"}
-            w={{ md: "20rem", base: "10rem" }}
-            borderRadius={"10px"}
-            boxShadow=" 0px 2px 3px 0px #0000002B"
-          >
-            <Image src={GoogleIcon} alt="Google Sign Up" /> Sign Up with Google
-          </Button>
+          <div>
+      {!isSignedUp && (
+        <Button
+          textAlign={"left"}
+          justifyContent={"flex-start"}
+          gap={{ md: "1rem", base: "0.5rem" }}
+          color={"#0000008A"}
+          bg={"#FFFFFF"}
+          fontWeight={"500"}
+          fontSize={{ md: "1.25rem", base: "1rem" }}
+          p={"0.6rem"}
+          w={{ md: "20rem", base: "14rem" }}
+          borderRadius={"10px"}
+          boxShadow="0px 2px 3px 0px #0000002B"
+          onClick={handleGoogleSignIn}
+        >
+          <Image src={GoogleIcon} alt="Google Sign Up" /> Sign Up with Google
+        </Button>
+      )}
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Thank You!</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Thank you for registering! We'll notify you by email when we launch on October 20th and keep you updated on other exciting developments.
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </div>
 
           {/* Footer-like text at bottom left */}
           <Box
@@ -165,7 +203,7 @@ export default function Home() {
         <Box
           flex={1}
           bg="#F4F3F1"
-          display="flex"
+          display={{md:"flex",base:'none'}}
           alignItems="center"
           justifyContent="center"
           position="relative"
