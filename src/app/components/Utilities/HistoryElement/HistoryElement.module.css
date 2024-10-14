@@ -1,0 +1,12 @@
+.historyElement{
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+.historyElement__title{
+    display: flex;
+    flex-direction: column;
+    height: 4vh;
+    justify-content: center;
+    width: 70vw;
+}
