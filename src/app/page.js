@@ -195,7 +195,7 @@ export default function Home() {
             left="0" // Align to the left
             p={4} // Add padding
           >
-            <Link href={"www.hush1one.com"}>
+            <Link href={"https://www.hush1one.com"}>
               <Text
                 fontFamily={"Figtree"}
                 color={"#0000008A"}

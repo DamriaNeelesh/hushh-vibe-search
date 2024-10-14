@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.vibesearch.ai/
+
+# Sitemaps
+Sitemap: https://www.vibesearch.ai/sitemap.xml
