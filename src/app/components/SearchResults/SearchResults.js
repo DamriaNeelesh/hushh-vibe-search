@@ -26,7 +26,7 @@ import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import VibeText from "../svg/vibeText.svg";
-
+import styles from './SearchResults.module.css'
 
 export default function SearchResults() {
   let [searchResults, setSearchResults] = useState([]);
@@ -90,7 +90,7 @@ export default function SearchResults() {
           </Slider>
           <Text>$10 - $1050</Text>
         </div>
-
+        </VStack>
         {/* Main Content Section */}
         <Box bg={'white'} zIndex={10} flex={1} px={{md:4,base:1}} pb={{md:4,base:1}} display="flex" flexDirection="column">
           {/* Header Section */}
@@ -187,6 +187,7 @@ export default function SearchResults() {
             ))}
           </Grid>
         </Box>
+        
       </Box>
       <Footer />
     </>
