@@ -95,10 +95,10 @@ export default function SearchResults() {
           {/* Header Section */}
           <HStack bg={'white'} py={{md:2,base:1}} pos={'sticky'} zIndex={11} mt={{md:4,base:1}}  top={'0'} mb={{md:4,base:1}} spacing={4} justifyContent="space-between">
             <HStack spacing={4}>
-              {/* <Text fontSize="2xl" fontWeight="bold">
+              <Text fontSize="2xl" fontWeight="bold">
                 Vibe
-              </Text> */}
-              <Image src={VibeText} objectFit="cover" alt="Vibe Search"/>
+              </Text>
+              {/* <Image src={VibeText} objectFit="cover" alt="Vibe Search"/> */}
               <utilities.SearchBox></utilities.SearchBox>
             </HStack>
             <HStack spacing={4}>
