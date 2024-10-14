@@ -14,6 +14,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Slide1 from "./components/svg/slideImage1.svg";
 import Slide2 from "./components/svg/slideImage2.svg";
+import Card1 from "./components/svg/card1.svg";
+import Card2 from "./components/svg/card2.svg";
 import Slide3 from "./components/svg/slideImage3.svg";
 import GoogleIcon from "./components/svg/googleIcon.svg";
 import AppleIcon from "./components/svg/appleIcon.svg";
@@ -116,90 +118,10 @@ export default function Home() {
           &nbsp; to learn more about us.
           <br></br>
           <br></br>
-          <svg
-            width="400"
-            height="250"
-            viewBox="0 0 400 250"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="400" height="250" rx="20" fill="#1A1A1A" />
-            <g filter="url(#filter0_d)">
-              <rect
-                x="20"
-                y="20"
-                width="360"
-                height="210"
-                rx="10"
-                stroke="#333333"
-                strokeWidth="2"
-                strokeDasharray="5 5"
-              />
-            </g>
-            <text
-              x="40"
-              y="120"
-              fill="white"
-              fontFamily="Operetta, sans-serif"
-              fontSize="52"
-              fontWeight="bold"
-            >
-              Vibe
-            </text>
-            <text
-              x="40"
-              y="170"
-              fill="white"
-              fontFamily="Figtree, sans-serif"
-              fontSize="18"
-            >
-              Early Access Pass
-            </text>
-            <text
-              x="40"
-              y="210"
-              fill="#999999"
-              fontFamily="Figtree, sans-serif"
-              fontSize="14"
-            >
-              20 Oct 2024
-            </text>
-            <defs>
-              <filter
-                id="filter0_d"
-                x="15"
-                y="15"
-                width="370"
-                height="220"
-                filterUnits="userSpaceOnUse"
-                colorInterpolationFilters="sRGB"
-              >
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix
-                  in="SourceAlpha"
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="2" />
-                <feColorMatrix
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                />
-                <feBlend
-                  mode="normal"
-                  in2="BackgroundImageFix"
-                  result="effect1_dropShadow"
-                />
-                <feBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="effect1_dropShadow"
-                  result="shape"
-                />
-              </filter>
-            </defs>
-          </svg>
+          <div className="card-container">
+      <Image src={Card1} alt="Card Front" className="card card-front" />
+      <Image src={Card2} alt="Card Back" className="card card-back" />
+    </div>
         </p>
       </Modal>
       <Box
