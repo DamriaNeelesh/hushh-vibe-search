@@ -8,8 +8,9 @@ const Footer = () => {
       width="100%"
       //   padding="4"
       minW={"100%"}
+      
       //   backgroundColor="blue.100"
-      position="absolute"
+      position="sticky"
       bottom="0"
       zIndex="999"
       fontWeight={'400'}
