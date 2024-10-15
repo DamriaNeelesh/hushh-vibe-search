@@ -150,7 +150,7 @@ export default function Home() {
             <Image src={Card1} alt="Card Front" className="card card-front" />
             {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
             <Box zIndex={'1'} pos={'relative'} py={{md:'4rem',base:'2rem'}} className="card card-back" px={{md:'2.5rem',base:'1rem'}} gap={{md:'1rem',base:'0.65rem'}} width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'} textAlign={'left'} bg={'#624737'} borderRadius={'5px'}>
-               <Text zIndex={'2'} w={'100%'} textAlign={'left'} color={'#C9AD9D'} fontSize={{md:'2rem',base:'1rem'}} fontWeight={'400'} lineHeight={'20px'} fontFamily={'Afacad, sans-serif'}>{userDetails?.data?.user?.user_metadata?.full_name}</Text>
+               <Text zIndex={'2'} w={'100%'} textAlign={'left'} color={'#C9AD9D'} fontSize={{md:'1.5rem',base:'1rem'}} fontWeight={'400'} lineHeight={'20px'} fontFamily={'Afacad, sans-serif'}>{userDetails?.data?.user?.user_metadata?.full_name}</Text>
                <Text zIndex={'2'} fontWeight={'300'} fontSize={{md:'1rem',base:'0.5rem'}} color={'#FBFAF8'} lineHeight={'20.8px'} fontFamily={'Figtree, sans-serif'}>Get ready to elevate your fashion game. As a Vibe pioneer, you'll have <span style={{fontWeight:'700'}}>exclusive</span> access to our groundbreaking features. Enjoy!</Text>
                <Box
     as="svg"
