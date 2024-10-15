@@ -155,6 +155,10 @@ export default function SearchResults() {
                     transform="translateY(100%)"
                     transition="transform 0.3s ease"
                     cursor={'pointer'}
+                    onClick={async ()=>{
+                      let access_token=await services.authentication.getAccessToken()
+                      services.wishlist.addToWishList(product.id, access_token)
+                    }}
                   >
                     Add to Favorites
                   </Box>

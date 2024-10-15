@@ -13,4 +13,7 @@
 }
 .SearchBox .SearchBox__Input:focus {
   outline: none;
+}
+.SearchBox .SearchBox__Icon {
+  cursor: pointer;
 }/*# sourceMappingURL=SearchBox.module.css.map */

@@ -14,8 +14,6 @@ export default function FileInputBox(){
                   const reader = new FileReader();
                   reader.onload = (event) => {
                     const base64String = event.target.result;
-                    //setFile(base64String)
-                    //console.log(base64String);
                     let temp = base64String.split(";")
                     temp = temp[1].split(",")
                     
