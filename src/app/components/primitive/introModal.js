@@ -39,7 +39,7 @@ function IntroModal() {
   return (
     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} isCentered>
     <div className='modal-container'>
-      <ModalOverlay />
+      {/* <ModalOverlay /> */}
       <Box
         as={motion.div}
         initial={{ opacity: 0, y: 50 }}
