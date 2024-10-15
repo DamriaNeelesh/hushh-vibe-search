@@ -120,3 +120,18 @@ body {
 .card-container:hover .card-back {
   transform: rotateY(360deg);
 }
+
+/* Drawer CSS and Product Search Results Scroll CSS */
+body.no-scroll {
+  overflow: hidden;
+}
+
+.drawer {
+  overscroll-behavior: contain;
+  overflow: auto;
+}
+
+.product-grid {
+  overscroll-behavior: contain;
+  overflow: auto;
+}
