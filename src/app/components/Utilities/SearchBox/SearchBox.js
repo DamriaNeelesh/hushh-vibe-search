@@ -11,7 +11,10 @@ export default function SearchBox() {
         }
       }}></input>
       <img src={resources.cross.src}></img>
-      <img src={resources.camera.src}></img>
+      
+      <img src={resources.camera.src} onClick={()=>{
+
+      }}></img>
     </div>
   );
 }

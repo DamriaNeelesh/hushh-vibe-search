@@ -55,7 +55,9 @@ export default function SearchResults() {
     }
     callVibeIt();
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
-
+  useEffect(() => {
+    console.log(selectedBrands)
+  }, [selectedBrands])
   return (
     <>
       <Box
@@ -78,7 +80,7 @@ export default function SearchResults() {
           top={'0'}
         >
         <div className={`${styles.SearchResults__Filters}`}>
-          <FiltersAndHistory></FiltersAndHistory>
+          <FiltersAndHistory setSelectedBrands={setSelectedBrands} selectedBrands={selectedBrands}></FiltersAndHistory>
           <Text fontWeight="bold" fontSize="lg" mt={4}>
             PRICE
           </Text>

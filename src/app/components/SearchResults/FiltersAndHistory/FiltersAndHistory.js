@@ -3,13 +3,14 @@ import resources from "../resources/resources";
 import styles from './FiltersAndHistory.module.css'
 import HistoryComponent from './HistoryComponent/HistoryComponent'
 import BrandFilters from './BrandFilters/BrandFilters'
-export default function FiltersAndHistory() {
+export default function FiltersAndHistory(props) {
   return (
     <div className={`${styles.FiltersAndHistory}`}>
       <DropDownContent
         icon={resources.sandwich.src}
-        children={<BrandFilters></BrandFilters>}
+        children={<BrandFilters {...props}></BrandFilters>}
         height={"12pt"}
+        
       />
 
       <DropDownContent

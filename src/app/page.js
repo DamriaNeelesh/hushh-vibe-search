@@ -27,7 +27,7 @@ import VibeText from "./components/svg/vibeText.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "antd/es/modal/Modal";
 import Resources from "./resources/resources";
-import VibeSearchGif from '../app/resources/images/VibeSearch.gif'
+import VibeSearchGif from "../app/resources/images/VibeSearch.gif";
 const slides = [
   {
     image: Slide1,
@@ -74,6 +74,9 @@ export default function Home() {
     isSignedUp ? setIsModalOpen(true) : "";
   }, [isSignedUp]);
 
+  useEffect(()=>{
+    console.log(isModalOpen)
+  }, [isModalOpen])
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
@@ -103,7 +106,10 @@ export default function Home() {
         title="Welcome Aboard!"
         open={isModalOpen}
         footer={null}
-        closable={false}
+        closable={true}
+        onCancel={() => {
+          setIsModalOpen(false);
+        }}
       >
         <p>
           Thank you for registering!
@@ -111,17 +117,11 @@ export default function Home() {
           <strong>October 20th</strong> and keep you updated on other exciting
           developments.
           <br></br>
-          In the meantime, You can go over &nbsp;
-          <a href="https://hushh.ai" target="_blank">
-            hushh.ai
-          </a>
-          &nbsp; to learn more about us.
-          <br></br>
           <br></br>
           <div className="card-container">
-      <Image src={Card1} alt="Card Front" className="card card-front" />
-      <Image src={Card2} alt="Card Back" className="card card-back" />
-    </div>
+            <Image src={Card1} alt="Card Front" className="card card-front" />
+            <Image src={Card2} alt="Card Back" className="card card-back" />
+          </div>
         </p>
       </Modal>
       <Box
@@ -185,7 +185,7 @@ export default function Home() {
               lineHeight={"21.6px"}
               fontSize={{ md: "18px", base: "0.85rem" }}
             >
-              <span style={{ fontWeight: "700" }}>Sign up now </span>for early
+              <span style={{ fontWeight: "700" }}>{!isSignedUp? "Sign up now": "Thank you for registering"} </span>for early
               access and exclusive updates.
             </Text>
           </VStack>

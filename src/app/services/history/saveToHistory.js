@@ -1,6 +1,6 @@
 export default async function saveToHistory(searchQuery){
     console.log(searchQuery)
-    let history=localStorage.getItem('vibe-history')
+    let history=JSON.parse(localStorage.getItem('vibe-history'))
     if(!history){
         history=[]
     }

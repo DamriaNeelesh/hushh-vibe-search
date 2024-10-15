@@ -1,19 +1,28 @@
 import config from "../../../../resources/config/config";
-export default function BrandFilters() {
-  console.log(config.brands);
+import styles from "./BrandFilters.module.css";
+export default function BrandFilters(props) {
   return (
-    <div>
-      Hello
-      <div>
+      <div className={`${styles.BrandFilters}`}>
         {config.brands.map((brand) => {
           return (
             <div>
-              <input type="checkbox" onClick={(event) => {}}></input>
-              {brand}
+              <input type="checkbox" onClick={(event) => {
+                // check if the checkbox is checked
+
+                if(event.target.checked){
+                  console.log([...props.selectedBrands, brand])
+                  props.setSelectedBrands([...props.selectedBrands, brand]);
+                }else{
+                  let newBrands = props.selectedBrands.filter((selectedBrand) => {
+                    return selectedBrand !== brand;
+                  });
+                  props.setSelectedBrands(newBrands);
+                }
+              }}></input>
+              &nbsp; {brand}
             </div>
           );
         })}
       </div>
-    </div>
   );
 }
