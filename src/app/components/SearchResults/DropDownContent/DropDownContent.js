@@ -14,7 +14,7 @@ export default function DropDownContent(props) {
         }}
       ></img>
       {showFilter ? (
-        props.children
+        <props.children {...props}></props.children>
       ) : (
         <></>
       )}
