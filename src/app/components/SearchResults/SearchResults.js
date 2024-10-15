@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import utilities from "../utilities/utilities"
+import utilities from "../utilities/utilities";
+import config from "../../resources/config/config";
 import {
   Box,
   Text,
@@ -26,7 +27,7 @@ import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import VibeText from "../svg/vibeText.svg";
-import styles from './SearchResults.module.css'
+import styles from "./SearchResults.module.css";
 
 export default function SearchResults() {
   let [searchResults, setSearchResults] = useState([]);
@@ -37,12 +38,16 @@ export default function SearchResults() {
   const toast = useToast();
 
   useEffect(() => {
+    let wishlist = searchParams.get("isWishlist");
+    if (wishlist) {
+      return;
+    }
     async function callVibeIt() {
       let search = searchParams.get("query");
-      services.history.saveToHistory(search)
-      const isImageSearch=searchParams.get("imageSearch")
-      if(isImageSearch){
-        search=localStorage.getItem("image-file")
+      services.history.saveToHistory(search);
+      const isImageSearch = searchParams.get("imageSearch");
+      if (isImageSearch) {
+        search = localStorage.getItem("image-file");
       }
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
@@ -60,8 +65,18 @@ export default function SearchResults() {
     callVibeIt();
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
   useEffect(() => {
-    console.log(selectedBrands)
-  }, [selectedBrands])
+    async function callGetWishlist() {
+      let access_token = await services.authentication.getAccessToken();
+      services.wishlist.getWishList(access_token, setSearchResults);
+    }
+    let wishlist = searchParams.get("isWishlist");
+    if (wishlist) {
+      callGetWishlist();
+    }
+  }, []);
+  useEffect(() => {
+    console.log(selectedBrands);
+  }, [selectedBrands]);
   return (
     <>
       <Box
@@ -69,8 +84,8 @@ export default function SearchResults() {
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
         minH="100vh"
-        px={{md:4,base:1}}
-        pb={{md:4,base:1}}
+        px={{ md: 4, base: 1 }}
+        pb={{ md: 4, base: 1 }}
       >
         {/* Left Filter Section */}
         <VStack
@@ -78,29 +93,50 @@ export default function SearchResults() {
           p={4}
           minW={{ base: "100%", md: "300px" }}
           // bg="gray.100"
-          h={'100vh'}
-          position={'sticky'}
+          h={"100vh"}
+          position={"sticky"}
           borderRadius="md"
-          top={'0'}
+          top={"0"}
         >
-        <div className={`${styles.SearchResults__Filters}`}>
-          <FiltersAndHistory setSelectedBrands={setSelectedBrands} selectedBrands={selectedBrands}></FiltersAndHistory>
-          <Text fontWeight="bold" fontSize="lg" mt={4}>
-            PRICE
-          </Text>
-          <Slider defaultValue={10} min={10} max={1050} step={10} mt={2}>
-            <SliderTrack>
-              <SliderFilledTrack bg="purple.500" />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-          <Text>$10 - $1050</Text>
-        </div>
+          <div className={`${styles.SearchResults__Filters}`}>
+            <FiltersAndHistory
+              setSelectedBrands={setSelectedBrands}
+              selectedBrands={selectedBrands}
+            ></FiltersAndHistory>
+            <Text fontWeight="bold" fontSize="lg" mt={4}>
+              PRICE
+            </Text>
+            <Slider defaultValue={10} min={10} max={1050} step={10} mt={2}>
+              <SliderTrack>
+                <SliderFilledTrack bg="purple.500" />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text>$10 - $1050</Text>
+          </div>
         </VStack>
         {/* Main Content Section */}
-        <Box bg={'white'} zIndex={10} flex={1} px={{md:4,base:1}} pb={{md:4,base:1}} display="flex" flexDirection="column">
+        <Box
+          bg={"white"}
+          zIndex={10}
+          flex={1}
+          px={{ md: 4, base: 1 }}
+          pb={{ md: 4, base: 1 }}
+          display="flex"
+          flexDirection="column"
+        >
           {/* Header Section */}
-          <HStack bg={'white'} py={{md:2,base:1}} pos={'sticky'} zIndex={11} mt={{md:4,base:1}}  top={'0'} mb={{md:4,base:1}} spacing={4} justifyContent="space-between">
+          <HStack
+            bg={"white"}
+            py={{ md: 2, base: 1 }}
+            pos={"sticky"}
+            zIndex={11}
+            mt={{ md: 4, base: 1 }}
+            top={"0"}
+            mb={{ md: 4, base: 1 }}
+            spacing={4}
+            justifyContent="space-between"
+          >
             <HStack spacing={4}>
               <Text fontSize="2xl" fontWeight="bold">
                 Vibe
@@ -109,7 +145,9 @@ export default function SearchResults() {
               <utilities.SearchBox></utilities.SearchBox>
             </HStack>
             <HStack spacing={4}>
-              <Icon as={FiHeart} w={6} h={6} color="gray.500" />
+              <Icon as={FiHeart} w={6} h={6} color="gray.500" onClick={()=>{
+                window.location.href = config.redirect_url+"/components/SearchResults?isWishlist=true";
+              }}/>
               <Avatar icon={<FiUser />} bg="gray.500" />
             </HStack>
           </HStack>
@@ -154,10 +192,11 @@ export default function SearchResults() {
                     p={2}
                     transform="translateY(100%)"
                     transition="transform 0.3s ease"
-                    cursor={'pointer'}
-                    onClick={async ()=>{
-                      let access_token=await services.authentication.getAccessToken()
-                      services.wishlist.addToWishList(product.id, access_token)
+                    cursor={"pointer"}
+                    onClick={async () => {
+                      let access_token =
+                        await services.authentication.getAccessToken();
+                      services.wishlist.addToWishList(product.id, access_token);
                     }}
                   >
                     Add to Favorites
@@ -197,7 +236,6 @@ export default function SearchResults() {
             ))}
           </Grid>
         </Box>
-        
       </Box>
       <Footer />
     </>
