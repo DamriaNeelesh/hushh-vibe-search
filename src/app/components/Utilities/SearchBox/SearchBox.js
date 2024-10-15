@@ -1,6 +1,7 @@
 import styles from "./SearchBox.module.css";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
+import FileInputBox from './FileInputBox/FileInputBox'
 export default function SearchBox() {
   return (
     <div className={`${styles.SearchBox}`}>
@@ -11,9 +12,9 @@ export default function SearchBox() {
         }
       }}></input>
       <img src={resources.cross.src}></img>
-      
+      <FileInputBox></FileInputBox>
       <img src={resources.camera.src} onClick={()=>{
-
+        document.getElementById("searchBox__fileInput").click();
       }}></img>
     </div>
   );

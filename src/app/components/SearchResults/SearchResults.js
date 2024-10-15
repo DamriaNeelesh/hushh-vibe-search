@@ -38,8 +38,12 @@ export default function SearchResults() {
 
   useEffect(() => {
     async function callVibeIt() {
-      const search = searchParams.get("query");
+      let search = searchParams.get("query");
       services.history.saveToHistory(search)
+      const isImageSearch=searchParams.get("imageSearch")
+      if(isImageSearch){
+        search=localStorage.getItem("image-file")
+      }
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
         search ? search : "",
