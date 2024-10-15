@@ -8,18 +8,19 @@ export default function FiltersAndHistory(props) {
     <div className={`${styles.FiltersAndHistory}`}>
       <DropDownContent
         icon={resources.sandwich.src}
-        children={BrandFilters}
         {...props}
         height={"12pt"}
-        
-      />
+      >
+        <BrandFilters {...props}></BrandFilters>
+        </DropDownContent>
+
 
       <DropDownContent
         icon={resources.history.src}
         height={"16pt"}
-        children={HistoryComponent}
-        {...props}
-      />
+      >
+        <HistoryComponent></HistoryComponent>
+        </DropDownContent>
     </div>
   );
 }
