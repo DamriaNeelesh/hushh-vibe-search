@@ -28,6 +28,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Modal from "antd/es/modal/Modal";
 import Resources from "./resources/resources";
 import VibeSearchGif from "../app/resources/images/VibeSearch.gif";
+import getUserDetails from "./services/authentication/getUserDetails";
+
 const slides = [
   {
     image: Slide1,
@@ -52,6 +54,7 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState(null); // State for user details
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
@@ -63,6 +66,26 @@ export default function Home() {
       setIsModalOpen(true);
     }
   }, [isSignedUp]);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const user = await getUserDetails(setUserDetails);
+      if (!user) {
+        console.error("No user data found.");
+      } else {
+        console.log("User data set successfully:", user);
+        return user
+      }
+      console.log('Name:',user.data.user.user_metadata?.full_name)
+    };
+    fetchUserDetails();
+  }, []); // Ensure this runs only on component mount
+
+  // Log user details to ensure they're set
+  useEffect(() => {
+    console.log("Updated userDetails in Home component:", userDetails);
+  }, [userDetails]); // Log user details every time they update
+
 
   useEffect(() => {
     setInterval(() => {
@@ -112,7 +135,12 @@ export default function Home() {
         }}
       >
         <p>
+            <Text>
+              Welcome, {userDetails?.data?.user?.user_metadata?.full_name || "User"}!
+            </Text>
+       
           Thank you for registering!
+          {/* {userDetails?.user?.user_metadata?.full_name} */}
           <br></br>We'll notify you by email when we launch on{" "}
           <strong>October 20th</strong> and keep you updated on other exciting
           developments.
@@ -120,7 +148,11 @@ export default function Home() {
           <br></br>
           <div className="card-container">
             <Image src={Card1} alt="Card Front" className="card card-front" />
-            <Image src={Card2} alt="Card Back" className="card card-back" />
+            {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
+            <Box py={{md:'4rem',base:'2rem'}} className="card card-back" px={{md:'2.5rem',base:'1rem'}} gap={{md:'1rem',base:'0.65rem'}} width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'} textAlign={'left'} bg={'#624737'} borderRadius={'5px'}>
+               <Text w={'100%'} textAlign={'left'} color={'#C9AD9D'} fontSize={{md:'2rem',base:'1rem'}} fontWeight={'400'} lineHeight={'20px'} fontFamily={'Afacad, sans-serif'}>{userDetails?.data?.user?.user_metadata?.full_name}</Text>
+               <Text fontWeight={'300'} fontSize={{md:'1rem',base:'0.5rem'}} color={'#FBFAF8'} lineHeight={'20.8px'}>Get ready to elevate your fashion game. As a Vibe pioneer, you'll have <span style={{fontWeight:'700'}}>exclusive</span> access to our groundbreaking features. Enjoy!</Text>
+            </Box>
           </div>
         </p>
       </Modal>
