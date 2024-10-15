@@ -3,9 +3,9 @@ import styles from "./BrandFilters.module.css";
 export default function BrandFilters(props) {
   return (
       <div className={`${styles.BrandFilters}`}>
-        {config.brands.map((brand) => {
+        {config.brands.map((brand, index) => {
           return (
-            <div>
+            <div key={index}>
               <input type="checkbox" onClick={(event) => {
                 // check if the checkbox is checked
 

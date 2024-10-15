@@ -7,8 +7,8 @@ export default function HistoryComponent() {
   }, []);
   return (
     <div>
-      {historyArray.map((search_query) => {
-        return <div>{search_query}</div>;
+      {historyArray.map((search_query, index) => {
+        return <div key={index}>{search_query}</div>;
       })}
     </div>
   );

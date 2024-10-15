@@ -42,7 +42,7 @@ const slides = [
   {
     image: Slide3,
     text: "Spot a style you love?",
-    text2: "Let&apos;s find its twin",
+    text2: "Let's find its twin",
   },
 ];
 
