@@ -1,0 +1,36 @@
+.YourTrust {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .YourTrust__Wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 60vh;
+
+        .YourTrust__Image {
+            height: 15vh;
+        }
+
+        .YourTrust__Title {
+            margin-top: 120pt;
+            color: #202124;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .YourTrust__Desc {
+            margin-top: 40pt;
+            color: #606060;
+            font-family: Figtree;
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+            width: 52vw;
+        }
+    }
+}
