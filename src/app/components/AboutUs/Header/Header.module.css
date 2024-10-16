@@ -1,0 +1,30 @@
+.Header {
+  width: 100vw;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  z-index: 2000;
+}
+.Header .Header__Logo {
+  margin-left: 45pt;
+  display: flex;
+}
+.Header .Header__Pages {
+  display: flex;
+  color: #273434;
+  font-weight: 500;
+  font-size: 16px;
+}
+.Header .Header__Pages {
+  margin-left: 80pt;
+}
+.Header .Header__UnderLine {
+  height: 3px;
+  background-color: #FFB6C1;
+}
+.Header .Header__PageBox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 20pt;
+}/*# sourceMappingURL=Header.module.css.map */
