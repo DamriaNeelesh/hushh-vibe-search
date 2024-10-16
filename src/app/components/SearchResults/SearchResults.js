@@ -9,6 +9,8 @@ import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import styles from "./SearchResults.module.css";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel styles
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
@@ -204,13 +206,32 @@ export default function SearchResults() {
 
                 {selectedProduct && (
                   <>
-                    <Image
+                    {/* <Image
                       src={selectedProduct.image || "/path/to/default-image.jpg"}
                       alt={selectedProduct.product_title}
                       width="100%"
                       height="70%"
                       objectFit="cover"
-                    />
+                    /> */}
+                    <Carousel
+    showArrows={true}
+    showThumbs={false}
+    showStatus={false}
+    infiniteLoop={true}
+    useKeyboardArrows={true}
+    autoPlay={true}
+    swipeable={true}
+  >
+    {selectedProduct.additional_images.map((image, index) => (
+      <div key={index}>
+        <img
+          src={image || "/path/to/default-image.jpg"}
+          alt={`${selectedProduct.product_title} - ${index + 1}`}
+          style={{ width: "100%", height: "70%", objectFit: "cover" }}
+        />
+      </div>
+    ))}
+  </Carousel>
                     <Box p={6}>
                       <HStack gap={{ md: "4rem", base: "1rem" }} justifyContent="space-between">
                         <Text color="#757575" fontSize="1.25rem" fontWeight="600">
