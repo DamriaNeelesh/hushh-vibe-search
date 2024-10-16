@@ -1,61 +1,63 @@
 "use client";
-import { useEffect, useState } from "react";
-import utilities from "../utilities/utilities";
-import config from "../../resources/config/config";
+
+import { useEffect, useState, useRef } from "react";
 import {
   Box,
   Text,
   VStack,
   HStack,
-  Checkbox,
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  IconButton,
-  Input,
   Avatar,
-  Icon,
   Grid,
-  Image,
+  Image as ChakraImage, // Alias Chakra UI's Image
+  Button,
   Link,
-  useToast,
+  Flex,
 } from "@chakra-ui/react";
-import { FiHeart, FiUser } from "react-icons/fi";
+import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
-import VibeText from "../svg/vibeText.svg";
 import styles from "./SearchResults.module.css";
+import VibeText from "../svg/vibeText.svg";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel styles
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import utilities from "../utilities/utilities";
+import Image from "next/image";
 
 export default function SearchResults() {
-  let [searchResults, setSearchResults] = useState([]);
-  let [currentPage, setCurrentPage] = useState(1);
-  let [selectedBrands, setSelectedBrands] = useState([]);
-  let [noMoreResults, setNoMoreResults] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [noMoreResults, setNoMoreResults] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const searchParams = useSearchParams();
-  const toast = useToast();
+  const gridRef = useRef(null);
+  const drawerRef = useRef(null);
 
   useEffect(() => {
-    let wishlist = searchParams.get("isWishlist");
-    if (wishlist) {
-      return;
-    }
     async function callVibeIt() {
       let search = searchParams.get("query");
       services.history.saveToHistory(search);
-      const isImageSearch = searchParams.get("imageSearch");
-      if (isImageSearch) {
-        search = localStorage.getItem("image-file");
-      }
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
-        search ? search : "",
+        search || "",
         "",
         currentPage,
         20,
-        setSearchResults,
+        (results) => {
+          setSearchResults(results);
+          setIsLoading(false); // Set loading to false when data is fetched
+        },
         access_token,
         searchResults,
         selectedBrands,
@@ -64,45 +66,80 @@ export default function SearchResults() {
     }
     callVibeIt();
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
-  useEffect(() => {
-    async function callGetWishlist() {
-      let access_token = await services.authentication.getAccessToken();
-      services.wishlist.getWishList(access_token, setSearchResults);
-    }
-    let wishlist = searchParams.get("isWishlist");
-    if (wishlist) {
-      callGetWishlist();
-    }
-  }, []);
-  useEffect(() => {
-    console.log(selectedBrands);
-  }, [selectedBrands]);
+
+  const openDrawer = (product) => {
+    setSelectedProduct(product);
+    setIsDrawerOpen(true);
+    document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
+    setSelectedProduct(null);
+    document.body.style.overflow = "auto"; // Restore body scroll when drawer is closed
+  };
+
+  const handleScroll = (event, ref) => {
+    event.stopPropagation();
+    ref.current.scrollTop = ref.current.scrollTop + event.deltaY;
+  };
+
   return (
     <>
-      <Box
-        fontFamily={"Figtree, san-serif"}
-        display="flex"
-        flexDirection={{ base: "column", md: "row" }}
-        minH="100vh"
-        px={{ md: 4, base: 1 }}
-        pb={{ md: 4, base: 1 }}
+      <HStack
+        bg="white"
+        py={4}
+        px={6}
+        position="sticky"
+        top={0}
+        // maxH="10vh"
+        textAlign={"center"}
+        zIndex={100}
+        justifyContent="space-between"
+        borderBottom="1px solid #E2E8F0"
       >
-        {/* Left Filter Section */}
-        <VStack
-          align="start"
-          p={4}
-          minW={{ base: "100%", md: "300px" }}
-          // bg="gray.100"
-          h={"100vh"}
-          position={"sticky"}
-          borderRadius="md"
-          top={"0"}
+        <Flex
+          gap={{ md: "2rem", base: "1rem" }}
+          align="center"
+          justifyContent={"center"}
+          alignItems={"center"}
+          flex={1}
+          mx={6}
         >
-          <div className={`${styles.SearchResults__Filters}`}>
+          <Image
+            src={VibeText}
+            width={"120"}
+            height={"50%"}
+            alt="Vibe Search"
+          />
+          <utilities.SearchBox></utilities.SearchBox>
+        </Flex>
+        <HStack spacing={6}>
+          <FiHeart size={24} cursor="pointer" />
+          <Avatar icon={<FiUser />} bg="gray.200" cursor="pointer" />
+        </HStack>
+      </HStack>
+      <Box fontFamily="Figtree, sans-serif" pos={"relative"}>
+        <Flex pos="relative">
+          {/* Left Filter Section */}
+          <VStack
+            align="start"
+            p={6}
+            minW="300px"
+            position="sticky"
+            top="80px"
+            maxH="90vh"
+            overflowY="auto"
+            // css={{
+            //   '&::-webkit-scrollbar': { display: 'none' },
+            //   msOverflowStyle: 'none',
+            //   scrollbarWidth: 'none',
+            // }}
+          >
             <FiltersAndHistory
               setSelectedBrands={setSelectedBrands}
               selectedBrands={selectedBrands}
-            ></FiltersAndHistory>
+            />
             <Text fontWeight="bold" fontSize="lg" mt={4}>
               PRICE
             </Text>
@@ -113,129 +150,217 @@ export default function SearchResults() {
               <SliderThumb />
             </Slider>
             <Text>$10 - $1050</Text>
-          </div>
-        </VStack>
-        {/* Main Content Section */}
-        <Box
-          bg={"white"}
-          zIndex={10}
-          flex={1}
-          px={{ md: 4, base: 1 }}
-          pb={{ md: 4, base: 1 }}
-          display="flex"
-          flexDirection="column"
-        >
-          {/* Header Section */}
-          <HStack
-            bg={"white"}
-            py={{ md: 2, base: 1 }}
-            pos={"sticky"}
-            zIndex={11}
-            mt={{ md: 4, base: 1 }}
-            top={"0"}
-            mb={{ md: 4, base: 1 }}
-            spacing={4}
-            justifyContent="space-between"
-          >
-            <HStack spacing={4}>
-              <Text fontSize="2xl" fontWeight="bold">
-                Vibe
-              </Text>
-              {/* <Image src={VibeText} objectFit="cover" alt="Vibe Search"/> */}
-              <utilities.SearchBox></utilities.SearchBox>
-            </HStack>
-            <HStack spacing={4}>
-              <Icon as={FiHeart} w={6} h={6} color="gray.500" onClick={()=>{
-                window.location.href = config.redirect_url+"/components/SearchResults?isWishlist=true";
-              }}/>
-              <Avatar icon={<FiUser />} bg="gray.500" />
-            </HStack>
-          </HStack>
+          </VStack>
 
-          {/* Product Results */}
-
-          <Grid
-            templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
-            gap={{ md: 14, base: 5 }}
-            mt={{ md: "2rem", base: "1rem" }}
-            mb={{ md: "6rem", base: "2rem" }}
-          >
-            {Object.values(searchResults).map((product, index) => (
+          {/* Main Content Section */}
+          <Box flex={1} p={6}>
+            <Flex gap={{ md: "2rem" }}>
+              {/* Product Grid */}
               <Box
-                key={index}
-                position="relative"
-                borderRadius="10px"
-                overflow="hidden"
-                bg="#F8F4F2"
-                minH="350px"
-                className="product-card"
+                ref={gridRef}
+                flex={isDrawerOpen ? 1 : "100%"}
+                pr={isDrawerOpen ? 4 : 0}
+                overflowY="auto"
+                maxH="100vh"
+                onWheel={(e) => handleScroll(e, gridRef)}
+                css={{
+                  "&::-webkit-scrollbar": { display: "none" },
+                  msOverflowStyle: "none",
+                  scrollbarWidth: "none",
+                }}
               >
-                <Box position="relative" className="image-container">
-                  <Link href={product.product_url} isExternal>
-                    <Image
-                      src={product.image || "/path/to/default-image.jpg"}
-                      alt={product.product_title}
-                      width="100%"
-                      minH="300px"
-                      maxH="300px"
-                      objectFit="cover"
-                    />
-                  </Link>
-                  <Box
-                    className="favorite-button"
-                    position="absolute"
-                    bottom="0"
-                    width="100%"
-                    bg="#624737"
-                    color="white"
-                    textAlign="center"
-                    p={2}
-                    transform="translateY(100%)"
-                    transition="transform 0.3s ease"
-                    cursor={"pointer"}
-                    onClick={async () => {
-                      let access_token =
-                        await services.authentication.getAccessToken();
-                      services.wishlist.addToWishList(product.id, access_token);
-                    }}
+                <Grid
+                  templateColumns={
+                    isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
+                  }
+                  gap={6}
+                >
+                  {isLoading
+                    ? Array.from({ length: 9 }).map((_, index) => (
+                        <Box key={index} padding="6" boxShadow="lg" bg="white">
+                          <Skeleton height="200px" />
+                          <Skeleton height="40px" mt="4" />
+                          <Skeleton height="40px" mt="2" />
+                        </Box>
+                      ))
+                    : Object.values(searchResults).map((product, index) => (
+                        <Box
+                          key={index}
+                          borderRadius="md"
+                          overflow="hidden"
+                          bg="#F8F4F2"
+                          minH="350px"
+                          cursor="pointer"
+                          className="product-card"
+                        >
+                          <Box position="relative" className="image-container">
+                            <ChakraImage
+                              src={
+                                product.image || "/path/to/default-image.jpg"
+                              }
+                              alt={product.product_title}
+                              onClick={() => openDrawer(product)}
+                              objectFit="cover"
+                              height="300px"
+                              width="100%"
+                            />
+                            <Box
+                              className="favorite-button"
+                              position="absolute"
+                              bottom="0"
+                              width="100%"
+                              bg="#624737"
+                              color="white"
+                              textAlign="center"
+                              p={2}
+                              fontFamily={'Figtree, sans-serif'}
+                              transform="translateY(100%)"
+                              transition="transform 0.3s ease"
+                              cursor={"pointer"}
+                              onClick={async () => {
+                                let access_token =
+                                  await services.authentication.getAccessToken();
+                                services.wishlist.addToWishList(
+                                  product.id,
+                                  access_token
+                                );
+                              }}
+                            >
+                              Add to Favorites
+                            </Box>
+                          </Box>
+
+                          <Box p={3}>
+                            <Text fontWeight="600" fontSize="sm">
+                              {product.brand}
+                            </Text>
+                            <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                              {product.product_title}
+                            </Text>
+                            {product.price_available && (
+                              <Text fontWeight="600" fontSize="sm" mt={1}>
+                                {product.currency} {product.price}
+                              </Text>
+                            )}
+                          </Box>
+                        </Box>
+                      ))}
+                </Grid>
+              </Box>
+
+              {/* Right Sidebar for Product Details */}
+              {isDrawerOpen && (
+                <Box
+                  ref={drawerRef}
+                  width="40%"
+                  height={"100vh"}
+                  bg="white"
+                  boxShadow="-4px 0 10px rgba(0, 0, 0, 0.1)"
+                  overflowY="auto"
+                  position="relative"
+                  // minH="100vh"
+                  // overflow={'scroll'}
+                  // onWheel={(e) => handleScroll(e, drawerRef)}
+                  // css={{
+                  //   '&::-webkit-scrollbar': { display: 'none' },
+                  //   msOverflowStyle: 'none',
+                  //   scrollbarWidth: 'none',
+                  // }}
+                >
+                  <HStack
+                    borderTopRadius="10px"
+                    p={4}
+                    bg="#F4EFEB"
+                    justifyContent="space-between"
                   >
-                    Add to Favorites
-                  </Box>
-                </Box>
-                <Box p={3} bg={"#F8F4F2"}>
-                  <Text
-                    fontWeight="600"
-                    color={"#000000"}
-                    noOfLines={1}
-                    fontSize={{ md: "18px", base: "12px" }}
-                    mt={2}
-                  >
-                    {product.product_title}
-                  </Text>
-                  <Text
-                    fontSize={{ md: "14px", base: "9px" }}
-                    noOfLines={1}
-                    fontWeight={"600"}
-                    color="#757575"
-                  >
-                    {product.description}
-                  </Text>
-                  {product.price_available && (
-                    <Text
-                      fontWeight="600"
-                      color={"#9F9F9F"}
-                      noOfLines={1}
-                      fontSize={{ md: "15px", base: "8px" }}
-                      mt={2}
-                    >
-                      {product.currency} {product.price}
+                    <Text fontSize="2xl" fontWeight="bold">
+                      {selectedProduct?.brand}
                     </Text>
+                    <FiX size={24} cursor="pointer" onClick={closeDrawer} />
+                  </HStack>
+
+                  {selectedProduct && (
+                    <>
+                      {/* <Image
+                      src={selectedProduct.image || "/path/to/default-image.jpg"}
+                      alt={selectedProduct.product_title}
+                      width="100%"
+                      height="70%"
+                      objectFit="cover"
+                    /> */}
+                      <Carousel
+                        showArrows={true}
+                        showThumbs={false}
+                        showStatus={false}
+                        infiniteLoop={true}
+                        useKeyboardArrows={true}
+                        autoPlay={true}
+                        swipeable={true}
+                      >
+                        {selectedProduct.additional_images.map(
+                          (image, index) => (
+                            <div key={index}>
+                              <img
+                                src={image || "/path/to/default-image.jpg"}
+                                alt={`${selectedProduct.product_title} - ${
+                                  index + 1
+                                }`}
+                                style={{
+                                  width: "100%",
+                                  maxHeight: "450px",
+                                  // objectFit: "cover",
+                                }}
+                              />
+                            </div>
+                          )
+                        )}
+                      </Carousel>
+                      <Box p={6}>
+                        <HStack
+                          gap={{ md: "4rem", base: "1rem" }}
+                          justifyContent="space-between"
+                        >
+                          <Text
+                            color="#757575"
+                            fontSize="1.25rem"
+                            fontWeight="600"
+                          >
+                            {selectedProduct.product_title}
+                          </Text>
+                          <Button
+                            as={Link}
+                            href={selectedProduct.product_url}
+                            color="#273434"
+                            bg="#F4EFEB"
+                            rightIcon={<ChevronRightIcon />}
+                          >
+                            Visit
+                          </Button>
+                        </HStack>
+                        {selectedProduct.price_available && (
+                          <Text fontWeight="bold" fontSize="lg" mt={2}>
+                            {selectedProduct.currency} {selectedProduct.price}
+                          </Text>
+                        )}
+                        <Text
+                          mt={2}
+                          fontSize="16px"
+                          color="#000"
+                          mb={{ md: "4rem" }}
+                        >
+                          {selectedProduct.description}
+                        </Text>
+                        {/* <Text fontFamily={'700'}>Similar Products</Text> */}
+
+                        <Box height={"2rem"}></Box>
+                      </Box>
+                    </>
                   )}
                 </Box>
-              </Box>
-            ))}
-          </Grid>
-        </Box>
+              )}
+            </Flex>
+          </Box>
+        </Flex>
       </Box>
       <Footer />
     </>

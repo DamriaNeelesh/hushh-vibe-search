@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
 
-const Footer = () => {
+const Footer = ({pos}) => {
   return (
     <Box
       width="100%"
@@ -10,7 +10,7 @@ const Footer = () => {
       minW={"100%"}
       
       //   backgroundColor="blue.100"
-      position="sticky"
+      position={"relative" || pos}
       bottom="0"
       zIndex="999"
       fontWeight={'400'}
