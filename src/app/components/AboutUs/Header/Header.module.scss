@@ -1,0 +1,27 @@
+.Header {
+    width: 100vw;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+
+    .Header__Logo {
+        margin-left: 45pt;
+        display: flex;
+    }
+
+    .Header__Pages {
+        display: flex;
+        color: #273434;
+        font-weight: 500;
+        font-size: 16px;
+        .Header__AboutUs {}
+
+        .Header__ContactUs {
+            margin-left: 20pt
+        }
+    }
+
+    .Header__Pages {
+        margin-left: 80pt;
+    }
+}

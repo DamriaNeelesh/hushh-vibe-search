@@ -1,0 +1,31 @@
+.ValueProp {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ValueProp .ValueProp__Wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+  align-items: center;
+}
+.ValueProp .ValueProp__Wrapper .ValueProp__Image {
+  width: 434px;
+}
+.ValueProp .ValueProp__Wrapper .ValueProp__Desc {
+  font-weight: 400;
+  font-size: 32px;
+  width: 34vw;
+}
+.ValueProp .ValueProp__Wrapper .ValueProp__Title {
+  font-weight: 700;
+  font-size: 40px;
+  color: #273434;
+}
+.ValueProp .ValueProp__Wrapper .ValueProp__DescSmall {
+  font-weight: 400;
+  font-size: 20px;
+  color: #606060;
+}/*# sourceMappingURL=ValueProp.module.css.map */
