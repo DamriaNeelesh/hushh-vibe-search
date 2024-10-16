@@ -1,28 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
-import utilities from "../utilities/utilities";
-import config from "../../resources/config/config";
-import {
-  Box,
-  Text,
-  VStack,
-  HStack,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Avatar,
-  Grid,
-  Image,
-  Button,
-  Link,
-} from "@chakra-ui/react";
-import { FiHeart, FiUser } from "react-icons/fi";
+
+import { useEffect, useState, useRef } from "react";
+import { Box, Text, VStack, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Avatar, Grid, Image, Button, Link, Flex } from "@chakra-ui/react";
+import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import styles from "./SearchResults.module.css";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
@@ -31,8 +17,9 @@ export default function SearchResults() {
   const [noMoreResults, setNoMoreResults] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isGridScrollAllowed, setIsGridScrollAllowed] = useState(true); // New state for page scroll control
   const searchParams = useSearchParams();
+  const gridRef = useRef(null);
+  const drawerRef = useRef(null);
 
   useEffect(() => {
     async function callVibeIt() {
@@ -57,182 +44,162 @@ export default function SearchResults() {
   const openDrawer = (product) => {
     setSelectedProduct(product);
     setIsDrawerOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent body scroll when drawer is open
   };
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
     setSelectedProduct(null);
+    document.body.style.overflow = 'auto'; // Restore body scroll when drawer is closed
   };
 
-  // Handle scrolling control when mouse enters the grid or left filter area
-  const handleMouseEnterGrid = () => {
-    setIsGridScrollAllowed(true); // Allow grid to scroll when mouse is on the product grid
-  };
-
-  const handleMouseLeaveGrid = () => {
-    setIsGridScrollAllowed(false); // Disallow scrolling for the rest of the page
-  };
-
-  // Make sure the left section remains scrollable, even if the drawer is open
-  const handleLeftScroll = (event) => {
+  const handleScroll = (event, ref) => {
     event.stopPropagation();
-    event.target.scrollTop = event.target.scrollTop; // Allow scrolling in the left section
+    ref.current.scrollTop = ref.current.scrollTop + event.deltaY;
   };
-
-  // Prevent body scroll if the mouse is not over the grid
-  useEffect(() => {
-    if (isDrawerOpen || !isGridScrollAllowed) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isDrawerOpen, isGridScrollAllowed]);
 
   return (
-    <>
-      <Box
-        fontFamily={"Figtree, san-serif"}
-        display="flex"
-        flexDirection={{ base: "column", md: "row" }}
-        minH="100vh"
-        px={{ md: 4, base: 1 }}
-        pb={{ md: 4, base: 1 }}
+  <>  
+  <HStack
+        bg="white"
+        py={4}
+        px={6}
+        position="sticky"
+        top={0}
+        // maxH="10vh"
+        zIndex={100}
+        justifyContent="space-between"
+        borderBottom="1px solid #E2E8F0"
       >
+        <Text fontSize="3xl" fontWeight="bold">
+          Vibe
+        </Text>
+        <Flex align="center" flex={1} mx={6}>
+          <Box position="relative" width="100%">
+            {/* <utilities.SearchBox /> */}
+            <Box position="absolute" right={3} top="50%" transform="translateY(-50%)">
+              <FiSearch />
+            </Box>
+          </Box>
+        </Flex>
+        <HStack spacing={6}>
+          <FiHeart size={24} cursor="pointer" />
+          <Avatar icon={<FiUser />} bg="gray.200" cursor="pointer" />
+        </HStack>
+      </HStack>
+    <Box fontFamily="Figtree, sans-serif"  pos={'relative'}>
+      <Flex pos="relative" >
         {/* Left Filter Section */}
         <VStack
           align="start"
-          p={4}
-          minW={{ base: "100%", md: "300px" }}
-          h={"100vh"}
-          position={"sticky"}
-          borderRadius="md"
-          top={"0"}
-          overflowY="auto" // Ensure the left section can scroll
-          onScroll={handleLeftScroll}
+          p={6}
+          minW="300px"
+          position="sticky"
+          top="80px"
+          maxH="90vh"
+          overflowY="auto"
+          // css={{
+          //   '&::-webkit-scrollbar': { display: 'none' },
+          //   msOverflowStyle: 'none',
+          //   scrollbarWidth: 'none',
+          // }}
         >
-          <div className={`${styles.SearchResults__Filters}`}>
-            <FiltersAndHistory
-              setSelectedBrands={setSelectedBrands}
-              selectedBrands={selectedBrands}
-            />
-            <Text fontWeight="bold" fontSize="lg" mt={4}>
-              PRICE
-            </Text>
-            <Slider defaultValue={10} min={10} max={1050} step={10} mt={2}>
-              <SliderTrack>
-                <SliderFilledTrack bg="purple.500" />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text>$10 - $1050</Text>
-          </div>
+          <FiltersAndHistory
+            setSelectedBrands={setSelectedBrands}
+            selectedBrands={selectedBrands}
+          />
+          <Text fontWeight="bold" fontSize="lg" mt={4}>
+            PRICE
+          </Text>
+          <Slider defaultValue={10} min={10} max={1050} step={10} mt={2}>
+            <SliderTrack>
+              <SliderFilledTrack bg="purple.500" />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+          <Text>$10 - $1050</Text>
         </VStack>
 
         {/* Main Content Section */}
-        <Box
-          bg={"white"}
-          zIndex={10}
-          flex={1}
-          px={{ md: 4, base: 1 }}
-          pb={{ md: 4, base: 1 }}
-          display="flex"
-          flexDirection="column"
-          onMouseEnter={handleMouseEnterGrid} // Allow page scroll when mouse is over grid
-          onMouseLeave={handleMouseLeaveGrid} // Disallow page scroll when mouse leaves grid
-        >
-          {/* Header Section */}
-          <HStack
-            bg={"white"}
-            py={{ md: 2, base: 1 }}
-            pos={"sticky"}
-            zIndex={11}
-            mt={{ md: 4, base: 1 }}
-            top={"0"}
-            mb={{ md: 4, base: 1 }}
-            spacing={4}
-            justifyContent="space-between"
-          >
-            <HStack spacing={4}>
-              <Text fontSize="2xl" fontWeight="bold">
-                Vibe
-              </Text>
-              <utilities.SearchBox />
-            </HStack>
-            <HStack spacing={4}>
-              <FiHeart size={24} onClick={() => (window.location.href = "/wishlist")} />
-              <Avatar icon={<FiUser />} bg="gray.500" />
-            </HStack>
-          </HStack>
-
-          <HStack display={"flex"} gap={{ md: 14, base: 5 }} alignItems={"flex-start"} flexDirection={"row"}>
-            {/* Product Results */}
-            <Grid
-              flex={1}
-              templateColumns={{ base: "1fr", md: isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)" }}
-              gap={{ md: 14, base: 5 }}
-              mt={{ md: "2rem", base: "1rem" }}
-              mb={{ md: "6rem", base: "2rem" }}
-              overflowY="auto" // Allow grid scrolling
-              maxH="100vh" // Constrain grid to viewport height
+        <Box flex={1} p={6} >
+          <Flex gap={{md:'2rem'}}>
+            {/* Product Grid */}
+            <Box
+              ref={gridRef}
+              flex={isDrawerOpen ? 1 : "100%"}
+              pr={isDrawerOpen ? 4 : 0}
+              overflowY="auto"
+              maxH="100vh"
+              onWheel={(e) => handleScroll(e, gridRef)}
+              css={{
+                '&::-webkit-scrollbar': { display: 'none' },
+                msOverflowStyle: 'none',
+                scrollbarWidth: 'none',
+              }}
             >
-              {Object.values(searchResults).map((product, index) => (
-                <Box
-                  key={index}
-                  position="relative"
-                  borderRadius="10px"
-                  overflow="hidden"
-                  bg="#F8F4F2"
-                  minH="350px"
-                  onClick={() => openDrawer(product)}
-                  cursor="pointer"
-                >
-                  <Image
-                    src={product.image || "/path/to/default-image.jpg"}
-                    alt={product.product_title}
-                    width="100%"
-                    minH="300px"
-                    maxH="300px"
-                    objectFit="cover"
-                  />
-                  <Box p={3} bg={"#F8F4F2"}>
-                    <Text fontWeight="600" color={"#000000"} noOfLines={1}>
-                      {product.product_title}
-                    </Text>
-                    <Text fontWeight="600" color="#757575" noOfLines={1}>
-                      {product.description}
-                    </Text>
-                    {product.price_available && (
-                      <Text fontWeight="600" color={"#9F9F9F"} noOfLines={1}>
-                        {product.currency} {product.price}
+              <Grid
+                templateColumns={isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)"}
+                gap={6}
+              >
+                {Object.values(searchResults).map((product, index) => (
+                  <Box
+                    key={index}
+                    borderRadius="md"
+                    overflow="hidden"
+                    bg="#F8F4F2"
+                    minH="350px"
+                    onClick={() => openDrawer(product)}
+                    cursor="pointer"
+                  >
+                    <Image
+                      src={product.image || "/path/to/default-image.jpg"}
+                      alt={product.product_title}
+                      objectFit="cover"
+                      height="300px"
+                      width="100%"
+                    />
+                    <Box p={3}>
+                      <Text fontWeight="600" fontSize="sm">
+                        {product.brand}
                       </Text>
-                    )}
+                      <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                        {product.product_title}
+                      </Text>
+                      {product.price_available && (
+                        <Text fontWeight="600" fontSize="sm" mt={1}>
+                          {product.currency} {product.price}
+                        </Text>
+                      )}
+                    </Box>
                   </Box>
-                </Box>
-              ))}
-            </Grid>
+                ))}
+              </Grid>
+            </Box>
 
             {/* Right Sidebar for Product Details */}
             {isDrawerOpen && (
               <Box
-                width={{ base: "100%", md: "40%" }}
-                position="sticky"
-                top={0}
+                ref={drawerRef}
+                width="40%"
+                height={'100vh'}
                 bg="white"
-                boxShadow="lg"
-                zIndex={10}
+                boxShadow="-4px 0 10px rgba(0, 0, 0, 0.1)"
                 overflowY="auto"
-                height="100vh"
+                position="relative"
+                // minH="100vh"
+                // overflow={'scroll'}
+                // onWheel={(e) => handleScroll(e, drawerRef)}
+                // css={{
+                //   '&::-webkit-scrollbar': { display: 'none' },
+                //   msOverflowStyle: 'none',
+                //   scrollbarWidth: 'none',
+                // }}
               >
-                <HStack borderTopRadius={"10px"} p={4} bg={"#F4EFEB"} justifyContent={"space-between"}>
+                <HStack borderTopRadius="10px" p={4} bg="#F4EFEB" justifyContent="space-between">
                   <Text fontSize="2xl" fontWeight="bold">
-                    {selectedProduct?.product_title}
+                    {selectedProduct?.brand}
                   </Text>
-                  <svg onClick={closeDrawer} width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path
-                      d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z"
-                      fill="#9AA0A6"
-                    />
-                  </svg>
+                  <FiX size={24} cursor="pointer" onClick={closeDrawer} />
                 </HStack>
 
                 {selectedProduct && (
@@ -240,28 +207,40 @@ export default function SearchResults() {
                     <Image
                       src={selectedProduct.image || "/path/to/default-image.jpg"}
                       alt={selectedProduct.product_title}
-                      minW="100%"
-                      maxH={"621px"}
+                      width="100%"
+                      height="70%"
                       objectFit="cover"
                     />
-                    <Text fontWeight="bold">{selectedProduct.brand}</Text>
-                    <Text>{selectedProduct.description}</Text>
-                    {selectedProduct.price_available && (
-                      <Text fontWeight="bold" fontSize="lg">
-                        {selectedProduct.currency} {selectedProduct.price}
+                    <Box p={6}>
+                      <HStack gap={{ md: "4rem", base: "1rem" }} justifyContent="space-between">
+                        <Text color="#757575" fontSize="1.25rem" fontWeight="600">
+                          {selectedProduct.product_title}
+                        </Text>
+                        <Button as={Link} href={selectedProduct.product_url} color="#273434" bg="#F4EFEB" rightIcon={<ChevronRightIcon />}>
+                          Visit
+                        </Button>
+                      </HStack>
+                      {selectedProduct.price_available && (
+                        <Text fontWeight="bold" fontSize="lg" mt={2}>
+                          {selectedProduct.currency} {selectedProduct.price}
+                        </Text>
+                      )}
+                      <Text mt={2} fontSize="16px" color="#000" mb={{md:'4rem'}}>
+                        {selectedProduct.description}
                       </Text>
-                    )}
-                    <Button as={Link} href={selectedProduct.product_url} isExternal colorScheme="purple" width="full">
-                      Visit Product Page
-                    </Button>
+                      {/* <Text fontFamily={'700'}>Similar Products</Text> */}
+
+                      <Box height={'2rem'}></Box>
+                    </Box>
                   </>
                 )}
               </Box>
             )}
-          </HStack>
+          </Flex>
         </Box>
-      </Box>
-      <Footer />
-    </>
-  );
+      </Flex>
+    </Box>
+        <Footer />
+</>
+);
 }
