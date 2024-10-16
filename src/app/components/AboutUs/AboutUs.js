@@ -26,9 +26,9 @@ export default function AboutUs() {
       <ValueProp image={Resources.images.AISearch.src} imageDirection={"right"}>
         <div>
           <div className={`${styles.AboutUs__Desc}`}>
-            Vibe Search is an AI-powered shopping search engine that uses
-            advanced semantic search technology to understand natural language
-            queries, delivering personalised experiences.
+            Vibe Search is an <strong>AI-powered shopping search engine</strong> that uses
+            advanced <strong>semantic search</strong> technology to understand <strong>natural language
+            queries,</strong> delivering personalised experiences.
           </div>
         </div>
       </ValueProp>
@@ -41,10 +41,10 @@ export default function AboutUs() {
             Personalized Shopping<br></br> with Privacy
           </div>
           <div className={`${styles.AboutUs__DescSmall}`}>
-            Our platform ensures privacy protection and secure data handling,
+            Our platform ensures <strong>privacy protection</strong> and secure data handling,
             using your information only with your explicit permission to enhance
             your shopping experience, connecting you with the most relevant
-            products from global fashion brands online.
+            products from <strong>global fashion brands online.</strong>
           </div>
         </div>
       </ValueProp>
@@ -57,18 +57,25 @@ export default function AboutUs() {
             Features That Surpass <br></br>Traditional Search
           </div>
           <div className={`${styles.AboutUs__DescSmall}`}>
-            With privacy-focused image search capabilities, you can find similar
-            products online even without exact keyword matches. Access our vast
+            With <strong>privacy-focused image search capabilities,</strong> you can find similar
+            products online even <strong>without exact keyword matches.</strong> Access our vast
             catalog of global fashion brands and discover items that truly
-            resonate with your style and intent.
+            <strong>resonate with your style and intent.</strong>
           </div>
         </div>
       </ValueProp>
       <YourTrust></YourTrust>
       <div className={`${styles.AboutUs__UpperFooter} figtree`}>
         <div className={`${styles.AboutUs__UpperFooterText}`}>
-          Powered by <strong>hushh</strong>
+          Powered by{" "}
+          <strong>
+            <Link href={"https://hushh.ai"} target="_blank">hushh</Link>
+          </strong>
         </div>
+      </div>
+      <div className={`${styles.AboutUs__UpperFooter} figtree`}>
+        <div className={`${styles.AboutUs__UpperFooterText}`}>About</div>
+        <div className={`${styles.AboutUs__UpperFooterText}`}>Contact us</div>
       </div>
     </div>
   );
