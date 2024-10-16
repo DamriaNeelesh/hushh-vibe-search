@@ -26,10 +26,13 @@ import styles from "./SearchResults.module.css";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel styles
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [noMoreResults, setNoMoreResults] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -48,7 +51,10 @@ export default function SearchResults() {
         "",
         currentPage,
         20,
-        setSearchResults,
+        (results) => {
+          setSearchResults(results);
+          setIsLoading(false); // Set loading to false when data is fetched
+        },
         access_token,
         searchResults,
         selectedBrands,
@@ -165,8 +171,16 @@ export default function SearchResults() {
                   }
                   gap={6}
                 >
-                  {Object.values(searchResults).map((product, index) => (
-                    <Box
+                {isLoading
+          ? Array.from({ length: 9 }).map((_, index) => (
+              <Box key={index} padding="6" boxShadow="lg" bg="white">
+                <Skeleton height="200px" />
+                <Skeleton height="40px" mt="4" />
+                <Skeleton height="40px" mt="2" />
+              </Box>
+            )) :
+             Object.values(searchResults).map((product, index) => (
+              <Box
                       key={index}
                       borderRadius="md"
                       overflow="hidden"
