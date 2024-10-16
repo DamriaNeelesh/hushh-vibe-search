@@ -3,7 +3,7 @@
     height: 9vh;
     display: flex;
     align-items: center;
-
+    z-index: 2000;
     .Header__Logo {
         margin-left: 45pt;
         display: flex;
@@ -17,11 +17,23 @@
         .Header__AboutUs {}
 
         .Header__ContactUs {
-            margin-left: 20pt
+            
         }
     }
 
     .Header__Pages {
         margin-left: 80pt;
+        
+    }
+    .Header__UnderLine{
+        height: 3px;
+        // width: 62px;
+        background-color: #FFB6C1;
+    }
+    .Header__PageBox{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 20pt
     }
 }

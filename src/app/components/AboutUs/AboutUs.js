@@ -1,17 +1,18 @@
+"use client"
 import Resources from "../../resources/resources";
 import Header from "./Header/Header";
 import OurMission from "./OurMission/OurMission";
 import ValueProp from "./ValueProp/ValueProp";
 import styles from "./AboutUs.module.css";
 import YourTrust from "./YourTrust/YourTrust";
-import { Box } from "@chakra-ui/react";
 import Link from "next/link";
-import { Text } from "@chakra-ui/react";
 import config from "../../resources/config/config";
+import { useState } from "react";
 export default function AboutUs() {
+  let [page, setPage]=useState('about')
   return (
     <div>
-      <Header></Header>
+      <Header page={page} setPage={setPage}></Header>
       <OurMission></OurMission>
       <ValueProp
         image={Resources.images.WomanLooking.src}
