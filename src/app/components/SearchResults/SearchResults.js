@@ -12,7 +12,7 @@ import {
   SliderThumb,
   Avatar,
   Grid,
-  Image,
+  Image as ChakraImage, // Alias Chakra UI's Image
   Button,
   Link,
   Flex,
@@ -23,11 +23,14 @@ import { useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import styles from "./SearchResults.module.css";
+import VibeText from "../svg/vibeText.svg";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel styles
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import utilities from "../utilities/utilities";
+import Image from "next/image";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
@@ -90,25 +93,26 @@ export default function SearchResults() {
         position="sticky"
         top={0}
         // maxH="10vh"
+        textAlign={"center"}
         zIndex={100}
         justifyContent="space-between"
         borderBottom="1px solid #E2E8F0"
       >
-        <Text fontSize="3xl" fontWeight="bold">
-          Vibe
-        </Text>
-        <Flex align="center" flex={1} mx={6}>
-          <Box position="relative" width="100%">
-            {/* <utilities.SearchBox /> */}
-            <Box
-              position="absolute"
-              right={3}
-              top="50%"
-              transform="translateY(-50%)"
-            >
-              <FiSearch />
-            </Box>
-          </Box>
+        <Flex
+          gap={{ md: "2rem", base: "1rem" }}
+          align="center"
+          justifyContent={"center"}
+          alignItems={"center"}
+          flex={1}
+          mx={6}
+        >
+          <Image
+            src={VibeText}
+            width={"120"}
+            height={"50%"}
+            alt="Vibe Search"
+          />
+          <utilities.SearchBox></utilities.SearchBox>
         </Flex>
         <HStack spacing={6}>
           <FiHeart size={24} cursor="pointer" />
@@ -171,46 +175,76 @@ export default function SearchResults() {
                   }
                   gap={6}
                 >
-                {isLoading
-          ? Array.from({ length: 9 }).map((_, index) => (
-              <Box key={index} padding="6" boxShadow="lg" bg="white">
-                <Skeleton height="200px" />
-                <Skeleton height="40px" mt="4" />
-                <Skeleton height="40px" mt="2" />
-              </Box>
-            )) :
-             Object.values(searchResults).map((product, index) => (
-              <Box
-                      key={index}
-                      borderRadius="md"
-                      overflow="hidden"
-                      bg="#F8F4F2"
-                      minH="350px"
-                      onClick={() => openDrawer(product)}
-                      cursor="pointer"
-                    >
-                      <Image
-                        src={product.image || "/path/to/default-image.jpg"}
-                        alt={product.product_title}
-                        objectFit="cover"
-                        height="300px"
-                        width="100%"
-                      />
-                      <Box p={3}>
-                        <Text fontWeight="600" fontSize="sm">
-                          {product.brand}
-                        </Text>
-                        <Text color="gray.600" fontSize="sm" noOfLines={1}>
-                          {product.product_title}
-                        </Text>
-                        {product.price_available && (
-                          <Text fontWeight="600" fontSize="sm" mt={1}>
-                            {product.currency} {product.price}
-                          </Text>
-                        )}
-                      </Box>
-                    </Box>
-                  ))}
+                  {isLoading
+                    ? Array.from({ length: 9 }).map((_, index) => (
+                        <Box key={index} padding="6" boxShadow="lg" bg="white">
+                          <Skeleton height="200px" />
+                          <Skeleton height="40px" mt="4" />
+                          <Skeleton height="40px" mt="2" />
+                        </Box>
+                      ))
+                    : Object.values(searchResults).map((product, index) => (
+                        <Box
+                          key={index}
+                          borderRadius="md"
+                          overflow="hidden"
+                          bg="#F8F4F2"
+                          minH="350px"
+                          cursor="pointer"
+                          className="product-card"
+                        >
+                          <Box position="relative" className="image-container">
+                            <ChakraImage
+                              src={
+                                product.image || "/path/to/default-image.jpg"
+                              }
+                              alt={product.product_title}
+                              onClick={() => openDrawer(product)}
+                              objectFit="cover"
+                              height="300px"
+                              width="100%"
+                            />
+                            <Box
+                              className="favorite-button"
+                              position="absolute"
+                              bottom="0"
+                              width="100%"
+                              bg="#624737"
+                              color="white"
+                              textAlign="center"
+                              p={2}
+                              fontFamily={'Figtree, sans-serif'}
+                              transform="translateY(100%)"
+                              transition="transform 0.3s ease"
+                              cursor={"pointer"}
+                              onClick={async () => {
+                                let access_token =
+                                  await services.authentication.getAccessToken();
+                                services.wishlist.addToWishList(
+                                  product.id,
+                                  access_token
+                                );
+                              }}
+                            >
+                              Add to Favorites
+                            </Box>
+                          </Box>
+
+                          <Box p={3}>
+                            <Text fontWeight="600" fontSize="sm">
+                              {product.brand}
+                            </Text>
+                            <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                              {product.product_title}
+                            </Text>
+                            {product.price_available && (
+                              <Text fontWeight="600" fontSize="sm" mt={1}>
+                                {product.currency} {product.price}
+                              </Text>
+                            )}
+                          </Box>
+                        </Box>
+                      ))}
                 </Grid>
               </Box>
 
@@ -273,8 +307,8 @@ export default function SearchResults() {
                                 }`}
                                 style={{
                                   width: "100%",
-                                  height: "70%",
-                                  objectFit: "cover",
+                                  maxHeight: "450px",
+                                  // objectFit: "cover",
                                 }}
                               />
                             </div>
