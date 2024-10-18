@@ -16,7 +16,9 @@ import {
   Button,
   Link,
   Flex,
+  IconButton,
 } from "@chakra-ui/react";
+
 import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
@@ -31,6 +33,17 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import utilities from "../utilities/utilities";
 import Image from "next/image";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { FiFilter } from "react-icons/fi";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
@@ -43,6 +56,8 @@ export default function SearchResults() {
   const searchParams = useSearchParams();
   const gridRef = useRef(null);
   const drawerRef = useRef(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
   useEffect(() => {
     async function callVibeIt() {
@@ -70,6 +85,7 @@ export default function SearchResults() {
   const openDrawer = (product) => {
     setSelectedProduct(product);
     setIsDrawerOpen(true);
+    onOpen()
     document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
   };
 
@@ -86,14 +102,36 @@ export default function SearchResults() {
 
   return (
     <>
+     <Drawer
+        isOpen={isOpen}
+        placement="bottom" // Set the drawer to open from the bottom
+        onClose={onClose}
+        size="4xl" // Use full size for mobile
+      >
+        {/* <DrawerOverlay /> */}
+        <DrawerContent borderTopRadius={'10px'} display={{base:'block',md:'none'}}>
+          <DrawerCloseButton />
+          <DrawerHeader>{selectedProduct?.product_title}</DrawerHeader>
+          <DrawerBody>
+            <Text>{selectedProduct?.description}</Text>
+            {/* Add more product details here */}
+          </DrawerBody>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button colorScheme="blue">Add to Cart</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
       <HStack
         bg="white"
         py={4}
-        px={6}
+        px={{md:6,base:1}}
         position="sticky"
         top={0}
         // maxH="10vh"
-        textAlign={"center"}
+        textAlign={{md:"center",base:'left'}}
         zIndex={100}
         justifyContent="space-between"
         borderBottom="1px solid #E2E8F0"
@@ -101,8 +139,9 @@ export default function SearchResults() {
         <Flex
           gap={{ md: "2rem", base: "1rem" }}
           align="center"
-          justifyContent={"center"}
+          justifyContent={{md:"center",base:'flex-start'}}
           alignItems={"center"}
+          display={{md:'flex',base:'none'}}
           flex={1}
           mx={6}
         >
@@ -114,11 +153,73 @@ export default function SearchResults() {
           />
           <utilities.SearchBox></utilities.SearchBox>
         </Flex>
+        <Flex
+          gap={{ md: "2rem", base: "1rem" }}
+          align="left"
+          justifyContent={{md:"center",base:'flex-start'}}
+          alignItems={"flex-start"}
+          display={{md:'none',base:'flex'}}
+          flex={1}
+          mx={6}
+        >
+          <Image
+            src={VibeText}
+            width={"60"}
+            height={"20%"}
+            alt="Vibe Search"
+          />
+          {/* <utilities.SearchBox></utilities.SearchBox> */}
+        </Flex>
         <HStack spacing={6}>
           <FiHeart size={24} cursor="pointer" />
           <Avatar icon={<FiUser />} bg="gray.200" cursor="pointer" />
         </HStack>
       </HStack>
+      {/* Filter Section for Mobile Screens */}
+      <IconButton
+        icon={<FiFilter />}
+        aria-label="Open Filters"
+        display={{ base: "block", md: "none" }}
+        onClick={() => setIsFilterOpen(true)}
+        position="absolute"
+        top="10px"
+        left="10px"
+        zIndex="1000"
+      />
+      <Drawer
+        isOpen={isFilterOpen}
+        placement="bottom"
+        onClose={() => setIsFilterOpen(false)}
+        size="full"
+      >
+        {/* <DrawerOverlay /> */}
+        <DrawerContent height={'85vh'} overflowY={'auto'} borderTopRadius={'10px'} display={{base:'block',md:'none'}}>
+          <DrawerCloseButton pos={'sticky'} right={'0'} w={'100%'}/>
+          <DrawerBody>
+            <VStack
+              align="start"
+              p={6}
+              overflowY="auto"
+            >
+              <FiltersAndHistory
+                setSelectedBrands={setSelectedBrands}
+                selectedBrands={selectedBrands}
+              />
+              <Text fontWeight="bold" fontSize="lg" mt={4}>
+                PRICE
+              </Text>
+              <Slider defaultValue={10} min={10} max={1050} step={10} mt={2}>
+                <SliderTrack>
+                  <SliderFilledTrack bg="purple.500" />
+                </SliderTrack>
+                <SliderThumb />
+              </Slider>
+              <Text>$10 - $1050</Text>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
       <Box fontFamily="Figtree, sans-serif" pos={"relative"}>
         <Flex pos="relative">
           {/* Left Filter Section */}
@@ -129,6 +230,7 @@ export default function SearchResults() {
             position="sticky"
             top="80px"
             maxH="90vh"
+            display={{md:"block",base:'none'}}
             overflowY="auto"
             // css={{
             //   '&::-webkit-scrollbar': { display: 'none' },
@@ -153,8 +255,8 @@ export default function SearchResults() {
           </VStack>
 
           {/* Main Content Section */}
-          <Box flex={1} p={6}>
-            <Flex gap={{ md: "2rem" }}>
+          <Box flex={1} p={{md:6,base:2}}>
+            <Flex gap={{ md: "2rem",base:'0.5rem' }}>
               {/* Product Grid */}
               <Box
                 ref={gridRef}
@@ -170,10 +272,11 @@ export default function SearchResults() {
                 }}
               >
                 <Grid
-                  templateColumns={
-                    isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
-                  }
-                  gap={6}
+                  templateColumns={{
+                    base: "repeat(2, 1fr)", // 2 columns for mobile devices
+                    md: isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)", // 2 or 4 columns for medium and larger devices
+                  }}
+                  gap={{ md: 6, base: 2 }}
                 >
                   {isLoading
                     ? Array.from({ length: 9 }).map((_, index) => (
@@ -213,7 +316,7 @@ export default function SearchResults() {
                               color="white"
                               textAlign="center"
                               p={2}
-                              fontFamily={'Figtree, sans-serif'}
+                              fontFamily={"Figtree, sans-serif"}
                               transform="translateY(100%)"
                               transition="transform 0.3s ease"
                               cursor={"pointer"}
@@ -258,6 +361,7 @@ export default function SearchResults() {
                   boxShadow="-4px 0 10px rgba(0, 0, 0, 0.1)"
                   overflowY="auto"
                   position="relative"
+                  display={{base:'none',md:'block'}}
                   // minH="100vh"
                   // overflow={'scroll'}
                   // onWheel={(e) => handleScroll(e, drawerRef)}
