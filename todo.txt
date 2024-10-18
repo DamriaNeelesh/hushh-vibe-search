@@ -1,0 +1,3 @@
+- Name loading on card is taking time and refresh needed
+- horizonal scrolling 
+- Mobile UI for product results 
