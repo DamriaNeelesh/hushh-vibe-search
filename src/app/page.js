@@ -120,7 +120,7 @@ export default function Home() {
 
   return (
     <>
-    <Home2/>
+    {/* <Home2/> */}
     {/* <IntroSlide3/> */}
     <ToBeLaunched></ToBeLaunched>
     </>
