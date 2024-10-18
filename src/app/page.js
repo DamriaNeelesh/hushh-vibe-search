@@ -31,6 +31,7 @@ import VibeSearchGif from "../app/resources/images/VibeSearch.gif";
 import getUserDetails from "./services/authentication/getUserDetails";
 import utilities from "./components/utilities/utilities";
 import ToBeLaunched from './components/ToBeLaunched/ToBeLaunched'
+import IntroSlide3 from './components/Introduction/IntroSlide3';
 const slides = [
   {
     image: Slide1,
@@ -116,7 +117,10 @@ export default function Home() {
   }, []);
 
   return (
+    <>
+    <IntroSlide3/>
     <ToBeLaunched></ToBeLaunched>
+    </>
     // <>
     //   <Modal
     //     title="Welcome Aboard!"
