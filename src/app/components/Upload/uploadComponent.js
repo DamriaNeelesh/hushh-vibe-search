@@ -106,7 +106,7 @@ const ImageUpload = () => {
 
       <Flex align="center" my={4}>
         <Input placeholder="https://sharefile.xyz/file.jpg" flex="1" mr={2} />
-        <Button colorScheme="purple">Upload</Button>
+        <Button bg="#2D0D3A" color={'white'}>Upload</Button>
       </Flex>
     </Box>
   );
