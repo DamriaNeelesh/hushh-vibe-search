@@ -52,7 +52,7 @@ const Search = () => {
   return (
     <>
       <Header />
-      <Home2/>
+      {/* <Home2/> */}
       <IntroModal />
       <Flex
         direction="column"
