@@ -14,11 +14,13 @@ export default function CompaniesMarquee() {
           <marquee
             className={`${styles.CompaniesMarquee__Marquee}`}
             direction={index % 2 == 0 ? "left" : "right"}
+            key={index}
           >
             <div className={styles.CompaniesMarquee__logoRow}>
-              {logoArray.map((logo) => {
+              {logoArray.map((logo, index) => {
                 return (
                   <img
+                    key={index}
                     src={logo.src}
                     alt="logo"
                     className={styles.CompaniesMarquee__Logo}
