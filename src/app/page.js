@@ -118,7 +118,7 @@ export default function Home() {
 
   return (
     <>
-    <IntroSlide3/>
+    {/* <IntroSlide3/> */}
     <ToBeLaunched></ToBeLaunched>
     </>
     // <>
