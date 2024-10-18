@@ -6,7 +6,7 @@ import ValueProp from "./ValueProp/ValueProp";
 import styles from "./AboutUs.module.css";
 import YourTrust from "./YourTrust/YourTrust";
 import Link from "next/link";
-import config from "../../resources/config/config";
+import utilities from "../utilities/utilities";
 import { useState } from "react";
 export default function AboutUs() {
   let [page, setPage]=useState('about')
@@ -70,30 +70,7 @@ export default function AboutUs() {
         </div>
       </ValueProp>
       <YourTrust></YourTrust>
-      <div className={`${styles.AboutUs__UpperFooter} figtree`}>
-        <div className={`${styles.AboutUs__UpperFooterText}`}>
-          Powered by{" "}
-          <strong>
-            <Link href={"https://hushh.ai"} target="_blank">
-              hushh
-            </Link>
-          </strong>
-        </div>
-      </div>
-      <div className={`${styles.AboutUs__UpperFooter} figtree`}>
-        <Link
-          className={`${styles.AboutUs__UpperFooterText}`}
-          href={config.redirect_url + "/components/AboutUs"}
-        >
-          About
-        </Link>
-        <Link
-          className={`${styles.AboutUs__UpperFooterText}`}
-          href={"https://www.hush1one.com/contact-us"}
-        >
-          Contact us
-        </Link>
-      </div>
+      <utilities.Footer></utilities.Footer>
     </div>
   );
 }

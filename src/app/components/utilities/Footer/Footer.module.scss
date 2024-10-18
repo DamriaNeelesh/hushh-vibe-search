@@ -1,0 +1,23 @@
+.Footer {
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    .AboutUs__UpperFooter {
+        background-color: #EDE4DE;
+        width: 100vw;
+        height: 42px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-Index: 2000;
+        position: inherit;
+
+        .AboutUs__UpperFooterText {
+            margin-left: 40px;
+        }
+    }
+
+    .AboutUs__RightWrapper {
+        margin-right: 40px;
+    }
+}

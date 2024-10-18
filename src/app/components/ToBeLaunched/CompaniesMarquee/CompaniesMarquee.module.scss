@@ -1,0 +1,12 @@
+.CompaniesMarquee__Marquee {
+    width: 49vw;
+    .CompaniesMarquee__logoRow {
+        display: flex;
+
+        .CompaniesMarquee__Logo {
+            margin-left: 36pt;
+            height: 40pt;
+            margin-bottom: 22pt;
+        }
+    }
+}

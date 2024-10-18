@@ -6,6 +6,7 @@ import PersonalizedShopping from './personalized shopping.svg'
 import VirtualFitting from './virtual fitting.svg'
 import WomanLooking from './Woman looking at wadrobe.svg'
 import AISearch from './AI search.svg'
+import GuestAccount from './GuestAccount.svg'
 const images={
     VibeSearchGif: VibeSearchGif,
     VibeLogo: VibeLogo,
@@ -13,6 +14,7 @@ const images={
     PersonalizedShopping: PersonalizedShopping,
     VirtualFitting: VirtualFitting,
     WomanLooking: WomanLooking,
-    AISearch: AISearch
+    AISearch: AISearch,
+    GuestAccount: GuestAccount
 }
 export default images

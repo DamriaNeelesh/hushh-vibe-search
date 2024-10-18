@@ -1,0 +1,17 @@
+.Header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13pt;
+    .Header__Wrapper{
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        .Header__VibeLogo{
+            width: 69px;
+        }
+        .Header__GuestAccount{
+            height: 50px;
+        }
+    }
+}

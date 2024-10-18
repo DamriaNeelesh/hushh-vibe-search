@@ -1,0 +1,32 @@
+.Description{
+    margin-left: 8vw;
+
+    .Description__Tagline{
+        font-weight: 700;
+        font-size: 64px;
+        // z-index: 1;
+        // position: relative;
+        // top: 35vh;
+    }
+    
+    .Description__LaunchDateWrapper{
+        display: flex;
+    }
+    .Description__LaunchDate{
+        margin-left: 10pt;
+        font-weight: 700;
+        font-size: 20px;
+        color: #596168;
+    }
+    .Description__GoogleSignIn{
+        height: 54pt;
+        margin-top: 27pt;
+        cursor: pointer;
+    }
+    .Description__EarlyAccessNotifier{
+        font-weight: 400;
+        font-size: 16px;
+        color: #596168CF;
+        margin-top: 5pt;
+    }
+}

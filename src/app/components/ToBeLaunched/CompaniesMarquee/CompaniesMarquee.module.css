@@ -1,0 +1,11 @@
+.CompaniesMarquee__Marquee {
+  width: 49vw;
+}
+.CompaniesMarquee__Marquee .CompaniesMarquee__logoRow {
+  display: flex;
+}
+.CompaniesMarquee__Marquee .CompaniesMarquee__logoRow .CompaniesMarquee__Logo {
+  margin-left: 36pt;
+  height: 40pt;
+  margin-bottom: 22pt;
+}/*# sourceMappingURL=CompaniesMarquee.module.css.map */
