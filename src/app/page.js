@@ -32,6 +32,8 @@ import getUserDetails from "./services/authentication/getUserDetails";
 import utilities from "./components/utilities/utilities";
 import ToBeLaunched from './components/ToBeLaunched/ToBeLaunched'
 import IntroSlide3 from './components/Introduction/IntroSlide3';
+import Home2 from './components/Home2/home2'
+
 const slides = [
   {
     image: Slide1,
@@ -118,6 +120,7 @@ export default function Home() {
 
   return (
     <>
+    <Home2/>
     {/* <IntroSlide3/> */}
     <ToBeLaunched></ToBeLaunched>
     </>

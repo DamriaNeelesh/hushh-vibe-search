@@ -11,6 +11,8 @@ import Footer from "../components/footer";
 import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
+import Home2 from '../components/Home2/home2'
+
 
 const Search = () => {
   const [fileImg, setFile] = useState(null);
@@ -50,6 +52,7 @@ const Search = () => {
   return (
     <>
       <Header />
+      <Home2/>
       <IntroModal />
       <Flex
         direction="column"
