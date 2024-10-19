@@ -11,12 +11,12 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Avatar,
-  Grid,
-  Image as ChakraImage, // Alias Chakra UI's Image
+  Grid, // Alias Chakra UI's Image
   Button,
   Link,
   Flex,
 } from "@chakra-ui/react";
+import { Image } from "next/image";
 import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
@@ -194,7 +194,7 @@ export default function SearchResults() {
                           className="product-card"
                         >
                           <Box position="relative" className="image-container">
-                            <ChakraImage
+                            <Image
                               src={
                                 product.image || "/path/to/default-image.jpg"
                               }

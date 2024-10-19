@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Text } from "@chakra-ui/react";
 import getWishList from "../services/wishlist/getWishlist";
-import ChakraImage from "@chakra-ui/react";
+import Image from "next/image";
 
 export default function Wishlist() {
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -28,7 +28,7 @@ export default function Wishlist() {
             minH="350px"
             cursor="pointer"
           >
-            <ChakraImage
+            <Image
               src={item.image || "/path/to/default-image.jpg"}
               alt={item.product_title}
               objectFit="cover"
