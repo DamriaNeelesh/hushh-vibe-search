@@ -59,9 +59,9 @@ import diceAnimation from "../gif/diceAnimation.json";
 import Lottie from "lottie-react";
 import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
-import ClockIcon from '../svg/clockHistory.svg';
+import ClockIcon from "../svg/clockHistory.svg";
 
-const FilterUI = ({setSelectedBrands, selectedBrands}) => {
+const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
   const toggleItem = (item) => {
@@ -112,7 +112,7 @@ const FilterUI = ({setSelectedBrands, selectedBrands}) => {
           _hover={{ bg: "none", cursor: "pointer" }}
           borderColor={"#222222"}
           onClick={onOpen}
-          gap={{md:'1rem',base:'0.5rem'}}
+          gap={{ md: "1rem", base: "0.5rem" }}
         >
           All Filters (1)
           <Image src={FilterLine} alt="Vibe Filters" />
@@ -155,7 +155,10 @@ const FilterUI = ({setSelectedBrands, selectedBrands}) => {
               All Filters
             </DrawerHeader>
             <DrawerBody>
-              <FilterAccordion selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands} />
+              <FilterAccordion
+                selectedBrands={selectedBrands}
+                setSelectedBrands={setSelectedBrands}
+              />
             </DrawerBody>
           </DrawerContent>
         </Drawer>
@@ -355,7 +358,6 @@ export default function SearchResults() {
         justifyContent="space-between"
         mx={{ md: "4rem", base: "1rem" }}
       >
-       
         <Flex
           gap={{ md: "1rem", base: "0.5rem" }}
           align="center"
@@ -390,235 +392,304 @@ export default function SearchResults() {
           <FiHeart size={24} cursor="pointer" />
         </HStack>
       </HStack>
-      <HStack w={'100%'} zIndex={100} gap={{md:'2rem'}} alignItems={"center"} justifyContent={"center"}>
-        <utilities.SearchBox></utilities.SearchBox>
-        <Box border={'1px solid #DFE1E5'} borderRadius={'10px'} p={{md:'0.85rem'}}>
-           <Image src={ClockIcon} alt="Vibe History" width={'18'} height={'18'} style={{width:'18px',height:'18px'}}/>
-        </Box>
-        
-        <HStack
-          align="center"
-          flexDirection={"row"}
-          justifyContent={"center"}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          alignItems={"center"}
-          border={'1px solid #DFE1E5'}
-          borderRadius={'10px'}
-          minW={'13rem'}
-        >
-          {isHovered ? (
-            <Lottie
-              animationData={diceAnimation}
-              style={{ width: "44px", height: "44px" }}
-              width={"44"}
-              height={"44"}
-              loop={true}
-            />
-          ) : (
-            <Image src={Dice} alt="Hushh Fashion Dice" />
-          )}
-          <Text
-            color={"#222222"}
-            fontWeight={"700"}
-            lineHeight={"22px"}
-            fontSize={{ md: "1rem", base: "0.65rem" }}
-          >
-            Fashion Dice Roll
-          </Text>
-        </HStack>
-      </HStack>
-
-      <FilterUI setSelectedBrands={setSelectedBrands} selectedBrands={selectedBrands}/>
-      <Box
-  fontFamily="Figtree, sans-serif"
-  mx={{ md: "2rem", base: "1rem" }}
-  pos={"relative"}
-  h="100vh" // Ensure the container takes the full viewport height
+<HStack
+  w="100%"
+  zIndex={100}
+  gap={{ md: '1rem' }}
+  alignItems="center"
+  justifyContent="space-evenly"
+  position="relative"
+  my={{md:'0.5rem',base:'1rem'}}
+  h={{md:'3rem'}}
+  // mb={'4rem'}
 >
-  <Flex h="100%" mb={{ md: '5rem' }} pos="relative" flexDirection={isDrawerOpen ? "row" : "column"}>
-    {/* Main Content Section */}
-    <Box w={isDrawerOpen ? "70%" : "100%"} h="100%" p={6} overflowY="auto" 
-        css={{
-          "&::-webkit-scrollbar": { display: "none" },
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-        }}>
-      <Grid
-        templateColumns={isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)"}
-        gap={6}
-        ref={gridRef}
-        
-      >
-        {isLoading
-          ? Array.from({ length: 9 }).map((_, index) => (
-              <Box key={index} padding="0" boxShadow="lg" bg="white">
-                <Skeleton height="280px" />
-                <Skeleton height="40px" mt="4" />
-                <Skeleton height="40px" mt="2" />
-              </Box>
-            ))
-          : Object.values(searchResults).map((product, index) => (
-              <Box
-                key={index}
-                borderRadius="md"
-                overflow="hidden"
-                minH="350px"
-                cursor="pointer"
-                className="product-card"
-              >
-                <Box
-                  position="relative"
-                  w={"100%"}
-                  className="image-container"
-                >
-                  <ChakraImage
-                    src={product.image || "/path/to/default-image.jpg"}
-                    alt={product.product_title}
-                    onClick={() => openDrawer(product)}
-                    objectFit="cover"
-                    height="300px"
-                    width="100%"
-                  />
-                  <Box
-                    className="favorite-button"
-                    position="absolute"
-                    bottom="0"
-                    width="100%"
-                    bg="#624737"
-                    color="white"
-                    textAlign="center"
-                    p={2}
-                    fontFamily={"Figtree, sans-serif"}
-                    transform="translateY(100%)"
-                    transition="transform 0.3s ease"
-                    cursor={"pointer"}
-                    onClick={async () => {
-                      let access_token =
-                        await services.authentication.getAccessToken();
-                      services.wishlist.addToWishList(
-                        product.id,
-                        access_token
-                      );
-                    }}
-                  >
-                    Add to Favorites
-                  </Box>
-                </Box>
-                <Box p={3}>
-                  <Text fontWeight="600" fontSize="sm">
-                    {product.brand}
-                  </Text>
-                  <Text color="gray.600" fontSize="sm" noOfLines={1}>
-                    {product.product_title}
-                  </Text>
-                  {product.price_available && (
-                    <Text
-                      color={"#222222"}
-                      fontWeight="600"
-                      fontSize="sm"
-                      mt={5}
-                    >
-                      {product.currency} {product.price}
-                    </Text>
-                  )}
-                </Box>
-              </Box>
-            ))}
-      </Grid>
-    </Box>
+<Box
+    position="absolute"
+    left="50%"
+    transform="translateX(-50%)"
+    zIndex={100}
+    my={{md:'2rem',base:'1rem'}}
+  >
+    <utilities.SearchBox />
+  </Box>
+  <HStack pos={'absolute'} right={'7%'} gap={{md:'1rem',base:'0.5rem'}} >
+  <Box border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
+    <Image
+      src={ClockIcon}
+      alt="Vibe History"
+      width="18"
+      height="18"
+      style={{ width: '18px', height: '18px' }}
+    />
+  </Box>
 
-    {/* Drawer Section */}
-    {isDrawerOpen && (
-      <Box
-        w="30%"
-        bg="white"
-        boxShadow="lg"
-        // p={6}
-        overflowY="auto"
-        h="100%"
-        borderTopLeftRadius="10px"
-    // borderTopRightRadius="10px"
-    css={{
-      "&::-webkit-scrollbar": {
-        width: "8px",
-      },
-      "&::-webkit-scrollbar-track": {
-        // borderTopLeftRadius: "10px",
-        background: "#f1f1f1",
-        borderTopRightRadius:"10px"
-      },
-      "&::-webkit-scrollbar-thumb": {
-        background: "#888",
-        borderTopRightRadius: "10px",
-      },
-      "&::-webkit-scrollbar-thumb:hover": {
-        background: "#555",
-      },}}
-      >
-        <HStack p={{md:4,base:2}} bg={'#F4EFEB'} borderTopLeftRadius={'10px'} gap={{ md: "4rem", base: "1rem" }} justifyContent="space-between">
-          <Text fontSize="2xl" fontWeight="bold">
-            {selectedProduct?.brand}
-          </Text>
-          <FiX size={24} cursor="pointer" onClick={closeDrawer} />
-        </HStack>
-
-        {selectedProduct && (
-          <>
-            <Carousel
-              showArrows={true}
-              showThumbs={false}
-              showStatus={false}
-              infiniteLoop={true}
-              useKeyboardArrows={true}
-              autoPlay={true}
-              swipeable={true}
-            >
-              {selectedProduct.additional_images.map((image, index) => (
-                <div key={index}>
-                  <img
-                    src={image}
-                    alt={`${selectedProduct.product_title} - ${index + 1}`}
-                    style={{ width: "100%", maxHeight: "450px" }}
-                   
-                  />
-                </div>
-              ))}
-            </Carousel>
-            <Box bg={'#FBFAF8'} p={6} fontFamily={'Figtree, sans-serif'} gap={{md:'0.5rem'}} display={'flex'} flexDirection={'column'}>
-              <HStack gap={{ md: "2rem", base: "1rem" }} justifyContent="space-between">
-                <Text color="#757575" fontSize="1.25rem" lineHeight={'24px'} fontWeight="600">
-                  {selectedProduct.product_title}
-                </Text>
-                <Button
-                  as={Link}
-                  href={selectedProduct.product_url}
-                  color="#273434"
-                  w={{md:'10rem',base:'3.5rem'}}
-                  bg="#F4EFEB"
-                  borderRadius={'25px'}
-                  rightIcon={<ChevronRightIcon stroke={'#273434'} />}
-                >
-                  Visit
-                </Button>
-              </HStack>
-              {selectedProduct.price_available && (
-                <Text fontWeight="bold" fontSize="16px" mt={2}>
-                  {selectedProduct.currency} {selectedProduct.price}
-                </Text>
-              )}
-              <Text mt={2} fontSize="16px" lineHeight={'21.6px'} color="#000000" mb={{ md: "4rem" }}>
-                {selectedProduct.description}
-              </Text>
-              <Box height="12rem" w={'100%'} bg={'white'}/>
-            </Box>
-            {/* <Box height="12rem" w={'100%'} bg={'white'}/> */}
-          </>
-        )}
-      </Box>
+  <HStack
+    align="center"
+    flexDirection="row"
+    justifyContent="center"
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+    alignItems="center"
+    border="1px solid #DFE1E5"
+    borderRadius="10px"
+    minW="13rem"
+  >
+    {isHovered ? (
+      <Lottie
+        animationData={diceAnimation}
+        style={{ width: '44px', height: '44px' }}
+        width="44"
+        height="44"
+        loop={true}
+      />
+    ) : (
+      <Image src={Dice} alt="Hushh Fashion Dice" />
     )}
-  </Flex>
-</Box>
+    <Text
+      color="#222222"
+      fontWeight="700"
+      lineHeight="22px"
+      fontSize={{ md: '1rem', base: '0.65rem' }}
+    >
+      Fashion Dice Roll
+    </Text>
+  </HStack>
+  </HStack>
+</HStack>
+
+      <FilterUI
+        setSelectedBrands={setSelectedBrands}
+        selectedBrands={selectedBrands}
+      />
+      <Box
+        fontFamily="Figtree, sans-serif"
+        mx={{ md: "2rem", base: "1rem" }}
+        pos={"relative"}
+        h="100vh" // Ensure the container takes the full viewport height
+      >
+        <Flex
+          h="100%"
+          mb={{ md: "5rem" }}
+          pos="relative"
+          flexDirection={isDrawerOpen ? "row" : "column"}
+        >
+          {/* Main Content Section */}
+          <Box
+            w={isDrawerOpen ? "70%" : "100%"}
+            h="100%"
+            p={6}
+            overflowY="auto"
+            css={{
+              "&::-webkit-scrollbar": { display: "none" },
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            <Grid
+              templateColumns={
+                isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)"
+              }
+              gap={6}
+              ref={gridRef}
+            >
+              {isLoading
+                ? Array.from({ length: 9 }).map((_, index) => (
+                    <Box key={index} padding="0" boxShadow="lg" bg="white">
+                      <Skeleton height="280px" />
+                      <Skeleton height="40px" mt="4" />
+                      <Skeleton height="40px" mt="2" />
+                    </Box>
+                  ))
+                : Object.values(searchResults).map((product, index) => (
+                    <Box
+                      key={index}
+                      borderRadius="md"
+                      overflow="hidden"
+                      minH="350px"
+                      cursor="pointer"
+                      className="product-card"
+                    >
+                      <Box
+                        position="relative"
+                        w={"100%"}
+                        className="image-container"
+                      >
+                        <ChakraImage
+                          src={product.image || "/path/to/default-image.jpg"}
+                          alt={product.product_title}
+                          onClick={() => openDrawer(product)}
+                          objectFit="cover"
+                          height="300px"
+                          width="100%"
+                        />
+                        <Box
+                          className="favorite-button"
+                          position="absolute"
+                          bottom="0"
+                          width="100%"
+                          bg="#624737"
+                          color="white"
+                          textAlign="center"
+                          p={2}
+                          fontFamily={"Figtree, sans-serif"}
+                          transform="translateY(100%)"
+                          transition="transform 0.3s ease"
+                          cursor={"pointer"}
+                          onClick={async () => {
+                            let access_token =
+                              await services.authentication.getAccessToken();
+                            services.wishlist.addToWishList(
+                              product.id,
+                              access_token
+                            );
+                          }}
+                        >
+                          Add to Favorites
+                        </Box>
+                      </Box>
+                      <Box p={3}>
+                        <Text fontWeight="600" fontSize="sm">
+                          {product.brand}
+                        </Text>
+                        <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                          {product.product_title}
+                        </Text>
+                        {product.price_available && (
+                          <Text
+                            color={"#222222"}
+                            fontWeight="600"
+                            fontSize="sm"
+                            mt={5}
+                          >
+                            {product.currency} {product.price}
+                          </Text>
+                        )}
+                      </Box>
+                    </Box>
+                  ))}
+            </Grid>
+          </Box>
+
+          {/* Drawer Section */}
+          {isDrawerOpen && (
+            <Box
+              w="30%"
+              bg="white"
+              boxShadow="lg"
+              // p={6}
+              overflowY="auto"
+              h="100%"
+              borderTopLeftRadius="10px"
+              // borderTopRightRadius="10px"
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "8px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  // borderTopLeftRadius: "10px",
+                  background: "#f1f1f1",
+                  borderTopRightRadius: "10px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "#888",
+                  borderTopRightRadius: "10px",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  background: "#555",
+                },
+              }}
+            >
+              <HStack
+                p={{ md: 4, base: 2 }}
+                bg={"#F4EFEB"}
+                borderTopLeftRadius={"10px"}
+                gap={{ md: "4rem", base: "1rem" }}
+                justifyContent="space-between"
+              >
+                <Text fontSize="2xl" fontWeight="bold">
+                  {selectedProduct?.brand}
+                </Text>
+                <FiX size={24} cursor="pointer" onClick={closeDrawer} />
+              </HStack>
+
+              {selectedProduct && (
+                <>
+                  <Carousel
+                    showArrows={true}
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                    useKeyboardArrows={true}
+                    autoPlay={true}
+                    swipeable={true}
+                  >
+                    {selectedProduct.additional_images.map((image, index) => (
+                      <div key={index}>
+                        <img
+                          src={image}
+                          alt={`${selectedProduct.product_title} - ${
+                            index + 1
+                          }`}
+                          style={{ width: "100%", maxHeight: "450px" }}
+                        />
+                      </div>
+                    ))}
+                  </Carousel>
+                  <Box
+                    bg={"#FBFAF8"}
+                    p={6}
+                    fontFamily={"Figtree, sans-serif"}
+                    gap={{ md: "0.5rem" }}
+                    display={"flex"}
+                    flexDirection={"column"}
+                  >
+                    <HStack
+                      gap={{ md: "2rem", base: "1rem" }}
+                      justifyContent="space-between"
+                    >
+                      <Text
+                        color="#757575"
+                        fontSize="1.25rem"
+                        lineHeight={"24px"}
+                        fontWeight="600"
+                      >
+                        {selectedProduct.product_title}
+                      </Text>
+                      <Button
+                        as={Link}
+                        href={selectedProduct.product_url}
+                        color="#273434"
+                        w={{ md: "10rem", base: "3.5rem" }}
+                        bg="#F4EFEB"
+                        borderRadius={"25px"}
+                        rightIcon={<ChevronRightIcon stroke={"#273434"} />}
+                      >
+                        Visit
+                      </Button>
+                    </HStack>
+                    {selectedProduct.price_available && (
+                      <Text fontWeight="bold" fontSize="16px" mt={2}>
+                        {selectedProduct.currency} {selectedProduct.price}
+                      </Text>
+                    )}
+                    <Text
+                      mt={2}
+                      fontSize="16px"
+                      lineHeight={"21.6px"}
+                      color="#000000"
+                      mb={{ md: "4rem" }}
+                    >
+                      {selectedProduct.description}
+                    </Text>
+                    <Box height="12rem" w={"100%"} bg={"white"} />
+                  </Box>
+                  {/* <Box height="12rem" w={'100%'} bg={'white'}/> */}
+                </>
+              )}
+            </Box>
+          )}
+        </Flex>
+      </Box>
 
       <Footer />
     </>
