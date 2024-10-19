@@ -392,7 +392,7 @@ export default function SearchResults() {
           <FiHeart size={24} cursor="pointer" />
         </HStack>
       </HStack>
-      <HStack w={'100%'} zIndex={100} gap={{md:'2rem'}} alignItems={"center"} justifyContent={"center"}>
+      <HStack w={'100%'} zIndex={100} gap={{md:'2rem'}} ml={{md:'7%'}} alignItems={"center"} justifyContent={"center"}>
         <utilities.SearchBox></utilities.SearchBox>
         <Box border={'1px solid #DFE1E5'} borderRadius={'10px'} p={{md:'0.85rem'}} onClick={onOpen} cursor={'pointer'}>
            <Image src={ClockIcon} alt="Vibe History" width={'18'} height={'18'} style={{width:'18px',height:'18px'}}/>
