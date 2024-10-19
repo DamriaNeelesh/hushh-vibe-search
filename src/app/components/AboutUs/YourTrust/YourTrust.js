@@ -12,7 +12,7 @@ export default function YourTrust() {
           Your Trust, Our Priority
         </div>
         <div className={`${styles.YourTrust__Desc}`}>
-          We&apos;re committed to user consent and data protection. By using secure
+          We are committed to user consent and data protection. By using secure
           embeddings, we enhance your experience without compromising privacy.
           Your trust is paramount in our mission to revolutionise online
           shopping.

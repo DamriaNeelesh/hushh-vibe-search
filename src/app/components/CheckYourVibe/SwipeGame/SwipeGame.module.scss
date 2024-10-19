@@ -1,0 +1,13 @@
+.SwipeGame {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .SwipeGame__Card {
+        width: 345px;
+        height: 434px;
+        overflow: hidden;
+    }
+}
