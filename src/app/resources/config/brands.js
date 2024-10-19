@@ -1,7 +1,6 @@
 let brands = [
   "Adidas",
   "Adidas Originals",
-  "Adidas Tiger",
   "Arena",
   "Asics",
   "Asics Tiger",

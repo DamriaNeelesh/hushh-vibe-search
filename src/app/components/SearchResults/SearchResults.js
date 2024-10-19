@@ -61,10 +61,9 @@ import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from '../svg/clockHistory.svg';
 
-const FilterUI = () => {
+const FilterUI = ({setSelectedBrands, selectedBrands}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
-
   const toggleItem = (item) => {
     setSelectedItems((prev) =>
       prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
@@ -156,7 +155,7 @@ const FilterUI = () => {
               All Filters
             </DrawerHeader>
             <DrawerBody>
-              <FilterAccordion />
+              <FilterAccordion selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands} />
             </DrawerBody>
           </DrawerContent>
         </Drawer>
@@ -225,7 +224,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
         </AccordionPanel>
       </AccordionItem>
 
-      {/* <AccordionItem>
+      <AccordionItem>
         <h2>
           <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
             <Box
@@ -247,7 +246,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
             selectedBrands={selectedBrands}
           />
         </AccordionPanel>
-      </AccordionItem> */}
+      </AccordionItem>
 
       <AccordionItem>
         <h2>
@@ -303,7 +302,6 @@ export default function SearchResults() {
   const gridRef = useRef(null);
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     async function callVibeIt() {
@@ -394,7 +392,7 @@ export default function SearchResults() {
       </HStack>
       <HStack w={'100%'} zIndex={100} gap={{md:'2rem'}} alignItems={"center"} justifyContent={"center"}>
         <utilities.SearchBox></utilities.SearchBox>
-        <Box border={'1px solid #DFE1E5'} borderRadius={'10px'} p={{md:'0.85rem'}} onClick={onOpen} cursor={'pointer'}>
+        <Box border={'1px solid #DFE1E5'} borderRadius={'10px'} p={{md:'0.85rem'}}>
            <Image src={ClockIcon} alt="Vibe History" width={'18'} height={'18'} style={{width:'18px',height:'18px'}}/>
         </Box>
         
@@ -408,7 +406,6 @@ export default function SearchResults() {
           border={'1px solid #DFE1E5'}
           borderRadius={'10px'}
           minW={'13rem'}
-          cursor={'pointer'}
         >
           {isHovered ? (
             <Lottie
@@ -432,7 +429,7 @@ export default function SearchResults() {
         </HStack>
       </HStack>
 
-      <FilterUI />
+      <FilterUI setSelectedBrands={setSelectedBrands} selectedBrands={selectedBrands}/>
       <Box
   fontFamily="Figtree, sans-serif"
   mx={{ md: "2rem", base: "1rem" }}
@@ -622,25 +619,6 @@ export default function SearchResults() {
     )}
   </Flex>
 </Box>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader 
-            fontWeight={"400"}
-            fontSize={{ md: "1.2rem", base: "0.65rem" }}
-            lineHeight={"22px"}
-            color={"#222222"}
-            textAlign="left">
-              Search History
-          </DrawerHeader>
-          <DrawerBody>
-            <HistoryComponent
-              setSelectedBrands={setSelectedBrands}
-              selectedBrands={selectedBrands}
-            />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
 
       <Footer />
     </>
