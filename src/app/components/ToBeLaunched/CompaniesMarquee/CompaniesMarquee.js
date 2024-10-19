@@ -13,13 +13,14 @@ import nike from './resources/Nike.svg'
 import prada from './resources/prada.svg'
 import puma from './resources/puma.svg'
 import FoG from './resources/FOG.svg'
-
+import hugoBoss from './resources/hugo-boss.svg'
+import michealKors from './resources/micheal-kors.svg'
 export default function CompaniesMarquee() {
   let logos = [
     [adidas, balenciaga, calvinKlien, puma],
     [chanel, DAndG, dior, FoG],
-    [armani, gucci, hermes],
-    [lv, nike, prada],
+    [armani, gucci, hermes, hugoBoss],
+    [lv, nike, prada, michealKors],
   ];
   return (
     <div className={`${styles.CompaniesMarquee}`}>
