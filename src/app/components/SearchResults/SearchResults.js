@@ -32,6 +32,8 @@ import {
   TagCloseButton,
   AccordionIcon,
 } from "@chakra-ui/react";
+import { RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb } from "@chakra-ui/react";
+
 import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useSearchParams } from "next/navigation";
@@ -56,6 +58,7 @@ import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryCompon
 const FilterUI = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
+  
   const toggleItem = (item) => {
     setSelectedItems((prev) =>
       prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
@@ -142,23 +145,6 @@ const FilterUI = () => {
             </DrawerHeader>
             <DrawerBody >
               <FilterAccordion />
-              <Text fontWeight={"400"}
-              flex="1"
-              fontSize={{ md: "1.2rem", base: "0.65rem" }}
-              lineHeight={"22px"}
-              color={"#222222"}
-              textAlign="left"
-              ml={'3%'}
-              mt={{md:'2rem',base:'1rem'}}>
-              PRICE
-            </Text>
-            <Slider mx={3} defaultValue={10} min={10} max={1050} step={10} mt={2}>
-              <SliderTrack>
-                <SliderFilledTrack bg="purple.500" />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Text mx={3}>$10 - $1050</Text>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
@@ -195,6 +181,12 @@ const FilterUI = () => {
 
 const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
+
+  const handlePriceChange = (values) => {
+    setPriceRange(values);
+  };
+  
   return (
     <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
       <AccordionItem>
@@ -243,6 +235,42 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
             selectedBrands={selectedBrands}
           />
         </AccordionPanel>
+      </AccordionItem>
+
+      <AccordionItem>
+        <h2>
+          <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
+            <Box
+              fontWeight={"400"}
+              flex="1"
+              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              lineHeight={"22px"}
+              color={"#222222"}
+              textAlign="left"
+            >
+              Price
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+        <RangeSlider
+          mx={3}
+          defaultValue={[10, 1050]}
+          min={10}
+          max={1050}
+          step={10}
+          mt={2}
+          onChange={handlePriceChange}
+        >
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="purple.500" />
+          </RangeSliderTrack>
+          <RangeSliderThumb index={0} />
+          <RangeSliderThumb index={1} />
+        </RangeSlider>
+        <Text mx={3}>${priceRange[0]} - ${priceRange[1]}</Text>
+      </AccordionPanel>
       </AccordionItem>
       
 
