@@ -1,6 +1,8 @@
 import resources from "../../../resources/resources";
 import styles from "./Header.module.css";
+import { useEffect } from "react";
 export default function Header() {
+  
   return (
     <div className={`${styles.Header}`}>
       <div className={`${styles.Header__Wrapper}`}>
