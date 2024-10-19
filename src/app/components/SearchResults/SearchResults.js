@@ -59,6 +59,7 @@ import diceAnimation from "../gif/diceAnimation.json";
 import Lottie from "lottie-react";
 import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
+import ClockIcon from '../svg/clockHistory.svg';
 
 const FilterUI = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -355,34 +356,7 @@ export default function SearchResults() {
         justifyContent="space-between"
         mx={{ md: "4rem", base: "1rem" }}
       >
-        <HStack
-          align="center"
-          flexDirection={"row"}
-          justifyContent={"center"}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          alignItems={"center"}
-        >
-          {isHovered ? (
-            <Lottie
-              animationData={diceAnimation}
-              style={{ width: "44px", height: "44px" }}
-              width={"44"}
-              height={"44"}
-              loop={true}
-            />
-          ) : (
-            <Image src={Dice} alt="Hushh Fashion Dice" />
-          )}
-          <Text
-            color={"#222222"}
-            fontWeight={"700"}
-            lineHeight={"22px"}
-            fontSize={{ md: "1rem", base: "0.65rem" }}
-          >
-            Fashion Dice Roll
-          </Text>
-        </HStack>
+       
         <Flex
           gap={{ md: "1rem", base: "0.5rem" }}
           align="center"
@@ -417,8 +391,43 @@ export default function SearchResults() {
           <FiHeart size={24} cursor="pointer" />
         </HStack>
       </HStack>
-      <HStack alignItems={"center"} justifyContent={"center"}>
+      <HStack w={'100%'} zIndex={100} gap={{md:'2rem'}} alignItems={"center"} justifyContent={"center"}>
         <utilities.SearchBox></utilities.SearchBox>
+        <Box border={'1px solid #DFE1E5'} borderRadius={'10px'} p={{md:'0.85rem'}}>
+           <Image src={ClockIcon} alt="Vibe History" width={'18'} height={'18'} style={{width:'18px',height:'18px'}}/>
+        </Box>
+        
+        <HStack
+          align="center"
+          flexDirection={"row"}
+          justifyContent={"center"}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          alignItems={"center"}
+          border={'1px solid #DFE1E5'}
+          borderRadius={'10px'}
+          minW={'13rem'}
+        >
+          {isHovered ? (
+            <Lottie
+              animationData={diceAnimation}
+              style={{ width: "44px", height: "44px" }}
+              width={"44"}
+              height={"44"}
+              loop={true}
+            />
+          ) : (
+            <Image src={Dice} alt="Hushh Fashion Dice" />
+          )}
+          <Text
+            color={"#222222"}
+            fontWeight={"700"}
+            lineHeight={"22px"}
+            fontSize={{ md: "1rem", base: "0.65rem" }}
+          >
+            Fashion Dice Roll
+          </Text>
+        </HStack>
       </HStack>
 
       <FilterUI />
