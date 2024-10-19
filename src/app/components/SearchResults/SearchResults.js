@@ -225,7 +225,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
         </AccordionPanel>
       </AccordionItem>
 
-      <AccordionItem>
+      {/* <AccordionItem>
         <h2>
           <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
             <Box
@@ -247,7 +247,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
             selectedBrands={selectedBrands}
           />
         </AccordionPanel>
-      </AccordionItem>
+      </AccordionItem> */}
 
       <AccordionItem>
         <h2>
