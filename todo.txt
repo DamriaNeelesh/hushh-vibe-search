@@ -1,3 +1,7 @@
 - Name loading on card is taking time and refresh needed
 - horizonal scrolling 
 - Mobile UI for product results 
+- pagination 
+- filter functionality
+- price slider functionality
+- text should remain on the search box after pressing enter
