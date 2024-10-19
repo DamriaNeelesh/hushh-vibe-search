@@ -4,6 +4,8 @@ import Calender from "./resources/calender.svg";
 import gSignInButton from "./resources/gsign-button.svg";
 import services from "../../../services/services";
 import { useEffect, useState } from "react";
+import utilities from "../../utilities/utilities";
+
 export default function Description() {
   let [isSignedIn, setIsSignedIn] = useState(false);
   const handleGoogleSignIn = async () => {
@@ -19,11 +21,13 @@ export default function Description() {
     }, 1000);
   }, []);
   return (
-    <div className={styles.Description}>
+    <div className={styles.Description} style={{gap:'1rem', display:'flex', flexDirection:'column'}}>
       <div className={`${styles.Description__Tagline} figtree`}>
         Find Your Vibe. <br></br>Shop Your Style.
       </div>
-      <VibeSearchGif></VibeSearchGif>
+
+      <utilities.SearchBox></utilities.SearchBox>
+
       <div className={styles.Description__LaunchDateWrapper}>
         <img className={styles.Description__Calender} src={Calender.src}></img>
         <div className={`${styles.Description__LaunchDate} figtree`}>
