@@ -265,8 +265,8 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
           <RangeSliderTrack>
             <RangeSliderFilledTrack bg="purple.500" />
           </RangeSliderTrack>
-          <RangeSliderThumb index={0} />
-          <RangeSliderThumb index={1} />
+          <RangeSliderThumb borderColor={'black'} index={0} />
+          <RangeSliderThumb borderColor={'black'} index={1} />
         </RangeSlider>
         <Text>${priceRange[0]} - ${priceRange[1]}</Text>
       </AccordionPanel>
