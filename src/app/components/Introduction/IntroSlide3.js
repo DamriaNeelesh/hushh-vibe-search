@@ -1,59 +1,71 @@
-"use client";
-import { useEffect, useState } from "react";
-import Modal from "antd/es/modal/Modal";
-import { Box } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
-import Card1 from "../../svg/card1.svg";
-import Card2 from "../../svg/card2.svg";
-import services from "../../../services/services";
+'use client'
+import { VStack, Text, Box } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-export default function WelcomeABoardModal() {
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userDetails, setUserDetails] = useState(null);
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const user = await services.authentication.getUserDetails(setUserDetails);
-      if (!user) {
-        console.error("No user data found.");
-      } else {
-        // console.log("User data set successfully:", user);
-        return user;
-      }
-      // console.log("Name:", user.data.user.user_metadata?.full_name);
-    };
-    fetchUserDetails();
-  }, []); // Ensure this runs only on component mount
-  useEffect(() => {
-    setInterval(() => {
-      isSignedUp ? "" : services.authentication.isLoggedIn(setIsSignedUp);
-    }, 1000);
-  }, []);
+import Header from "../header";
+import Card1 from '../svg/card1.svg'
+import getUserDetails from "../../services/authentication/getUserDetails";
 
-  useEffect(() => {
-    isSignedUp ? setIsModalOpen(true) : "";
-  }, [isSignedUp]);
+const IntroSlide3 = ({userName}) => {
+
+    const [userDetails, setUserDetails] = useState(null);
+    const [name, setName] = useState();
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+          const user = await getUserDetails(setUserDetails);
+          if (!user) {
+            console.error("No user data found.");
+          } else {
+            console.log("User data set successfully:", user);
+            setName(user.data.user.user_metadata?.full_name)
+            return user;
+          }
+          console.log("Name:", user.data.user.user_metadata?.full_name);
+        };
+        fetchUserDetails();
+      }, []);
+
   return (
-    <div>
-      <Modal
-        title="Welcome Aboard!"
-        open={isModalOpen}
-        footer={null}
-        closable={true}
-        onCancel={() => {
-          setIsModalOpen(false);
-        }}
+    <>
+    <div className="min-h-screen">
+      <Header/>
+      <VStack
+        gap={{ md: "2rem", base: "1rem" }}
+        textAlign={"center"}
+        alignItems={"center"}
+        fontFamily={"Figtree, sans-serif"}
+        mt={{md:'4rem',base:'1.5rem'}}
       >
-        <p>
-          <Text>Welcome!</Text>
-          Thank you for registering!
-          {/* {userDetails?.user?.user_metadata?.full_name} */}
-          <br></br>We'll notify you by email when we launch on{" "}
-          <strong>October 20th</strong> and keep you updated on other exciting
-          developments.
-          <br></br>
-          <br></br>
-          <div className="card-container">
+        <Text
+          color={"#221812"}
+          fontWeight={"700"}
+          lineHeight={{ md: "44px", base: "32px" }}
+          letterSpacing={"-0.25px"}
+          fontSize={{md:'2.5rem',base:'1.25rem'}}
+        >
+          Vibe Check
+        </Text>
+        <VStack>
+        <Text
+          fontWeight={"400"}
+          fontSize={{ md: "2rem", base: "1rem" }}
+          lineHeight={{ md: "38.4px", base: "32px" }}
+          color={"#624737"}
+        >
+          Love that{" "}
+          <span style={{ fontWeight: "700" }}>aesthetic,{name || userName}!</span>{" "}
+        </Text>
+        <Text
+          fontWeight={"400"}
+          fontSize={{ md: "2rem", base: "1rem" }}
+          lineHeight={{ md: "38.4px", base: "32px" }}
+          color={"#624737"}
+        >
+          Its so practical and chic. You have great taste.
+        </Text>
+        </VStack>
+        <div className="card-container">
             <Image src={Card1} alt="Card Front" className="card card-front" />
             {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
             <Box
@@ -99,7 +111,7 @@ export default function WelcomeABoardModal() {
               <Box
                 as="svg"
                 width="131"
-                height="100%"
+                height="80%"
                 viewBox="0 0 131 151"
                 fill="none"
                 xmlns="http:www.w3.org/2000/svg"
@@ -124,8 +136,31 @@ export default function WelcomeABoardModal() {
               </Box>
             </Box>
           </div>
-        </p>
-      </Modal>
+
+        <VStack>
+        <Text
+          color={"#A3765C"}
+          fontWeight={"400"}
+          lineHeight={"28.8px"}
+          fontSize={{ md: "1.5rem", base: "0.85rem" }}
+        >
+          Stay tuned for a smarter way to shop that's tailored to your unique
+          taste.
+        </Text>
+        <Text
+          color={"#A3765C"}
+          fontWeight={"400"}
+          lineHeight={"28.8px"}
+          fontSize={{ md: "1.5rem", base: "0.85rem" }}
+        >
+          We'll notify you as soon as we're ready to introduce you to your
+          personalised shopping experience.
+        </Text>
+        </VStack>  
+      </VStack>
     </div>
+    </>
   );
-}
+};
+
+export default IntroSlide3;
