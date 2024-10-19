@@ -53,6 +53,19 @@ export default function RootLayout({ children }) {
         name="google-site-verification"
         content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
       />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429">
+</script>
+<script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16746454429');
+            `,
+          }}
+        />
       <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
