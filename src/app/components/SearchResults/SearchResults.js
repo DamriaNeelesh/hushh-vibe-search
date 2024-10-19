@@ -11,8 +11,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Avatar,
-  Grid,
-  Image as ChakraImage, // Alias Chakra UI's Image
+  Grid, // Alias Chakra UI's Image
   Button,
   Link,
   Flex,
@@ -27,6 +26,7 @@ import {
   AccordionButton,
   AccordionPanel,
   Divider,
+  Image as ChakraImage,
   Tag,
   TagLabel,
   TagCloseButton,

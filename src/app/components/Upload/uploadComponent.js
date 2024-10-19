@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { Box, Text, Input, Button, Image as ChakraImage, Flex } from '@chakra-ui/react';
+import { Box, Text, Input, Button, Flex } from '@chakra-ui/react';
 import { FiUpload, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 import CameraIcon from '../svg/colorcameraIcon.svg'
