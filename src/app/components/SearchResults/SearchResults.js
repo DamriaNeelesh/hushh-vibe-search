@@ -30,7 +30,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the ca
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import utilities from "../utilities/utilities";
-import Image from "next/image";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
