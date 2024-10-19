@@ -21,6 +21,7 @@
     "antd": "^5.21.3",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.8",
+    "lottie-react": "^2.4.0",
     "next": "14.2.15",
     "next-images": "^1.8.5",
     "react": "^18",
