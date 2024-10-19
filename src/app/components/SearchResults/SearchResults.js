@@ -186,7 +186,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
   const handlePriceChange = (values) => {
     setPriceRange(values);
   };
-  
+
   return (
     <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
       <AccordionItem>
@@ -255,7 +255,6 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
         </h2>
         <AccordionPanel pb={4}>
         <RangeSlider
-          mx={3}
           defaultValue={[10, 1050]}
           min={10}
           max={1050}
@@ -269,7 +268,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-        <Text mx={3}>${priceRange[0]} - ${priceRange[1]}</Text>
+        <Text>${priceRange[0]} - ${priceRange[1]}</Text>
       </AccordionPanel>
       </AccordionItem>
       
