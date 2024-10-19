@@ -69,7 +69,7 @@ const FilterUI = () => {
 
   return (
     <>
-      <HStack
+      {/* <HStack
         mx={{ md: "4rem", base: "1rem" }}
         color="#222222"
         mb={{ md: "1.25rem", base: "0.65rem" }}
@@ -88,9 +88,9 @@ const FilterUI = () => {
             {item}
           </Text>
         ))}
-      </HStack>
+      </HStack> */}
 
-      <HStack mx={{ md: "4rem", base: "1rem" }} spacing={4}>
+      <HStack my={{ md: "1.25rem", base: "0.65rem" }} mx={{ md: "4rem", base: "1rem" }} spacing={4}>
         <Button
           bg={"transparent"}
           color={"#222222"}
