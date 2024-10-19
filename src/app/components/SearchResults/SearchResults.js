@@ -109,8 +109,10 @@ const FilterUI = () => {
           fontWeight={"700"}
           borderRadius={"4px"}
           border={"1px"}
+          _hover={{ bg: "none", cursor: "pointer" }}
           borderColor={"#222222"}
           onClick={onOpen}
+          gap={{md:'1rem',base:'0.5rem'}}
         >
           All Filters (1)
           <Image src={FilterLine} alt="Vibe Filters" />
