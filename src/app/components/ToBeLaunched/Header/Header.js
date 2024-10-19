@@ -6,7 +6,11 @@ import { useState } from "react";
 export default function Header() {
   let [userDetails, setUserDetails] = useState(null);
   useEffect(() => {
-    services.authentication.getUserDetails(setUserDetails);
+    setInterval(() => {
+      userDetails == null
+        ? services.authentication.getUserDetails(setUserDetails)
+        : "";
+    }, 1000);
   }, []);
 
   return (
