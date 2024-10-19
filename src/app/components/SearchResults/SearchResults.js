@@ -112,6 +112,7 @@ const FilterUI = () => {
             _active={{ fontWeight: "700", borderColor: "black" }}
             bg={"transparent"}
             color="#222222"
+            _hover={{ bg: "none", cursor: "pointer" }}
             fontWeight={selectedItems.includes(item) ? "700" : "400"}
             borderRadius={"4px"}
             border={selectedItems.includes(item) ? "2px" : "1px"}
@@ -121,12 +122,43 @@ const FilterUI = () => {
             {item}
           </Button>
         ))}
-        <Drawer placement="left" onClose={onClose} isOpen={isOpen} size={{md:'sm'}}>
+        <Drawer
+          placement="left"
+          onClose={onClose}
+          isOpen={isOpen}
+          size={{ md: "sm" }}
+        >
           <DrawerOverlay />
           <DrawerContent>
-            <DrawerHeader color={'#222'} fontSize={{md:'1.75rem',base:'1rem'}} textOverflow={'ellipsis'} whiteSpace={'nowrap'} fontWeight={'400'} fontFamily={'Figtree, sans-serif'}>All Filters</DrawerHeader>
-            <DrawerBody>
+            <DrawerHeader
+              color={"#222"}
+              fontSize={{ md: "1.75rem", base: "1rem" }}
+              textOverflow={"ellipsis"}
+              whiteSpace={"nowrap"}
+              fontWeight={"400"}
+              fontFamily={"Figtree, sans-serif"}
+            >
+              All Filters
+            </DrawerHeader>
+            <DrawerBody >
               <FilterAccordion />
+              <Text fontWeight={"400"}
+              flex="1"
+              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              lineHeight={"22px"}
+              color={"#222222"}
+              textAlign="left"
+              ml={'3%'}
+              mt={{md:'2rem',base:'1rem'}}>
+              PRICE
+            </Text>
+            <Slider mx={3} defaultValue={10} min={10} max={1050} step={10} mt={2}>
+              <SliderTrack>
+                <SliderFilledTrack bg="purple.500" />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Text mx={3}>$10 - $1050</Text>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
@@ -164,11 +196,18 @@ const FilterUI = () => {
 const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Accordion allowToggle fontFamily={'Figtree, sans-serif'}>
+    <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
       <AccordionItem>
         <h2>
-          <AccordionButton height={{md:'3.4rem',base:'2rem'}}>
-            <Box fontWeight={'400'} flex="1" fontSize={{md:'1.2rem',base:'0.65rem'}} lineHeight={'22px'} color={'#222222'} textAlign="left">
+          <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
+            <Box
+              fontWeight={"400"}
+              flex="1"
+              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              lineHeight={"22px"}
+              color={"#222222"}
+              textAlign="left"
+            >
               Brands
             </Box>
             <AccordionIcon />
@@ -184,9 +223,16 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
 
       <AccordionItem>
         <h2>
-        <AccordionButton height={{md:'3.4rem',base:'2rem'}}>
-        <Box fontWeight={'400'} flex="1" fontSize={{md:'1.2rem',base:'0.65rem'}} lineHeight={'22px'} color={'#222222'} textAlign="left">
-        History
+          <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
+            <Box
+              fontWeight={"400"}
+              flex="1"
+              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              lineHeight={"22px"}
+              color={"#222222"}
+              textAlign="left"
+            >
+              History
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -198,6 +244,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
           />
         </AccordionPanel>
       </AccordionItem>
+      
 
       {/* Add more accordion items as needed */}
     </Accordion>
@@ -361,7 +408,7 @@ export default function SearchResults() {
               >
                 <Grid
                   templateColumns={
-                    isDrawerOpen ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
+                    isDrawerOpen ? "repeat(4, 1fr)" : "repeat(4, 1fr)"
                   }
                   gap={6}
                 >
@@ -378,12 +425,16 @@ export default function SearchResults() {
                           key={index}
                           borderRadius="md"
                           overflow="hidden"
-                          bg="#F8F4F2"
+                          // bg="#F8F4F2"
                           minH="350px"
                           cursor="pointer"
                           className="product-card"
                         >
-                          <Box position="relative" className="image-container">
+                          <Box
+                            position="relative"
+                            w={"100%"}
+                            className="image-container"
+                          >
                             <ChakraImage
                               src={
                                 product.image || "/path/to/default-image.jpg"
@@ -393,7 +444,7 @@ export default function SearchResults() {
                               objectFit="cover"
                               height="300px"
                               width="100%"
-                              maxW={'309px'}
+                              // maxW={'309px'}
                             />
                             <Box
                               className="favorite-button"
@@ -416,6 +467,7 @@ export default function SearchResults() {
                                   access_token
                                 );
                               }}
+                              maxW="100%" // Ensure the button does not exceed the container width
                             >
                               Add to Favorites
                             </Box>
@@ -429,7 +481,12 @@ export default function SearchResults() {
                               {product.product_title}
                             </Text>
                             {product.price_available && (
-                              <Text fontWeight="600" fontSize="sm" mt={1}>
+                              <Text
+                                color={"#222222"}
+                                fontWeight="600"
+                                fontSize="sm"
+                                mt={5}
+                              >
                                 {product.currency} {product.price}
                               </Text>
                             )}
@@ -437,118 +494,92 @@ export default function SearchResults() {
                         </Box>
                       ))}
                 </Grid>
+                
               </Box>
 
               {/* Right Sidebar for Product Details */}
               {isDrawerOpen && (
-                <Box
-                  ref={drawerRef}
-                  width="40%"
-                  height={"100vh"}
-                  bg="white"
-                  boxShadow="-4px 0 10px rgba(0, 0, 0, 0.1)"
-                  overflowY="auto"
-                  position="relative"
-                  // minH="100vh"
-                  // overflow={'scroll'}
-                  // onWheel={(e) => handleScroll(e, drawerRef)}
-                  // css={{
-                  //   '&::-webkit-scrollbar': { display: 'none' },
-                  //   msOverflowStyle: 'none',
-                  //   scrollbarWidth: 'none',
-                  // }}
-                >
-                  <HStack
-                    borderTopRadius="10px"
-                    p={4}
-                    bg="#F4EFEB"
-                    justifyContent="space-between"
-                  >
-                    <Text fontSize="2xl" fontWeight="bold">
-                      {selectedProduct?.brand}
-                    </Text>
-                    <FiX size={24} cursor="pointer" onClick={closeDrawer} />
-                  </HStack>
+  <Box
+    ref={drawerRef}
+    width="35%"
+    height="100%"
+    zIndex={'100'}
+    bg="white"
+    borderTopRadius={'10px'}
+    boxShadow="-4px 0 10px rgba(0, 0, 0, 0.1)"
+    overflowY="auto" // Ensure vertical scrolling
+    position="fixed" // Use fixed to ensure it stays in view
+    right={0} // Align to the right
+    top={20} // Align to the top
+  >
+    <HStack
+      borderTopRadius="10px"
+      p={4}
+      bg="#F4EFEB"
+      justifyContent="space-between"
+    >
+      <Text fontSize="2xl" fontWeight="bold">
+        {selectedProduct?.brand}
+      </Text>
+      <FiX size={24} cursor="pointer" onClick={closeDrawer} />
+    </HStack>
 
-                  {selectedProduct && (
-                    <>
-                      {/* <Image
-                      src={selectedProduct.image || "/path/to/default-image.jpg"}
-                      alt={selectedProduct.product_title}
-                      width="100%"
-                      height="70%"
-                      objectFit="cover"
-                    /> */}
-                      <Carousel
-                        showArrows={true}
-                        showThumbs={false}
-                        showStatus={false}
-                        infiniteLoop={true}
-                        useKeyboardArrows={true}
-                        autoPlay={true}
-                        swipeable={true}
-                      >
-                        {selectedProduct.additional_images.map(
-                          (image, index) => (
-                            <div key={index}>
-                              <img
-                                src={image || "/path/to/default-image.jpg"}
-                                alt={`${selectedProduct.product_title} - ${
-                                  index + 1
-                                }`}
-                                style={{
-                                  width: "100%",
-                                  maxHeight: "450px",
-                                  // objectFit: "cover",
-                                }}
-                              />
-                            </div>
-                          )
-                        )}
-                      </Carousel>
-                      <Box p={6}>
-                        <HStack
-                          gap={{ md: "4rem", base: "1rem" }}
-                          justifyContent="space-between"
-                        >
-                          <Text
-                            color="#757575"
-                            fontSize="1.25rem"
-                            fontWeight="600"
-                          >
-                            {selectedProduct.product_title}
-                          </Text>
-                          <Button
-                            as={Link}
-                            href={selectedProduct.product_url}
-                            color="#273434"
-                            bg="#F4EFEB"
-                            rightIcon={<ChevronRightIcon />}
-                          >
-                            Visit
-                          </Button>
-                        </HStack>
-                        {selectedProduct.price_available && (
-                          <Text fontWeight="bold" fontSize="lg" mt={2}>
-                            {selectedProduct.currency} {selectedProduct.price}
-                          </Text>
-                        )}
-                        <Text
-                          mt={2}
-                          fontSize="16px"
-                          color="#000"
-                          mb={{ md: "4rem" }}
-                        >
-                          {selectedProduct.description}
-                        </Text>
-                        {/* <Text fontFamily={'700'}>Similar Products</Text> */}
-
-                        <Box height={"2rem"}></Box>
-                      </Box>
-                    </>
-                  )}
-                </Box>
-              )}
+    {selectedProduct && (
+      <>
+        <Carousel
+          showArrows={true}
+          showThumbs={false}
+          showStatus={false}
+          infiniteLoop={true}
+          useKeyboardArrows={true}
+          autoPlay={true}
+          swipeable={true}
+        >
+          {selectedProduct.additional_images.map((image, index) => (
+            <div key={index}>
+              <img
+                src={image || "/path/to/default-image.jpg"}
+                alt={`${selectedProduct.product_title} - ${index + 1}`}
+                style={{
+                  width: "100%",
+                  maxHeight: "450px",
+                }}
+              />
+            </div>
+          ))}
+        </Carousel>
+        <Box p={6}>
+          <HStack
+            gap={{ md: "4rem", base: "1rem" }}
+            justifyContent="space-between"
+          >
+            <Text color="#757575" fontSize="1.25rem" fontWeight="600">
+              {selectedProduct.product_title}
+            </Text>
+            <Button
+              as={Link}
+              href={selectedProduct.product_url}
+              color="#273434"
+              bg="#F4EFEB"
+              rightIcon={<ChevronRightIcon />}
+            >
+              Visit
+            </Button>
+          </HStack>
+          {selectedProduct.price_available && (
+            <Text fontWeight="bold" fontSize="lg" mt={2}>
+              {selectedProduct.currency} {selectedProduct.price}
+            </Text>
+          )}
+          <Text mt={2} fontSize="16px" color="#000" mb={{ md: "4rem" }}>
+            {selectedProduct.description}
+          </Text>
+          <Box height="2rem"></Box>
+        </Box>
+      </>
+    )}
+  </Box>
+)}
             </Flex>
           </Box>
         </Flex>
