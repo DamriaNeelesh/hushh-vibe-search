@@ -42,7 +42,7 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
                   localStorage.setItem("vibesearch-history", searchHistory + "," + searchQuery);
                 }
               }}
-              href={"SearchResults?query=" + (searchQuery !== "" ? searchQuery : "emptyEntry")}
+              href={"SearchResults?" + (searchQuery !== "" ? "query="+searchQuery : "")}
             >
               <img
                 className={`${styles.searchBox__go}`}
@@ -92,7 +92,7 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
 
                     // Storing the image in localStorage
                     localStorage.setItem("image-file", temp[1]);
-                    router.push(`/components/SearchResults?imageSearch=${temp[1].slice(-5)}&query=emptyEntry`);
+                    router.push(`/components/SearchResults?imageSearch=${temp[1].slice(-5)}`);
                   };
                   reader.readAsDataURL(file);
                 }

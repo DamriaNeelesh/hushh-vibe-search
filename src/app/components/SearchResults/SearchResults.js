@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import fashionDiceRoll from './services/fashionDiceRoll'
 import {
   Box,
   Text,
@@ -309,10 +310,12 @@ export default function SearchResults() {
   useEffect(() => {
     async function callVibeIt() {
       let search = searchParams.get("query");
+      let imageSearch = searchParams.get("imageSearch");
+      let image=localStorage.getItem('image-file')
       services.history.saveToHistory(search);
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
-        search || "",
+        imageSearch? image: search || "",
         "",
         currentPage,
         32,
@@ -433,6 +436,9 @@ export default function SearchResults() {
     border="1px solid #DFE1E5"
     borderRadius="10px"
     minW="13rem"
+    onClick={()=>{
+      fashionDiceRoll()
+    }}
   >
     {isHovered ? (
       <Lottie
