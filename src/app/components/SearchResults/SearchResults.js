@@ -437,6 +437,10 @@ export default function SearchResults() {
     ref.current.scrollTop = ref.current.scrollTop + event.deltaY;
   };
 
+  const additionalImages = selectedProduct?.additional_images 
+  ? JSON.parse(selectedProduct.additional_images) 
+  : [];
+
   return (
     <>
     <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
@@ -760,17 +764,15 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                    {selectedProduct.additional_images.map((image, index) => (
-                      <div key={index}>
-                        <img
-                          src={image}
-                          alt={`${selectedProduct.product_title} - ${
-                            index + 1
-                          }`}
-                          style={{ width: "100%", maxHeight: "450px" }}
-                        />
-                      </div>
-                    ))}
+                   {additionalImages.map((image, index) => (
+  <div key={index}>
+    <img
+      src={image}
+      alt={`${selectedProduct.product_title} - ${index + 1}`}
+      style={{ width: "100%", maxHeight: "450px" }}
+    />
+  </div>
+))}
                   </Carousel>
                   <Box
                     bg={"#FBFAF8"}

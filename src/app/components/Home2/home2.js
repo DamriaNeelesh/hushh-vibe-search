@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Flex, Box, Text, Button, Input } from "@chakra-ui/react";
+import { Flex, Box, Text,HStack, Button, Input } from "@chakra-ui/react";
 import Vintage from "../svg/home2/vintage.svg";
 import { FiUpload, FiX } from "react-icons/fi";
 import CoffeeLoving from "../svg/home2/coffeeLoving.svg";
