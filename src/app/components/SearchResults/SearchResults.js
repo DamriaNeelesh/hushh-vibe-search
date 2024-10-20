@@ -657,15 +657,19 @@ export default function SearchResults() {
                       <Box
                         position="relative"
                         w={"100%"}
+                        h="300px"
                         className="image-container"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        // bg="gray.100" 
                       >
                         <ChakraImage
                           src={product.image || "/path/to/default-image.jpg"}
                           alt={product.product_title}
+                          objectFit="contain" // Ensures the image is fully visible and not cropped
+                          boxSize="100%" // Ensures the image fills the container
                           onClick={() => openDrawer(product)}
-                          objectFit="cover"
-                          height="300px"
-                          width="100%"
                         />
                         <Box
                           className="favorite-button"
@@ -787,17 +791,22 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                    {additionalImages.map((image, index) => (
-                      <div key={index}>
-                        <img
-                          src={image}
-                          alt={`${selectedProduct.product_title} - ${
-                            index + 1
-                          }`}
-                          style={{ width: "100%", maxHeight: "450px" }}
-                        />
-                      </div>
-                    ))}
+                   {additionalImages.map((image, index) => (
+            <Box
+              key={index}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="white" // Background color in case the image doesn't load
+            >
+              <ChakraImage
+                src={image}
+                alt={`${selectedProduct.product_title} - ${index + 1}`}
+                objectFit="contain" // Ensures the entire image is visible without cropping
+                boxSize="100%" // Fills the container without cropping
+              />
+            </Box>
+          ))}
                   </Carousel>
                   <Box
                     bg={"#FBFAF8"}
