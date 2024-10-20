@@ -25,8 +25,9 @@ export default function Description() {
       <div className={`${styles.Description__Tagline} figtree`}>
         Find Your Vibe. <br></br>Shop Your Style.
       </div>
-
-      <utilities.SearchBox></utilities.SearchBox>
+      
+      <VibeSearchGif></VibeSearchGif>
+      {/* <utilities.SearchBox></utilities.SearchBox> */}
 
       <div className={styles.Description__LaunchDateWrapper}>
         <img className={styles.Description__Calender} src={Calender.src}></img>
