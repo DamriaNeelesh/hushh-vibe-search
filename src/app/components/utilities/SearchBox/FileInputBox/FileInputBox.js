@@ -1,3 +1,4 @@
+"use client"
 import config from '../../../../resources/config/config'
 import styles from './FileInputBox.module.css'
 export default function FileInputBox(){
