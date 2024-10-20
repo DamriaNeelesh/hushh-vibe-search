@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import fashionDiceRoll from './services/fashionDiceRoll'
 import {
   Box,
   Text,
@@ -406,6 +407,11 @@ export default function SearchResults() {
           border={'1px solid #DFE1E5'}
           borderRadius={'10px'}
           minW={'13rem'}
+          onClick={
+            ()=>{
+              fashionDiceRoll()
+            }
+          }
         >
           {isHovered ? (
             <Lottie
@@ -423,6 +429,7 @@ export default function SearchResults() {
             fontWeight={"700"}
             lineHeight={"22px"}
             fontSize={{ md: "1rem", base: "0.65rem" }}
+            
           >
             Fashion Dice Roll
           </Text>
