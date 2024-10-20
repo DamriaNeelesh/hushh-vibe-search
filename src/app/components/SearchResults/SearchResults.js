@@ -434,6 +434,9 @@ export default function SearchResults() {
     border="1px solid #DFE1E5"
     borderRadius="10px"
     minW="13rem"
+    onClick={()=>{
+      fashionDiceRoll()
+    }}
   >
     {isHovered ? (
       <Lottie
