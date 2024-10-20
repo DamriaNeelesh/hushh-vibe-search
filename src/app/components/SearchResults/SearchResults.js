@@ -63,6 +63,7 @@ import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from "../svg/clockHistory.svg";
 import brands from "../../resources/config/brands";
+import LoadingBar from 'react-top-loading-bar';
 
 const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -358,6 +359,8 @@ export default function SearchResults() {
   const toast = useToast();
   const [brands, setBrands] = useState([]); // State to hold brands
   const router = useRouter(); 
+  const loadingBarRef = useRef(null);
+
   const resetSearchResults = () => {
     setSearchResults([]); // Reset search results to an empty array
   };
@@ -398,6 +401,7 @@ export default function SearchResults() {
 
   useEffect(() => {
     async function callVibeIt() {
+      loadingBarRef.current.continuousStart(); // Start the loading bar
       let search = searchParams.get("query");
       let imageSearch = searchParams.get("imageSearch");
       let image = localStorage.getItem("image-file");
@@ -411,6 +415,7 @@ export default function SearchResults() {
         (results) => {
           setSearchResults(results);
           console.log("Search Results:", searchResults);
+          loadingBarRef.current.complete(); // Complete the loading bar
           setIsLoading(false); // Set loading to false when data is fetched
         },
         access_token,
@@ -446,6 +451,8 @@ export default function SearchResults() {
 
   return (
     <>
+          <LoadingBar color="#f11946" ref={loadingBarRef} />
+
       <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
         <DrawerContent>
