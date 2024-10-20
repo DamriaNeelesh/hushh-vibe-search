@@ -451,7 +451,7 @@ export default function SearchResults() {
 
   return (
     <>
-          <LoadingBar color="#f11946" ref={loadingBarRef} />
+          <LoadingBar color="#E0D3C8" height={'0.35rem'} ref={loadingBarRef} />
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
