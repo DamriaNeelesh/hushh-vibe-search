@@ -1,11 +1,15 @@
 .CompaniesMarquee__Marquee {
-  width: 49vw;
+  width: 100%; /* Make it 100% to occupy full space */
+  overflow: hidden; /* Hide any overflow */
 }
+
 .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow {
   display: flex;
+  justify-content: space-around; /* Distribute logos evenly */
+  align-items: center; /* Vertically center logos */
 }
+
 .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow .CompaniesMarquee__Logo {
-  margin-left: 36pt;
   height: 40pt;
-  margin-bottom: 22pt;
-}/*# sourceMappingURL=CompaniesMarquee.module.css.map */
+  margin: 0 36pt; /* Remove top/bottom margin and keep side margins */
+}

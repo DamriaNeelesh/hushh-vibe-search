@@ -15,6 +15,7 @@ import puma from "./resources/puma.svg";
 import FoG from "./resources/FOG.svg";
 import hugoBoss from "./resources/hugo-boss.svg";
 import michealKors from "./resources/micheal-kors.svg";
+
 export default function CompaniesMarquee() {
   let logos = [
     [adidas, balenciaga, calvinKlien, puma],
@@ -22,26 +23,35 @@ export default function CompaniesMarquee() {
     [armani, gucci, hermes, hugoBoss],
     [lv, nike, prada, michealKors],
   ];
+
   return (
-    <div className={`${styles.CompaniesMarquee}`} style={{borderLeft:'1px solid black'}}>
+    <div className={`${styles.CompaniesMarquee}`} style={{ borderLeft: '1px solid black' , display:'flex',flexDirection:'column',gap:'2rem'}}>
       {logos.map((logoArray, index) => {
+        // Duplicate the logos inside each marquee row to ensure continuous flow
         return (
           <marquee
             className={`${styles.CompaniesMarquee__Marquee}`}
-            direction={index % 2 == 0 ? "left" : "right"}
+            direction={index % 2 === 0 ? "left" : "right"}
             key={index}
           >
             <div className={styles.CompaniesMarquee__logoRow}>
-              {logoArray.map((logo, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={logo.src}
-                    alt="logo"
-                    className={styles.CompaniesMarquee__Logo}
-                  />
-                );
-              })}
+              {logoArray.map((logo, idx) => (
+                <img
+                  key={idx}
+                  src={logo.src}
+                  alt="logo"
+                  className={styles.CompaniesMarquee__Logo}
+                />
+              ))}
+              {/* Duplicate the logos to avoid any gap at the end */}
+              {logoArray.map((logo, idx) => (
+                <img
+                  key={idx + logoArray.length} // Ensure a unique key for duplicated items
+                  src={logo.src}
+                  alt="logo"
+                  className={styles.CompaniesMarquee__Logo}
+                />
+              ))}
             </div>
           </marquee>
         );
