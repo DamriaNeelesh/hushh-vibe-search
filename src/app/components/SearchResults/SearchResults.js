@@ -32,6 +32,7 @@ import {
   TagLabel,
   TagCloseButton,
   AccordionIcon,
+  useToast,
 } from "@chakra-ui/react";
 import {
   RangeSlider,
@@ -228,7 +229,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
         </AccordionPanel>
       </AccordionItem>
 
-      <AccordionItem>
+      {/* <AccordionItem>
         <h2>
           <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
             <Box
@@ -250,7 +251,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
             selectedBrands={selectedBrands}
           />
         </AccordionPanel>
-      </AccordionItem>
+      </AccordionItem> */}
 
       <AccordionItem>
         <h2>
@@ -307,6 +308,42 @@ export default function SearchResults() {
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+
+  const showComingSoonToast = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "We are working on it.",
+      status: "info",
+      duration: 5000,  // Shortened to a reasonable time
+      isClosable: true,
+      position: "top-right",
+      containerStyle: {
+        maxWidth: "320px",  // Ensure the width of the toast is limited
+        zIndex: 999999,     // Make sure it's on top of everything
+        position: "fixed",  // Ensure it's fixed at the top
+      },
+      render: ({ onClose }) => (
+        <Box
+          p={4}
+          bg="blue.500"
+          color="white"
+          borderRadius="md"
+          boxShadow="lg"
+          textAlign="left"
+          onClick={onClose}  // Clicking closes the toast
+          cursor="pointer"
+        >
+          <HStack justify="space-between">
+            <Text fontWeight="bold">Coming Soon!</Text>
+            <FiX size={20} cursor="pointer" onClick={onClose} />
+          </HStack>
+          <Text fontSize="sm">We are working on it.</Text>
+        </Box>
+      ),
+    });
+};
+
 
   useEffect(() => {
     async function callVibeIt() {
@@ -436,7 +473,7 @@ export default function SearchResults() {
     <utilities.SearchBox />
   </Box>
   <HStack pos={'absolute'} right={'7%'} gap={{md:'1rem',base:'0.5rem'}} >
-  <Box onClick={onOpen} cursor={'pointer'} border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
+  {/* <Box onClick={onOpen} cursor={'pointer'} border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
     <Image
       src={ClockIcon}
       alt="Vibe History"
@@ -444,8 +481,23 @@ export default function SearchResults() {
       height="18"
       style={{ width: '18px', height: '18px' }}
     />
-  </Box>
+  </Box> */}
 
+<Box
+      onClick={showComingSoonToast}
+      cursor={'pointer'}
+      border="1px solid #DFE1E5"
+      borderRadius="10px"
+      p={{ md: '0.85rem' }}
+    >
+      <Image
+        src={ClockIcon}
+        alt="Vibe History"
+        width="18"
+        height="18"
+        style={{ width: '18px', height: '18px' }}
+      />
+    </Box>
   <HStack
     align="center"
     flexDirection="row"
