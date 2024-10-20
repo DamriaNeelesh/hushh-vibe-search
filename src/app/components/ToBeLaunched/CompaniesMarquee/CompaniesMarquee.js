@@ -23,7 +23,7 @@ export default function CompaniesMarquee() {
     [lv, nike, prada, michealKors],
   ];
   return (
-    <div className={`${styles.CompaniesMarquee}`}>
+    <div className={`${styles.CompaniesMarquee}`} style={{borderLeft:'1px solid black'}}>
       {logos.map((logoArray, index) => {
         return (
           <marquee
