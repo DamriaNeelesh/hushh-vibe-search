@@ -43,7 +43,7 @@ import {
 
 import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import styles from "./SearchResults.module.css";
@@ -357,7 +357,7 @@ export default function SearchResults() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [brands, setBrands] = useState([]); // State to hold brands
-
+  const router = useRouter(); 
   const resetSearchResults = () => {
     setSearchResults([]); // Reset search results to an empty array
   };
@@ -489,7 +489,9 @@ export default function SearchResults() {
             src={VibeText}
             width={"100"}
             height={"40%"}
+            style={{cursor:'pointer'}}
             alt="Vibe Search"
+            onClick={() =>  router.push('/')}
           />
         </Flex>
         <HStack spacing={6}>

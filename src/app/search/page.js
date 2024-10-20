@@ -67,7 +67,7 @@ const Search = () => {
           fontWeight="bold"
           mb={{ md: "3rem", base: "1.5rem" }}
         >
-          <Image src={VibeText} alt="Vibe Search" />
+          <Image src={VibeText} alt="Vibe Search" style={{cursor:'pointer'}} onClick={() => router.push('/')}/>
         </Box>
         <Box
           width={{ base: "90%", md: "60%", lg: "40%" }}
