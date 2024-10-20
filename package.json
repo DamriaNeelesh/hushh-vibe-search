@@ -31,7 +31,8 @@
     "react-loading-skeleton": "^3.5.0",
     "react-media-recorder": "^1.7.1",
     "react-responsive-carousel": "^3.2.23",
-    "react-tinder-card": "^1.6.4"
+    "react-tinder-card": "^1.6.4",
+    "react-top-loading-bar": "^2.3.1"
   },
   "devDependencies": {
     "@types/node": "22.7.5",

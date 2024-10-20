@@ -31,9 +31,9 @@ export default function Description() {
 
       <div className={styles.Description__LaunchDateWrapper}>
         <img className={styles.Description__Calender} src={Calender.src}></img>
-        <div className={`${styles.Description__LaunchDate} figtree`}>
+        {/* <div className={`${styles.Description__LaunchDate} figtree`}>
           Launching Oct 20th 2024!
-        </div>
+        </div> */}
       </div>
       <div className={styles.Description__SignIn}>
         {!isSignedIn ? (
