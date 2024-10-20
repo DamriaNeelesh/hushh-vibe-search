@@ -3,10 +3,10 @@ import styles from "./SearchBox.module.css";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
 import FileInputBox from './FileInputBox/FileInputBox'
-import { useSearchParams } from "next/navigation";
+//import { useSearchParams } from "next/navigation";
 export default function SearchBox() {
-  let searchParams=useSearchParams()
-  let query=searchParams.get('query')
+  // let searchParams=useSearchParams()
+  // let query=searchParams.get('query')
   return (
     <div className={`${styles.SearchBox}`}>
       <img src={resources.magnifyingGlass.src}></img>
@@ -14,7 +14,7 @@ export default function SearchBox() {
         if(event.key === "Enter"){
           window.location.href = config.redirect_url+"/components/SearchResults?query=" + event.target.value;
         }
-        placeholder={query} 
+        // placeholder={query} 
       }}></input>
       <img src={resources.cross.src} className={`${styles.SearchBox__Icon}`} onClick={()=>{
         document.getElementById("SearchBox__Input").value = "";
