@@ -34,9 +34,10 @@ const Home2 = () => {
       <Flex
         fontFamily={"Figtree, sans-serif"}
         justify="space-between"
-        minH={"100vh"}
+        minH={"80vh"}
         align="center"
-        p={8}
+        px={8}
+
       >
         {/* Left Section */}
         <Box

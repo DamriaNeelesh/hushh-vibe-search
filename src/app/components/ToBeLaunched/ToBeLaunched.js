@@ -14,9 +14,10 @@ export default function ToBeLaunched() {
         <Description></Description>
         <CompaniesMarquee></CompaniesMarquee>
       </div>
-      <div>
-        <Home2></Home2>
-      </div>
+      <Home2></Home2>
+
+      {/* <div>
+      </div> */}
       <div className={styles.ToBeLaunched__Footer}>
         <utilities.Footer></utilities.Footer>
       </div>
