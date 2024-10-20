@@ -62,6 +62,7 @@ import Lottie from "lottie-react";
 import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from "../svg/clockHistory.svg";
+import brands from "../../resources/config/brands";
 
 const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -73,9 +74,19 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
     console.log("selected items: ", selectedItems.length);
   };
 
+  const clearFilters = () => {
+    setSelectedBrands([]);  // Clear the selected brands
+  };
+
   const clearAll = () => {
     setSelectedItems([]);
   };
+
+  const handleClearFilters = () => {
+    setSelectedBrands([]); // Clear selected brands
+    window.location.reload(); // Reload the page
+  };
+
 
   return (
     <>
@@ -120,7 +131,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           <Image src={FilterLine} alt="Vibe Filters" />
         </Button>
 
-        {["LV", "Gucci", "Dolce & Gabbana"].map((item) => (
+        {/* {["LV", "Gucci", "Dolce & Gabbana"].map((item) => (
           <Button
             key={item}
             onClick={() => toggleItem(item)}
@@ -137,7 +148,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           >
             {item}
           </Button>
-        ))}
+        ))} */}
         <Drawer
           placement="left"
           onClose={onClose}
@@ -146,7 +157,10 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
         >
           <DrawerOverlay />
           <DrawerContent>
-            <DrawerHeader
+          <DrawerHeader
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
               color={"#222"}
               fontSize={{ md: "1.75rem", base: "1rem" }}
               textOverflow={"ellipsis"}
@@ -154,12 +168,26 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
               fontWeight={"400"}
               fontFamily={"Figtree, sans-serif"}
             >
-              All Filters
+              <Text>All Filters</Text>
+              {/* <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  setSelectedBrands([]); 
+                  resetSearchResults(); 
+                  
+                }}
+              >
+                Clear Filters
+              </Button> */}
+                       {selectedBrands.length > 0 && <Button onClick={clearFilters}>Clear Filters</Button>}
+
             </DrawerHeader>
             <DrawerBody>
               <FilterAccordion
                 selectedBrands={selectedBrands}
                 setSelectedBrands={setSelectedBrands}
+                brands={brands}
               />
             </DrawerBody>
           </DrawerContent>
@@ -195,13 +223,23 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   );
 };
 
-const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
+const FilterAccordion = ({ setSelectedBrands, selectedBrands, resetSearchResults,brands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
 
   const handlePriceChange = (values) => {
     setPriceRange(values);
   };
+
+  const handleBrandChange = (brands) => {
+    setSelectedBrands(brands);
+    resetSearchResults(); // Ensure search results are reset
+  };
+
+  // const handleClearFilters = () => {
+  //   setSelectedBrands([]);
+  //   resetSearchResults(); 
+  // };
 
   return (
     <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
@@ -222,12 +260,16 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <BrandFilters
-            setSelectedBrands={setSelectedBrands}
-            selectedBrands={selectedBrands}
-          />{" "}
+        <BrandFilters
+        selectedBrands={selectedBrands}
+        setSelectedBrands={setSelectedBrands}
+        brands={brands} // Pass brands to BrandFilters
+      />
         </AccordionPanel>
       </AccordionItem>
+       {/* <Button onClick={handleClearFilters} variant="outline" size="sm">
+        Clear Filters
+      </Button> */}
 
       {/* <AccordionItem>
         <h2>
@@ -309,6 +351,12 @@ export default function SearchResults() {
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const [brands, setBrands] = useState([]); // State to hold brands
+
+
+  const resetSearchResults = () => {
+    setSearchResults([]); // Reset search results to an empty array
+  };
 
   const showComingSoonToast = () => {
     toast({
@@ -359,12 +407,14 @@ export default function SearchResults() {
         32,
         (results) => {
           setSearchResults(results);
+          console.log('Search Results:',searchResults)
           setIsLoading(false); // Set loading to false when data is fetched
         },
         access_token,
         searchResults,
         selectedBrands,
-        noMoreResults
+        noMoreResults,
+        setBrands
       );
     }
     callVibeIt();
@@ -449,7 +499,7 @@ export default function SearchResults() {
               fill="#222222"
             />
           </svg>
-          <FiHeart size={24} cursor="pointer" />
+          <FiHeart size={24} cursor="pointer" onClick={showComingSoonToast}/>
         </HStack>
       </HStack>
 <HStack
@@ -537,8 +587,12 @@ export default function SearchResults() {
 </HStack>
 
       <FilterUI
-        setSelectedBrands={setSelectedBrands}
+        setSelectedBrands={(brands) => {
+          setSelectedBrands(brands);
+          resetSearchResults(); // Reset search results when brands are updated
+        }}
         selectedBrands={selectedBrands}
+        resetSearchResults={resetSearchResults} // Pass the function as a prop
       />
       <Box
         fontFamily="Figtree, sans-serif"
@@ -627,17 +681,21 @@ export default function SearchResults() {
                         </Box>
                       </Box>
                       <Box p={3}>
-                        <Text fontWeight="600" fontSize="sm">
+                        <Text fontWeight={'400'} fontSize={{md:'0.9rem',base:'0.5rem'}} color={'#727272'} lineHeight={'22px'}>
+                          {product?.source}
+                        </Text>
+                        <Text color={'#222222'} fontWeight="700" fontSize={{md:"1rem",base:'0.65rem'}} lineHeight={'22px'}>
                           {product.brand}
                         </Text>
-                        <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                        <Text color="#222222" fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'22px'} noOfLines={1}>
                           {product.product_title}
-                        </Text>
+                        </Text> 
                         {product.price_available && (
                           <Text
                             color={"#222222"}
-                            fontWeight="600"
-                            fontSize="sm"
+                            fontWeight="400"
+                            lineHeight={'22px'}
+                            fontSize={{md:'1rem',base:'0.65rem'}}
                             mt={5}
                           >
                             {product.currency} {product.price}
