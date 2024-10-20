@@ -310,10 +310,12 @@ export default function SearchResults() {
   useEffect(() => {
     async function callVibeIt() {
       let search = searchParams.get("query");
+      let imageSearch = searchParams.get("imageSearch");
+      let image=localStorage.getItem('image-file')
       services.history.saveToHistory(search);
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
-        search || "",
+        imageSearch? image: search || "",
         "",
         currentPage,
         32,

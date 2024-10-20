@@ -1,3 +1,4 @@
+"use client"
 import styles from "./SearchBox.module.css";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
