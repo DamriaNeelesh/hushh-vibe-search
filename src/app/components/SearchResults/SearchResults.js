@@ -306,6 +306,7 @@ export default function SearchResults() {
   const gridRef = useRef(null);
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     async function callVibeIt() {
@@ -351,6 +352,25 @@ export default function SearchResults() {
 
   return (
     <>
+    <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader 
+            fontWeight={"400"}
+            fontSize={{ md: "1.2rem", base: "0.65rem" }}
+            lineHeight={"22px"}
+            color={"#222222"}
+            textAlign="left">
+              Search History
+          </DrawerHeader>
+          <DrawerBody>
+            <HistoryComponent
+              setSelectedBrands={setSelectedBrands}
+              selectedBrands={selectedBrands}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
       <HStack
         bg="white"
         py={4}
@@ -416,7 +436,7 @@ export default function SearchResults() {
     <utilities.SearchBox />
   </Box>
   <HStack pos={'absolute'} right={'7%'} gap={{md:'1rem',base:'0.5rem'}} >
-  <Box border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
+  <Box onClick={onOpen} cursor={'pointer'} border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
     <Image
       src={ClockIcon}
       alt="Vibe History"
@@ -433,6 +453,7 @@ export default function SearchResults() {
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
     alignItems="center"
+    cursor={'pointer'}
     border="1px solid #DFE1E5"
     borderRadius="10px"
     minW="13rem"
