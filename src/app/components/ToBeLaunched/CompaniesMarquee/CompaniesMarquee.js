@@ -26,7 +26,15 @@ export default function CompaniesMarquee() {
   ];
 
   return (
-    <div className={`${styles.CompaniesMarquee}`} style={{ borderLeft: '1px solid black', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <div
+      className={`${styles.CompaniesMarquee}`}
+      style={{
+        borderLeft: "1px solid black",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
       {logos.map((logoArray, index) => (
         <Marquee
           key={index}

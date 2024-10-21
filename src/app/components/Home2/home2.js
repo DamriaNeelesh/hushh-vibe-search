@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Flex, Box, Text,HStack, Button, Input } from "@chakra-ui/react";
+import { Flex, Box, Text, HStack, Button, Input } from "@chakra-ui/react";
 import Vintage from "../svg/home2/vintage.svg";
 import { FiUpload, FiX } from "react-icons/fi";
 import CoffeeLoving from "../svg/home2/coffeeLoving.svg";
@@ -9,7 +9,7 @@ import SearchBox from "../utilities/SearchBox/SearchBox";
 import Model1 from "../svg/home2/model1.svg";
 import Model2 from "../svg/home2/model2.svg";
 import Image from "next/image";
-import ImageUpload from '../../components/Upload/uploadComponent'
+import ImageUpload from "../../components/Upload/uploadComponent";
 
 const Home2 = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -37,7 +37,6 @@ const Home2 = () => {
         minH={"80vh"}
         align="center"
         px={8}
-
       >
         {/* Left Section */}
         <Box
@@ -109,7 +108,15 @@ const Home2 = () => {
         align="center"
       >
         {/* Left Section - Image Upload */}
-        <Box  p={{md:'4rem'}} display={'flex'} textAlign={'left'} alignItems={'flex-start'} flexDirection={'column'} gap={{md:'1rem',base:'0.5rem'}} flex={1}>
+        <Box
+          p={{ md: "4rem" }}
+          display={"flex"}
+          textAlign={"left"}
+          alignItems={"flex-start"}
+          flexDirection={"column"}
+          gap={{ md: "1rem", base: "0.5rem" }}
+          flex={1}
+        >
           <Text
             color={"#273434"}
             fontWeight={"700"}
@@ -130,15 +137,22 @@ const Home2 = () => {
             Search will find it (or something even better).
           </Text>
 
-          <ImageUpload/>
-          
-          <Text fontWeight='400' fontSize={{md:'1rem',base:'0.5rem'}} lineHeight={'19.2px'} color={'#596168CF'}>click the vibes on the left to check them out →</Text>
+          <ImageUpload />
+
+          <Text
+            fontWeight="400"
+            fontSize={{ md: "1rem", base: "0.5rem" }}
+            lineHeight={"19.2px"}
+            color={"#596168CF"}
+          >
+            click the vibes on the left to check them out →
+          </Text>
         </Box>
 
         {/* Right Section - Models */}
         <Box
           p={2}
-          justifyContent={'flex-start'}
+          justifyContent={"flex-start"}
           flexDirection={"column"}
           alignItems={"center"}
           minH="100vh"

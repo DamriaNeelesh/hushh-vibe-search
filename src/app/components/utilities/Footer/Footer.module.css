@@ -2,14 +2,12 @@
   position: absolute;
   bottom: 0;
   z-index: 0;
-  width: 100%;
 }
 .Footer .AboutUs__UpperFooter {
   background-color: #EDE4DE;
-  width: 100%;
+  width: 100vw;
   height: 42px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   z-Index: 2000;
