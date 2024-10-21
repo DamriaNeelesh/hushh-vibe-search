@@ -32,18 +32,6 @@ export default function Header(props) {
             <div className={styles.Header__UnderLine}></div>
           )}
         </div>
-        {/* <div
-          className={styles.Header__PageBox}
-          onClick={() => {
-            props.setPage("contact");
-          }}
-          style={{cursor:'pointer'}}
-        >
-          <div className={styles.Header__ContactUs}>Contact Us</div>
-          {props.page === "/contact" && (
-            <div className={styles.Header__UnderLine}></div>
-          )}
-        </div> */}
         <div
           className={styles.Header__PageBox}
           onClick={() => {
@@ -53,6 +41,18 @@ export default function Header(props) {
         >
           <div className={styles.Header__PrivacyPolicy}>Privacy Policy</div>
           {pathname === '/privacy-policy' && (
+            <div className={styles.Header__UnderLine}></div>
+          )}
+        </div>
+        <div
+          className={styles.Header__PageBox}
+          onClick={() => {
+            router.push('/privacy-policy')
+           }}
+          style={{cursor:'pointer'}}
+        >
+          <div className={styles.Header__PrivacyPolicy}>Terms of Use</div>
+          {pathname === '/terms-and-use' && (
             <div className={styles.Header__UnderLine}></div>
           )}
         </div>
