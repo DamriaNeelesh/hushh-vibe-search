@@ -30,7 +30,7 @@ export default function Description() {
       <div className={`${styles.Description__Tagline} figtree`}>
         Find Your Vibe. <br></br>Shop Your Style.
       </div>
-      <utilities.SearchBox></utilities.SearchBox>
+      <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
       <div className={styles.Description__SignIn}>
         {!isSignedIn ? (
           <img

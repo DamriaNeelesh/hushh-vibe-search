@@ -63,7 +63,7 @@ import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from "../svg/clockHistory.svg";
 import brands from "../../resources/config/brands";
-import LoadingBar from 'react-top-loading-bar';
+import LoadingBar from "react-top-loading-bar";
 
 const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -358,12 +358,16 @@ export default function SearchResults() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [brands, setBrands] = useState([]); // State to hold brands
-  const router = useRouter(); 
+  const router = useRouter();
   const loadingBarRef = useRef(null);
 
   const resetSearchResults = () => {
     setSearchResults([]); // Reset search results to an empty array
   };
+
+  useEffect(() => {
+    services.authentication.getSession();
+  }, []);
 
   const showComingSoonToast = () => {
     toast({
@@ -451,7 +455,7 @@ export default function SearchResults() {
 
   return (
     <>
-          <LoadingBar color="#E0D3C8" height={'0.35rem'} ref={loadingBarRef} />
+      <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
@@ -496,9 +500,9 @@ export default function SearchResults() {
             src={VibeText}
             width={"100"}
             height={"40%"}
-            style={{cursor:'pointer'}}
+            style={{ cursor: "pointer" }}
             alt="Vibe Search"
-            onClick={() =>  router.push('/')}
+            onClick={() => router.push("/")}
           />
         </Flex>
         <HStack spacing={6}>
@@ -671,7 +675,7 @@ export default function SearchResults() {
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
-                        // bg="gray.100" 
+                        // bg="gray.100"
                       >
                         <ChakraImage
                           src={product.image || "/path/to/default-image.jpg"}
@@ -800,22 +804,24 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                   {additionalImages.map((image, index) => (
-            <Box
-              key={index}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              bg="white" // Background color in case the image doesn't load
-            >
-              <ChakraImage
-                src={image}
-                alt={`${selectedProduct.product_title} - ${index + 1}`}
-                objectFit="contain" // Ensures the entire image is visible without cropping
-                boxSize="100%" // Fills the container without cropping
-              />
-            </Box>
-          ))}
+                    {additionalImages.map((image, index) => (
+                      <Box
+                        key={index}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        bg="white" // Background color in case the image doesn't load
+                      >
+                        <ChakraImage
+                          src={image}
+                          alt={`${selectedProduct.product_title} - ${
+                            index + 1
+                          }`}
+                          objectFit="contain" // Ensures the entire image is visible without cropping
+                          boxSize="100%" // Fills the container without cropping
+                        />
+                      </Box>
+                    ))}
                   </Carousel>
                   <Box
                     bg={"#FBFAF8"}
