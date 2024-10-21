@@ -1,43 +1,59 @@
-// Definition: Header component for the AboutUs page
 "use client";
 import styles from "./Header.module.css";
 import resources from "../../../resources/resources";
 import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+
 export default function Header(props) {
   useEffect(() => {
     console.log("page", props.page);
   }, [props.page]);
+  const router =  useRouter();
+ 
+  const pathname = usePathname()
   return (
-    <div className={`${styles.Header} figtree`}>
+    <div className={`${styles.Header} figtree`} style={{position:'sticky',top:'0',background:'white'}}>
       <img
         className={styles.Header__Logo}
         src={resources.images.VibeLogo.src}
-      ></img>
+        alt="Vibe Logo"
+      />
       <div className={styles.Header__Pages}>
         <div
           className={styles.Header__PageBox}
           onClick={() => {
-            props.setPage("about");
+           router.push('/components/AboutUs')
           }}
+          // className={`link ${pathname === '/contact-us' ? 'gradient-text' : ''}`}
+          style={{cursor:'pointer'}}
         >
           <div className={styles.Header__AboutUs}>About</div>
-          {props.page == "about" ? (
+          {pathname === '/components/AboutUs' && (
             <div className={styles.Header__UnderLine}></div>
-          ) : (
-            <></>
           )}
         </div>
-        <div
+        {/* <div
           className={styles.Header__PageBox}
           onClick={() => {
             props.setPage("contact");
           }}
+          style={{cursor:'pointer'}}
         >
           <div className={styles.Header__ContactUs}>Contact Us</div>
-          {props.page == "contact" ? (
+          {props.page === "/contact" && (
             <div className={styles.Header__UnderLine}></div>
-          ) : (
-            <></>
+          )}
+        </div> */}
+        <div
+          className={styles.Header__PageBox}
+          onClick={() => {
+            router.push('/privacy-policy')
+           }}
+          style={{cursor:'pointer'}}
+        >
+          <div className={styles.Header__PrivacyPolicy}>Privacy Policy</div>
+          {pathname === '/privacy-policy' && (
+            <div className={styles.Header__UnderLine}></div>
           )}
         </div>
       </div>
