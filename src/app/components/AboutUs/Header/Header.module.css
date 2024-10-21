@@ -42,9 +42,10 @@
   }
   .Header .Header__UnderLine {
     height: 2px;
-    max-width: 100px;
     background-color: #FFB6C1;
     color: #273434;
+    display: inline-block; /* Ensures underline matches text width */
+    width: auto; /* Allows the width to adjust to the text */
   }
   .Header .Header__PageBox {
      margin: 0;
