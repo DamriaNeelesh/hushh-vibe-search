@@ -41,6 +41,7 @@ export default function CompaniesMarquee() {
           direction={index % 2 === 0 ? "left" : "right"}
           speed={50} // Adjust speed as needed
           gradient={false} // Disable gradient for a seamless look
+          className={`${styles.CompaniesMarquee__Marquee}`}
         >
           <div className={styles.CompaniesMarquee__logoRow}>
             {logoArray.map((logo, idx) => (
