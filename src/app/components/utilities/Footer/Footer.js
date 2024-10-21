@@ -14,12 +14,12 @@ export default function Footer() {
           </strong>
         </div>
         <div className={`${styles.AboutUs__RightWrapper}`}>
-          <Link
+          {/* <Link
             className={`${styles.AboutUs__UpperFooterText}`}
             href={config.redirect_url + "/components/AboutUs"}
           >
             About
-          </Link>
+          </Link> */}
           <Link
             className={`${styles.AboutUs__UpperFooterText}`}
             href={"https://www.hush1one.com/contact-us"}
