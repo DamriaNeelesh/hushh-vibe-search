@@ -1,6 +1,4 @@
 import styles from "./Description.module.css";
-import VibeSearchGif from "./VibeSearchGif/VibeSearchGif";
-import Calender from "./resources/calender.svg";
 import gSignInButton from "./resources/gsign-button.svg";
 import services from "../../../services/services";
 import { useEffect, useState } from "react";
@@ -8,6 +6,7 @@ import utilities from "../../utilities/utilities";
 
 export default function Description() {
   let [isSignedIn, setIsSignedIn] = useState(false);
+  let [fullName, setFullName] = useState("");
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
@@ -20,21 +19,18 @@ export default function Description() {
       isSignedIn ? "" : services.authentication.isLoggedIn(setIsSignedIn);
     }, 1000);
   }, []);
+  useEffect(() => {
+    services.authentication.getFullName(setFullName);
+  }, [isSignedIn]);
   return (
-    <div className={styles.Description} style={{gap:'1rem', display:'flex', flexDirection:'column'}}>
+    <div
+      className={styles.Description}
+      style={{ gap: "1rem", display: "flex", flexDirection: "column" }}
+    >
       <div className={`${styles.Description__Tagline} figtree`}>
         Find Your Vibe. <br></br>Shop Your Style.
       </div>
-
-      {/* <VibeSearchGif></VibeSearchGif> */}
       <utilities.SearchBox></utilities.SearchBox>
-
-      <div className={styles.Description__LaunchDateWrapper}>
-        <img className={styles.Description__Calender} src={Calender.src}></img>
-        {/* <div className={`${styles.Description__LaunchDate} figtree`}>
-          Launching Oct 20th 2024!
-        </div> */}
-      </div>
       <div className={styles.Description__SignIn}>
         {!isSignedIn ? (
           <img
@@ -52,7 +48,9 @@ export default function Description() {
               <strong>exclusive updates</strong>
             </div>
           ) : (
-            "Thank you for registering"
+            <div>
+              Welcome back <strong>{fullName}</strong>
+            </div>
           )}
         </div>
       </div>

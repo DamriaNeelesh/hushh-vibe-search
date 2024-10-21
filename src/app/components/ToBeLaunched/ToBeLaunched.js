@@ -9,7 +9,7 @@ export default function ToBeLaunched() {
   return (
     <div>
       <Header></Header>
-      <WelcomeAboardModal></WelcomeAboardModal>
+      {/* <WelcomeAboardModal></WelcomeAboardModal> */}
       <div className={styles.ToBeLaunched__Content} style={{gap:'2rem'}}>
         <Description></Description>
         <CompaniesMarquee></CompaniesMarquee>
