@@ -5,10 +5,11 @@ import resources from "./resources/resources";
 import config from "../../../resources/config/config";
 import FileInputBox from "./FileInputBox/FileInputBox";
 import { Suspense, useState, useEffect } from "react";
+import services from "../../../services/services";
 
 export default function SearchBox(props) {
   const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
-
+  let [isLoggedIn, setIsLoggedIn] = useState(false);
   // Get initial query from the URL when the component mounts
   useEffect(() => {
     const params = new URLSearchParams(window.location.search); // Use window.location.search
@@ -17,10 +18,16 @@ export default function SearchBox(props) {
       setSearchQuery(initialQuery); // Set the state with the initial query
     }
   }, []);
-
+  useEffect(() => {
+    setTimeout(() => {
+      !isLoggedIn ? services.authentication.isLoggedIn(setIsLoggedIn) : "";
+    }, 1000);
+  }, []);
   const handleSearch = (event) => {
     if (event.key === "Enter") {
-      window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`;
+      isLoggedIn
+        ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
+        : alert("Please login to search");
     }
   };
 
