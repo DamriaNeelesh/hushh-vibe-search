@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
   let [page, setPage]=useState('PrivacyPolicy')
 
   const handleLinkClick = (section) => {
-    onClose(); // Close the drawer
+    onClose(); 
   };
   
 
@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
         <Stack direction={{ base: "column", lg: "row" }} spacing={10}>
           {/* Left sidebar for table of contents */}
 
-          <Box display={{ base: "block", lg: "none" }} position="fixed" top="0" left="0" zIndex="10000">
+          <Box display={{ base: "block", lg: "none" }} position="fixed" top="0" left="0" zIndex="100">
             <IconButton
               icon={<HamburgerIcon />}
               variant="outline"
@@ -72,7 +72,6 @@ const PrivacyPolicy = () => {
           </Box>
 
           <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
-            {/* <DrawerOverlay /> */}
             <DrawerContent>
               <DrawerCloseButton />
               <DrawerHeader>Table of Contents</DrawerHeader>
@@ -85,65 +84,65 @@ const PrivacyPolicy = () => {
                     lineHeight={{ md: "50px", base: "36px" }}
                     fontSize={{ md: "1rem", base: "0.6rem" }}
                   >
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="introduction" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="introduction" smooth offset={-headerHeight} onSetActive={onClose}>
                         Introduction
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="information-collect" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="information-collect" smooth offset={-headerHeight} onSetActive={onClose}>
                         Information We Collect
                       </Link>
                       <UnorderedList styleType="circle" pl={4}>
-                        <ListItem cursor={"pointer"} onClick={onClose}>
-                          <Link to="information-you-provide" smooth offset={-headerHeight}>
+                        <ListItem cursor={"pointer"}>
+                          <Link to="information-you-provide" smooth offset={-headerHeight} onSetActive={onClose}>
                             Information You Provide
                           </Link>
                         </ListItem>
-                        <ListItem cursor={"pointer"} onClick={onClose}>
-                          <Link to="information-collected-automatically" smooth offset={-headerHeight}>
+                        <ListItem cursor={"pointer"}>
+                          <Link to="information-collected-automatically" smooth offset={-headerHeight} onSetActive={onClose}>
                             Information Collected Automatically
                           </Link>
                         </ListItem>
                       </UnorderedList>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="how-we-use" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="how-we-use" smooth offset={-headerHeight} onSetActive={onClose}>
                         How We Use Your Information
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="sharing-info" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="sharing-info" smooth offset={-headerHeight} onSetActive={onClose}>
                         Sharing Your Information
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="privacy-choices" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="privacy-choices" smooth offset={-headerHeight} onSetActive={onClose}>
                         Your Privacy Choices
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="data-security" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="data-security" smooth offset={-headerHeight} onSetActive={onClose}>
                         Data Security
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="children-privacy" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="children-privacy" smooth offset={-headerHeight} onSetActive={onClose}>
                         Children's Privacy
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="changes-policy" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="changes-policy" smooth offset={-headerHeight} onSetActive={onClose}>
                         Changes to this Privacy Policy
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="contact-us" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="contact-us" smooth offset={-headerHeight} onSetActive={onClose}>
                         Contact Us
                       </Link>
                     </ListItem>
-                    <ListItem cursor={"pointer"} onClick={onClose}>
-                      <Link to="links-policies" smooth offset={-headerHeight}>
+                    <ListItem cursor={"pointer"}>
+                      <Link to="links-policies" smooth offset={-headerHeight} onSetActive={onClose}>
                         Links to Hushone Policies
                       </Link>
                     </ListItem>
@@ -152,6 +151,7 @@ const PrivacyPolicy = () => {
               </DrawerBody>
             </DrawerContent>
           </Drawer>
+
 
           <Box
             w={{ base: "100%", lg: "25%" }}
@@ -245,7 +245,7 @@ const PrivacyPolicy = () => {
             display={{base:'none',md:'flex'}}
           />
           {/* Main content area */}
-          <Box w={{ base: "100%", lg: "75%" }} mr={{md:'4rem',base:'1rem'}} p={{ md: 12, base: 2 }}>
+          <Box w={{ base: "100%", lg: "75%" }} mt={{md:'0',base:'3rem'}} mr={{md:'4rem',base:'1rem'}} p={{ md: 12, base: 2 }}>
             <Stack spacing={8}>
               <Box id="introduction" ref={introductionRef}>
                 <Heading
