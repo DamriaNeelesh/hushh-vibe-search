@@ -49,7 +49,7 @@ export default function Header(props) {
         <div
           className={styles.Header__PageBox}
           onClick={() => {
-            router.push('/privacy-policy')
+            router.push('/terms-of-use')
            }}
           style={{cursor:'pointer'}}
         >
