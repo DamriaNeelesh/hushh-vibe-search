@@ -54,7 +54,7 @@ export default function Header(props) {
           style={{cursor:'pointer'}}
         >
           <div className={styles.Header__PrivacyPolicy}>Terms of Use</div>
-          {pathname === '/terms-and-use' && (
+          {pathname === '/terms-of-use' && (
             <div className={styles.Header__UnderLine}></div>
           )}
         </div>

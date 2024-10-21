@@ -24,18 +24,28 @@ import { Link } from "react-scroll";
 import Header from "../components/AboutUs/Header/Header";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-const PrivacyPolicy = () => {
+const TermsOfUse = () => {
   const headerHeight = 80;
   const introductionRef = useRef(null);
-  const infoCollectRef = useRef(null);
-  const howWeUseRef = useRef(null);
-  const sharingInfoRef = useRef(null);
-  const privacyChoicesRef = useRef(null);
-  const dataSecurityRef = useRef(null);
-  const childrenPrivacyRef = useRef(null);
-  const changesPolicyRef = useRef(null);
+  const acceptanceTermsRef = useRef(null);
+  const descriptionServiceRef = useRef(null);
+  const userContentRef = useRef(null);
+  const prohibitedConductRef = useRef(null);
+  const intellectualPropertyRef = useRef(null);
+  const terminationRef = useRef(null);
+  const disclaimersRef = useRef(null);
+  const limitationLiabilityRef = useRef(null);
+  const entireAgreementRef = useRef(null);
+  const changesTermsRef = useRef(null);
   const contactUsRef = useRef(null);
   const linksToPoliciesRef = useRef(null);
+  const infoCollectRef = useRef(null)
+  const howWeUseRef = useRef(null)
+  const sharingInfoRef = useRef(null)
+  const privacyChoicesRef = useRef(null)
+  const dataSecurityRef = useRef(null)
+  const childrenPrivacyRef = useRef(null)
+  const changesPolicyRef =  useRef(null)
 
   const infoYouProvideRef = useRef(null);
   const infoCollectedAutomaticallyRef = useRef(null);
@@ -95,7 +105,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Introduction
+                        Acceptance of Terms
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -105,30 +115,8 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Information We Collect
+                        Description of Service
                       </Link>
-                      <UnorderedList styleType="circle" pl={4}>
-                        <ListItem cursor={"pointer"}>
-                          <Link
-                            to="information-you-provide"
-                            smooth
-                            offset={-headerHeight}
-                            onSetActive={onClose}
-                          >
-                            Information You Provide
-                          </Link>
-                        </ListItem>
-                        <ListItem cursor={"pointer"}>
-                          <Link
-                            to="information-collected-automatically"
-                            smooth
-                            offset={-headerHeight}
-                            onSetActive={onClose}
-                          >
-                            Information Collected Automatically
-                          </Link>
-                        </ListItem>
-                      </UnorderedList>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
                       <Link
@@ -137,7 +125,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        How We Use Your Information
+                        User Content
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -147,7 +135,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Sharing Your Information
+                        Prohibited Conduct
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -157,7 +145,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Your Privacy Choices
+                        Intellectual Property
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -167,7 +155,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Data Security
+                        Termination
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -177,7 +165,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Children's Privacy
+                        Disclaimers
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -187,7 +175,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Changes to this Privacy Policy
+                        Limitation of Liability
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -197,7 +185,7 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Contact Us
+                        Indemnification
                       </Link>
                     </ListItem>
                     <ListItem cursor={"pointer"}>
@@ -207,7 +195,27 @@ const PrivacyPolicy = () => {
                         offset={-headerHeight}
                         onSetActive={onClose}
                       >
-                        Links to Hushone Policies
+                        Entire Agreement
+                      </Link>
+                    </ListItem>
+                    <ListItem cursor={"pointer"}>
+                      <Link
+                        to="links-policies"
+                        smooth
+                        offset={-headerHeight}
+                        onSetActive={onClose}
+                      >
+                        Changes to Terms
+                      </Link>
+                    </ListItem>
+                    <ListItem cursor={"pointer"}>
+                      <Link
+                        to="links-policies"
+                        smooth
+                        offset={-headerHeight}
+                        onSetActive={onClose}
+                      >
+                        Contact Us
                       </Link>
                     </ListItem>
                   </UnorderedList>
@@ -240,7 +248,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Introduction
+                    Acceptance of Terms
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -250,30 +258,8 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Information We Collect
+                    Description of Service
                   </Link>
-                  <UnorderedList styleType="circle" pl={4}>
-                    <ListItem cursor={"pointer"}>
-                      <Link
-                        to="information-you-provide"
-                        smooth
-                        offset={-headerHeight}
-                        onClick={() => handleLinkClick("introduction")}
-                      >
-                        Information You Provide
-                      </Link>
-                    </ListItem>
-                    <ListItem cursor={"pointer"}>
-                      <Link
-                        to="information-collected-automatically"
-                        smooth
-                        offset={-headerHeight}
-                        onClick={() => handleLinkClick("introduction")}
-                      >
-                        Information Collected Automatically
-                      </Link>
-                    </ListItem>
-                  </UnorderedList>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
                   <Link
@@ -282,7 +268,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    How We Use Your Information
+                    User Content 
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -292,7 +278,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Sharing Your Information
+                    Prohibited Conduct
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -302,7 +288,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Your Privacy Choices
+                    Intellectual Property
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -312,7 +298,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Data Security
+                    Termination
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -322,7 +308,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Children's Privacy
+                    Disclaimers
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -332,7 +318,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Changes to this Privacy Policy
+                    Limitation of Liability
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -342,7 +328,7 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Contact Us
+                    Indemnification
                   </Link>
                 </ListItem>
                 <ListItem cursor={"pointer"}>
@@ -352,7 +338,27 @@ const PrivacyPolicy = () => {
                     offset={-headerHeight}
                     onClick={() => handleLinkClick("introduction")}
                   >
-                    Links to Hushone Policies
+                    Entire Agreement
+                  </Link>
+                </ListItem>
+                <ListItem cursor={"pointer"}>
+                  <Link
+                    to="links-policies"
+                    smooth
+                    offset={-headerHeight}
+                    onClick={() => handleLinkClick("introduction")}
+                  >
+                    Changes to Terms
+                  </Link>
+                </ListItem>
+                <ListItem cursor={"pointer"}>
+                  <Link
+                    to="links-policies"
+                    smooth
+                    offset={-headerHeight}
+                    onClick={() => handleLinkClick("introduction")}
+                  >
+                    Contact Us
                   </Link>
                 </ListItem>
               </UnorderedList>
@@ -383,7 +389,7 @@ const PrivacyPolicy = () => {
                   fontSize={{ md: "1rem", base: "0.65rem" }}
                   color={"#C9AD9D"}
                 >
-                  Vibe Search Privacy Policy
+                 Vibe Search Terms of Use
                 </Heading>
                 <Text
                   mt={4}
@@ -393,9 +399,7 @@ const PrivacyPolicy = () => {
                   fontSize={{ md: "1.5rem", base: "0.8rem" }}
                   lineHeight={{ md: "40px", base: "32px" }}
                 >
-                  Your style choices and searches help us tailor Vibe Search
-                  just for you. We use this information responsibly to deliver a
-                  unique and personalised experience.
+                  We get it, Terms of Service aren't exactly the most thrilling read. But taking a few minutes to understand what you can expect from Vibe Search, and what we expect in return, helps ensure a smooth and enjoyable experience for everyone.
                 </Text>
                 <Text
                   mt={4}
@@ -405,11 +409,7 @@ const PrivacyPolicy = () => {
                   fontSize={{ md: "1rem", base: "0.65rem" }}
                   color={"#000000"}
                 >
-                  At Vibe Search, a service of Hushone, Inc. (“Vibe Search,”
-                  "we," "us," "our"), we're dedicated to delivering a unique
-                  search experience while safeguarding your privacy. This policy
-                  outlines how we collect, use, share, and protect your personal
-                  data when you interact with Vibe Search.
+                  These Terms of Use ("Terms") govern your access to and use of the Vibe Search website, mobile application, and any related services (collectively, the "Service"). The Service is owned and operated by Vibe Search, a subsidiary of Hushone, Inc. ("Vibe Search," "we," "us," or "our").
                 </Text>
                 <Text
                   letterSpacing={"0.005rem"}
@@ -432,20 +432,9 @@ const PrivacyPolicy = () => {
                   fontSize={{ md: "1.5rem", base: "0.8rem" }}
                   color={"#624737"}
                 >
-                  Information We Collect
+                  Acceptance of Terms
                 </Heading>
                 <Text
-                  letterSpacing={"0.005rem"}
-                  fontSize={{ md: "1rem", base: "0.65rem" }}
-                  mt={4}
-                  color={"#000000"}
-                  fontWeight="700"
-                  ref={infoYouProvideRef}
-                  id="information-you-provide"
-                >
-                  Information You Provide:
-                </Text>
-                <UnorderedList
                   spacing={3}
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
@@ -453,43 +442,8 @@ const PrivacyPolicy = () => {
                   color={"#000000"}
                   fontWeight="400"
                 >
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      {" "}
-                      Account Information:{" "}
-                    </span>
-                    If you choose to create an account, we collect information
-                    like your name and email address to personalise your
-                    experience and manage your account settings.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      {" "}
-                      Style Preferences:
-                    </span>{" "}
-                    Your swiping choices on style options (boho, minimal,
-                    vintage, etc.) are used to s your search results but not
-                    tied to your identity.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}> Search Queries:</span>{" "}
-                    Text you enter in the search bar, including product
-                    descriptions, are used to return relevant results.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>Uploaded Images: </span>{" "}
-                    If you upload an image to find similar products, the image
-                    itself and its visual characteristics are used solely for
-                    matching purposes and not stored with identifying
-                    information.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>Wishlist:</span> If you
-                    choose to create a wish list, we collect information about
-                    the products you add to help you keep track of items you
-                    like and potentially provide personalised recommendations.
-                  </ListItem>
-                </UnorderedList>
+                 By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the Terms, you may not access or use the Service.
+                </Text>
 
                 <Text
                   letterSpacing={"0.005rem"}
@@ -500,7 +454,10 @@ const PrivacyPolicy = () => {
                   ref={infoCollectedAutomaticallyRef}
                   id="information-collected-automatically"
                 >
-                  Information Collected Automatically:
+                  Description of Service
+                </Text>
+                <Text fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}}>
+                    Vibe Search is a visual and semantic search engine that helps you discover and purchase products that match your unique style. You can interact with the Service by:
                 </Text>
                 <UnorderedList
                   spacing={3}
@@ -512,35 +469,24 @@ const PrivacyPolicy = () => {
                 >
                   <ListItem>
                     <span style={{ fontWeight: "700" }}>
-                      Device Information:{" "}
+                    Style Preferences:{" "}
                     </span>{" "}
-                    Data like your device type, operating system, and browser
-                    type may be collected to optimise Vibe Search’s performance.
+                    Indicate your style preferences by swiping left or right on various style options (e.g., boho, minimal, vintage).
                   </ListItem>
                   <ListItem>
-                    <span style={{ fontWeight: "700" }}>Usage Data: </span>{" "}
-                    Information about how you interact with Vibe Search, such as
-                    your search history (not tied to your identity), product
-                    clicks, and time spent on pages, is used to improve our
-                    service.
+                    <span style={{ fontWeight: "700" }}>Text Search:</span>{" "}
+                    Use natural language to search for products.
                   </ListItem>
                   <ListItem>
                     <span style={{ fontWeight: "700" }}>
-                      Location Information :
+                    Image Search:
                     </span>{" "}
-                    We may collect your general location (e.g., state) based on
-                    your IP address to personalise search results with locally
-                    available products.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Cookies and Similar Technologies:{" "}
-                    </span>{" "}
-                    We use cookies and similar tracking technologies to enhance
-                    your experience, provide personalised results, and analyse
-                    website traffic.
+                    Upload an image to find matching or similar products.
                   </ListItem>
                 </UnorderedList>
+                <Text fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'25px'} letterSpacing={'0.005rem'}>
+                Vibe Search partners with various brands and retailers ("Partners") to provide you with a curated selection of products. When you click on a product listing on Vibe Search, you will be redirected to the Partner's website to complete your purchase. We participate in affiliate marketing programs, which means we may earn a commission from qualifying purchases made through our links.
+                </Text>
               </Box>
 
               {/* <Divider /> */}
@@ -553,51 +499,13 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  How We Use Your Information
+                  User Content
                 </Heading>
-                <UnorderedList
-                  spacing={3}
-                  letterSpacing={"0.005rem"}
-                  fontSize={{ md: "1rem", base: "0.65rem" }}
-                  mt={4}
-                  color={"#000000"}
-                  fontWeight="400"
-                >
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Personalise Your Search Experience:{" "}
-                    </span>{" "}
-                    Your style preferences and (optionally) general location are
-                    used to tailor search results to your vibe.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      {" "}
-                      Improve Vibe Search:
-                    </span>{" "}
-                    We analyse aggregated usage data to understand user
-                    behaviour, identify trends, and improve the functionality
-                    and relevance of our search engine.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Deliver Relevant Advertisements:{" "}
-                    </span>{" "}
-                    We may use non-identifiable information, such as your
-                    general location and product interests, to display ads that
-                    may be of interest to you.
-                  </ListItem>
-                  <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Security and Fraud Prevention:{" "}
-                    </span>{" "}
-                    We may use collected information to protect Vibe Search and
-                    our users from fraudulent or malicious activity.
-                  </ListItem>
-                </UnorderedList>
+                <Text fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'25px'} letterSpacing={'0.005rem'}>
+                You are solely responsible for any content, including images, text, or other materials that you upload, submit, or otherwise make available through the Service ("User Content"). You represent and warrant that you own all rights to your User Content or have obtained all necessary licenses and permissions to use it in connection with the Service.
+                </Text>
+                
               </Box>
-
-              <Divider />
 
               <Box id="sharing-info" ref={sharingInfoRef}>
                 <Heading
@@ -607,40 +515,44 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Sharing Your Information
+                  Prohibited Conduct
                 </Heading>
+                <Text  spacing={3}
+                  letterSpacing={"0.005rem"}
+                  fontSize={{ md: "1rem", base: "0.65rem" }}
+                  my={4}
+                  lineHeight={'25px'}
+                  color={"#000000"}
+                  fontWeight="400">
+                When using the Service, you agree not to:
+                </Text>
                 <UnorderedList
                   spacing={3}
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
                   mt={4}
+                  lineHeight={'25px'}
                   color={"#000000"}
+                  ml={{md:8,base:4}}
                   fontWeight="400"
                 >
                   <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Affiliate Partners:{" "}
-                    </span>{" "}
-                    When you click on a product you like, you will be redirected
-                    to the website of our affiliate partner who offers that
-                    product. We may share non-identifiable information about
-                    your product interests with our affiliates to ensure you see
-                    relevant offerings.
+                  Violate any applicable laws or regulations.
                   </ListItem>
                   <ListItem>
-                    <span style={{ fontWeight: "700" }}>
-                      Service Providers:{" "}
-                    </span>{" "}
-                    We may engage trusted third-party service providers to
-                    assist us in operating Vibe Search. These providers are
-                    contractually obligated to handle your data securely and
-                    only as instructed by us.
+                  Violate any applicable laws or regulations.
                   </ListItem>
                   <ListItem>
-                    <span style={{ fontWeight: "700" }}>Legal Compliance:</span>{" "}
-                    We may disclose your information when required to comply
-                    with applicable laws, regulations, legal processes, or
-                    governmental requests.
+                  Upload or transmit viruses, malware, or other harmful code.
+                  </ListItem>
+                  <ListItem>
+                  Interfere with or disrupt the Service or its servers or networks.
+                  </ListItem>
+                  <ListItem>
+                  Attempt to gain unauthorised access to the Service or its systems.
+                  </ListItem>
+                  <ListItem>
+                  Collect or harvest any personally identifiable information from the Service.
                   </ListItem>
                 </UnorderedList>
               </Box>
@@ -653,31 +565,10 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Your Privacy Choices
+                 Intellectual Property
                 </Heading>
-                <UnorderedList
-                  spacing={3}
-                  letterSpacing={"0.005rem"}
-                  fontSize={{ md: "1rem", base: "0.65rem" }}
-                  mt={4}
-                  color={"#000000"}
-                  fontWeight="400"
-                >
-                  <ListItem>
-                    Cookies: You can manage your cookie preferences through your
-                    browser settings. However, disabling cookies may limit
-                    certain functionalities on Vibe Search.
-                  </ListItem>
-                  <ListItem>
-                    Location Information: You can usually prevent Vibe Search
-                    from accessing your precise location through your device
-                    settings.
-                  </ListItem>
-                  <ListItem>
-                    Do Not Track (DNT) Signals: Vibe Search currently does not
-                    respond to DNT signals.
-                  </ListItem>
-                </UnorderedList>
+                <Text color={'#000000'} fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'25px'} letterSpacing={'0.005rem'}>
+                    The Service and its content, including but not limited to text, graphics, logos, images, software, and the compilation thereof (collectively, the "Vibe Search Content"), are the property of Vibe Search or its licensors and are protected by copyright, trademark, and other intellectual property laws.</Text>
               </Box>
 
               <Box id="data-security" ref={dataSecurityRef}>
@@ -688,7 +579,7 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Data Security
+                  Termination
                 </Heading>
                 <Text
                   mt={4}
@@ -697,9 +588,25 @@ const PrivacyPolicy = () => {
                   lineHeight={"25px"}
                   letterSpacing={"0.005rem"}
                 >
-                  We implement appropriate technical and organisational security
-                  measures to protect your personal data against unauthorised
-                  access, disclosure, alteration, or destruction.
+                  Vibe Search may terminate or suspend your access to the Service, with or without cause, for any reason permitted by applicable law, including but not limited to your breach of these Terms.
+                </Text>
+                <Text
+                  mt={4}
+                  fontWeight={"400"}
+                  fontSize={{ md: "1rem", base: "0.5rem" }}
+                  lineHeight={"25px"}
+                  letterSpacing={"0.005rem"}
+                >
+                 We will endeavour to provide you with notice of any termination or suspension, including the reason for the action, where commercially reasonable and permissible under applicable law. However, we reserve the right to terminate or suspend your access to the Service immediately and without notice if required to do so by law or if we have a good faith belief that such action is reasonably necessary to (a) comply with legal process, (b) enforce these Terms, (c) respond to your violation of the rights of a third party, or (d) protect the rights, property or safety of Vibe Search, our users, or the public.
+                </Text>
+                <Text
+                 mt={4}
+                 fontWeight={"400"}
+                 fontSize={{ md: "1rem", base: "0.5rem" }}
+                 lineHeight={"25px"}
+                 letterSpacing={"0.005rem"}
+                 >
+                You may terminate your account at any time.
                 </Text>
               </Box>
 
@@ -711,7 +618,7 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Children's Privacy
+                 Disclaimers
                 </Heading>
                 <Text
                   mt={4}
@@ -720,15 +627,20 @@ const PrivacyPolicy = () => {
                   lineHeight={"25px"}
                   letterSpacing={"0.005rem"}
                 >
-                  Vibe Search is not intended for children under 13 years of
-                  age. We do not knowingly collect personal information from
-                  children. If you believe a child has provided us with their
-                  data, please contact us, and we will take steps to delete this
-                  information.
+                  THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                </Text>
+                <Text 
+                  mt={4}
+                  fontWeight={"400"}
+                  fontSize={{ md: "1rem", base: "0.5rem" }}
+                  lineHeight={"25px"}
+                  letterSpacing={"0.005rem"}
+                >
+                WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT THE SERVICE IS FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
                 </Text>
               </Box>
 
-              <Divider />
+              {/* <Divider /> */}
 
               <Box id="changes-policy" ref={changesPolicyRef}>
                 <Heading
@@ -738,7 +650,7 @@ const PrivacyPolicy = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Changes to this Privacy Policy
+                 Limitation of Liability
                 </Heading>
                 <Text
                   mt={4}
@@ -747,14 +659,71 @@ const PrivacyPolicy = () => {
                   lineHeight={"25px"}
                   letterSpacing={"0.005rem"}
                 >
-                  We may update this Privacy Policy from time to time. We will
-                  notify you of any material changes by posting the revised
-                  policy on this page and updating the "Last Updated" date. Your
-                  continued use of Vibe Search after the changes become
-                  effective will signify your acceptance of the revised policy.
+                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, VIBE SEARCH AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICE.
                 </Text>
               </Box>
 
+              <Box id="changes-policy" ref={changesPolicyRef}>
+                <Heading
+                  fontSize={{ md: "1.5rem", base: "0.75rem" }}
+                  letterSpacing={"0.005rem"}
+                  fontWeight={"700"}
+                  lineHeight={{ md: "40px", base: "32px" }}
+                  color={"#624737"}
+                >
+                 Limitation of Liability
+                </Heading>
+                <Text
+                  mt={4}
+                  fontWeight={"400"}
+                  fontSize={{ md: "1rem", base: "0.5rem" }}
+                  lineHeight={"25px"}
+                  letterSpacing={"0.005rem"}
+                >
+                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, VIBE SEARCH AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICE.
+                </Text>
+              </Box>
+
+              <Box id="changes-policy" ref={changesPolicyRef}>
+                <Heading
+                  fontSize={{ md: "1.5rem", base: "0.75rem" }}
+                  letterSpacing={"0.005rem"}
+                  fontWeight={"700"}
+                  lineHeight={{ md: "40px", base: "32px" }}
+                  color={"#624737"} 
+                >
+                Entire Agreement
+                </Heading>
+                <Text
+                  mt={4}
+                  fontWeight={"400"}
+                  fontSize={{ md: "1rem", base: "0.5rem" }}
+                  lineHeight={"25px"}
+                  letterSpacing={"0.005rem"}
+                >
+                 These Terms constitute the entire agreement between you and Vibe Search relating to your access to and use of the Service.                </Text>
+              </Box>
+
+              <Box id="changes-policy" ref={changesPolicyRef}>
+                <Heading
+                  fontSize={{ md: "1.5rem", base: "0.75rem" }}
+                  letterSpacing={"0.005rem"}
+                  fontWeight={"700"}
+                  lineHeight={{ md: "40px", base: "32px" }}
+                  color={"#624737"}
+                >
+                  Changes to Terms
+                </Heading>
+                <Text
+                  mt={4}
+                  fontWeight={"400"}
+                  fontSize={{ md: "1rem", base: "0.5rem" }}
+                  lineHeight={"25px"}
+                  letterSpacing={"0.005rem"}
+                >
+                We may revise these Terms at any time by posting the revised Terms on the Service. Your continued use of the Service after the effective date of the revised Terms constitutes your acceptance of the revised Terms.
+              </Text>
+              </Box>
               <Box id="contact-us" ref={contactUsRef}>
                 <Heading
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
@@ -796,39 +765,7 @@ const PrivacyPolicy = () => {
                   St W, Kirkland, WA 98033, United States of America (USA)
                 </Text>
               </Box>
-
-              <Box id="links-policies" ref={linksToPoliciesRef}>
-                <Heading
-                  fontSize={{ md: "1.5rem", base: "0.75rem" }}
-                  letterSpacing={"0.005rem"}
-                  fontWeight={"700"}
-                  lineHeight={{ md: "40px", base: "32px" }}
-                  color={"#624737"}
-                >
-                  Links to Hushone Policies
-                </Heading>
-                <Text
-                  mt={4}
-                  fontWeight={"400"}
-                  fontSize={{ md: "1rem", base: "0.5rem" }}
-                  lineHeight={"25px"}
-                  letterSpacing={"0.005rem"}
-                >
-                  For more detailed information on Hushone's overall privacy
-                  practices, please refer to: [Link to Hush1one's Privacy
-                  Policy]
-                </Text>
-                <Text
-                  mt={4}
-                  fontWeight={"400"}
-                  fontSize={{ md: "1rem", base: "0.5rem" }}
-                  lineHeight={"25px"}
-                  letterSpacing={"0.005rem"}
-                >
-                  To learn more about Hushone's terms of service, visit: [Link
-                  to Hush1one’s Terms of Service page]
-                </Text>
-              </Box>
+              
             </Stack>
           </Box>
         </Stack>
@@ -837,4 +774,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default TermsOfUse;
