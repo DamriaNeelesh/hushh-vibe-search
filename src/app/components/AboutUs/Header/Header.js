@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import resources from "../../../resources/resources";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import Footer from "../../utilities/Footer/Footer";
 
 export default function Header(props) {
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function Header(props) {
  
   const pathname = usePathname()
   return (
+    <>
     <div className={`${styles.Header} figtree`} style={{position:'sticky',top:'0',background:'white'}}>
       <img
         className={styles.Header__Logo}
@@ -58,5 +60,7 @@ export default function Header(props) {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

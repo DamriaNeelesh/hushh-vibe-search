@@ -26,6 +26,18 @@ export default function Footer() {
           >
             Contact us
           </Link>
+          <Link
+            className={`${styles.AboutUs__UpperFooterText}`}
+            href={"/components/AboutUs"}
+          >
+             Terms
+          </Link>
+          <Link
+            className={`${styles.AboutUs__UpperFooterText}`}
+            href={"/privacy-policy"}
+          >
+            Privacy
+          </Link>
         </div>
       </div>
     </div>
