@@ -1,13 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import { Box, Text, Input, Button, Flex } from '@chakra-ui/react';
+import { Box, Text, Input, HStack, Button, Flex, useToast } from '@chakra-ui/react';
 import { FiUpload, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 import CameraIcon from '../svg/colorcameraIcon.svg'
 
 const ImageUpload = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
-
+  const toast = useToast();
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
@@ -23,8 +23,43 @@ const ImageUpload = () => {
     setUploadedImage(null);
   };
 
+  const showComingSoonToast = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "We are working on it.",
+      status: "info",
+      duration: 5000,  // Shortened to a reasonable time
+      isClosable: true,
+      position: "top-right",
+      containerStyle: {
+        maxWidth: "320px",  // Ensure the width of the toast is limited
+        zIndex: 999999,     // Make sure it's on top of everything
+        position: "fixed",  // Ensure it's fixed at the top
+      },
+      render: ({ onClose }) => (
+        <Box
+          p={4}
+          bg="blue.500"
+          color="white"
+          borderRadius="md"
+          boxShadow="lg"
+          textAlign="left"
+          onClick={onClose}  // Clicking closes the toast
+          cursor="pointer"
+        >
+          <HStack justify="space-between">
+            <Text fontWeight="bold">Coming Soon!</Text>
+            <FiX size={20} cursor="pointer" onClick={onClose} />
+          </HStack>
+          <Text fontSize="sm">We are working on it.</Text>
+        </Box>
+      ),
+    });
+};
+
   return (
     <Box
+      onClick={showComingSoonToast}
       borderRadius="xl"
       p={4}
       bg={'#FFFFFF'}
@@ -80,12 +115,12 @@ const ImageUpload = () => {
               Drag your image or{' '}
               <Button as="label" variant="link" cursor="pointer">
                 browse
-                <Input
+                {/* <Input
                   type="file"
                   accept="image/jpeg, image/png"
                   onChange={handleImageUpload}
                   hidden
-                />
+                /> */}
               </Button>
             </Text>
             <Text fontSize="sm" color="gray.500">

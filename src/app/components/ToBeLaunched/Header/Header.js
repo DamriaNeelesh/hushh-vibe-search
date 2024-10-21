@@ -27,6 +27,8 @@ export default function Header() {
               ? userDetails?.data?.user?.user_metadata?.avatar_url
               : resources.images.GuestAccount.src
           }
+          width={'40px'}
+          height={'7px'}
         ></img>
       </div>
     </div>

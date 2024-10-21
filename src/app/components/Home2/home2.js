@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Flex, Box, Text, Button, Input } from "@chakra-ui/react";
+import { Flex, Box, Text,HStack, Button, Input } from "@chakra-ui/react";
 import Vintage from "../svg/home2/vintage.svg";
 import { FiUpload, FiX } from "react-icons/fi";
 import CoffeeLoving from "../svg/home2/coffeeLoving.svg";
@@ -34,9 +34,10 @@ const Home2 = () => {
       <Flex
         fontFamily={"Figtree, sans-serif"}
         justify="space-between"
-        minH={"100vh"}
+        minH={"80vh"}
         align="center"
-        p={8}
+        px={8}
+
       >
         {/* Left Section */}
         <Box

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import fashionDiceRoll from './services/fashionDiceRoll'
+import fashionDiceRoll from "./services/fashionDiceRoll";
 import {
   Box,
   Text,
@@ -32,6 +32,7 @@ import {
   TagLabel,
   TagCloseButton,
   AccordionIcon,
+  useToast,
 } from "@chakra-ui/react";
 import {
   RangeSlider,
@@ -42,7 +43,7 @@ import {
 
 import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
 import services from "../../services/services";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import FiltersAndHistory from "./FiltersAndHistory/FiltersAndHistory";
 import Footer from "../footer";
 import styles from "./SearchResults.module.css";
@@ -61,6 +62,8 @@ import Lottie from "lottie-react";
 import BrandFilters from "./FiltersAndHistory/BrandFilters/BrandFilters";
 import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from "../svg/clockHistory.svg";
+import brands from "../../resources/config/brands";
+import LoadingBar from 'react-top-loading-bar';
 
 const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -72,8 +75,17 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
     console.log("selected items: ", selectedItems.length);
   };
 
+  const clearFilters = () => {
+    setSelectedBrands([]); // Clear the selected brands
+  };
+
   const clearAll = () => {
     setSelectedItems([]);
+  };
+
+  const handleClearFilters = () => {
+    setSelectedBrands([]); // Clear selected brands
+    window.location.reload(); // Reload the page
   };
 
   return (
@@ -119,7 +131,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           <Image src={FilterLine} alt="Vibe Filters" />
         </Button>
 
-        {["LV", "Gucci", "Dolce & Gabbana"].map((item) => (
+        {/* {["LV", "Gucci", "Dolce & Gabbana"].map((item) => (
           <Button
             key={item}
             onClick={() => toggleItem(item)}
@@ -136,7 +148,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           >
             {item}
           </Button>
-        ))}
+        ))} */}
         <Drawer
           placement="left"
           onClose={onClose}
@@ -146,6 +158,9 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerHeader
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
               color={"#222"}
               fontSize={{ md: "1.75rem", base: "1rem" }}
               textOverflow={"ellipsis"}
@@ -153,12 +168,27 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
               fontWeight={"400"}
               fontFamily={"Figtree, sans-serif"}
             >
-              All Filters
+              <Text>All Filters</Text>
+              {/* <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  setSelectedBrands([]); 
+                  resetSearchResults(); 
+                  
+                }}
+              >
+                Clear Filters
+              </Button> */}
+              {selectedBrands.length > 0 && (
+                <Button onClick={clearFilters}>Clear Filters</Button>
+              )}
             </DrawerHeader>
             <DrawerBody>
               <FilterAccordion
                 selectedBrands={selectedBrands}
                 setSelectedBrands={setSelectedBrands}
+                brands={brands}
               />
             </DrawerBody>
           </DrawerContent>
@@ -194,13 +224,28 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   );
 };
 
-const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
+const FilterAccordion = ({
+  setSelectedBrands,
+  selectedBrands,
+  resetSearchResults,
+  brands,
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
 
   const handlePriceChange = (values) => {
     setPriceRange(values);
   };
+
+  const handleBrandChange = (brands) => {
+    setSelectedBrands(brands);
+    resetSearchResults(); // Ensure search results are reset
+  };
+
+  // const handleClearFilters = () => {
+  //   setSelectedBrands([]);
+  //   resetSearchResults();
+  // };
 
   return (
     <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
@@ -222,13 +267,17 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
         </h2>
         <AccordionPanel pb={4}>
           <BrandFilters
-            setSelectedBrands={setSelectedBrands}
             selectedBrands={selectedBrands}
-          />{" "}
+            setSelectedBrands={setSelectedBrands}
+            brands={brands} // Pass brands to BrandFilters
+          />
         </AccordionPanel>
       </AccordionItem>
+      {/* <Button onClick={handleClearFilters} variant="outline" size="sm">
+        Clear Filters
+      </Button> */}
 
-      <AccordionItem>
+      {/* <AccordionItem>
         <h2>
           <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
             <Box
@@ -250,7 +299,7 @@ const FilterAccordion = ({ setSelectedBrands, selectedBrands }) => {
             selectedBrands={selectedBrands}
           />
         </AccordionPanel>
-      </AccordionItem>
+      </AccordionItem> */}
 
       <AccordionItem>
         <h2>
@@ -306,27 +355,74 @@ export default function SearchResults() {
   const gridRef = useRef(null);
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const [brands, setBrands] = useState([]); // State to hold brands
+  const router = useRouter(); 
+  const loadingBarRef = useRef(null);
+
+  const resetSearchResults = () => {
+    setSearchResults([]); // Reset search results to an empty array
+  };
+
+  const showComingSoonToast = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "We are working on it.",
+      status: "info",
+      duration: 5000, // Shortened to a reasonable time
+      isClosable: true,
+      position: "top-right",
+      containerStyle: {
+        maxWidth: "320px", // Ensure the width of the toast is limited
+        zIndex: 999999, // Make sure it's on top of everything
+        position: "fixed", // Ensure it's fixed at the top
+      },
+      render: ({ onClose }) => (
+        <Box
+          p={4}
+          bg="blue.500"
+          color="white"
+          borderRadius="md"
+          boxShadow="lg"
+          textAlign="left"
+          onClick={onClose} // Clicking closes the toast
+          cursor="pointer"
+        >
+          <HStack justify="space-between">
+            <Text fontWeight="bold">Coming Soon!</Text>
+            <FiX size={20} cursor="pointer" onClick={onClose} />
+          </HStack>
+          <Text fontSize="sm">We are working on it.</Text>
+        </Box>
+      ),
+    });
+  };
 
   useEffect(() => {
     async function callVibeIt() {
+      loadingBarRef.current.continuousStart(); // Start the loading bar
       let search = searchParams.get("query");
       let imageSearch = searchParams.get("imageSearch");
-      let image=localStorage.getItem('image-file')
+      let image = localStorage.getItem("image-file");
       services.history.saveToHistory(search);
       let access_token = await services.authentication.getAccessToken();
       services.vibesearch.vibeIt(
-        imageSearch? image: search || "",
+        imageSearch ? image : search || "",
         "",
         currentPage,
         32,
         (results) => {
           setSearchResults(results);
+          console.log("Search Results:", searchResults);
+          loadingBarRef.current.complete(); // Complete the loading bar
           setIsLoading(false); // Set loading to false when data is fetched
         },
         access_token,
         searchResults,
         selectedBrands,
-        noMoreResults
+        noMoreResults,
+        setBrands
       );
     }
     callVibeIt();
@@ -349,8 +445,34 @@ export default function SearchResults() {
     ref.current.scrollTop = ref.current.scrollTop + event.deltaY;
   };
 
+  const additionalImages = selectedProduct?.additional_images
+    ? JSON.parse(selectedProduct.additional_images)
+    : [];
+
   return (
     <>
+          <LoadingBar color="#E0D3C8" height={'0.35rem'} ref={loadingBarRef} />
+
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader
+            fontWeight={"400"}
+            fontSize={{ md: "1.2rem", base: "0.65rem" }}
+            lineHeight={"22px"}
+            color={"#222222"}
+            textAlign="left"
+          >
+            Search History
+          </DrawerHeader>
+          <DrawerBody>
+            <HistoryComponent
+              setSelectedBrands={setSelectedBrands}
+              selectedBrands={selectedBrands}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
       <HStack
         bg="white"
         py={4}
@@ -374,7 +496,9 @@ export default function SearchResults() {
             src={VibeText}
             width={"100"}
             height={"40%"}
+            style={{cursor:'pointer'}}
             alt="Vibe Search"
+            onClick={() =>  router.push('/')}
           />
         </Flex>
         <HStack spacing={6}>
@@ -392,31 +516,35 @@ export default function SearchResults() {
               fill="#222222"
             />
           </svg>
-          <FiHeart size={24} cursor="pointer" />
+          <FiHeart size={24} cursor="pointer" onClick={showComingSoonToast} />
         </HStack>
       </HStack>
-<HStack
-  w="100%"
-  zIndex={100}
-  gap={{ md: '1rem' }}
-  alignItems="center"
-  justifyContent="space-evenly"
-  position="relative"
-  my={{md:'0.5rem',base:'1rem'}}
-  h={{md:'3rem'}}
-  // mb={'4rem'}
->
-<Box
-    position="absolute"
-    left="50%"
-    transform="translateX(-50%)"
-    zIndex={100}
-    my={{md:'2rem',base:'1rem'}}
-  >
-    <utilities.SearchBox />
-  </Box>
-  <HStack pos={'absolute'} right={'7%'} gap={{md:'1rem',base:'0.5rem'}} >
-  <Box border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
+      <HStack
+        w="100%"
+        zIndex={100}
+        gap={{ md: "1rem" }}
+        alignItems="center"
+        justifyContent="space-evenly"
+        position="relative"
+        my={{ md: "0.5rem", base: "1rem" }}
+        h={{ md: "3rem" }}
+        // mb={'4rem'}
+      >
+        <Box
+          position="absolute"
+          left="50%"
+          transform="translateX(-50%)"
+          zIndex={100}
+          my={{ md: "2rem", base: "1rem" }}
+        >
+          <utilities.SearchBox />
+        </Box>
+        <HStack
+          pos={"absolute"}
+          right={"7%"}
+          gap={{ md: "1rem", base: "0.5rem" }}
+        >
+          {/* <Box onClick={onOpen} cursor={'pointer'} border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
     <Image
       src={ClockIcon}
       alt="Vibe History"
@@ -424,48 +552,68 @@ export default function SearchResults() {
       height="18"
       style={{ width: '18px', height: '18px' }}
     />
-  </Box>
+  </Box> */}
 
-  <HStack
-    align="center"
-    flexDirection="row"
-    justifyContent="center"
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}
-    alignItems="center"
-    border="1px solid #DFE1E5"
-    borderRadius="10px"
-    minW="13rem"
-    onClick={()=>{
-      fashionDiceRoll()
-    }}
-  >
-    {isHovered ? (
-      <Lottie
-        animationData={diceAnimation}
-        style={{ width: '44px', height: '44px' }}
-        width="44"
-        height="44"
-        loop={true}
-      />
-    ) : (
-      <Image src={Dice} alt="Hushh Fashion Dice" />
-    )}
-    <Text
-      color="#222222"
-      fontWeight="700"
-      lineHeight="22px"
-      fontSize={{ md: '1rem', base: '0.65rem' }}
-    >
-      Fashion Dice Roll
-    </Text>
-  </HStack>
-  </HStack>
-</HStack>
+          <Box
+            onClick={showComingSoonToast}
+            cursor={"pointer"}
+            border="1px solid #DFE1E5"
+            borderRadius="10px"
+            p={{ md: "0.85rem" }}
+          >
+            <Image
+              src={ClockIcon}
+              alt="Vibe History"
+              width="18"
+              height="18"
+              style={{ width: "18px", height: "18px" }}
+            />
+          </Box>
+          <HStack
+            align="center"
+            flexDirection="row"
+            justifyContent="center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            alignItems="center"
+            cursor={"pointer"}
+            border="1px solid #DFE1E5"
+            borderRadius="10px"
+            minW="13rem"
+            onClick={() => {
+              fashionDiceRoll();
+            }}
+          >
+            {isHovered ? (
+              <Lottie
+                animationData={diceAnimation}
+                style={{ width: "44px", height: "44px" }}
+                width="44"
+                height="44"
+                loop={true}
+              />
+            ) : (
+              <Image src={Dice} alt="Hushh Fashion Dice" />
+            )}
+            <Text
+              color="#222222"
+              fontWeight="700"
+              lineHeight="22px"
+              fontSize={{ md: "1rem", base: "0.65rem" }}
+            >
+              Fashion Dice Roll
+            </Text>
+          </HStack>
+        </HStack>
+      </HStack>
 
       <FilterUI
-        setSelectedBrands={setSelectedBrands}
+        setSelectedBrands={(brands) => {
+          setSelectedBrands(brands);
+          resetSearchResults(); // Reset search results when brands are updated
+        }}
         selectedBrands={selectedBrands}
+        resetSearchResults={resetSearchResults} // Pass the function as a prop
       />
       <Box
         fontFamily="Figtree, sans-serif"
@@ -518,15 +666,19 @@ export default function SearchResults() {
                       <Box
                         position="relative"
                         w={"100%"}
+                        h="300px"
                         className="image-container"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        // bg="gray.100" 
                       >
                         <ChakraImage
                           src={product.image || "/path/to/default-image.jpg"}
                           alt={product.product_title}
+                          objectFit="contain" // Ensures the image is fully visible and not cropped
+                          boxSize="100%" // Ensures the image fills the container
                           onClick={() => openDrawer(product)}
-                          objectFit="cover"
-                          height="300px"
-                          width="100%"
                         />
                         <Box
                           className="favorite-button"
@@ -554,17 +706,36 @@ export default function SearchResults() {
                         </Box>
                       </Box>
                       <Box p={3}>
-                        <Text fontWeight="600" fontSize="sm">
+                        <Text
+                          fontWeight={"400"}
+                          fontSize={{ md: "0.9rem", base: "0.5rem" }}
+                          color={"#727272"}
+                          lineHeight={"22px"}
+                        >
+                          {product?.source}
+                        </Text>
+                        <Text
+                          color={"#222222"}
+                          fontWeight="700"
+                          fontSize={{ md: "1rem", base: "0.65rem" }}
+                          lineHeight={"22px"}
+                        >
                           {product.brand}
                         </Text>
-                        <Text color="gray.600" fontSize="sm" noOfLines={1}>
+                        <Text
+                          color="#222222"
+                          fontSize={{ md: "1rem", base: "0.65rem" }}
+                          lineHeight={"22px"}
+                          noOfLines={1}
+                        >
                           {product.product_title}
                         </Text>
                         {product.price_available && (
                           <Text
                             color={"#222222"}
-                            fontWeight="600"
-                            fontSize="sm"
+                            fontWeight="400"
+                            lineHeight={"22px"}
+                            fontSize={{ md: "1rem", base: "0.65rem" }}
                             mt={5}
                           >
                             {product.currency} {product.price}
@@ -629,17 +800,22 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                    {selectedProduct.additional_images.map((image, index) => (
-                      <div key={index}>
-                        <img
-                          src={image}
-                          alt={`${selectedProduct.product_title} - ${
-                            index + 1
-                          }`}
-                          style={{ width: "100%", maxHeight: "450px" }}
-                        />
-                      </div>
-                    ))}
+                   {additionalImages.map((image, index) => (
+            <Box
+              key={index}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="white" // Background color in case the image doesn't load
+            >
+              <ChakraImage
+                src={image}
+                alt={`${selectedProduct.product_title} - ${index + 1}`}
+                objectFit="contain" // Ensures the entire image is visible without cropping
+                boxSize="100%" // Fills the container without cropping
+              />
+            </Box>
+          ))}
                   </Carousel>
                   <Box
                     bg={"#FBFAF8"}
@@ -664,6 +840,8 @@ export default function SearchResults() {
                       <Button
                         as={Link}
                         href={selectedProduct.product_url}
+                        target="_blank" // Add this attribute to open in a new tab
+                        rel="noopener noreferrer" // Add this for security reasons
                         color="#273434"
                         w={{ md: "10rem", base: "3.5rem" }}
                         bg="#F4EFEB"

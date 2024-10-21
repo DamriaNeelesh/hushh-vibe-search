@@ -10,15 +10,13 @@ export default async function vibeIt(
   access_token,
   searchResults,
   selectedBrands,
-  setNoMoreResults
+  setNoMoreResults,
+  setBrands
 ) {
   console.log("inside vibe it");
   if (mainQuery == "" && secondaryQuery == "") return;
   let data = {
-    query: {
-      mainquery: mainQuery,
-      secondaryquery: secondaryQuery,
-    },
+    query: mainQuery,
     current_page: currentPage,
     result_count: result_count,
     brand_filter: selectedBrands && selectedBrands.length != 0 ? 1 : 0,
@@ -48,5 +46,7 @@ export default async function vibeIt(
     }
     setState({ ...searchResults, ...products });
     console.log(results["data"]);
+    console.log('Results:',results.data.brands)
+    setBrands(results.data.brands); // Update brands state
   } catch (e) {}
 }

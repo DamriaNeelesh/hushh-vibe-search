@@ -1,3 +1,4 @@
+import Marquee from "react-fast-marquee";
 import styles from "./CompaniesMarquee.module.css";
 import adidas from "./resources/adidas.svg";
 import balenciaga from "./resources/balenciaga.svg";
@@ -15,6 +16,7 @@ import puma from "./resources/puma.svg";
 import FoG from "./resources/FOG.svg";
 import hugoBoss from "./resources/hugo-boss.svg";
 import michealKors from "./resources/micheal-kors.svg";
+
 export default function CompaniesMarquee() {
   let logos = [
     [adidas, balenciaga, calvinKlien, puma],
@@ -22,30 +24,28 @@ export default function CompaniesMarquee() {
     [armani, gucci, hermes, hugoBoss],
     [lv, nike, prada, michealKors],
   ];
+
   return (
-    <div className={`${styles.CompaniesMarquee}`}>
-      {logos.map((logoArray, index) => {
-        return (
-          <marquee
-            className={`${styles.CompaniesMarquee__Marquee}`}
-            direction={index % 2 == 0 ? "left" : "right"}
-            key={index}
-          >
-            <div className={styles.CompaniesMarquee__logoRow}>
-              {logoArray.map((logo, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={logo.src}
-                    alt="logo"
-                    className={styles.CompaniesMarquee__Logo}
-                  />
-                );
-              })}
-            </div>
-          </marquee>
-        );
-      })}
+    <div className={`${styles.CompaniesMarquee}`} style={{ borderLeft: '1px solid black', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      {logos.map((logoArray, index) => (
+        <Marquee
+          key={index}
+          direction={index % 2 === 0 ? "left" : "right"}
+          speed={50} // Adjust speed as needed
+          gradient={false} // Disable gradient for a seamless look
+        >
+          <div className={styles.CompaniesMarquee__logoRow}>
+            {logoArray.map((logo, idx) => (
+              <img
+                key={idx}
+                src={logo.src}
+                alt="logo"
+                className={styles.CompaniesMarquee__Logo}
+              />
+            ))}
+          </div>
+        </Marquee>
+      ))}
     </div>
   );
 }
