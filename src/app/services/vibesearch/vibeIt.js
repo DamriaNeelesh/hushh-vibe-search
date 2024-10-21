@@ -1,3 +1,4 @@
+import config from "../../resources/config/config";
 import resources from "../../resources/resources";
 import axios from "axios";
 export default async function vibeIt(
@@ -24,7 +25,7 @@ export default async function vibeIt(
   };
   let header = {
     headers: {
-      apitoken: access_token,
+      apitoken: access_token? access_token: config.guestModeAccessToken,
     },
   };
   try {
