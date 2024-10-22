@@ -17,13 +17,34 @@ import FoG from "./resources/FOG.svg";
 import hugoBoss from "./resources/hugo-boss.svg";
 import michealKors from "./resources/micheal-kors.svg";
 
-export default function CompaniesMarquee() {
-  let logos = [
-    [adidas, balenciaga, calvinKlien, puma],
-    [chanel, DAndG, dior, FoG],
-    [armani, gucci, hermes, hugoBoss],
-    [lv, nike, prada, michealKors],
-  ];
+export default function CompaniesMarquee(props) {
+  let logos = props.isMobile
+    ? [
+        [
+          adidas,
+          balenciaga,
+          calvinKlien,
+          puma,
+          chanel,
+          DAndG,
+          dior,
+          FoG,
+          armani,
+          gucci,
+          hermes,
+          hugoBoss,
+          lv,
+          nike,
+          prada,
+          michealKors,
+        ],
+      ]
+    : [
+        [adidas, balenciaga, calvinKlien, puma],
+        [chanel, DAndG, dior, FoG],
+        [armani, gucci, hermes, hugoBoss],
+        [lv, nike, prada, michealKors],
+      ];
 
   return (
     <div

@@ -7,6 +7,9 @@
         width: 90vw;
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: 900px){
+            justify-content: flex-end;
+        }
         .Header__VibeLogo{
             width: 69px;
             @media screen and (max-width: 900px){
@@ -16,9 +19,7 @@
         .Header__GuestAccount{
             height: 50px;
             border-radius: 50%;
-            @media screen and (max-width: 900px){
-                margin-right: 200px;
-            }
+            
         }
     }
 }

@@ -28,9 +28,14 @@ export default function Description() {
       style={{ gap: "1rem", display: "flex", flexDirection: "column" }}
     >
       <div className={`${styles.Description__Tagline} figtree`}>
-        Find Your Vibe. <br></br>Shop Your Style.
+        Find Your Vibe. Shop Your Style.
       </div>
-      <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
+      <div className={`${styles.Description__SearchBox}`}>
+        <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
+      </div>
+      <div className={`${styles.Description__SearchBoxMobile}`}>
+        <utilities.SearchBox boxWidth={80}></utilities.SearchBox>
+      </div>
       <div className={styles.Description__SignIn}>
         {!isSignedIn ? (
           <img
