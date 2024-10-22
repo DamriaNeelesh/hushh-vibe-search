@@ -33,6 +33,7 @@ import utilities from "./components/utilities/utilities";
 import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
 import IntroSlide3 from "./components/Introduction/IntroSlide3";
 import Home2 from "./components/Home2/home2";
+import Head from "next/head";
 
 const slides = [
   {
@@ -126,6 +127,9 @@ export default function Home() {
     <>
       {/* <Home2/> */}
       {/* <IntroSlide3/> */}
+      <Head>
+        <title>Home - Vibe Search</title>
+      </Head>
       <ToBeLaunched></ToBeLaunched>
     </>
   );

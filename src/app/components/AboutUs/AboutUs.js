@@ -6,12 +6,16 @@ import ValueProp from "./ValueProp/ValueProp";
 import styles from "./AboutUs.module.css";
 import YourTrust from "./YourTrust/YourTrust";
 import Link from "next/link";
+import Head from 'next/head'
 import utilities from "../utilities/utilities";
 import { useState } from "react";
 export default function AboutUs() {
   let [page, setPage]=useState('about')
   return (
     <div>
+      <Head>
+        <title>About Us - Vibe Search</title>
+      </Head>
       <Header page={page} setPage={setPage}></Header>
       <OurMission></OurMission>
       <ValueProp
