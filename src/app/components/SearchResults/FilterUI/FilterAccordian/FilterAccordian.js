@@ -47,7 +47,7 @@ const FilterAccordion = ({
             <Box
               fontWeight={"400"}
               flex="1"
-              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              fontSize={{ md: "1.2rem", base: "0.85rem" }}
               lineHeight={"22px"}
               color={"#222222"}
               textAlign="left"
@@ -99,7 +99,7 @@ const FilterAccordion = ({
             <Box
               fontWeight={"400"}
               flex="1"
-              fontSize={{ md: "1.2rem", base: "0.65rem" }}
+              fontSize={{ md: "1.2rem", base: "0.85rem" }}
               lineHeight={"22px"}
               color={"#222222"}
               textAlign="left"

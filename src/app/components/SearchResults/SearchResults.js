@@ -16,6 +16,8 @@ import {
   DrawerHeader,
   DrawerBody,
   useDisclosure,
+  DrawerCloseButton,
+  DrawerFooter,
   Image as ChakraImage,
   useToast,
 } from "@chakra-ui/react";
@@ -39,6 +41,7 @@ import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryCompon
 import ClockIcon from "../svg/clockHistory.svg";
 import LoadingBar from "react-top-loading-bar";
 import FilterUI from "./FilterUI/FilterUI";
+import { useMediaQuery } from "@chakra-ui/react";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
@@ -57,9 +60,27 @@ export default function SearchResults() {
   const [brands, setBrands] = useState([]); // State to hold brands
   const router = useRouter();
   const loadingBarRef = useRef(null);
+  const [isMobileProductDrawer, setIsMobileProductDrawer] = useState();
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
 
   const resetSearchResults = () => {
     setSearchResults([]); // Reset search results to an empty array
+  };
+
+  const mobileProductDrawer = (product) => {
+    setSelectedProduct(product);
+    setIsDrawerOpen(true);
+    onOpen();
+    document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
+  };
+
+  const handleProductClick = (product) => {
+    if (isMobile) {
+      mobileProductDrawer(product); // Open mobile drawer
+    } else {
+      openDrawer(product); // Open desktop drawer
+    }
   };
 
   useEffect(() => {
@@ -132,6 +153,7 @@ export default function SearchResults() {
   const openDrawer = (product) => {
     setSelectedProduct(product);
     setIsDrawerOpen(true);
+    onOpen();
     document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
   };
 
@@ -153,8 +175,111 @@ export default function SearchResults() {
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
+      {/* Mobile UI Drawer */}
+      <Drawer
+        isOpen={isOpen}
+        placement="bottom"
+        onClose={onClose}
+        size="full"
+        blockScrollOnMount={false} // Allow body scrolling when the drawer is open
+      >
+        <DrawerOverlay />
+        <DrawerContent
+          borderTopRadius="10px"
+          display={{ base: "block", md: "none" }}
+          height="80vh" // Set the height to 80% of the viewport height
+          marginTop="10vh" // Add margin to create space above the drawer
+          overflowY="auto" // Enable vertical scrolling
+        >
+          <DrawerCloseButton />
+          <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>{selectedProduct?.brand}</DrawerHeader>
+          <DrawerBody>
+            <Carousel
+              showArrows={true}
+              showThumbs={false}
+              showStatus={false}
+              infiniteLoop={true}
+              useKeyboardArrows={true}
+              autoPlay={true}
+              swipeable={true}
+            >
+              {additionalImages.map((image, index) => (
+                <Box
+                  key={index}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  bg="white"
+                >
+                  <ChakraImage
+                    src={image}
+                    alt={`${selectedProduct.product_title} - ${index + 1}`}
+                    objectFit="contain"
+                    boxSize="100%"
+                  />
+                </Box>
+              ))}
+            </Carousel>
+            <HStack
+                      gap={{ md: "2rem", base: "1rem" }}
+                      justifyContent="space-between"
+                    >
+            <Text fontWeight={'600'} color={'#757575'} fontSize={'1rem'}>{selectedProduct?.product_title}</Text>
+            <Button
+                        as={Link}
+                        href={selectedProduct?.product_url}
+                        target="_blank" // Add this attribute to open in a new tab
+                        rel="noopener noreferrer" // Add this for security reasons
+                        color="#273434"
+                        w={{ md: "10rem", base: "6rem" }}
+                        bg="#F4EFEB"
+                        borderRadius={"25px"}
+                        rightIcon={<ChevronRightIcon stroke={"#273434"} />}
+                      >
+                        Visit
+            </Button>
+</HStack>
+            {selectedProduct?.price_available && (
+                      <Text fontWeight="bold" fontSize="0.8rem" mt={2}>
+                        {selectedProduct.currency} {selectedProduct.price}
+                      </Text>
+                    )}
+            <Text
+                      mt={2}
+                      fontSize='0.6rem'
+                      lineHeight={"16.6px"}
+                      color="#000000"
+                      mb={{ md: "4rem" }}
+                    >
+                      {selectedProduct?.description}
+                    </Text>
+          </DrawerBody>
+          <DrawerFooter gap="2rem">
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Box
+              width="100%"
+              bg="#624737"
+              color="white"
+              textAlign="center"
+              p={2}
+              borderRadius={'10px'}
+              fontFamily="Figtree, sans-serif"
+              cursor="pointer"
+              onClick={async () => {
+                let access_token =
+                  await services.authentication.getAccessToken();
+                services.wishlist.addToWishList(product.id, access_token);
+              }}
+            >
+              Add to Favorites
+            </Box>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
 
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
+      {/* <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader
@@ -173,23 +298,26 @@ export default function SearchResults() {
             />
           </DrawerBody>
         </DrawerContent>
-      </Drawer>
+      </Drawer> */}
       <HStack
         bg="white"
         py={4}
         position="sticky"
         top={0}
-        textAlign={"center"}
+        textAlign={{ md: "center", base: "left" }}
         zIndex={100}
-        justifyContent="space-between"
+        alignItems={{ base: "center" }}
+        justifyContent={{ md: "space-between", base: "center" }}
         mx={{ md: "4rem", base: "1rem" }}
+        // borderBottom="1px solid #E2E8F0"
       >
         <Flex
-          gap={{ md: "1rem", base: "0.5rem" }}
+          gap={{ md: "1rem", base: "1rem" }}
           align="center"
           flexDirection={"column"}
-          justifyContent={"center"}
+          justifyContent={{ md: "center", base: "center" }}
           alignItems={"center"}
+          display={{ md: "flex", base: "none" }}
           flex={1}
           mx={6}
         >
@@ -201,6 +329,18 @@ export default function SearchResults() {
             alt="Vibe Search"
             onClick={() => router.push("/")}
           />
+        </Flex>
+        <Flex
+          gap={{ md: "2rem", base: "1rem" }}
+          align="left"
+          justifyContent={{ md: "center", base: "center" }}
+          alignItems={"center"}
+          display={{ md: "none", base: "flex" }}
+          flex={1}
+          mx={6}
+        >
+          <Image src={VibeText} width={"60"} height={"20%"} alt="Vibe Search" />
+          {/* <utilities.SearchBox></utilities.SearchBox> */}
         </Flex>
         <HStack spacing={6}>
           <svg
@@ -225,6 +365,7 @@ export default function SearchResults() {
         zIndex={100}
         gap={{ md: "1rem" }}
         alignItems="center"
+        display={{ md: "flex", base: "none" }}
         justifyContent="space-evenly"
         position="relative"
         my={{ md: "0.5rem", base: "1rem" }}
@@ -236,7 +377,7 @@ export default function SearchResults() {
           left="50%"
           transform="translateX(-50%)"
           zIndex={100}
-          my={{ md: "2rem", base: "1rem" }}
+          my={{ md: "2rem", base: "2rem" }}
         >
           <utilities.SearchBox />
         </Box>
@@ -245,16 +386,6 @@ export default function SearchResults() {
           right={"7%"}
           gap={{ md: "1rem", base: "0.5rem" }}
         >
-          {/* <Box onClick={onOpen} cursor={'pointer'} border="1px solid #DFE1E5" borderRadius="10px" p={{ md: '0.85rem' }}>
-    <Image
-      src={ClockIcon}
-      alt="Vibe History"
-      width="18"
-      height="18"
-      style={{ width: '18px', height: '18px' }}
-    />
-  </Box> */}
-
           <Box
             onClick={showComingSoonToast}
             cursor={"pointer"}
@@ -307,6 +438,39 @@ export default function SearchResults() {
           </HStack>
         </HStack>
       </HStack>
+      <HStack
+        w="100%"
+        zIndex={100}
+        gap={{ md: "1rem" }}
+        alignItems="center"
+        display={{ md: "none", base: "flex" }}
+        justifyContent="space-between"
+        flexDirection={"row"}
+        position="relative"
+        my={{ md: "0.5rem", base: "0.5rem" }}
+        mx={{ base: "1rem" }}
+        // h={{ md: "3rem" }}
+        // mb={'4rem'}
+      >
+        <utilities.SearchBox />
+
+        <Box
+          onClick={showComingSoonToast}
+          cursor={"pointer"}
+          border="1px solid #DFE1E5"
+          borderRadius="10px"
+          p={3}
+          mr={"2rem"}
+        >
+          <Image
+            src={ClockIcon}
+            alt="Vibe History"
+            width="15"
+            height="15"
+            style={{ width: "15px", height: "15px" }}
+          />
+        </Box>
+      </HStack>
 
       <FilterUI
         setSelectedBrands={(brands) => {
@@ -318,7 +482,7 @@ export default function SearchResults() {
       />
       <Box
         fontFamily="Figtree, sans-serif"
-        mx={{ md: "2rem", base: "1rem" }}
+        mx={{ md: "2rem", base: "0rem" }}
         pos={"relative"}
         h="100vh" // Ensure the container takes the full viewport height
       >
@@ -330,9 +494,9 @@ export default function SearchResults() {
         >
           {/* Main Content Section */}
           <Box
-            w={isDrawerOpen ? "70%" : "100%"}
+            w={{ md: isDrawerOpen ? "70%" : "100%", base: "100%" }}
             h="100%"
-            p={6}
+            p={{md:6,base:4}}
             overflowY="auto"
             css={{
               "&::-webkit-scrollbar": { display: "none" },
@@ -341,10 +505,11 @@ export default function SearchResults() {
             }}
           >
             <Grid
-              templateColumns={
-                isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)"
-              }
-              gap={6}
+              templateColumns={{
+                md: isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)",
+                base: "repeat(2,1fr)",
+              }}
+              gap={{ md: 6, base: 2 }}
               ref={gridRef}
             >
               {isLoading
@@ -379,7 +544,8 @@ export default function SearchResults() {
                           alt={product.product_title}
                           objectFit="contain" // Ensures the image is fully visible and not cropped
                           boxSize="100%" // Ensures the image fills the container
-                          onClick={() => openDrawer(product)}
+                          // onClick={() => openDrawer(product)}
+                          onClick={() => handleProductClick(product)} // Use the new handler
                         />
                         <Box
                           className="favorite-button"
@@ -406,10 +572,10 @@ export default function SearchResults() {
                           Add to Favorites
                         </Box>
                       </Box>
-                      <Box p={3}>
+                      <Box p={{ md: 3, base: 2 }}>
                         <Text
                           fontWeight={"400"}
-                          fontSize={{ md: "0.9rem", base: "0.5rem" }}
+                          fontSize={{ md: "0.9rem", base: "0.65rem" }}
                           color={"#727272"}
                           lineHeight={"22px"}
                         >
@@ -418,7 +584,7 @@ export default function SearchResults() {
                         <Text
                           color={"#222222"}
                           fontWeight="700"
-                          fontSize={{ md: "1rem", base: "0.65rem" }}
+                          fontSize={{ md: "1rem", base: "0.75rem" }}
                           lineHeight={"22px"}
                         >
                           {product.brand}
@@ -437,7 +603,7 @@ export default function SearchResults() {
                             fontWeight="400"
                             lineHeight={"22px"}
                             fontSize={{ md: "1rem", base: "0.65rem" }}
-                            mt={5}
+                            mt={{ md: 5, base: 2 }}
                           >
                             {product.currency} {product.price}
                           </Text>
@@ -449,22 +615,19 @@ export default function SearchResults() {
           </Box>
 
           {/* Drawer Section */}
-          {isDrawerOpen && (
+          {isDrawerOpen && isLargerThanMobile && (
             <Box
               w="30%"
               bg="white"
               boxShadow="lg"
-              // p={6}
               overflowY="auto"
               h="100%"
               borderTopLeftRadius="10px"
-              // borderTopRightRadius="10px"
               css={{
                 "&::-webkit-scrollbar": {
                   width: "8px",
                 },
                 "&::-webkit-scrollbar-track": {
-                  // borderTopLeftRadius: "10px",
                   background: "#f1f1f1",
                   borderTopRightRadius: "10px",
                 },
