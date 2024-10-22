@@ -19,10 +19,12 @@ import {
   IconButton,
   HStack,
 } from "@chakra-ui/react";
+import Resources from "../resources/resources";
 import { useRef, useState } from "react";
 import { Link } from "react-scroll";
 import Header from "../components/AboutUs/Header/Header";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import Head from "next/head";
 
 const TermsOfUse = () => {
   const headerHeight = 80;
@@ -59,6 +61,16 @@ const TermsOfUse = () => {
 
   return (
     <>
+     <Head>
+        <title>Terms of Use - Vibe Search</title>
+        <meta name="description" content="Review the terms of use for Vibe Search, outlining the rules and regulations for using our services." />
+        <meta name="keywords" content="terms of use, service agreement, Vibe Search" />
+        <meta property="og:title" content="Terms of Use - Vibe Search" />
+        <meta property="og:description" content="Understand the terms and conditions for using Vibe Search's services." />
+        <meta property="og:image" content={Resources.images.VibeLogo.src} />
+        <meta property="og:url" content="https://www.vibesearch.ai/terms-of-use" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <Header page={page} setPage={setPage}></Header>
 
       <Container

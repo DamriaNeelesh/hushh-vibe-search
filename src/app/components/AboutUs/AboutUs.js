@@ -13,8 +13,15 @@ export default function AboutUs() {
   let [page, setPage]=useState('about')
   return (
     <div>
-      <Head>
+     <Head>
         <title>About Us - Vibe Search</title>
+        <meta name="description" content="Discover Vibe Search, an AI-powered shopping search engine that ensures privacy and delivers personalized shopping experiences." />
+        <meta name="keywords" content="AI shopping, semantic search, personalized shopping, privacy protection, global fashion brands" />
+        <meta property="og:title" content="About Us - Vibe Search" />
+        <meta property="og:description" content="Learn about Vibe Search, a platform that revolutionizes online shopping with AI and privacy-focused features." />
+        <meta property="og:image" content={Resources.images.VibeLogo.src} />
+        <meta property="og:url" content="https://www.vibesearch.ai/components/AboutUs" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header page={page} setPage={setPage}></Header>
       <OurMission></OurMission>

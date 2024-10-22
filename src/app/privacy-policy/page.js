@@ -19,10 +19,12 @@ import {
   IconButton,
   HStack,
 } from "@chakra-ui/react";
+import Resources from "../resources/resources";
 import { useRef, useState } from "react";
 import { Link } from "react-scroll";
 import Header from "../components/AboutUs/Header/Header";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import Head from "next/head";
 
 const PrivacyPolicy = () => {
   const headerHeight = 80;
@@ -49,6 +51,17 @@ const PrivacyPolicy = () => {
 
   return (
     <>
+    <Head>
+        <title>Privacy Policy - Vibe Search</title>
+        <meta name="description" content="Read our privacy policy to understand how Vibe Search collects, uses, and protects your personal information." />
+        <meta name="keywords" content="privacy policy, data protection, personal information, Vibe Search" />
+        <meta property="og:title" content="Privacy Policy - Vibe Search" />
+        <meta property="og:description" content="Learn about Vibe Search's privacy practices and how we safeguard your data." />
+        <meta property="og:image" content={Resources.images.VibeLogo.src} />
+        <meta property="og:url" content="https://www.vibesearch.ai/privacy-policy" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
       <Header page={page} setPage={setPage}></Header>
 
       <Container
