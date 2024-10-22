@@ -6,6 +6,8 @@ import config from "../../../resources/config/config";
 import FileInputBox from "./FileInputBox/FileInputBox";
 import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SearchBox(props) {
   const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
@@ -23,11 +25,27 @@ export default function SearchBox(props) {
       !isLoggedIn ? services.authentication.isLoggedIn(setIsLoggedIn) : "";
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    services.authentication.isLoggedIn(setIsLoggedIn);
+  }, []);
+  
+
   const handleSearch = (event) => {
     if (event.key === "Enter") {
       isLoggedIn
         ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
-        : alert("Please login to search");
+        : toast.warn("🤫 Please Sign In to search", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // : alert("Please login to search");
+
     }
   };
 
@@ -36,6 +54,8 @@ export default function SearchBox(props) {
   };
   // console.log(props.boxWidth);
   return (
+    <>
+    <ToastContainer/>
     <Suspense fallback={<SearchBarFallback />}>
       <div
         className={styles.SearchBox}
@@ -71,6 +91,7 @@ export default function SearchBox(props) {
         />
       </div>
     </Suspense>
+    </>
   );
 }
 
