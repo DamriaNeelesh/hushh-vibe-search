@@ -452,8 +452,7 @@ export default function SearchResults() {
         // h={{ md: "3rem" }}
         // mb={'4rem'}
       >
-        <utilities.SearchBox />
-
+              <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
         <Box
           onClick={showComingSoonToast}
           cursor={"pointer"}

@@ -19,3 +19,15 @@
 .SearchBox .SearchBox__Icon {
   cursor: pointer;
 }/*# sourceMappingURL=SearchBox.module.css.map */
+
+
+@media (max-width: 600px) {
+  .SearchBox {
+    height: 35pt; 
+    border-radius: 8pt; 
+  }
+
+  /* .SearchBox .SearchBox__Input {
+    width: 60vw;
+  } */
+}
