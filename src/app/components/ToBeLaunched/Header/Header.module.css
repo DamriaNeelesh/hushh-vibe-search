@@ -12,7 +12,17 @@
 .Header .Header__Wrapper .Header__VibeLogo {
   width: 69px;
 }
+@media screen and (max-width: 900px) {
+  .Header .Header__Wrapper .Header__VibeLogo {
+    display: none;
+  }
+}
 .Header .Header__Wrapper .Header__GuestAccount {
   height: 50px;
   border-radius: 50%;
+}
+@media screen and (max-width: 900px) {
+  .Header .Header__Wrapper .Header__GuestAccount {
+    margin-right: 200px;
+  }
 }/*# sourceMappingURL=Header.module.css.map */
