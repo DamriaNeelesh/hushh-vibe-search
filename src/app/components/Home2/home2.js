@@ -10,7 +10,7 @@ import Model1 from "../svg/home2/model1.svg";
 import Model2 from "../svg/home2/model2.svg";
 import Image from "next/image";
 import ImageUpload from "../../components/Upload/uploadComponent";
-
+import styles from "./Home.module.css";
 const Home2 = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -31,101 +31,86 @@ const Home2 = () => {
 
   return (
     <>
-      <Flex
-        fontFamily={"Figtree, sans-serif"}
-        justify="space-between"
-        minH={"80vh"}
-        align="center"
-        px={8}
-      >
+      <div className={`${styles.Home2} figtree`}>
         {/* Left Section */}
-        <Box
-          display={"flex"}
-          alignItems={"flex-end"}
-          justifyContent={"flex-end"}
-          flexDirection={"column"}
-          gap={{ md: "1.5rem", base: "0.75rem" }}
-        >
-          <Box mb={4}>
-            <Image src={Vintage} alt="Vintage Patterns" />
-          </Box>
-          <Box mb={4}>
-            <Image src={CoffeeLoving} alt="Coffee Loving Bookworm" />
-          </Box>
-          <Box>
-            <Image src={CyberPunk} alt="Cyberpunk Neon Outfits" />
-          </Box>
-        </Box>
+        <div className={`${styles.Home2__ChooseAVibe} `}>
+          <Image
+            className={`${styles.Home2__Vibe} `}
+            src={Vintage}
+            alt="Vintage Patterns"
+          />
+          <Image
+            className={`${styles.Home2__Vibe}`}
+            src={CoffeeLoving}
+            alt="Coffee Loving Bookworm"
+          />
+          <Image
+            className={`${styles.Home2__Vibe} `}
+            src={CyberPunk}
+            alt="Cyberpunk Neon Outfits"
+          />
+        </div>
 
         {/* Right Section */}
-        <Box
-          gap={{ md: "1rem", base: "0.5rem" }}
-          display={"flex"}
-          flexDirection={"column"}
-          textAlign={"left"}
-        >
-          <Text
-            color={"#273434"}
-            fontSize={{ md: "2.5rem", base: "1.25rem" }}
-            letterSpacing={"-0.25px"}
-            lineHeight={{ md: "44px", base: "32px" }}
-            fontWeight="700"
-          >
+        <div className={`${styles.Home2__Text}`}>
+          <div className={styles.Home2__Title}>
+            <Text
+              color={"#273434"}
+              fontSize={{ md: "2.5rem", base: "1.25rem" }}
+              letterSpacing={"-0.25px"}
+              lineHeight={{ md: "44px", base: "32px" }}
+              fontWeight="700"
+            >
+              Search like you talk...
+            </Text>
+          </div>
+          <div className={`${styles.Home2__TitleMobile} figtree`}>
             Search like you talk...
-          </Text>
-          <Text
-            color={"#606060"}
-            fontWeight={"400"}
-            letterSpacing={"-0.25px"}
-            lineHeight={"27px"}
-            fontSize={{ md: "1.25rem", base: "0.8rem" }}
-          >
+          </div>
+          <div className={`${styles.Home2__Desc} `}>
             Type in anything - "Boho dress for summer" or "Outfit <br></br>{" "}
             inspired by that cool movie poster".
-          </Text>
-          <SearchBox />
-          <Text
-            cursor={"pointer"}
-            mt={2}
-            fontWeight={"400"}
-            fontSize={{ md: "1rem", base: "0.5rem" }}
-            lineHeight={"19.2px"}
-            color="#596168CF"
-          >
-            ← click the vibes on the left to check them out
-          </Text>
-        </Box>
+          </div>
+          <div className={`${styles.Home2__SearchBox} `}>
+            <SearchBox />
+          </div>
+          <div className={`${styles.Home2__SearchBoxMobile} `}>
+            <SearchBox boxWidth={88} />
+          </div>
+          <div className={`${styles.Home2__Tagline} `}>
+            <Text
+              cursor={"pointer"}
+              mt={2}
+              fontWeight={"400"}
+              fontSize={{ md: "1rem", base: "0.5rem" }}
+              lineHeight={"19.2px"}
+              color="#596168CF"
+            >
+              ← click the vibes on the left to check them out
+            </Text>
+          </div>
+          <div className={`${styles.Home2__TaglineMobile} `}>
+            <div
+              cursor={"pointer"}
+              mt={2}
+              fontWeight={"400"}
+              fontSize={{ md: "1rem", base: "0.5rem" }}
+              lineHeight={"19.2px"}
+              color="#596168CF"
+            >
+              click the vibes on the Below to check them out
+            </div>
+          </div>
+        </div>
 
         {/* Image Upload and Link Upload UI */}
-      </Flex>
-      <Flex
-        fontFamily={"Figtree, sans-serif"}
-        pos={"relative"}
-        minH={"100vh"}
-        justify="center"
-        gap={{ md: "2rem", base: "1rem" }}
-        mx={{ md: "2rem", base: "0" }}
-        align="center"
-      >
+      </div>
+      <div className={`${styles.Home2__ImageUpload}`}>
         {/* Left Section - Image Upload */}
-        <Box
-          p={{ md: "4rem" }}
-          display={"flex"}
-          textAlign={"left"}
-          alignItems={"flex-start"}
-          flexDirection={"column"}
-          gap={{ md: "1rem", base: "0.5rem" }}
-          flex={1}
-        >
-          <Text
-            color={"#273434"}
-            fontWeight={"700"}
-            fontSize={{ md: "2.5rem", base: "1.25rem" }}
-            lineHeight={{ md: "44px", base: "32px" }}
-            letterSpacing={"-0.25px"}
-          >
+        <div className={`${styles.Home2__ImageUploadText} figtree`}>
+          <div className={`${styles.Home2__ImageUploadTitle}`}>
             See It, Find It
-          </Text>
+          </div>
           <Text
             letterSpacing={"-0.25px"}
             color={"#606060"}
@@ -136,55 +121,37 @@ const Home2 = () => {
             Upload an image - Love that jacket on Instagram? <br></br> Vibe
             Search will find it (or something even better).
           </Text>
-
-          <ImageUpload />
-
-          <Text
-            fontWeight="400"
-            fontSize={{ md: "1rem", base: "0.5rem" }}
-            lineHeight={"19.2px"}
-            color={"#596168CF"}
-          >
-            click the vibes on the left to check them out →
-          </Text>
-        </Box>
+          <div className={`${styles.Home2__ImageUploadDialog}`}>
+            <ImageUpload />
+          </div>
+          <div className={`${styles.Home2__Tagline}`}>
+            <Text
+              fontWeight="400"
+              fontSize={{ md: "1rem", base: "0.5rem" }}
+              lineHeight={"19.2px"}
+              color={"#596168CF"}
+            >
+              click the vibes on the left to check them out →
+            </Text>
+          </div>
+        </div>
 
         {/* Right Section - Models */}
-        <Box
-          p={2}
-          justifyContent={"flex-start"}
-          flexDirection={"column"}
-          alignItems={"center"}
-          minH="100vh"
-          mx={{ md: 4, base: 2 }}
-          flex={1}
-          pos="relative"
-          display="flex"
-        >
-          <Image
-            src={Model1}
-            alt="Model 1"
-            boxSize="200px"
-            style={{
-              zIndex: 1,
-              position: "relative",
-              left: "0%",
-              top: "0",
-            }}
-          />
-          <Image
-            src={Model2}
-            alt="Model 2"
-            boxSize="150px"
-            style={{
-              zIndex: 2,
-              position: "absolute",
-              left: "55%",
-              top: "20%",
-            }}
-          />
-        </Box>
-      </Flex>
+        <div className={`${styles.Home2__ModelsFlex}`}>
+          <div className={`${styles.Home2__Models}`}>
+            <img
+              src={Model1.src}
+              alt="Model 1"
+              className={`${styles.Home2__Model1}`}
+            />
+            <img
+              src={Model2.src}
+              alt="Model 2"
+              className={`${styles.Home2__Model2}`}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

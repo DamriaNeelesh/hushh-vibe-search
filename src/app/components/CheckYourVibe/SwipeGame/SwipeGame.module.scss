@@ -4,10 +4,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     .SwipeGame__Card {
-        width: 345px;
-        height: 434px;
-        overflow: hidden;
+        height: 62vh;
+        cursor: grab;
+    }
+
+    .SwipeGame__Card_grab {
+        height: 62vh;
+        cursor: grab;
+    }
+
+    .SwipeGame__Card_grabbing {
+        height: 62vh;
+        cursor: grabbing;
     }
 }

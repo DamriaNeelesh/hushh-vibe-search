@@ -7,12 +7,19 @@
         width: 90vw;
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: 900px){
+            justify-content: flex-end;
+        }
         .Header__VibeLogo{
             width: 69px;
+            @media screen and (max-width: 900px){
+                display: none;  
+            }
         }
         .Header__GuestAccount{
             height: 50px;
             border-radius: 50%;
+            
         }
     }
 }
