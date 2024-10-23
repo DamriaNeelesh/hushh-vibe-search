@@ -25,6 +25,7 @@ import { Link } from "react-scroll";
 import Header from "../components/AboutUs/Header/Header";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Head from "next/head";
+import { metadata } from "../components/metadata/termsMetadata";
 
 const TermsOfUse = () => {
   const headerHeight = 80;
@@ -61,15 +62,15 @@ const TermsOfUse = () => {
 
   return (
     <>
-     <Head>
-        <title>Terms of Use - Vibe Search</title>
-        <meta name="description" content="Review the terms of use for Vibe Search, outlining the rules and regulations for using our services." />
-        <meta name="keywords" content="terms of use, service agreement, Vibe Search" />
-        <meta property="og:title" content="Terms of Use - Vibe Search" />
-        <meta property="og:description" content="Understand the terms and conditions for using Vibe Search's services." />
-        <meta property="og:image" content={Resources.images.VibeLogo.src} />
-        <meta property="og:url" content="https://www.vibesearch.ai/terms-of-use" />
-        <meta name="twitter:card" content="summary_large_image" />
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords} />
+        <meta property="og:title" content={metadata.openGraph.title} />
+        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta property="og:image" content={metadata.openGraph.images[0]} />
+        <meta property="og:url" content={metadata.openGraph.url} />
+        <meta name="twitter:card" content={metadata.twitter.card} />
       </Head>
       <Header page={page} setPage={setPage}></Header>
 

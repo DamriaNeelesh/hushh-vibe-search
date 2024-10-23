@@ -12,8 +12,8 @@ import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
 import Home2 from '../components/Home2/home2'
-
-
+import { metadata } from "../components/metadata/searchMetadata"; // Import metadata
+import Head from "next/head";
 const Search = () => {
   const [fileImg, setFile] = useState(null);
   const [fileInputElement, setFileInput] = useState(null);
@@ -51,6 +51,16 @@ const Search = () => {
 
   return (
     <>
+     <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords} />
+        <meta property="og:title" content={metadata.openGraph.title} />
+        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta property="og:image" content={metadata.openGraph.images[0]} />
+        <meta property="og:url" content={metadata.openGraph.url} />
+        <meta name="twitter:card" content={metadata.twitter.card} />
+      </Head>
       <Header />
       {/* <Home2/> */}
       <IntroModal />
