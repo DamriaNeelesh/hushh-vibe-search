@@ -19,6 +19,7 @@ export default function Header() {
         <img
           className={`${styles.Header__VibeLogo}`}
           src={resources.images.VibeLogo.src}
+          alt="Vibe Search"
         ></img>
         <img
           className={`${styles.Header__GuestAccount}`}
@@ -27,6 +28,7 @@ export default function Header() {
               ? userDetails?.data?.user?.user_metadata?.avatar_url
               : resources.images.GuestAccount.src
           }
+          alt="user profile"
         ></img>
       </div>
     </div>
