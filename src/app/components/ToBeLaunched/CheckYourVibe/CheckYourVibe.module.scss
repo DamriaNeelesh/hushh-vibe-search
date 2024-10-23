@@ -8,12 +8,122 @@
     .CheckYourVibe__Title {
         font-weight: 700;
         font-size: 40px;
+
+        @media screen and (max-width: 900px) {
+            font-size: 32;
+        }
     }
 
     .CheckYourVibe__SubTitle {
         font-weight: 400;
         font-size: 20px;
         color: #606060;
+
+        @media screen and (max-width: 900px) {
+            font-size: 16;
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+
+    .CheckYourVibe__SwipeGameMobile {
+        display: none;
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            flex-direction: column;
+        }
+        .CheckYourVibe__AnimsWrapperMobile{
+            display: flex;
+            justify-content: space-around;
+            width: 100vw;
+            margin-top: 30pt;
+        }
+        .CheckYourVibe__SwipeGameMobile{
+            margin-top: 30pt;
+        }
+        .CheckYourVibe__SwipeAnimWrapper {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .CheckYourVibe__SwipeText {
+            margin-top: 40pt;
+            text-align: center;
+        }
+
+        .CheckYourVibe__SwipeTitle {
+            font-weight: 700;
+            font-size: 20px;
+            color: #606060
+        }
+
+        .CheckYourVibe__SwipeSubTitle {
+            font-weight: 400;
+            font-size: 20px;
+            color: #606060
+        }
+
+        .CheckYourVibe__SwipeAnimWrapperLeft {
+            width: 80px;
+            display: flex;
+            justify-content: flex-end;
+
+            .CheckYourVibe__SwipeLeftAnim {
+                height: 40px;
+                width: 40px;
+                border-radius: 25px;
+                background-color: #FFB7B7;
+                animation-name: CheckYourVibe__SwipeRightAnim;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+
+                @keyframes CheckYourVibe__SwipeRightAnim {
+                    0% {
+                        width: 40px;
+                    }
+
+                    100% {
+                        width: 80px;
+                    }
+                }
+            }
+
+
+        }
+
+        .CheckYourVibe__SwipeAnimWrapperRight {
+            width: 80px;
+            display: flex;
+            justify-content: flex-start;
+
+            .CheckYourVibe__SwipeRightAnim {
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+                background-color: #C9E8CC;
+                animation-name: CheckYourVibe__SwipeRightAnim;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+
+                @keyframes CheckYourVibe__SwipeRightAnim {
+                    0% {
+                        width: 40px;
+                    }
+
+                    100% {
+                        width: 80px;
+                    }
+                }
+            }
+        }
+
+
     }
 
     .CheckYourVibe__SwipeGame {
@@ -23,11 +133,16 @@
         justify-content: space-around;
         align-items: center;
 
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+
         .CheckYourVibe__SwipeAnimWrapper {
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
+
         }
 
         .CheckYourVibe__SwipeText {
