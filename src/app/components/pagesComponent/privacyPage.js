@@ -238,7 +238,6 @@ const PrivacyPolicyPage = () => {
             alignSelf="flex-start"
           >
             <VStack align="start" spacing={3}>
-              {/* <Heading size="md">Table of Contents</Heading> */}
               <UnorderedList
                 styleType="none"
                 spacing={2}
@@ -406,6 +405,7 @@ const PrivacyPolicyPage = () => {
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1.5rem", base: "0.8rem" }}
                   lineHeight={{ md: "40px", base: "32px" }}
+                  as={'h2'}
                 >
                   Your style choices and searches help us tailor Vibe Search
                   just for you. We use this information responsibly to deliver a
@@ -439,7 +439,7 @@ const PrivacyPolicyPage = () => {
               {/* <Divider /> */}
 
               <Box id="information-collect" ref={infoCollectRef}>
-                <Heading
+                <Text
                   fontWeight={"700"}
                   letterSpacing={"0.005rem"}
                   lineHeight={{ md: "40px", base: "32px" }}
@@ -447,7 +447,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Information We Collect
-                </Heading>
+                </Text>
                 <Text
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
@@ -560,7 +560,7 @@ const PrivacyPolicyPage = () => {
               {/* <Divider /> */}
 
               <Box id="how-we-use" ref={howWeUseRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -568,7 +568,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   How We Use Your Information
-                </Heading>
+                </Text>
                 <UnorderedList
                   spacing={3}
                   letterSpacing={"0.005rem"}
@@ -614,7 +614,7 @@ const PrivacyPolicyPage = () => {
               <Divider />
 
               <Box id="sharing-info" ref={sharingInfoRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -622,7 +622,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Sharing Your Information
-                </Heading>
+                </Text>
                 <UnorderedList
                   spacing={3}
                   letterSpacing={"0.005rem"}
@@ -660,7 +660,7 @@ const PrivacyPolicyPage = () => {
               </Box>
 
               <Box id="privacy-choices" ref={privacyChoicesRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -668,7 +668,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Your Privacy Choices
-                </Heading>
+                </Text>
                 <UnorderedList
                   spacing={3}
                   letterSpacing={"0.005rem"}
@@ -695,7 +695,7 @@ const PrivacyPolicyPage = () => {
               </Box>
 
               <Box id="data-security" ref={dataSecurityRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -703,7 +703,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Data Security
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -718,7 +718,7 @@ const PrivacyPolicyPage = () => {
               </Box>
 
               <Box id="children-privacy" ref={childrenPrivacyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -726,7 +726,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Children's Privacy
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -745,7 +745,7 @@ const PrivacyPolicyPage = () => {
               <Divider />
 
               <Box id="changes-policy" ref={changesPolicyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -753,7 +753,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Changes to this Privacy Policy
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -770,7 +770,7 @@ const PrivacyPolicyPage = () => {
               </Box>
 
               <Box id="contact-us" ref={contactUsRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -778,7 +778,7 @@ const PrivacyPolicyPage = () => {
                   color={"#624737"}
                 >
                   Contact Us
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}

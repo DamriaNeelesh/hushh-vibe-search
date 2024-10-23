@@ -22,8 +22,8 @@ export default function AboutUs() {
       >
         <div>
           <div className={`${styles.AboutUs__Desc}`}>
-            The digital world is constantly evolving, and so should the way we
-            search and shop online.
+            <h2> The digital world is constantly evolving, and so should the way we
+            search and shop online.</h2>
           </div>
         </div>
       </ValueProp>
