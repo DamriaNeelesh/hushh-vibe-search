@@ -627,7 +627,10 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                    {additionalImages.map((image, index) => (
+                    {additionalImages.map((image, index) =>{
+                      image=image.replace("width=959", "width=600")
+                      console.log(image)
+                      return (
                       <Box
                         key={index}
                         display="flex"
@@ -644,7 +647,7 @@ export default function SearchResults() {
                           boxSize="100%" // Fills the container without cropping
                         />
                       </Box>
-                    ))}
+                    )})}
                   </Carousel>
                   <Box
                     bg={"#FBFAF8"}
