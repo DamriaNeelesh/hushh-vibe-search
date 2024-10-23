@@ -90,14 +90,7 @@ const Home2 = () => {
             </Text>
           </div>
           <div className={`${styles.Home2__TaglineMobile} `}>
-            <div
-              cursor={"pointer"}
-              mt={2}
-              fontWeight={"400"}
-              fontSize={{ md: "1rem", base: "0.5rem" }}
-              lineHeight={"19.2px"}
-              color="#596168CF"
-            >
+            <div>
               click the vibes on the Below to check them out
             </div>
           </div>

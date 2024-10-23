@@ -1,5 +1,7 @@
-import Resources from '../../resources/resources'
+import React from 'react'
 
+import Resources from '../resources/resources'
+import AboutUs from '../components/AboutUs/AboutUs';
 export const metadata = {
     title: "About Us - Vibe Search",
     description: "Discover Vibe Search, an AI-powered shopping search engine that ensures privacy and delivers personalized shopping experiences.",
@@ -14,3 +16,12 @@ export const metadata = {
       card: "summary_large_image",
     },
   };
+  
+
+const about = () => {
+  return (
+    <AboutUs/>
+  )
+}
+
+export default about
