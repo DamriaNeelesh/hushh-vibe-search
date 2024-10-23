@@ -154,7 +154,7 @@ export default function SearchResults() {
     setSelectedProduct(product);
     setIsDrawerOpen(true);
     onOpen();
-    document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
+    // document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
   };
 
   const closeDrawer = () => {
@@ -176,108 +176,114 @@ export default function SearchResults() {
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
       {/* Mobile UI Drawer */}
-      <Drawer
-        isOpen={isOpen}
-        placement="bottom"
-        onClose={onClose}
-        size="full"
-        blockScrollOnMount={false} // Allow body scrolling when the drawer is open
-      >
-        <DrawerOverlay />
-        <DrawerContent
-          borderTopRadius="10px"
-          display={{ base: "block", md: "none" }}
-          height="80vh" // Set the height to 80% of the viewport height
-          marginTop="10vh" // Add margin to create space above the drawer
-          overflowY="auto" // Enable vertical scrolling
+      {isMobile && (
+        <Drawer
+          isOpen={isOpen}
+          placement="bottom"
+          onClose={onClose}
+          size="full"
+          blockScrollOnMount={false} // Allow body scrolling when the drawer is open
         >
-          <DrawerCloseButton />
-          <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>{selectedProduct?.brand}</DrawerHeader>
-          <DrawerBody>
-            <Carousel
-              showArrows={true}
-              showThumbs={false}
-              showStatus={false}
-              infiniteLoop={true}
-              useKeyboardArrows={true}
-              autoPlay={true}
-              swipeable={true}
-            >
-              {additionalImages.map((image, index) => (
-                <Box
-                  key={index}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  bg="white"
+          <DrawerOverlay/>
+          <DrawerContent
+            borderTopRadius="10px"
+            display={{ base: "block", md: "none" }}
+            height="80vh" // Set the height to 80% of the viewport height
+            marginTop="10vh" // Add margin to create space above the drawer
+            overflowY="auto" // Enable vertical scrolling
+          >
+            <DrawerCloseButton />
+            <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
+              {selectedProduct?.brand}
+            </DrawerHeader>
+            <DrawerBody>
+              <Carousel
+                showArrows={true}
+                showThumbs={false}
+                showStatus={false}
+                infiniteLoop={true}
+                useKeyboardArrows={true}
+                autoPlay={true}
+                swipeable={true}
+              >
+                {additionalImages.map((image, index) => (
+                  <Box
+                    key={index}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    bg="white"
+                  >
+                    <ChakraImage
+                      src={image}
+                      alt={`${selectedProduct.product_title} - ${index + 1}`}
+                      objectFit="contain"
+                      boxSize="100%"
+                    />
+                  </Box>
+                ))}
+              </Carousel>
+              <HStack
+                gap={{ md: "2rem", base: "1rem" }}
+                justifyContent="space-between"
+              >
+                <Text fontWeight={"600"} color={"#757575"} fontSize={"1rem"}>
+                  {selectedProduct?.product_title}
+                </Text>
+                <Button
+                  as={Link}
+                  href={selectedProduct?.product_url}
+                  target="_blank" // Add this attribute to open in a new tab
+                  rel="noopener noreferrer" // Add this for security reasons
+                  color="#273434"
+                  w={{ md: "10rem", base: "6rem" }}
+                  bg="#F4EFEB"
+                  borderRadius={"25px"}
+                  rightIcon={<ChevronRightIcon stroke={"#273434"} />}
                 >
-                  <ChakraImage
-                    src={image}
-                    alt={`${selectedProduct.product_title} - ${index + 1}`}
-                    objectFit="contain"
-                    boxSize="100%"
-                  />
-                </Box>
-              ))}
-            </Carousel>
-            <HStack
-                      gap={{ md: "2rem", base: "1rem" }}
-                      justifyContent="space-between"
-                    >
-            <Text fontWeight={'600'} color={'#757575'} fontSize={'1rem'}>{selectedProduct?.product_title}</Text>
-            <Button
-                        as={Link}
-                        href={selectedProduct?.product_url}
-                        target="_blank" // Add this attribute to open in a new tab
-                        rel="noopener noreferrer" // Add this for security reasons
-                        color="#273434"
-                        w={{ md: "10rem", base: "6rem" }}
-                        bg="#F4EFEB"
-                        borderRadius={"25px"}
-                        rightIcon={<ChevronRightIcon stroke={"#273434"} />}
-                      >
-                        Visit
-            </Button>
-</HStack>
-            {selectedProduct?.price_available && (
-                      <Text fontWeight="bold" fontSize="0.8rem" mt={2}>
-                        {selectedProduct.currency} {selectedProduct.price}
-                      </Text>
-                    )}
-            <Text
-                      mt={2}
-                      fontSize='0.6rem'
-                      lineHeight={"16.6px"}
-                      color="#000000"
-                      mb={{ md: "4rem" }}
-                    >
-                      {selectedProduct?.description}
-                    </Text>
-          </DrawerBody>
-          <DrawerFooter gap="2rem">
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Box
-              width="100%"
-              bg="#624737"
-              color="white"
-              textAlign="center"
-              p={2}
-              borderRadius={'10px'}
-              fontFamily="Figtree, sans-serif"
-              cursor="pointer"
-              onClick={async () => {
-                let access_token =
-                  await services.authentication.getAccessToken();
-                services.wishlist.addToWishList(product.id, access_token);
-              }}
-            >
-              Add to Favorites
-            </Box>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+                  Visit
+                </Button>
+              </HStack>
+              {selectedProduct?.price_available && (
+                <Text fontWeight="bold" fontSize="0.8rem" mt={2}>
+                  {selectedProduct.currency} {selectedProduct.price}
+                </Text>
+              )}
+              <Text
+                mt={2}
+                fontSize="0.6rem"
+                lineHeight={"16.6px"}
+                color="#000000"
+                mb={{ md: "4rem" }}
+              >
+                {selectedProduct?.description}
+              </Text>
+            </DrawerBody>
+            <DrawerFooter gap="2rem">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Box
+                width="100%"
+                bg="#624737"
+                color="white"
+                textAlign="center"
+                p={2}
+                borderRadius={"10px"}
+                fontFamily="Figtree, sans-serif"
+                cursor="pointer"
+                onClick={async () => {
+                  let access_token =
+                    await services.authentication.getAccessToken();
+                  services.wishlist.addToWishList(product.id, access_token);
+                }}
+              >
+                Add to Favorites
+              </Box>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      )}
 
       {/* <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
@@ -452,7 +458,7 @@ export default function SearchResults() {
         // h={{ md: "3rem" }}
         // mb={'4rem'}
       >
-              <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
+        <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
         <Box
           onClick={showComingSoonToast}
           cursor={"pointer"}
@@ -495,7 +501,7 @@ export default function SearchResults() {
           <Box
             w={{ md: isDrawerOpen ? "70%" : "100%", base: "100%" }}
             h="100%"
-            p={{md:6,base:4}}
+            p={{ md: 6, base: 4 }}
             overflowY="auto"
             css={{
               "&::-webkit-scrollbar": { display: "none" },
