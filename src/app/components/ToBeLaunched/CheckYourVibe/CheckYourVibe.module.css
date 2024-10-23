@@ -9,10 +9,106 @@
   font-weight: 700;
   font-size: 40px;
 }
+@media screen and (max-width: 900px) {
+  .CheckYourVibe .CheckYourVibe__Title {
+    font-size: 32;
+  }
+}
 .CheckYourVibe .CheckYourVibe__SubTitle {
   font-weight: 400;
   font-size: 20px;
   color: #606060;
+}
+@media screen and (max-width: 900px) {
+  .CheckYourVibe .CheckYourVibe__SubTitle {
+    font-size: 16;
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .CheckYourVibe .CheckYourVibe__SwipeGameMobile {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__AnimsWrapperMobile {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  margin-top: 30pt;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeGameMobile {
+  margin-top: 30pt;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeAnimWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeText {
+  margin-top: 40pt;
+  text-align: center;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeTitle {
+  font-weight: 700;
+  font-size: 20px;
+  color: #606060;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeSubTitle {
+  font-weight: 400;
+  font-size: 20px;
+  color: #606060;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeAnimWrapperLeft {
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeAnimWrapperLeft .CheckYourVibe__SwipeLeftAnim {
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+  background-color: #FFB7B7;
+  animation-name: CheckYourVibe__SwipeRightAnim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes CheckYourVibe__SwipeRightAnim {
+  0% {
+    width: 40px;
+  }
+  100% {
+    width: 80px;
+  }
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeAnimWrapperRight {
+  width: 80px;
+  display: flex;
+  justify-content: flex-start;
+}
+.CheckYourVibe .CheckYourVibe__SwipeGameMobile .CheckYourVibe__SwipeAnimWrapperRight .CheckYourVibe__SwipeRightAnim {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: #C9E8CC;
+  animation-name: CheckYourVibe__SwipeRightAnim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes CheckYourVibe__SwipeRightAnim {
+  0% {
+    width: 40px;
+  }
+  100% {
+    width: 80px;
+  }
 }
 .CheckYourVibe .CheckYourVibe__SwipeGame {
   height: 90vh;
@@ -20,6 +116,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+@media screen and (max-width: 900px) {
+  .CheckYourVibe .CheckYourVibe__SwipeGame {
+    display: none;
+  }
 }
 .CheckYourVibe .CheckYourVibe__SwipeGame .CheckYourVibe__SwipeAnimWrapper {
   display: flex;

@@ -4,9 +4,9 @@ export default function CheckYourVibe() {
   return (
     <div className={`${styles.CheckYourVibe} figtree`}>
       <div className={`${styles.CheckYourVibe__Title}`}>Vibe Check</div>
-      <h2 className={`${styles.CheckYourVibe__SubTitle}`}>
+      <div className={`${styles.CheckYourVibe__SubTitle}`}>
         Tell us your style - Click and swipe through different styles
-      </h2>
+      </div>
       <div className={`${styles.CheckYourVibe__SwipeGame} figtree`}>
         <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
           <div className={`${styles.CheckYourVibe__SwipeAnimWrapperLeft}`}>
