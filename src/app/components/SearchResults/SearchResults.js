@@ -42,7 +42,11 @@ import ClockIcon from "../svg/clockHistory.svg";
 import LoadingBar from "react-top-loading-bar";
 import FilterUI from "./FilterUI/FilterUI";
 import { useMediaQuery } from "@chakra-ui/react";
-
+import handleProductClick from "./services/handleProductClick";
+import callVibeIt from "./services/callVibeIt";
+import openDrawer from "./services/openDrawer";
+import closeDrawer from "./services/closeDrawer";
+import handleScroll from "./services/handleScroll";
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,122 +60,32 @@ export default function SearchResults() {
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
   const [brands, setBrands] = useState([]); // State to hold brands
   const router = useRouter();
   const loadingBarRef = useRef(null);
   const [isMobileProductDrawer, setIsMobileProductDrawer] = useState();
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
-
-  const resetSearchResults = () => {
-    setSearchResults([]); // Reset search results to an empty array
-  };
-
-  const mobileProductDrawer = (product) => {
-    setSelectedProduct(product);
-    setIsDrawerOpen(true);
-    onOpen();
-    document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
-  };
-
-  const handleProductClick = (product) => {
-    if (isMobile) {
-      mobileProductDrawer(product); // Open mobile drawer
-    } else {
-      openDrawer(product); // Open desktop drawer
-    }
-  };
-
+  const toast = useToast();
   useEffect(() => {
     services.authentication.getSession();
   }, []);
-
-  const showComingSoonToast = () => {
-    toast({
-      title: "Coming Soon!",
-      description: "We are working on it.",
-      status: "info",
-      duration: 5000, // Shortened to a reasonable time
-      isClosable: true,
-      position: "top-right",
-      containerStyle: {
-        maxWidth: "320px", // Ensure the width of the toast is limited
-        zIndex: 999999, // Make sure it's on top of everything
-        position: "fixed", // Ensure it's fixed at the top
-      },
-      render: ({ onClose }) => (
-        <Box
-          p={4}
-          bg="blue.500"
-          color="white"
-          borderRadius="md"
-          boxShadow="lg"
-          textAlign="left"
-          onClick={onClose} // Clicking closes the toast
-          cursor="pointer"
-        >
-          <HStack justify="space-between">
-            <Text fontWeight="bold">Coming Soon!</Text>
-            <FiX size={20} cursor="pointer" onClick={onClose} />
-          </HStack>
-          <Text fontSize="sm">We are working on it.</Text>
-        </Box>
-      ),
-    });
-  };
-
   useEffect(() => {
-    async function callVibeIt() {
-      loadingBarRef.current.continuousStart(); // Start the loading bar
-      let search = searchParams.get("query");
-      let imageSearch = searchParams.get("imageSearch");
-      let image = localStorage.getItem("image-file");
-      services.history.saveToHistory(search);
-      let access_token = await services.authentication.getAccessToken();
-      services.vibesearch.vibeIt(
-        imageSearch ? image : search || "",
-        "",
-        currentPage,
-        32,
-        (results) => {
-          setSearchResults(results);
-          console.log("Search Results:", searchResults);
-          loadingBarRef.current.complete(); // Complete the loading bar
-          setIsLoading(false); // Set loading to false when data is fetched
-        },
-        access_token,
-        searchResults,
-        selectedBrands,
-        noMoreResults,
-        setBrands
-      );
-    }
-    callVibeIt();
+    callVibeIt(
+      loadingBarRef,
+      searchParams,
+      currentPage,
+      setSearchResults,
+      setIsLoading,
+      searchResults,
+      selectedBrands,
+      noMoreResults,
+      setBrands
+    );
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
-
-  const openDrawer = (product) => {
-    setSelectedProduct(product);
-    setIsDrawerOpen(true);
-    onOpen();
-    document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
-  };
-
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-    setSelectedProduct(null);
-    document.body.style.overflow = "auto"; // Restore body scroll when drawer is closed
-  };
-
-  const handleScroll = (event, ref) => {
-    event.stopPropagation();
-    ref.current.scrollTop = ref.current.scrollTop + event.deltaY;
-  };
-
   const additionalImages = selectedProduct?.additional_images
     ? JSON.parse(selectedProduct.additional_images)
     : [];
-
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
@@ -192,7 +106,9 @@ export default function SearchResults() {
           overflowY="auto" // Enable vertical scrolling
         >
           <DrawerCloseButton />
-          <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>{selectedProduct?.brand}</DrawerHeader>
+          <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
+            {selectedProduct?.brand}
+          </DrawerHeader>
           <DrawerBody>
             <Carousel
               showArrows={true}
@@ -221,38 +137,40 @@ export default function SearchResults() {
               ))}
             </Carousel>
             <HStack
-                      gap={{ md: "2rem", base: "1rem" }}
-                      justifyContent="space-between"
-                    >
-            <Text fontWeight={'600'} color={'#757575'} fontSize={'1rem'}>{selectedProduct?.product_title}</Text>
-            <Button
-                        as={Link}
-                        href={selectedProduct?.product_url}
-                        target="_blank" // Add this attribute to open in a new tab
-                        rel="noopener noreferrer" // Add this for security reasons
-                        color="#273434"
-                        w={{ md: "10rem", base: "6rem" }}
-                        bg="#F4EFEB"
-                        borderRadius={"25px"}
-                        rightIcon={<ChevronRightIcon stroke={"#273434"} />}
-                      >
-                        Visit
-            </Button>
-</HStack>
+              gap={{ md: "2rem", base: "1rem" }}
+              justifyContent="space-between"
+            >
+              <Text fontWeight={"600"} color={"#757575"} fontSize={"1rem"}>
+                {selectedProduct?.product_title}
+              </Text>
+              <Button
+                as={Link}
+                href={selectedProduct?.product_url}
+                target="_blank" // Add this attribute to open in a new tab
+                rel="noopener noreferrer" // Add this for security reasons
+                color="#273434"
+                w={{ md: "10rem", base: "6rem" }}
+                bg="#F4EFEB"
+                borderRadius={"25px"}
+                rightIcon={<ChevronRightIcon stroke={"#273434"} />}
+              >
+                Visit
+              </Button>
+            </HStack>
             {selectedProduct?.price_available && (
-                      <Text fontWeight="bold" fontSize="0.8rem" mt={2}>
-                        {selectedProduct.currency} {selectedProduct.price}
-                      </Text>
-                    )}
+              <Text fontWeight="bold" fontSize="0.8rem" mt={2}>
+                {selectedProduct.currency} {selectedProduct.price}
+              </Text>
+            )}
             <Text
-                      mt={2}
-                      fontSize='0.6rem'
-                      lineHeight={"16.6px"}
-                      color="#000000"
-                      mb={{ md: "4rem" }}
-                    >
-                      {selectedProduct?.description}
-                    </Text>
+              mt={2}
+              fontSize="0.6rem"
+              lineHeight={"16.6px"}
+              color="#000000"
+              mb={{ md: "4rem" }}
+            >
+              {selectedProduct?.description}
+            </Text>
           </DrawerBody>
           <DrawerFooter gap="2rem">
             <Button variant="outline" mr={3} onClick={onClose}>
@@ -264,7 +182,7 @@ export default function SearchResults() {
               color="white"
               textAlign="center"
               p={2}
-              borderRadius={'10px'}
+              borderRadius={"10px"}
               fontFamily="Figtree, sans-serif"
               cursor="pointer"
               onClick={async () => {
@@ -357,7 +275,13 @@ export default function SearchResults() {
               fill="#222222"
             />
           </svg>
-          <FiHeart size={24} cursor="pointer" onClick={showComingSoonToast} />
+          <FiHeart
+            size={24}
+            cursor="pointer"
+            onClick={()=>{
+              utilities.ComingSoonToast(toast)
+            }}
+          />
         </HStack>
       </HStack>
       <HStack
@@ -387,7 +311,9 @@ export default function SearchResults() {
           gap={{ md: "1rem", base: "0.5rem" }}
         >
           <Box
-            onClick={showComingSoonToast}
+            onClick={()=>{
+              utilities.ComingSoonToast(toast)
+            }}
             cursor={"pointer"}
             border="1px solid #DFE1E5"
             borderRadius="10px"
@@ -452,9 +378,11 @@ export default function SearchResults() {
         // h={{ md: "3rem" }}
         // mb={'4rem'}
       >
-              <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
+        <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
         <Box
-          onClick={showComingSoonToast}
+          onClick={()=>{
+            utilities.ComingSoonToast(toast)
+          }}
           cursor={"pointer"}
           border="1px solid #DFE1E5"
           borderRadius="10px"
@@ -474,10 +402,12 @@ export default function SearchResults() {
       <FilterUI
         setSelectedBrands={(brands) => {
           setSelectedBrands(brands);
-          resetSearchResults(); // Reset search results when brands are updated
+          setSearchResults([]); // Reset search results when brands are updated
         }}
         selectedBrands={selectedBrands}
-        resetSearchResults={resetSearchResults} // Pass the function as a prop
+        resetSearchResults={() => {
+          setSearchResults([]);
+        }} // Pass the function as a prop
       />
       <Box
         fontFamily="Figtree, sans-serif"
@@ -495,7 +425,7 @@ export default function SearchResults() {
           <Box
             w={{ md: isDrawerOpen ? "70%" : "100%", base: "100%" }}
             h="100%"
-            p={{md:6,base:4}}
+            p={{ md: 6, base: 4 }}
             overflowY="auto"
             css={{
               "&::-webkit-scrollbar": { display: "none" },
@@ -503,114 +433,148 @@ export default function SearchResults() {
               scrollbarWidth: "none",
             }}
           >
-            <Grid
-              templateColumns={{
-                md: isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)",
-                base: "repeat(2,1fr)",
-              }}
-              gap={{ md: 6, base: 2 }}
-              ref={gridRef}
-            >
-              {isLoading
-                ? Array.from({ length: 9 }).map((_, index) => (
-                    <Box key={index} padding="0" boxShadow="lg" bg="white">
-                      <Skeleton height="280px" />
-                      <Skeleton height="40px" mt="4" />
-                      <Skeleton height="40px" mt="2" />
-                    </Box>
-                  ))
-                : Object.values(searchResults).map((product, index) => (
-                    <Box
-                      key={index}
-                      borderRadius="md"
-                      overflow="hidden"
-                      minH="350px"
-                      cursor="pointer"
-                      className="product-card"
-                    >
-                      <Box
-                        position="relative"
-                        w={"100%"}
-                        h="300px"
-                        className="image-container"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        // bg="gray.100"
-                      >
-                        <ChakraImage
-                          src={product.image || "/path/to/default-image.jpg"}
-                          alt={product.product_title}
-                          objectFit="contain" // Ensures the image is fully visible and not cropped
-                          boxSize="100%" // Ensures the image fills the container
-                          // onClick={() => openDrawer(product)}
-                          onClick={() => handleProductClick(product)} // Use the new handler
-                        />
-                        <Box
-                          className="favorite-button"
-                          position="absolute"
-                          bottom="0"
-                          width="100%"
-                          bg="#624737"
-                          color="white"
-                          textAlign="center"
-                          p={2}
-                          fontFamily={"Figtree, sans-serif"}
-                          transform="translateY(100%)"
-                          transition="transform 0.3s ease"
-                          cursor={"pointer"}
-                          onClick={async () => {
-                            let access_token =
-                              await services.authentication.getAccessToken();
-                            services.wishlist.addToWishList(
-                              product.id,
-                              access_token
-                            );
-                          }}
-                        >
-                          Add to Favorites
-                        </Box>
+            <div 
+            style={{
+              height: "100vh",
+              width: "auto",
+              overflow: "scroll"
+            }}
+            onScroll={(event) => {
+              let obj = event.target;
+              if (obj.scrollTop >= obj.scrollHeight - obj.offsetHeight - 10) {
+                setCurrentPage(currentPage + 1);
+              }
+            }}>
+              <Grid
+                onScroll={(event) => {
+                  console.log("scrolling");
+                  let obj = event.target;
+                  if (
+                    obj.scrollTop >=
+                    obj.scrollHeight - obj.offsetHeight - 10
+                  ) {
+                    query != "wishlist" && !noMoreResults
+                      ? addNewContent()
+                      : "";
+                  }
+                }}
+                templateColumns={{
+                  md: isDrawerOpen ? "repeat(3, 1fr)" : "repeat(4, 1fr)",
+                  base: "repeat(2,1fr)",
+                }}
+                gap={{ md: 6, base: 2 }}
+                ref={gridRef}
+              >
+                {isLoading
+                  ? Array.from({ length: 9 }).map((_, index) => (
+                      <Box key={index} padding="0" boxShadow="lg" bg="white">
+                        <Skeleton height="280px" />
+                        <Skeleton height="40px" mt="4" />
+                        <Skeleton height="40px" mt="2" />
                       </Box>
-                      <Box p={{ md: 3, base: 2 }}>
-                        <Text
-                          fontWeight={"400"}
-                          fontSize={{ md: "0.9rem", base: "0.65rem" }}
-                          color={"#727272"}
-                          lineHeight={"22px"}
+                    ))
+                  : Object.values(searchResults).map((product, index) => (
+                      <Box
+                        key={index}
+                        borderRadius="md"
+                        overflow="hidden"
+                        minH="350px"
+                        cursor="pointer"
+                        className="product-card"
+                      >
+                        <Box
+                          position="relative"
+                          w={"100%"}
+                          h="300px"
+                          className="image-container"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          // bg="gray.100"
                         >
-                          {product?.source}
-                        </Text>
-                        <Text
-                          color={"#222222"}
-                          fontWeight="700"
-                          fontSize={{ md: "1rem", base: "0.75rem" }}
-                          lineHeight={"22px"}
-                        >
-                          {product.brand}
-                        </Text>
-                        <Text
-                          color="#222222"
-                          fontSize={{ md: "1rem", base: "0.65rem" }}
-                          lineHeight={"22px"}
-                          noOfLines={1}
-                        >
-                          {product.product_title}
-                        </Text>
-                        {product.price_available && (
+                          <ChakraImage
+                            src={product.image || "/path/to/default-image.jpg"}
+                            alt={product.product_title}
+                            objectFit="contain" // Ensures the image is fully visible and not cropped
+                            boxSize="100%" // Ensures the image fills the container
+                            // onClick={() => openDrawer(product)}
+                            onClick={() =>
+                              handleProductClick(
+                                product,
+                                setSelectedProduct,
+                                setIsDrawerOpen,
+                                onOpen,
+                                isMobile,
+                                openDrawer
+                              )
+                            } // Use the new handler
+                          />
+                          <Box
+                            className="favorite-button"
+                            position="absolute"
+                            bottom="0"
+                            width="100%"
+                            bg="#624737"
+                            color="white"
+                            textAlign="center"
+                            p={2}
+                            fontFamily={"Figtree, sans-serif"}
+                            transform="translateY(100%)"
+                            transition="transform 0.3s ease"
+                            cursor={"pointer"}
+                            onClick={async () => {
+                              let access_token =
+                                await services.authentication.getAccessToken();
+                              services.wishlist.addToWishList(
+                                product.id,
+                                access_token
+                              );
+                            }}
+                          >
+                            Add to Favorites
+                          </Box>
+                        </Box>
+                        <Box p={{ md: 3, base: 2 }}>
+                          <Text
+                            fontWeight={"400"}
+                            fontSize={{ md: "0.9rem", base: "0.65rem" }}
+                            color={"#727272"}
+                            lineHeight={"22px"}
+                          >
+                            {product?.source}
+                          </Text>
                           <Text
                             color={"#222222"}
-                            fontWeight="400"
+                            fontWeight="700"
+                            fontSize={{ md: "1rem", base: "0.75rem" }}
                             lineHeight={"22px"}
-                            fontSize={{ md: "1rem", base: "0.65rem" }}
-                            mt={{ md: 5, base: 2 }}
                           >
-                            {product.currency} {product.price}
+                            {product.brand}
                           </Text>
-                        )}
+                          <Text
+                            color="#222222"
+                            fontSize={{ md: "1rem", base: "0.65rem" }}
+                            lineHeight={"22px"}
+                            noOfLines={1}
+                          >
+                            {product.product_title}
+                          </Text>
+                          {product.price_available && (
+                            <Text
+                              color={"#222222"}
+                              fontWeight="400"
+                              lineHeight={"22px"}
+                              fontSize={{ md: "1rem", base: "0.65rem" }}
+                              mt={{ md: 5, base: 2 }}
+                            >
+                              {product.currency} {product.price}
+                            </Text>
+                          )}
+                        </Box>
                       </Box>
-                    </Box>
-                  ))}
-            </Grid>
+                    ))}
+              </Grid>
+            </div>
           </Box>
 
           {/* Drawer Section */}
