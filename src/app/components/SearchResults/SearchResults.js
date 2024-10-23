@@ -613,7 +613,9 @@ export default function SearchResults() {
                 <Text fontSize="2xl" fontWeight="bold">
                   {selectedProduct?.brand}
                 </Text>
-                <FiX size={24} cursor="pointer" onClick={closeDrawer} />
+                <FiX size={24} cursor="pointer" onClick={()=>{
+                  closeDrawer(setIsDrawerOpen, setSelectedProduct)
+                }} />
               </HStack>
 
               {selectedProduct && (
