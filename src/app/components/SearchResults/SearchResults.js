@@ -90,7 +90,8 @@ export default function SearchResults() {
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
       {/* Mobile UI Drawer */}
-      <Drawer
+    {isMobile && (
+<Drawer
         isOpen={isOpen}
         placement="bottom"
         onClose={onClose}
@@ -197,6 +198,8 @@ export default function SearchResults() {
         </DrawerContent>
       </Drawer>
 
+    )}  
+      
       {/* <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
         <DrawerContent>
