@@ -463,7 +463,7 @@ export default function SearchResults() {
         >
           <Image
             src={ClockIcon}
-            alt="Vibe History"
+            alt="Hushh Vibe History"
             width="15"
             height="15"
             style={{ width: "15px", height: "15px" }}

@@ -47,6 +47,7 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
               <img
                 className={`${styles.searchBox__go}`}
                 src={Resources.sendButton.src}
+                alt="Hushh Vibe Share"
               ></img>
             </Link>
             <input
@@ -106,6 +107,7 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
                   fileInputElement.click();
                 }
               }}
+              alt="Hushh Vibe Share"
             ></img>
           </div>
         </div>

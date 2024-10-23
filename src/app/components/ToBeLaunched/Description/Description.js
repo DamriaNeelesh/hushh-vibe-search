@@ -42,6 +42,7 @@ export default function Description() {
             className={styles.Description__GoogleSignIn}
             src={gSignInButton.src}
             onClick={handleGoogleSignIn}
+            alt="Vibe Search Google SIgn In"
           ></img>
         ) : (
           <></>

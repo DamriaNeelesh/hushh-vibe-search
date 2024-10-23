@@ -134,12 +134,12 @@ const Home2 = () => {
           <div className={`${styles.Home2__Models}`}>
             <img
               src={Model1.src}
-              alt="Model 1"
+              alt="Vibe Search Model 1"
               className={`${styles.Home2__Model1}`}
             />
             <img
               src={Model2.src}
-              alt="Model 2"
+              alt="Vibe Search Model 2"
               className={`${styles.Home2__Model2}`}
             />
           </div>

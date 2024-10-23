@@ -6,6 +6,7 @@ export default function VibeSearchGif() {
       <img
         className={styles.Description__SearchboxGif}
         src={resources.images.VibeSearchGif.src}
+        alt="Hushh Vibe Search Animation"
       ></img>
     </div>
   );

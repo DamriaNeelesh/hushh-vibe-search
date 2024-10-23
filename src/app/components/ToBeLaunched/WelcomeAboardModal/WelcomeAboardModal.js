@@ -54,7 +54,7 @@ export default function WelcomeABoardModal() {
           <br></br>
           <br></br>
           <div className="card-container">
-            <Image src={Card1} alt="Card Front" className="card card-front" />
+            <Image src={Card1} alt="Hushh Card Front" className="card card-front" />
             {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
             <Box
               zIndex={"1"}

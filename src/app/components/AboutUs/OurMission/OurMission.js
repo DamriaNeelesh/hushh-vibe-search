@@ -7,6 +7,7 @@ export default function OurMission() {
         <img
           src={resources.images.VibeSearchGif.src}
           className={`${styles.OurMission__SearchGif}`}
+          alt="Vibe Search Animation"
         ></img>
       </div>
       <div className={`${styles.OurMission__Description}`}>
@@ -16,7 +17,7 @@ export default function OurMission() {
           experiences.
         </div>
         <div className={`${styles.OurMission__SmallDesc}`}>We start with Vibe Search</div>
-        <img src={resources.images.DownArrow.src} className={`${styles.OurMission__ScrollDown}`}></img>
+        <img src={resources.images.DownArrow.src} className={`${styles.OurMission__ScrollDown}`} alt="Vibe Scroll"></img>
       </div>
     </div>
   );

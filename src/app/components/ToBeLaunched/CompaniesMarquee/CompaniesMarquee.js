@@ -69,7 +69,7 @@ export default function CompaniesMarquee(props) {
               <img
                 key={idx}
                 src={logo.src}
-                alt="logo"
+                alt="brands"
                 className={styles.CompaniesMarquee__Logo}
               />
             ))}

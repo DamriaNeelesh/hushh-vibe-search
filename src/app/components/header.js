@@ -24,7 +24,7 @@ const Header = ({ userImage }) => {
         variant="ghost"
         _hover={{ backgroundColor: 'gray.100' }}
       />
-      <Image size="sm" src={UserIcon} />
+      <Image size="sm" src={UserIcon} alt='User Profile'/>
     </Flex>
   );
 };

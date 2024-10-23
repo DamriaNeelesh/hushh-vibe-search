@@ -110,6 +110,7 @@ const Search = () => {
               onClick={handleSearch}
               marginLeft="2"
               borderRadius="full"
+              alt="Hushh Vibe Search"
             />
           </Flex>
         </Box>

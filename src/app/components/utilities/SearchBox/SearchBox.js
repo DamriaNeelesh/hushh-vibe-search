@@ -43,7 +43,7 @@ export default function SearchBox(props) {
           width: props.boxWidth ? props.boxWidth + "vw" : "",
         }}
       >
-        <img src={resources.magnifyingGlass.src} alt="Search Icon" />
+        <img src={resources.magnifyingGlass.src} alt="Vibe Search Icon" />
         <input
           className={styles.SearchBox__Input}
           id="SearchBox__Input"

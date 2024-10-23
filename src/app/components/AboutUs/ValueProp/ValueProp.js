@@ -4,7 +4,7 @@ export default function ValueProp(props) {
     <div className={`${styles.ValueProp} figtree`}>
       <div className={`${styles.ValueProp__Wrapper}`}>
         {props.imageDirection == "left" ? (
-          <img className={`${styles.ValueProp__Image}`} src={props.image}></img>
+          <img className={`${styles.ValueProp__Image}`} src={props.image} alt="Hushh Vibe Search"></img>
         ) : (
           <></>
         )}
@@ -14,7 +14,7 @@ export default function ValueProp(props) {
           {props.children}
         </div>
         {props.imageDirection == "right" ? (
-          <img src={props.image} className={`${styles.ValueProp__Image}`}></img>
+          <img src={props.image} className={`${styles.ValueProp__Image}`} alt="Hushh Vibe Search"></img>
         ) : (
           <></>
         )}

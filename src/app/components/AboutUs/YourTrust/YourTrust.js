@@ -7,6 +7,7 @@ export default function YourTrust() {
         <img
           className={`${styles.YourTrust__Image}`}
           src={jigsawPuzzle.src}
+          alt="Hushh Vibe Search Trust"
         ></img>
         <div className={`${styles.YourTrust__Title}`}>
           Your Trust, Our Priority

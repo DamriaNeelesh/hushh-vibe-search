@@ -96,7 +96,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           gap={{ md: "1rem", base: "0.5rem" }}
         >
           All Filters (1)
-          <Image src={FilterLine} alt="Vibe Filters" />
+          <Image src={FilterLine} alt="Hushh Vibe Filters" />
         </Button>
 
         <HStack

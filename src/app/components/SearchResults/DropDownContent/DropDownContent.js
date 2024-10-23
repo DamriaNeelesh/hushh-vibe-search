@@ -12,6 +12,7 @@ export default function DropDownContent(props) {
         onClick={() => {
           setShowFilter(!showFilter);
         }}
+        alt="Hushh Vibe Search filter"
       ></img>
       {showFilter ? (
         props.children

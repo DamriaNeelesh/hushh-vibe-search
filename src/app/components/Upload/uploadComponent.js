@@ -92,7 +92,7 @@ const ImageUpload = () => {
           <Box display={'flex'} flexDirection={'column'} position="relative" textAlign={'center'}
           alignItems={'center'}
           justifyContent={'center'}>
-            <Image src={uploadedImage} alt="Uploaded" boxSize="150px" width={'30'} height={'30'} />
+            <Image src={uploadedImage} alt="Hushh Vibe Uploaded" boxSize="150px" width={'30'} height={'30'} />
             <Button
               position="absolute"
               top="0"
