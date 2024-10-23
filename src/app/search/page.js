@@ -12,7 +12,7 @@ import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
 import Home2 from '../components/Home2/home2'
-import { metadata } from "../components/metadata/searchMetadata"; // Import metadata
+import { metadata } from "../components/pagesComponent/searchPage"; // Import metadata
 import Head from "next/head";
 const Search = () => {
   const [fileImg, setFile] = useState(null);

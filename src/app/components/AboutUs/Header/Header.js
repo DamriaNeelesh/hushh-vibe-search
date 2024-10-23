@@ -24,13 +24,13 @@ export default function Header(props) {
         <div
           className={styles.Header__PageBox}
           onClick={() => {
-           router.push('/components/AboutUs')
+           router.push('/aboutUs')
           }}
           // className={`link ${pathname === '/contact-us' ? 'gradient-text' : ''}`}
           style={{cursor:'pointer'}}
         >
           <div className={styles.Header__AboutUs}>About</div>
-          {pathname === '/components/AboutUs' && (
+          {pathname === '/aboutUs' && (
             <div className={styles.Header__UnderLine}></div>
           )}
         </div>
@@ -60,7 +60,7 @@ export default function Header(props) {
         </div>
       </div>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   );
 }

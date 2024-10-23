@@ -34,7 +34,7 @@ import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
 import IntroSlide3 from "./components/Introduction/IntroSlide3";
 import Home2 from "./components/Home2/home2";
 import Head from "next/head";
-import { metadata } from "./components/metadata/homeMetaData"; // Import metadata
+import { metadata } from "./components/pagesComponent/homePage"; // Import metadata
 
 const slides = [
   {
