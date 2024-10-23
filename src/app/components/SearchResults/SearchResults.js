@@ -473,7 +473,10 @@ export default function SearchResults() {
                         <Skeleton height="40px" mt="2" />
                       </Box>
                     ))
-                  : Object.values(searchResults).map((product, index) => (
+                  : Object.values(searchResults).map((product, index) => {
+                    console.log(product)
+                    let image=product?.image?.replace("width=959", "width=600")
+                    return (
                       <Box
                         key={index}
                         borderRadius="md"
@@ -493,7 +496,7 @@ export default function SearchResults() {
                           // bg="gray.100"
                         >
                           <ChakraImage
-                            src={product.image || "/path/to/default-image.jpg"}
+                            src={image || "/path/to/default-image.jpg"}
                             alt={product.product_title}
                             objectFit="contain" // Ensures the image is fully visible and not cropped
                             boxSize="100%" // Ensures the image fills the container
@@ -572,7 +575,7 @@ export default function SearchResults() {
                           )}
                         </Box>
                       </Box>
-                    ))}
+                    )})}
               </Grid>
             </div>
           </Box>
