@@ -60,7 +60,7 @@ export default function Header(props) {
         </div>
       </div>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   );
 }

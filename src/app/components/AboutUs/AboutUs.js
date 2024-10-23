@@ -9,22 +9,11 @@ import Link from "next/link";
 import Head from 'next/head'
 import utilities from "../utilities/utilities";
 import { useState } from "react";
-import { metadata } from "../metadata/aboutMetaData"; // Import metadata
 
 export default function AboutUs() {
   let [page, setPage]=useState('about')
   return (
     <div>
-    <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:image" content={metadata.openGraph.images[0]} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta name="twitter:card" content={metadata.twitter.card} />
-      </Head>
       <Header page={page} setPage={setPage}></Header>
       <OurMission></OurMission>
       <ValueProp
