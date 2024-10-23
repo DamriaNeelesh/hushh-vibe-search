@@ -235,7 +235,6 @@ const TermsPage = () => {
             alignSelf="flex-start"
           >
             <VStack align="start" spacing={3}>
-              {/* <Heading size="md">Table of Contents</Heading> */}
               <UnorderedList
                 styleType="none"
                 spacing={2}
@@ -401,6 +400,7 @@ const TermsPage = () => {
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1.5rem", base: "0.8rem" }}
                   lineHeight={{ md: "40px", base: "32px" }}
+                  as={'h2'}
                 >
                   We get it, Terms of Service aren't exactly the most thrilling read. But taking a few minutes to understand what you can expect from Vibe Search, and what we expect in return, helps ensure a smooth and enjoyable experience for everyone.
                 </Text>
@@ -428,7 +428,7 @@ const TermsPage = () => {
               {/* <Divider /> */}
 
               <Box id="information-collect" ref={infoCollectRef}>
-                <Heading
+                <Text
                   fontWeight={"700"}
                   letterSpacing={"0.005rem"}
                   lineHeight={{ md: "40px", base: "32px" }}
@@ -436,7 +436,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   Acceptance of Terms
-                </Heading>
+                </Text>
                 <Text
                   spacing={3}
                   letterSpacing={"0.005rem"}
@@ -495,7 +495,7 @@ const TermsPage = () => {
               {/* <Divider /> */}
 
               <Box id="how-we-use" ref={howWeUseRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -503,7 +503,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   User Content
-                </Heading>
+                </Text>
                 <Text fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'25px'} letterSpacing={'0.005rem'}>
                 You are solely responsible for any content, including images, text, or other materials that you upload, submit, or otherwise make available through the Service ("User Content"). You represent and warrant that you own all rights to your User Content or have obtained all necessary licenses and permissions to use it in connection with the Service.
                 </Text>
@@ -511,7 +511,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="sharing-info" ref={sharingInfoRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -519,7 +519,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   Prohibited Conduct
-                </Heading>
+                </Text>
                 <Text  spacing={3}
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
@@ -561,7 +561,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="privacy-choices" ref={privacyChoicesRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -569,13 +569,13 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                  Intellectual Property
-                </Heading>
+                </Text>
                 <Text color={'#000000'} fontWeight={'400'} fontSize={{md:'1rem',base:'0.65rem'}} lineHeight={'25px'} letterSpacing={'0.005rem'}>
                     The Service and its content, including but not limited to text, graphics, logos, images, software, and the compilation thereof (collectively, the "Vibe Search Content"), are the property of Vibe Search or its licensors and are protected by copyright, trademark, and other intellectual property laws.</Text>
               </Box>
 
               <Box id="data-security" ref={dataSecurityRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -583,7 +583,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   Termination
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -614,7 +614,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="children-privacy" ref={childrenPrivacyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -622,7 +622,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                  Disclaimers
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -667,7 +667,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="changes-policy" ref={changesPolicyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -675,7 +675,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                  Limitation of Liability
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -688,7 +688,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="changes-policy" ref={changesPolicyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -696,7 +696,7 @@ const TermsPage = () => {
                   color={"#624737"} 
                 >
                 Entire Agreement
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -708,7 +708,7 @@ const TermsPage = () => {
               </Box>
 
               <Box id="changes-policy" ref={changesPolicyRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -716,7 +716,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   Changes to Terms
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
@@ -728,7 +728,7 @@ const TermsPage = () => {
               </Text>
               </Box>
               <Box id="contact-us" ref={contactUsRef}>
-                <Heading
+                <Text
                   fontSize={{ md: "1.5rem", base: "0.75rem" }}
                   letterSpacing={"0.005rem"}
                   fontWeight={"700"}
@@ -736,7 +736,7 @@ const TermsPage = () => {
                   color={"#624737"}
                 >
                   Contact Us
-                </Heading>
+                </Text>
                 <Text
                   mt={4}
                   fontWeight={"400"}
