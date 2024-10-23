@@ -66,6 +66,7 @@ export default function SearchResults() {
   const [isMobileProductDrawer, setIsMobileProductDrawer] = useState();
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
+  const toast = useToast();
   useEffect(() => {
     services.authentication.getSession();
   }, []);
@@ -277,7 +278,9 @@ export default function SearchResults() {
           <FiHeart
             size={24}
             cursor="pointer"
-            onClick={utilities.ComingSoonToast}
+            onClick={()=>{
+              utilities.ComingSoonToast(toast)
+            }}
           />
         </HStack>
       </HStack>
@@ -308,7 +311,9 @@ export default function SearchResults() {
           gap={{ md: "1rem", base: "0.5rem" }}
         >
           <Box
-            onClick={utilities.ComingSoonToast}
+            onClick={()=>{
+              utilities.ComingSoonToast(toast)
+            }}
             cursor={"pointer"}
             border="1px solid #DFE1E5"
             borderRadius="10px"
@@ -375,7 +380,9 @@ export default function SearchResults() {
       >
         <utilities.SearchBox boxWidth={75}></utilities.SearchBox>
         <Box
-          onClick={utilities.ComingSoonToast}
+          onClick={()=>{
+            utilities.ComingSoonToast(toast)
+          }}
           cursor={"pointer"}
           border="1px solid #DFE1E5"
           borderRadius="10px"

@@ -1,9 +1,8 @@
 "use client"
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { FiX } from "react-icons/fi";
-const ComingSoonToast = () => {
-    const toast = useToast();
-
+import { useToast } from "@chakra-ui/react";
+const ComingSoonToast = (toast) => {
     toast({
       title: "Coming Soon!",
       description: "We are working on it.",
