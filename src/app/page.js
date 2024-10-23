@@ -136,7 +136,7 @@ export default function Home() {
       {/* <Home2/> */}
       {/* <IntroSlide3/> */}
       <Head>
-        <title>Home - Vibe Search</title>
+        <title>Vibe Search</title>
         <meta name="description" content="Find perfect items to express your individuality in just one click with our vibe search" />
         <meta name="keywords" content="AI shopping, semantic search, personalized shopping, privacy protection, global fashion brands" />
         <meta property="og:title" content="Home - Vibe Search" />
