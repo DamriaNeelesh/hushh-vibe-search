@@ -184,6 +184,7 @@ export default function SearchResults() {
           size="full"
           blockScrollOnMount={false} // Allow body scrolling when the drawer is open
         >
+          
           <DrawerOverlay/>
           <DrawerContent
             borderTopRadius="10px"
