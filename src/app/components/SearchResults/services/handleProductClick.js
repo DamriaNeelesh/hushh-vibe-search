@@ -3,7 +3,7 @@ const handleProductClick = (product, setSelectedProduct, setIsDrawerOpen, onOpen
     if (isMobile) {
       mobileProductDrawer(product, setSelectedProduct, setIsDrawerOpen, onOpen); // Open mobile drawer
     } else {
-      openDrawer(product); // Open desktop drawer
+      openDrawer(product, setSelectedProduct, setIsDrawerOpen, onOpen); // Open desktop drawer
     }
   };
 
