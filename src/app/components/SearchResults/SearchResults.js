@@ -90,20 +90,13 @@ export default function SearchResults() {
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
       {/* Mobile UI Drawer */}
-      <Drawer
-        isOpen={isOpen}
-        placement="bottom"
-        onClose={onClose}
-        size="full"
-        blockScrollOnMount={false} // Allow body scrolling when the drawer is open
-      >
-        <DrawerOverlay />
-        <DrawerContent
-          borderTopRadius="10px"
-          display={{ base: "block", md: "none" }}
-          height="80vh" // Set the height to 80% of the viewport height
-          marginTop="10vh" // Add margin to create space above the drawer
-          overflowY="auto" // Enable vertical scrolling
+      {isMobile && (
+        <Drawer
+          isOpen={isOpen}
+          placement="bottom"
+          onClose={onClose}
+          size="full"
+          blockScrollOnMount={false} // Allow body scrolling when the drawer is open
         >
           <DrawerCloseButton />
           <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
@@ -196,6 +189,7 @@ export default function SearchResults() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
+    )}
 
       {/* <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
