@@ -6,6 +6,7 @@ import styles from "./ToBeLaunched.module.css";
 import WelcomeAboardModal from "./WelcomeAboardModal/WelcomeAboardModal";
 import Home2 from "../Home2/home2";
 import Resources from "../../resources/resources";
+import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 
 export const metadata = {
     title: "Vibe Search - match your perfect outfit with us",
@@ -37,6 +38,7 @@ export default function ToBeLaunched() {
         </div>
 
       </div>
+      <CheckYourVibe></CheckYourVibe>
       <Home2></Home2>
       <div className={styles.ToBeLaunched__Footer}>
         <utilities.Footer></utilities.Footer>
