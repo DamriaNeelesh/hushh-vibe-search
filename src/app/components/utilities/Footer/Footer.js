@@ -16,7 +16,7 @@ export default function Footer() {
         <div className={`${styles.AboutUs__RightWrapper}`}>
           <Link
             className={`${styles.AboutUs__UpperFooterText}`}
-            href={'/aboutUs'}
+            href={'/about-us'}
           >
             About
           </Link>
