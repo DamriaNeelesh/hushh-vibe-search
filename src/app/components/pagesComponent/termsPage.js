@@ -390,6 +390,7 @@ const TermsPage = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
                   color={"#C9AD9D"}
+                  as={'h1'}
                 >
                  Vibe Search Terms of Use
                 </Heading>
