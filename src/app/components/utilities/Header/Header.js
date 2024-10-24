@@ -3,7 +3,10 @@ import { HStack, Flex, Image } from "@chakra-ui/react";
 import { FiHeart } from "react-icons/fi";
 import utilities from "../utilities";
 import VibeText from "../../svg/vibeText.svg";
+import { useRouter } from "next/navigation";
 export default function Header() {
+  let router=useRouter();
+  
   return (
     <HStack
       bg="white"
