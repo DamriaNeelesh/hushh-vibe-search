@@ -85,12 +85,9 @@ export default function Home() {
     const fetchUserDetails = async () => {
       const user = await getUserDetails(setUserDetails);
       if (!user) {
-        console.error("No user data found.");
       } else {
-        console.log("User data set successfully:", user);
         return user;
       }
-      console.log("Name:", user.data.user.user_metadata?.full_name);
     };
     fetchUserDetails();
   }, []); // Ensure this runs only on component mount
@@ -108,9 +105,7 @@ export default function Home() {
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
-    } catch (error) {
-      console.error("Error signing in:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -128,9 +123,9 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(()=>{
-    services.authentication.getSession()
-  }, [])
+  useEffect(() => {
+    services.authentication.getSession();
+  }, []);
 
   return (
     <>
@@ -141,7 +136,10 @@ export default function Home() {
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta
+          property="og:description"
+          content={metadata.openGraph.description}
+        />
         <meta property="og:image" content={metadata.openGraph.images[0]} />
         <meta property="og:url" content={metadata.openGraph.url} />
         <meta name="twitter:card" content={metadata.twitter.card} />

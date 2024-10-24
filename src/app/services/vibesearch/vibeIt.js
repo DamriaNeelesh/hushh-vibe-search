@@ -13,7 +13,6 @@ export default async function vibeIt(
   setNoMoreResults,
   setBrands
 ) {
-  console.log("inside vibe it");
   if (mainQuery == "" && secondaryQuery == "") return;
   let data = {
     query: mainQuery,
@@ -25,7 +24,7 @@ export default async function vibeIt(
   };
   let header = {
     headers: {
-      apitoken: access_token? access_token: config.guestModeAccessToken,
+      apitoken: access_token ? access_token : config.guestModeAccessToken,
     },
   };
   try {
@@ -45,8 +44,7 @@ export default async function vibeIt(
       }
     }
     setState({ ...searchResults, ...products });
-    console.log(results["data"]);
-    console.log('Results:',results.data.brands)
+
     setBrands(results.data.brands); // Update brands state
   } catch (e) {}
 }

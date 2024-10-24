@@ -1,11 +1,15 @@
 "use client";
 import Link from "next/link";
 import styles from "./SearchBox.module.css";
-import Resources from '../../../resources/resources';
+import Resources from "../../../resources/resources";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBox(placeholder = "What are you looking for?", openMenu, query) {
+export default function SearchBox(
+  placeholder = "What are you looking for?",
+  openMenu,
+  query
+) {
   const [fileImg, setFile] = useState(null);
   const [fileInputElement, setFileInput] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,20 +18,22 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
     setFileInput(document.getElementById("searchBox__fileInput"));
   }, []);
 
-  console.log(query);
   const router = useRouter();
 
   const handleSearch = () => {
     if (localStorage && searchQuery !== "") {
       const searchHistory = localStorage.getItem("vibesearch-history") || "";
-      localStorage.setItem("vibesearch-history", searchHistory + "," + searchQuery);
+      localStorage.setItem(
+        "vibesearch-history",
+        searchHistory + "," + searchQuery
+      );
     }
     router.push(`/components/SearchResults?query=${searchQuery}`);
   };
 
   return (
     <>
-      {query !== 'wishlist' ? (
+      {query !== "wishlist" ? (
         <div className={`${styles.searchBox}`}>
           <div
             className={`${styles.searchBox__leftContainer}`}
@@ -38,11 +44,18 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
             <Link
               onClick={() => {
                 if (localStorage && searchQuery !== "") {
-                  const searchHistory = localStorage.getItem("vibesearch-history") || "";
-                  localStorage.setItem("vibesearch-history", searchHistory + "," + searchQuery);
+                  const searchHistory =
+                    localStorage.getItem("vibesearch-history") || "";
+                  localStorage.setItem(
+                    "vibesearch-history",
+                    searchHistory + "," + searchQuery
+                  );
                 }
               }}
-              href={"SearchResults?" + (searchQuery !== "" ? "query="+searchQuery : "")}
+              href={
+                "SearchResults?" +
+                (searchQuery !== "" ? "query=" + searchQuery : "")
+              }
             >
               <img
                 className={`${styles.searchBox__go}`}
@@ -53,7 +66,11 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
             <input
               type="text"
               id="searchBox__search"
-              placeholder={placeholder === "entryEmpty" ? "What are you looking for?" : placeholder}
+              placeholder={
+                placeholder === "entryEmpty"
+                  ? "What are you looking for?"
+                  : placeholder
+              }
               className={`${styles.searchBox__search} cabin`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -93,7 +110,11 @@ export default function SearchBox(placeholder = "What are you looking for?", ope
 
                     // Storing the image in localStorage
                     localStorage.setItem("image-file", temp[1]);
-                    router.push(`/components/SearchResults?imageSearch=${temp[1].slice(-5)}`);
+                    router.push(
+                      `/components/SearchResults?imageSearch=${temp[1].slice(
+                        -5
+                      )}`
+                    );
                   };
                   reader.readAsDataURL(file);
                 }

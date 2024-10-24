@@ -11,7 +11,7 @@ import Footer from "../components/footer";
 import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
-import Home2 from '../components/Home2/home2'
+import Home2 from "../components/Home2/home2";
 import { metadata } from "../components/pagesComponent/searchPage"; // Import metadata
 import Head from "next/head";
 const Search = () => {
@@ -42,21 +42,22 @@ const Search = () => {
       try {
         const response = await axios.get("/api/user/session");
         setUserImage(response.data.imageUrl);
-      } catch (error) {
-        console.error("Error fetching user session:", error);
-      }
+      } catch (error) {}
     };
     fetchUserData();
   }, []);
 
   return (
     <>
-     <Head>
+      <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta
+          property="og:description"
+          content={metadata.openGraph.description}
+        />
         <meta property="og:image" content={metadata.openGraph.images[0]} />
         <meta property="og:url" content={metadata.openGraph.url} />
         <meta name="twitter:card" content={metadata.twitter.card} />
@@ -77,7 +78,12 @@ const Search = () => {
           fontWeight="bold"
           mb={{ md: "3rem", base: "1.5rem" }}
         >
-          <Image src={VibeText} alt="Vibe Search" style={{cursor:'pointer'}} onClick={() => router.push('/')}/>
+          <Image
+            src={VibeText}
+            alt="Vibe Search"
+            style={{ cursor: "pointer" }}
+            onClick={() => router.push("/")}
+          />
         </Box>
         <Box
           width={{ base: "90%", md: "60%", lg: "40%" }}

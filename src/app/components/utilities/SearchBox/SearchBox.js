@@ -34,7 +34,7 @@ export default function SearchBox(props) {
   const handleClearSearch = () => {
     setSearchQuery(""); // Clear the search query state
   };
-  // console.log(props.boxWidth);
+
   return (
     <Suspense fallback={<SearchBarFallback />}>
       <div

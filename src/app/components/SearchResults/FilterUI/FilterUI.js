@@ -1,5 +1,12 @@
 "use client";
-import { DrawerCloseButton, Slider, SliderFilledTrack, SliderThumb, SliderTrack, useDisclosure } from "@chakra-ui/react";
+import {
+  DrawerCloseButton,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import FilterAccordion from "./FilterAccordian/FilterAccordian";
 import Image from "next/image";
@@ -26,7 +33,6 @@ import brands from "../../../resources/config/brands";
 import { useMediaQuery } from "@chakra-ui/react";
 import diceAnimation from "../../gif/diceAnimation.json";
 
-
 const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
@@ -36,7 +42,6 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
     setSelectedItems((prev) =>
       prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
     );
-    console.log("selected items: ", selectedItems.length);
   };
 
   const clearFilters = () => {
@@ -92,7 +97,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
           _hover={{ bg: "none", cursor: "pointer" }}
           borderColor="#222222"
           onClick={onOpen}
-          fontSize={{md:'1rem',base:'0.65rem'}}
+          fontSize={{ md: "1rem", base: "0.65rem" }}
           gap={{ md: "1rem", base: "0.5rem" }}
         >
           All Filters (1)
@@ -165,33 +170,35 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
       </HStack>
 
       <Drawer
-          placement="left"
-          onClose={onClose}
-          isOpen={isOpen}
-          size={{ md: "sm" }}
-        >
-          <DrawerOverlay />
-          
-          <DrawerContent>
+        placement="left"
+        onClose={onClose}
+        isOpen={isOpen}
+        size={{ md: "sm" }}
+      >
+        <DrawerOverlay />
+
+        <DrawerContent>
           <DrawerCloseButton />
 
-            <DrawerHeader
-              color={"#222"}
-              fontSize={{ md: "1.75rem", base: "1.2rem" }}
-              textOverflow={"ellipsis"}
-              whiteSpace={"nowrap"}
-              fontWeight={"400"}
-              fontFamily={"Figtree, sans-serif"}
-            >
-              All Filters
-            </DrawerHeader>
-            <DrawerBody >
-              <FilterAccordion selectedBrands={selectedBrands}
-            setSelectedBrands={setSelectedBrands}
-            brands={brands}/>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
+          <DrawerHeader
+            color={"#222"}
+            fontSize={{ md: "1.75rem", base: "1.2rem" }}
+            textOverflow={"ellipsis"}
+            whiteSpace={"nowrap"}
+            fontWeight={"400"}
+            fontFamily={"Figtree, sans-serif"}
+          >
+            All Filters
+          </DrawerHeader>
+          <DrawerBody>
+            <FilterAccordion
+              selectedBrands={selectedBrands}
+              setSelectedBrands={setSelectedBrands}
+              brands={brands}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };

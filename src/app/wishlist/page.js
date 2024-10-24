@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Text } from "@chakra-ui/react";
 import getWishList from "../services/wishlist/getWishlist";
@@ -12,12 +12,12 @@ export default function Wishlist() {
       let access_token = await services.authentication.getAccessToken();
       getWishList(access_token, setWishlistItems);
     }
-    console.log('Wishlist Items:',wishlistItems)
+
     fetchWishlist();
   }, []);
 
   return (
-    <Box p={6} minH={'100vh'} color={'white'}>
+    <Box p={6} minH={"100vh"} color={"white"}>
       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
         {wishlistItems.map((item, index) => (
           <Box

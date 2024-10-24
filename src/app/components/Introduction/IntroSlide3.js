@@ -1,71 +1,69 @@
-'use client'
+"use client";
 import { VStack, Text, Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "../header";
-import Card1 from '../svg/card1.svg'
+import Card1 from "../svg/card1.svg";
 import getUserDetails from "../../services/authentication/getUserDetails";
 
-const IntroSlide3 = ({userName}) => {
+const IntroSlide3 = ({ userName }) => {
+  const [userDetails, setUserDetails] = useState(null);
+  const [name, setName] = useState();
 
-    const [userDetails, setUserDetails] = useState(null);
-    const [name, setName] = useState();
-
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-          const user = await getUserDetails(setUserDetails);
-          if (!user) {
-            console.error("No user data found.");
-          } else {
-            console.log("User data set successfully:", user);
-            setName(user.data.user.user_metadata?.full_name)
-            return user;
-          }
-          console.log("Name:", user.data.user.user_metadata?.full_name);
-        };
-        fetchUserDetails();
-      }, []);
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const user = await getUserDetails(setUserDetails);
+      if (!user) {
+      } else {
+        setName(user.data.user.user_metadata?.full_name);
+        return user;
+      }
+    };
+    fetchUserDetails();
+  }, []);
 
   return (
     <>
-    <div className="min-h-screen">
-      <Header/>
-      <VStack
-        gap={{ md: "2rem", base: "1rem" }}
-        textAlign={"center"}
-        alignItems={"center"}
-        fontFamily={"Figtree, sans-serif"}
-        mt={{md:'4rem',base:'1.5rem'}}
-      >
-        <Text
-          color={"#221812"}
-          fontWeight={"700"}
-          lineHeight={{ md: "44px", base: "32px" }}
-          letterSpacing={"-0.25px"}
-          fontSize={{md:'2.5rem',base:'1.25rem'}}
+      <div className="min-h-screen">
+        <Header />
+        <VStack
+          gap={{ md: "2rem", base: "1rem" }}
+          textAlign={"center"}
+          alignItems={"center"}
+          fontFamily={"Figtree, sans-serif"}
+          mt={{ md: "4rem", base: "1.5rem" }}
         >
-          Vibe Check
-        </Text>
-        <VStack>
-        <Text
-          fontWeight={"400"}
-          fontSize={{ md: "2rem", base: "1rem" }}
-          lineHeight={{ md: "38.4px", base: "32px" }}
-          color={"#624737"}
-        >
-          Love that{" "}
-          <span style={{ fontWeight: "700" }}>aesthetic,{name || userName}!</span>{" "}
-        </Text>
-        <Text
-          fontWeight={"400"}
-          fontSize={{ md: "2rem", base: "1rem" }}
-          lineHeight={{ md: "38.4px", base: "32px" }}
-          color={"#624737"}
-        >
-          Its so practical and chic. You have great taste.
-        </Text>
-        </VStack>
-        <div className="card-container">
+          <Text
+            color={"#221812"}
+            fontWeight={"700"}
+            lineHeight={{ md: "44px", base: "32px" }}
+            letterSpacing={"-0.25px"}
+            fontSize={{ md: "2.5rem", base: "1.25rem" }}
+          >
+            Vibe Check
+          </Text>
+          <VStack>
+            <Text
+              fontWeight={"400"}
+              fontSize={{ md: "2rem", base: "1rem" }}
+              lineHeight={{ md: "38.4px", base: "32px" }}
+              color={"#624737"}
+            >
+              Love that{" "}
+              <span style={{ fontWeight: "700" }}>
+                aesthetic,{name || userName}!
+              </span>{" "}
+            </Text>
+            <Text
+              fontWeight={"400"}
+              fontSize={{ md: "2rem", base: "1rem" }}
+              lineHeight={{ md: "38.4px", base: "32px" }}
+              color={"#624737"}
+            >
+              Its so practical and chic. You have great taste.
+            </Text>
+          </VStack>
+          <div className="card-container">
             <Image src={Card1} alt="Card Front" className="card card-front" />
             {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
             <Box
@@ -137,28 +135,28 @@ const IntroSlide3 = ({userName}) => {
             </Box>
           </div>
 
-        <VStack>
-        <Text
-          color={"#A3765C"}
-          fontWeight={"400"}
-          lineHeight={"28.8px"}
-          fontSize={{ md: "1.5rem", base: "0.85rem" }}
-        >
-          Stay tuned for a smarter way to shop that's tailored to your unique
-          taste.
-        </Text>
-        <Text
-          color={"#A3765C"}
-          fontWeight={"400"}
-          lineHeight={"28.8px"}
-          fontSize={{ md: "1.5rem", base: "0.85rem" }}
-        >
-          We'll notify you as soon as we're ready to introduce you to your
-          personalised shopping experience.
-        </Text>
-        </VStack>  
-      </VStack>
-    </div>
+          <VStack>
+            <Text
+              color={"#A3765C"}
+              fontWeight={"400"}
+              lineHeight={"28.8px"}
+              fontSize={{ md: "1.5rem", base: "0.85rem" }}
+            >
+              Stay tuned for a smarter way to shop that's tailored to your
+              unique taste.
+            </Text>
+            <Text
+              color={"#A3765C"}
+              fontWeight={"400"}
+              lineHeight={"28.8px"}
+              fontSize={{ md: "1.5rem", base: "0.85rem" }}
+            >
+              We'll notify you as soon as we're ready to introduce you to your
+              personalised shopping experience.
+            </Text>
+          </VStack>
+        </VStack>
+      </div>
     </>
   );
 };

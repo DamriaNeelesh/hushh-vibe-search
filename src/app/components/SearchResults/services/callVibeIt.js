@@ -23,7 +23,7 @@ export default async function callVibeIt(
     20,
     (results) => {
       setSearchResults(results);
-      console.log("Search Results:", searchResults);
+
       loadingBarRef.current.complete(); // Complete the loading bar
       setIsLoading(false); // Set loading to false when data is fetched
     },

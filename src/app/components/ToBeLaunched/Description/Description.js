@@ -10,9 +10,7 @@ export default function Description() {
   const handleGoogleSignIn = async () => {
     try {
       await services.authentication.googleSignIn();
-    } catch (error) {
-      console.error("Error signing in:", error);
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     setInterval(() => {

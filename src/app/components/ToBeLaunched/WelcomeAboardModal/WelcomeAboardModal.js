@@ -15,12 +15,9 @@ export default function WelcomeABoardModal() {
     const fetchUserDetails = async () => {
       const user = await services.authentication.getUserDetails(setUserDetails);
       if (!user) {
-        console.error("No user data found.");
       } else {
-        // console.log("User data set successfully:", user);
         return user;
       }
-      // console.log("Name:", user.data.user.user_metadata?.full_name);
     };
     fetchUserDetails();
   }, []); // Ensure this runs only on component mount
@@ -54,7 +51,11 @@ export default function WelcomeABoardModal() {
           <br></br>
           <br></br>
           <div className="card-container">
-            <Image src={Card1} alt="Hushh Card Front" className="card card-front" />
+            <Image
+              src={Card1}
+              alt="Hushh Card Front"
+              className="card card-front"
+            />
             {/* <Image src={Card2} alt="Card Back" className="card card-back" /> */}
             <Box
               zIndex={"1"}
