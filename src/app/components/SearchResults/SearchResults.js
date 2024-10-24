@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import fashionDiceRoll from "./services/fashionDiceRoll";
+import ImageNotFound from './ImageNotFound/ImageNotFound'
 import {
   Box,
   Text,
@@ -67,6 +68,7 @@ export default function SearchResults() {
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
   const toast = useToast();
+  let [errorImages, setErrorImages] = useState(new Set([]));
   useEffect(() => {
     services.authentication.getSession();
   }, []);
@@ -433,23 +435,45 @@ export default function SearchResults() {
                             justifyContent="center"
                             // bg="gray.100"
                           >
-                            <ChakraImage
-                              src={image || "/path/to/default-image.jpg"}
-                              alt={product.product_title}
-                              objectFit="contain" // Ensures the image is fully visible and not cropped
-                              boxSize="100%" // Ensures the image fills the container
-                              // onClick={() => openDrawer(product)}
-                              onClick={() =>
-                                handleProductClick(
-                                  product,
-                                  setSelectedProduct,
-                                  setIsDrawerOpen,
-                                  onOpen,
-                                  isMobile,
-                                  openDrawer
-                                )
-                              } // Use the new handler
-                            />
+                            {errorImages.has(index) ? (
+                              <ImageNotFound
+                                brand={product.brand}
+                                onClick={() =>
+                                  handleProductClick(
+                                    product,
+                                    setSelectedProduct,
+                                    setIsDrawerOpen,
+                                    onOpen,
+                                    isMobile,
+                                    openDrawer
+                                  )
+                                }
+                              ></ImageNotFound>
+                            ) : (
+                              <ChakraImage
+                                onError={(event) => {
+                                  event.target.style.display = "none";
+                                  setErrorImages(
+                                    new Set([...errorImages, index])
+                                  );
+                                }}
+                                src={image || "/path/to/default-image.jpg"}
+                                alt={product.product_title}
+                                objectFit="contain" // Ensures the image is fully visible and not cropped
+                                boxSize="100%" // Ensures the image fills the container
+                                // onClick={() => openDrawer(product)}
+                                onClick={() =>
+                                  handleProductClick(
+                                    product,
+                                    setSelectedProduct,
+                                    setIsDrawerOpen,
+                                    onOpen,
+                                    isMobile,
+                                    openDrawer
+                                  )
+                                } // Use the new handler
+                              />
+                            )}
                             <Box
                               className="favorite-button"
                               position="absolute"
