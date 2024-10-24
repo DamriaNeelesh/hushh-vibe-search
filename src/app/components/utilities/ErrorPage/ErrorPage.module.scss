@@ -1,0 +1,44 @@
+.ErrorPage {
+    width: 100vw;
+    height: 96vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    // /margin-top: 200pt;
+    .ErrorPage__Wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .ErrorPage__Title {
+            font-weight: 600;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .ErrorPage__SubTitle {
+            font-weight: 400;
+            font-size: 16px;
+            text-align: center;
+            margin-top:3vh;
+            width: 38vw;
+        }
+
+        .ErrorPage__Code {
+            font-weight: 800;
+            font-size: 360px;
+            color: #6247370D;
+            position: absolute;
+            top: 8vh;
+            left: 50pt;
+            z-index: 1;
+        }
+
+        .ErrorPage__Image {
+            height: 41vh;
+
+        }
+    }
+}
