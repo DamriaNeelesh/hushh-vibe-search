@@ -137,7 +137,7 @@ export default function SearchResults() {
                   >
                     <ChakraImage
                       src={image}
-                      alt={`${selectedProduct.product_title} - ${index + 1}`}
+                      // alt={`${selectedProduct.product_title} - ${index + 1}`}
                       objectFit="contain"
                       boxSize="100%"
                     />
