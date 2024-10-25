@@ -38,8 +38,9 @@ export default async function vibeIt(
       return;
     }
     let products = {};
+    console.log(results["data"]);
     for (let key in results["data"]) {
-      if (results["data"].hasOwnProperty(key)) {
+      if (results["data"].hasOwnProperty(key) && key!="brands") {
         products[currentPage + " " + key] = results["data"][key];
       }
     }
