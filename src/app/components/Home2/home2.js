@@ -12,6 +12,7 @@ import Image from "next/image";
 import ImageUpload from "../../components/Upload/uploadComponent";
 import styles from "./Home.module.css";
 import AnimatedSearchBox from "./AnimatedSearchbox/AnimatedSearchBox";
+import Resources from "../../resources/resources";
 
 const Home2 = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -40,16 +41,31 @@ const Home2 = () => {
             className={`${styles.Home2__Vibe} `}
             src={Vintage}
             alt="Vintage Patterns"
+            onClick={() => {
+              window.location.href =
+                Resources.config.redirect_url +
+                "/components/SearchResults?query=Vintage Patterns";
+            }}
           />
           <Image
             className={`${styles.Home2__Vibe}`}
             src={CoffeeLoving}
             alt="Coffee Loving Bookworm"
+            onClick={() => {
+              window.location.href =
+                Resources.config.redirect_url +
+                "/components/SearchResults?query=Coffee Loving Bookworms";
+            }}
           />
           <Image
             className={`${styles.Home2__Vibe} `}
             src={CyberPunk}
             alt="Cyberpunk Neon Outfits"
+            onClick={() => {
+              window.location.href =
+                Resources.config.redirect_url +
+                "/components/SearchResults?query=Cyberpunk Neon Outfits";
+            }}
           />
         </div>
 
@@ -74,7 +90,6 @@ const Home2 = () => {
             inspired by that cool movie poster".
           </div>
           <div className={`${styles.Home2__SearchBox} `}>
-            {/* <SearchBox /> */}
             <AnimatedSearchBox />
           </div>
           <div className={`${styles.Home2__SearchBoxMobile} `}>
