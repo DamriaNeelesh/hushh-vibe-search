@@ -11,6 +11,8 @@ import Model2 from "../svg/home2/model2.svg";
 import Image from "next/image";
 import ImageUpload from "../../components/Upload/uploadComponent";
 import styles from "./Home.module.css";
+import AnimatedSearchBox from "./AnimatedSearchbox/AnimatedSearchBox";
+
 const Home2 = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -72,7 +74,8 @@ const Home2 = () => {
             inspired by that cool movie poster".
           </div>
           <div className={`${styles.Home2__SearchBox} `}>
-            <SearchBox />
+            {/* <SearchBox /> */}
+            <AnimatedSearchBox />
           </div>
           <div className={`${styles.Home2__SearchBoxMobile} `}>
             <SearchBox boxWidth={88} />
@@ -90,9 +93,7 @@ const Home2 = () => {
             </Text>
           </div>
           <div className={`${styles.Home2__TaglineMobile} `}>
-            <div>
-              click the vibes on the Below to check them out
-            </div>
+            <div>click the vibes on the Below to check them out</div>
           </div>
         </div>
 

@@ -18,4 +18,19 @@
 }
 .SearchBox .SearchBox__Icon {
   cursor: pointer;
+}
+
+.SearchBox__Input:-moz-placeholder {
+  animation: fadeInPlaceholder 2s forwards;
+  -moz-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes fadeInPlaceholder {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }/*# sourceMappingURL=SearchBox.module.css.map */

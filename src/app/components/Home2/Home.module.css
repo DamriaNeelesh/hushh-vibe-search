@@ -177,4 +177,11 @@
     width: 35vw;
     left: 43vw;
   }
+}
+
+.Home2__SearchGif {
+  position: relative;
+  z-index: 2;
+  top: -200px;
+  left: 200px;
 }/*# sourceMappingURL=Home.module.css.map */

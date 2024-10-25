@@ -1,0 +1,25 @@
+"use client";
+import utilities from "../../utilities/utilities";
+import Resources from "../../../resources/resources";
+import { useEffect, useState } from "react";
+export default function AnimatedSearchBox() {
+  let [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    let index = 0;
+    setInterval(() => {
+      setSearchQuery(Resources.config.queries[index]);
+      index++;
+      if(index==Resources.config.queries.length){
+        index=0;
+      }
+    }, 3000);
+  }, []);
+//   useEffect(() => {
+//     console.log(searchQuery);
+//   }, [searchQuery]);
+  return (
+    <div>
+      <utilities.SearchBox content={searchQuery}></utilities.SearchBox>
+    </div>
+  );
+}

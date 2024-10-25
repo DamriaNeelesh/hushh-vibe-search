@@ -16,8 +16,23 @@
     .SearchBox__Input:focus {
         outline: none;
     }
+    
 
     .SearchBox__Icon{
         cursor: pointer;
     }
 }
+
+.SearchBox__Input:-moz-placeholder {
+    animation: fadeInPlaceholder 2s forwards;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes fadeInPlaceholder {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

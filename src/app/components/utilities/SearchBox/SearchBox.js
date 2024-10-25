@@ -8,6 +8,7 @@ import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
 
 export default function SearchBox(props) {
+  // console.log(props.content)
   const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   // Get initial query from the URL when the component mounts
@@ -18,6 +19,7 @@ export default function SearchBox(props) {
       setSearchQuery(initialQuery); // Set the state with the initial query
     }
   }, []);
+
   useEffect(() => {
     setTimeout(() => {
       !isLoggedIn ? services.authentication.isLoggedIn(setIsLoggedIn) : "";
@@ -48,6 +50,7 @@ export default function SearchBox(props) {
           className={styles.SearchBox__Input}
           id="SearchBox__Input"
           value={searchQuery} // Controlled input for search query
+          placeholder={props.content}
           onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
           onKeyDown={handleSearch} // Handle Enter key for search
           style={{

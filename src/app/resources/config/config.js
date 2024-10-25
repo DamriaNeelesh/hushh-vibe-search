@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import brands from "./brands";
+import queries from './queries'
 const config = {
   SUPABASE_URL: "https://eaeokyefsdfamwqqzfko.supabase.co",
   SUPABASE_ANON_KEY:
@@ -17,6 +18,7 @@ const config = {
       ? "https://vibesearch.ai"
       : "http://localhost:3000",
   brands: brands,
+  queries: queries
 };
 
 function createSupabaseClient() {
