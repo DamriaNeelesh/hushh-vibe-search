@@ -1,9 +1,9 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import resources from "./resources/resources";
 import styles from './SwipeGame.module.css'
-
+import { useMediaQuery } from "@chakra-ui/react";
 const SwipeGame = () => {
   const cardData = [
     {
@@ -42,7 +42,14 @@ const SwipeGame = () => {
 
 const Card = ({ id, url, setCards, cards }) => {
   const x = useMotionValue(0);
-
+  const [isMobile] = useMediaQuery("(max-width: 900px)");
+  let [windowWidth, setWindowWidth] = useState();
+  useEffect(() => { 
+    setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, [])
   const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
 
