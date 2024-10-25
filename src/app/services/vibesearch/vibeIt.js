@@ -46,5 +46,7 @@ export default async function vibeIt(
     setState({ ...searchResults, ...products });
 
     setBrands(results.data.brands); // Update brands state
-  } catch (e) {}
+  } catch (e) {
+    
+  }
 }
