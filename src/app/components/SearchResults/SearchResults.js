@@ -83,9 +83,14 @@ export default function SearchResults() {
       setBrands
     );
   }, [searchParams, currentPage, selectedBrands, noMoreResults]);
+
   const additionalImages = selectedProduct?.additional_images
     ? JSON.parse(selectedProduct.additional_images)
     : [];
+  
+  const allImages = [selectedProduct?.image, ...additionalImages];
+
+  
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
@@ -120,7 +125,7 @@ export default function SearchResults() {
                 autoPlay={true}
                 swipeable={true}
               >
-                {additionalImages.map((image, index) => (
+                {allImages.map((image, index) => (
                   <Box
                     key={index}
                     display="flex"
@@ -641,7 +646,7 @@ export default function SearchResults() {
                     autoPlay={true}
                     swipeable={true}
                   >
-                    {additionalImages.map((image, index) => {
+                    {allImages.map((image, index) => {
                       image = image.replace("width=959", "width=600");
 
                       return (
