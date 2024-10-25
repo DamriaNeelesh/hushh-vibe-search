@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import resources from "./resources/resources";
 import styles from './SwipeGame.module.css'
@@ -44,6 +44,10 @@ const SwipeGame = () => {
 };
 
 const Card = ({ id, url, setCards, cards }) => {
+  let [windowWidth, setWindowWidth] = useState();
+  useEffect(()=>{
+    setWindowWidth(window.innerWidth)
+  })
   const [isMobile] = useMediaQuery("(max-width: 900px)");
   const x = useMotionValue(0);
 
@@ -75,15 +79,15 @@ const Card = ({ id, url, setCards, cards }) => {
         x,
         opacity,
         rotate,
-        transition: isMobile? "0.4s transform" :"0.125s transform",
+        transition: isMobile? "0.75s transform" :"0.125s transform",
       }}
       animate={{
         scale: isFront ? 1 : 0.98,
       }}
       drag={isFront ? "x" : false}
       dragConstraints={{
-        left: isMobile? -50: 0,
-        right: isMobile? 300 :0,
+        left: isMobile? -50/393*windowWidth: 0,
+        right: isMobile? 300/393*windowWidth :0,
       }}
       onDragEnd={handleDragEnd}
     />
