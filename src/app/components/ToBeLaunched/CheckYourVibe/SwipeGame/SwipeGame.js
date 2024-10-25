@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import resources from "./resources/resources";
 import styles from './SwipeGame.module.css'
-
+import { useMediaQuery } from "@chakra-ui/react";
 const SwipeGame = () => {
+  
   const cardData = [
     {
       id: 1,
@@ -43,6 +44,7 @@ const SwipeGame = () => {
 };
 
 const Card = ({ id, url, setCards, cards }) => {
+  const [isMobile] = useMediaQuery("(max-width: 900px)");
   const x = useMotionValue(0);
 
   const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
@@ -73,15 +75,15 @@ const Card = ({ id, url, setCards, cards }) => {
         x,
         opacity,
         rotate,
-        transition: "0.125s transform",
+        transition: isMobile? "0.4s transform" :"0.125s transform",
       }}
       animate={{
         scale: isFront ? 1 : 0.98,
       }}
       drag={isFront ? "x" : false}
       dragConstraints={{
-        left: 0,
-        right: 0,
+        left: isMobile? -50: 0,
+        right: isMobile? 300 :0,
       }}
       onDragEnd={handleDragEnd}
     />
