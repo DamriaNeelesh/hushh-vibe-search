@@ -73,17 +73,20 @@ const Card = ({ id, url, setCards, cards }) => {
         x,
         opacity,
         rotate,
-        transition: "0.125s transform",
+        transition: isMobile? "0.05s transform" :"0.125s transform",
       }}
       animate={{
         scale: isFront ? 1 : 0.98,
       }}
       drag={isFront ? "x" : false}
       dragConstraints={{
-        left: 0,
-        right: 0,
+        left: isMobile? (-50/393*windowWidth)+10: 0,
+        right: isMobile? 300/393*windowWidth :0,
       }}
+      dragMomentum={true}
       onDragEnd={handleDragEnd}
+      dragTransition={{  bounceDamping: 30, bounceStiffness: 1000 }}
+      dragElastic={1}
     />
   );
 };
