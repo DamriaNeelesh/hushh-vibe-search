@@ -26,7 +26,9 @@ export default function Description() {
       style={{ gap: "1rem", display: "flex", flexDirection: "column" }}
     >
       <div className={`${styles.Description__Tagline} figtree`}>
-        <h1>Find Your Vibe. Shop Your Style.</h1>
+          Find Your Vibe.
+          <br></br>
+          Shop Your Style.
       </div>
       <div className={`${styles.Description__SearchBox}`}>
         <utilities.SearchBox boxWidth={36}></utilities.SearchBox>

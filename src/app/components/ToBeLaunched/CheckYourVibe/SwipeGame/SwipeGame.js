@@ -30,9 +30,7 @@ const SwipeGame = () => {
   const [cards, setCards] = useState(cardData);
 
   return (
-    <div
-      className="grid place-items-center"
-    >
+    <div className="grid place-items-center">
       {cards.map((card) => {
         return (
           <Card key={card.id} cards={cards} setCards={setCards} {...card} />
@@ -92,4 +90,3 @@ const Card = ({ id, url, setCards, cards }) => {
 };
 
 export default SwipeGame;
-
