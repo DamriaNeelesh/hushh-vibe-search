@@ -58,6 +58,7 @@ export default function CompaniesMarquee(props) {
     >
       {logos.map((logoArray, index) => (
         <Marquee
+          autoFill={true}
           key={index}
           direction={index % 2 === 0 ? "left" : "right"}
           speed={50} // Adjust speed as needed
