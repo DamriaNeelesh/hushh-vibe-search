@@ -33,7 +33,7 @@ const Home2 = () => {
   };
 
   return (
-    <>
+    <div className={`${styles.Home2Wrapper} `}>
       <div className={`${styles.Home2} figtree`}>
         {/* Left Section */}
         <div className={`${styles.Home2__ChooseAVibe} `}>
@@ -114,54 +114,56 @@ const Home2 = () => {
 
         {/* Image Upload and Link Upload UI */}
       </div>
-      <div className={`${styles.Home2__ImageUpload}`}>
-        {/* Left Section - Image Upload */}
-        <div className={`${styles.Home2__ImageUploadText} figtree`}>
-          <div className={`${styles.Home2__ImageUploadTitle}`}>
-            See It, Find It
-          </div>
-          <Text
-            letterSpacing={"-0.25px"}
-            color={"#606060"}
-            lineHeight={{ md: "27px", base: "25px" }}
-            fontWeight={"400"}
-            fontSize={{ md: "1.25rem", base: "0.75rem" }}
-          >
-            Upload an image - Love that jacket on Instagram? <br></br> Vibe
-            Search will find it (or something even better).
-          </Text>
-          <div className={`${styles.Home2__ImageUploadDialog}`}>
-            <ImageUpload />
-          </div>
-          <div className={`${styles.Home2__Tagline}`}>
+      <div className={`${styles.Home2__ImageUploadWrapper}`}>
+        <div className={`${styles.Home2__ImageUpload}`}>
+          {/* Left Section - Image Upload */}
+          <div className={`${styles.Home2__ImageUploadText} figtree`}>
+            <div className={`${styles.Home2__ImageUploadTitle}`}>
+              See It, Find It
+            </div>
             <Text
-              fontWeight="400"
-              fontSize={{ md: "1rem", base: "0.5rem" }}
-              lineHeight={"19.2px"}
-              color={"#596168CF"}
+              letterSpacing={"-0.25px"}
+              color={"#606060"}
+              lineHeight={{ md: "27px", base: "25px" }}
+              fontWeight={"400"}
+              fontSize={{ md: "1.25rem", base: "0.75rem" }}
             >
-              click the vibes on the left to check them out →
+              Upload an image - Love that jacket on Instagram? <br></br> Vibe
+              Search will find it (or something even better).
             </Text>
+            <div className={`${styles.Home2__ImageUploadDialog}`}>
+              <ImageUpload />
+            </div>
+            <div className={`${styles.Home2__Tagline}`}>
+              <Text
+                fontWeight="400"
+                fontSize={{ md: "1rem", base: "0.5rem" }}
+                lineHeight={"19.2px"}
+                color={"#596168CF"}
+              >
+                click the vibes on the left to check them out →
+              </Text>
+            </div>
           </div>
-        </div>
 
-        {/* Right Section - Models */}
-        <div className={`${styles.Home2__ModelsFlex}`}>
-          <div className={`${styles.Home2__Models}`}>
-            <img
-              src={Model1.src}
-              alt="Vibe Search Model 1"
-              className={`${styles.Home2__Model1}`}
-            />
-            <img
-              src={Model2.src}
-              alt="Vibe Search Model 2"
-              className={`${styles.Home2__Model2}`}
-            />
+          {/* Right Section - Models */}
+          <div className={`${styles.Home2__ModelsFlex}`}>
+            <div className={`${styles.Home2__Models}`}>
+              <img
+                src={Model1.src}
+                alt="Vibe Search Model 1"
+                className={`${styles.Home2__Model1}`}
+              />
+              <img
+                src={Model2.src}
+                alt="Vibe Search Model 2"
+                className={`${styles.Home2__Model2}`}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,7 @@
+.Home2Wrapper{
+    height: 200vh;
+    overflow: hidden;
+}
 .Home2 {
     display: flex;
     justify-content: space-around;
@@ -96,49 +100,57 @@
     .Home2__Vibe {
         margin-top: 30px;
         cursor: pointer;
+
         @media screen and (max-width: 900px) {
             margin-top: 25px;
             width: 68vw;
         }
     }
-    .Home2__Vibe:hover{
+
+    .Home2__Vibe:hover {
         transform: scale(1.2);
         transition: transform 0.3s ease-in;
     }
 }
 
-.Home2__ImageUpload {
-    position: relative;
+.Home2__ImageUploadWrapper {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     width: 100vw;
-
-    @media screen and (max-width: 900px) {
-        flex-direction: column;
-        text-align: center;
-        margin-left: 0;
-    }
-
-    .Home2__ImageUploadText {
+    justify-content: center;
+    align-items: center;
+    .Home2__ImageUpload {
+        position: relative;
         display: flex;
-        text-align: left;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
+        align-items: center;
+        width: 80vw;
 
         @media screen and (max-width: 900px) {
-            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            margin-left: 0;
         }
 
-
-        .Home2__ImageUploadTitle {
-            color: #273434;
-            font-weight: 700;
-            font-size: 40px;
+        .Home2__ImageUploadText {
+            display: flex;
+            text-align: left;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: space-around;
 
             @media screen and (max-width: 900px) {
-                font-size: 32px;
+                align-items: center;
+            }
+
+
+            .Home2__ImageUploadTitle {
+                color: #273434;
+                font-weight: 700;
+                font-size: 40px;
+
+                @media screen and (max-width: 900px) {
+                    font-size: 32px;
+                }
             }
         }
     }
@@ -154,7 +166,8 @@
     }
 
     .Home2__Models {
-
+        width: 30vw;
+        height: 100vh;
         @media screen and (max-width: 900px) {
             margin-top: 20pt;
             width: 100vw;
@@ -165,7 +178,7 @@
             position: relative;
             left: 0;
             top: 0;
-            width: 21vw;
+            height: 56vh;
 
             @media screen and (max-width: 900px) {
                 width: 44vw;
@@ -177,8 +190,8 @@
             z-index: 2;
             position: relative;
             left: 13vw;
-            top: -15vh;
-            width: 17vw;
+            top: -20vh;
+            height: 61vh;
 
             @media screen and (max-width: 900px) {
                 width: 35vw;

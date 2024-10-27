@@ -1,3 +1,8 @@
+.Home2Wrapper {
+  height: 200vh;
+  overflow: hidden;
+}
+
 .Home2 {
   display: flex;
   justify-content: space-around;
@@ -107,21 +112,27 @@
   transition: transform 0.3s ease-in;
 }
 
-.Home2__ImageUpload {
+.Home2__ImageUploadWrapper {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.Home2__ImageUploadWrapper .Home2__ImageUpload {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 80vw;
 }
 @media screen and (max-width: 900px) {
-  .Home2__ImageUpload {
+  .Home2__ImageUploadWrapper .Home2__ImageUpload {
     flex-direction: column;
     text-align: center;
     margin-left: 0;
   }
 }
-.Home2__ImageUpload .Home2__ImageUploadText {
+.Home2__ImageUploadWrapper .Home2__ImageUpload .Home2__ImageUploadText {
   display: flex;
   text-align: left;
   align-items: flex-start;
@@ -129,17 +140,17 @@
   justify-content: space-around;
 }
 @media screen and (max-width: 900px) {
-  .Home2__ImageUpload .Home2__ImageUploadText {
+  .Home2__ImageUploadWrapper .Home2__ImageUpload .Home2__ImageUploadText {
     align-items: center;
   }
 }
-.Home2__ImageUpload .Home2__ImageUploadText .Home2__ImageUploadTitle {
+.Home2__ImageUploadWrapper .Home2__ImageUpload .Home2__ImageUploadText .Home2__ImageUploadTitle {
   color: #273434;
   font-weight: 700;
   font-size: 40px;
 }
 @media screen and (max-width: 900px) {
-  .Home2__ImageUpload .Home2__ImageUploadText .Home2__ImageUploadTitle {
+  .Home2__ImageUploadWrapper .Home2__ImageUpload .Home2__ImageUploadText .Home2__ImageUploadTitle {
     font-size: 32px;
   }
 }
@@ -150,6 +161,10 @@
     justify-content: center;
     align-items: center;
   }
+}
+.Home2__ModelsFlex .Home2__Models {
+  width: 30vw;
+  height: 100vh;
 }
 @media screen and (max-width: 900px) {
   .Home2__ModelsFlex .Home2__Models {
@@ -162,7 +177,7 @@
   position: relative;
   left: 0;
   top: 0;
-  width: 21vw;
+  height: 56vh;
 }
 @media screen and (max-width: 900px) {
   .Home2__ModelsFlex .Home2__Models .Home2__Model1 {
@@ -174,8 +189,8 @@
   z-index: 2;
   position: relative;
   left: 13vw;
-  top: -15vh;
-  width: 17vw;
+  top: -20vh;
+  height: 61vh;
 }
 @media screen and (max-width: 900px) {
   .Home2__ModelsFlex .Home2__Models .Home2__Model2 {
