@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import {
   Accordion,
@@ -21,9 +21,13 @@ const FilterAccordion = ({
   selectedBrands,
   resetSearchResults,
   brands,
+  onApplyFilter,
+  onClose
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
+  const [isBrandSelected, setIsBrandSelected] = useState(false); // Track if any brand is selected
+  const [tempSelectedBrands, setTempSelectedBrands] = useState(selectedBrands); // Temporary state
 
   const handlePriceChange = (values) => {
     setPriceRange(values);
@@ -31,9 +35,14 @@ const FilterAccordion = ({
 
   const handleBrandChange = (brands) => {
     setSelectedBrands(brands);
-    resetSearchResults(); // Ensure search results are reset
-  };
+    // resetSearchResults(); 
+    setIsBrandSelected(brands.length > 0); // Update brand selection state
 
+  };
+  const applyFilter = () => {
+    setSelectedBrands(tempSelectedBrands); // Update the actual selected brands
+    onApplyFilter(); // Trigger the filter application
+  };
   // const handleClearFilters = () => {
   //   setSelectedBrands([]);
   //   resetSearchResults();
@@ -57,18 +66,24 @@ const FilterAccordion = ({
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        <AccordionPanel pb={4}>
+        <AccordionPanel >
           <BrandFilters
             selectedBrands={selectedBrands}
-            setSelectedBrands={setSelectedBrands}
-            brands={brands} // Pass brands to BrandFilters
+            setSelectedBrands={handleBrandChange}
+            brands={brands}
+            onApplyFilter={onApplyFilter}
+            onClose={onClose} 
           />
         </AccordionPanel>
       </AccordionItem>
       {/* <Button onClick={handleClearFilters} variant="outline" size="sm">
           Clear Filters
         </Button> */}
-
+ {/* {isBrandSelected && (
+        <Button onClick={onApplyFilter} variant="solid" colorScheme="blue" mt={4}>
+          Apply Filter
+        </Button>
+      )} */}
       {/* <AccordionItem>
           <h2>
             <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
@@ -129,8 +144,6 @@ const FilterAccordion = ({
           </Text>
         </AccordionPanel>
       </AccordionItem>
-
-      {/* Add more accordion items as needed */}
     </Accordion>
   );
 };
