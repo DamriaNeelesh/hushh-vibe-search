@@ -2,7 +2,7 @@
 import utilities from "../../utilities/utilities";
 import Resources from "../../../resources/resources";
 import { useEffect, useState } from "react";
-export default function AnimatedSearchBox() {
+export default function AnimatedSearchBox(props) {
   let [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     let index = 0;
@@ -19,7 +19,7 @@ export default function AnimatedSearchBox() {
 //   }, [searchQuery]);
   return (
     <div>
-      <utilities.SearchBox content={searchQuery}></utilities.SearchBox>
+      <utilities.SearchBox content={searchQuery} {...props}></utilities.SearchBox>
     </div>
   );
 }

@@ -1,0 +1,45 @@
+.Models__ModelsFlex {
+
+    @media screen and (max-width: 900px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // width: 100vw;
+    }
+
+    .Models__Models {
+        width: 30vw;
+        height: 100vh;
+
+        @media screen and (max-width: 900px) {
+            margin-top: 20pt;
+            width: 100vw;
+        }
+
+        .Models__Model1 {
+            z-index: 1;
+            position: relative;
+            left: 0;
+            top: 0;
+            height: 56vh;
+
+            @media screen and (max-width: 900px) {
+                width: 44vw;
+                left: 20vw;
+            }
+        }
+
+        .Models__Model2 {
+            z-index: 2;
+            position: relative;
+            left: 13vw;
+            top: -20vh;
+            height: 61vh;
+
+            @media screen and (max-width: 900px) {
+                width: 35vw;
+                left: 43vw;
+            }
+        }
+    }
+}

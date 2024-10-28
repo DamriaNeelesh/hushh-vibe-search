@@ -1,0 +1,71 @@
+.SearchLikeYouTalk__Text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: space-around;
+    height: 25vh;
+
+    @media screen and (max-width: 900px) {
+
+        text-align: center;
+    }
+
+    .SearchLikeYouTalk__Title {
+        @media screen and (max-width: 900px) {
+            display: none
+        }
+    }
+
+    .SearchLikeYouTalk__TitleMobile {
+        display: none;
+        font-weight: 700;
+        font-size: 32px;
+
+        @media screen and (max-width: 900px) {
+            display: block;
+        }
+    }
+
+    .SearchLikeYouTalk__Desc {
+        color: #606060;
+        font-weight: 400;
+        font-size: 20px;
+
+        @media screen and (max-width: 900px) {
+            font-size: 16px;
+        }
+    }
+
+    .SearchLikeYouTalk__SearchBox {
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+    }
+
+    .SearchLikeYouTalk__SearchBoxMobile {
+        display: none;
+
+        @media screen and (max-width: 900px) {
+            display: block;
+
+        }
+    }
+
+    .SearchLikeYouTalk__Tagline {
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+    }
+
+    .SearchLikeYouTalk__TaglineMobile {
+        display: none;
+        cursor: pointer;
+        font-weight: 400;
+        color: #596168CF;
+
+        @media screen and (max-width: 900px) {
+            display: block;
+            font-size: 12px;
+        }
+    }
+}

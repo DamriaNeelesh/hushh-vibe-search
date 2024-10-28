@@ -1,0 +1,22 @@
+.ImageUploadDialog__ImageUploadText {
+  display: flex;
+  text-align: left;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media screen and (max-width: 900px) {
+  .ImageUploadDialog__ImageUploadText {
+    align-items: center;
+  }
+}
+.ImageUploadDialog__ImageUploadText .ImageUploadDialog__ImageUploadTitle {
+  color: #273434;
+  font-weight: 700;
+  font-size: 40px;
+}
+@media screen and (max-width: 900px) {
+  .ImageUploadDialog__ImageUploadText .ImageUploadDialog__ImageUploadTitle {
+    font-size: 32px;
+  }
+}/*# sourceMappingURL=ImageUploadDialog.module.css.map */
