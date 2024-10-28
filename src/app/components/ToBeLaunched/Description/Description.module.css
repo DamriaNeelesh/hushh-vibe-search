@@ -26,7 +26,6 @@
 .Description .Description__Tagline {
   font-weight: 700;
   font-size: 64px;
-  text-align: center;
 }
 @media screen and (max-width: 1340px) {
   .Description .Description__Tagline {
@@ -50,6 +49,7 @@
   .Description .Description__Tagline {
     font-size: 24px;
     font-weight: 300;
+    text-align: center;
   }
 }
 .Description .Description__LaunchDateWrapper {
@@ -77,4 +77,9 @@
   font-size: 16px;
   color: rgba(89, 97, 104, 0.8117647059);
   margin-top: 5pt;
+}
+@media screen and (max-width: 900px) {
+  .Description .Description__EarlyAccessNotifier {
+    text-align: center;
+  }
 }/*# sourceMappingURL=Description.module.css.map */

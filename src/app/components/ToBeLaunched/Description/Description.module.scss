@@ -21,10 +21,11 @@
     .Description__Tagline{
         font-weight: 700;
         font-size: 64px;
-        text-align: center;
+        
         @media screen and (max-width: 1340px){
             font-size: 55px;
             font-weight: 700;
+            
         }
         @media screen and (max-width: 1150px){
             font-size: 45px;
@@ -37,6 +38,7 @@
         @media screen and (max-width: 900px){
             font-size: 24px;
             font-weight: 300;
+            text-align: center;
         }
         
     }
@@ -66,5 +68,8 @@
         font-size: 16px;
         color: #596168CF;
         margin-top: 5pt;
+        @media screen and (max-width: 900px){
+            text-align: center;
+        }
     }
 }
