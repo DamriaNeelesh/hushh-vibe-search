@@ -48,6 +48,9 @@ import callVibeIt from "./services/callVibeIt";
 import openDrawer from "./services/openDrawer";
 import closeDrawer from "./services/closeDrawer";
 import handleScroll from "./services/handleScroll";
+import { useDrag } from '@use-gesture/react';
+import { useSpring, animated } from 'react-spring';
+
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,6 +72,7 @@ export default function SearchResults() {
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
   const toast = useToast();
   let [errorImages, setErrorImages] = useState(new Set([]));
+
   useEffect(() => {
     services.authentication.getSession();
   }, []);
@@ -91,6 +95,21 @@ export default function SearchResults() {
     : [];
   
   const allImages = [selectedProduct?.image, ...additionalImages];
+  const [style, api] = useSpring(() => ({ y: 0 }));
+
+  const bind = useDrag(
+    ({ down, movement: [, my], direction: [, dy], cancel }) => {
+      if (down && dy > 0) {
+        api.start({ y: my });
+      } else if (!down && my > 100) {
+        onClose();
+        api.start({ y: 0 });
+      } else {
+        api.start({ y: 0 });
+      }
+    },
+    { axis: 'y' }
+  );
 
   
   return (
@@ -103,15 +122,18 @@ export default function SearchResults() {
           placement="bottom"
           onClose={onClose}
           size="full"
-          blockScrollOnMount={false} // Allow body scrolling when the drawer is open
+          blockScrollOnMount={false} 
         >
           <DrawerOverlay />
           <DrawerContent
             borderTopRadius="10px"
             display={{ base: "block", md: "none" }}
-            height="80vh" // Set the height to 80% of the viewport height
-            marginTop="10vh" // Add margin to create space above the drawer
-            overflowY="auto" // Enable vertical scrolling
+            height="80vh" 
+            marginTop="10vh" 
+            as={animated.div}
+            style={style}
+            {...bind()}
+            overflowY="auto"
           >
             <DrawerCloseButton />
             <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
@@ -137,7 +159,7 @@ export default function SearchResults() {
                   >
                     <ChakraImage
                       src={image}
-                      // alt={`${selectedProduct.product_title} - ${index + 1}`}
+                      alt={`${selectedProduct.product_title} - ${index + 1}`}
                       objectFit="contain"
                       boxSize="100%"
                     />
