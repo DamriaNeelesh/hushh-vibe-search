@@ -1,9 +1,9 @@
-.Home2Wrapper {
+.LandingScreenContentWrapper {
   height: 200vh;
   overflow: hidden;
 }
 
-.Home2 {
+.LandingScreenContent {
   display: flex;
   justify-content: space-around;
   height: 100vh;
@@ -11,19 +11,19 @@
   text-align: center;
 }
 @media screen and (max-width: 900px) {
-  .Home2 {
+  .LandingScreenContent {
     flex-direction: column-reverse;
     align-items: center;
   }
 }
 
-.Home2__ImageUploadWrapper {
+.LandingScreenContent__ImageUploadWrapper {
   display: flex;
   width: 100vw;
   justify-content: center;
   align-items: center;
 }
-.Home2__ImageUploadWrapper .Home2__ImageUpload {
+.LandingScreenContent__ImageUploadWrapper .LandingScreenContent__ImageUpload {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -31,16 +31,16 @@
   width: 80vw;
 }
 @media screen and (max-width: 900px) {
-  .Home2__ImageUploadWrapper .Home2__ImageUpload {
+  .LandingScreenContent__ImageUploadWrapper .LandingScreenContent__ImageUpload {
     flex-direction: column;
     text-align: center;
     margin-left: 0;
   }
 }
 
-.Home2__SearchGif {
+.LandingScreenContent__SearchGif {
   position: relative;
   z-index: 2;
   top: -200px;
   left: 200px;
-}/*# sourceMappingURL=Home.module.css.map */
+}/*# sourceMappingURL=LandingScreenContent.module.css.map */

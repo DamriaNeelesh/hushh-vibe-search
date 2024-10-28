@@ -32,7 +32,7 @@ import getUserDetails from "./services/authentication/getUserDetails";
 import utilities from "./components/utilities/utilities";
 import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
 import IntroSlide3 from "./components/Introduction/IntroSlide3";
-import Home2 from "./components/Home2/home2";
+import Home2 from "./components/LandingScreenContent/LandingScreenContent";
 import Head from "next/head";
 import { metadata } from "./components/pagesComponent/homePage"; // Import metadata
 

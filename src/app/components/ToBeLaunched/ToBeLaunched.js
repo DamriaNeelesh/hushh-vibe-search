@@ -3,8 +3,7 @@ import Description from "./Description/Description";
 import CompaniesMarquee from "./CompaniesMarquee/CompaniesMarquee";
 import utilities from "../utilities/utilities";
 import styles from "./ToBeLaunched.module.css";
-import WelcomeAboardModal from "./WelcomeAboardModal/WelcomeAboardModal";
-import Home2 from "../Home2/home2";
+import LandingScreenContent from "../LandingScreenContent/LandingScreenContent";
 import Resources from "../../resources/resources";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 import toBeLaunchedMetadata from './toBeLaunchedMetadata'
@@ -30,7 +29,7 @@ export default function ToBeLaunched() {
         </div>
       </div>
       <CheckYourVibe></CheckYourVibe>
-      <Home2></Home2>
+      <LandingScreenContent></LandingScreenContent>
       <div className={styles.ToBeLaunched__Footer}>
         <utilities.Footer></utilities.Footer>
       </div>

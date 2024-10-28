@@ -1,6 +1,6 @@
 import styles from "./ImageUploadDialog.module.css";
 import { Text } from "@chakra-ui/react";
-import ImageUpload from "../../../components/Upload/uploadComponent";
+import ImageUpload from "../../Upload/uploadComponent";
 export default function ImageUploadDialog() {
   return (
     <div className={`${styles.ImageUploadDialog__ImageUploadText} figtree`}>
