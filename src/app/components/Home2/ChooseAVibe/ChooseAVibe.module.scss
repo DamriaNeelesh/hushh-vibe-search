@@ -1,0 +1,25 @@
+.ChooseAVibe {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    @media screen and (max-width: 900px) {
+        align-items: center;
+    }
+
+    .ChooseAVibe__Vibe {
+        margin-top: 30px;
+        cursor: pointer;
+
+        @media screen and (max-width: 900px) {
+            margin-top: 25px;
+            width: 68vw;
+        }
+    }
+
+    .ChooseAVibe__Vibe:hover {
+        transform: scale(1.2);
+        transition: transform 0.3s ease-in;
+    }
+}

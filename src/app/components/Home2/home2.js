@@ -1,74 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import { Flex, Box, Text, HStack, Button, Input } from "@chakra-ui/react";
-import Vintage from "../svg/home2/vintage.svg";
-import { FiUpload, FiX } from "react-icons/fi";
-import CoffeeLoving from "../svg/home2/coffeeLoving.svg";
-import CyberPunk from "../svg/home2/cyberPunk.svg";
+import React from "react";
+import {Text} from "@chakra-ui/react";
+import home2Resources from './resources/home2Resources'
 import SearchBox from "../utilities/SearchBox/SearchBox";
-import Model1 from "../svg/home2/model1.svg";
-import Model2 from "../svg/home2/model2.svg";
-import Image from "next/image";
 import ImageUpload from "../../components/Upload/uploadComponent";
 import styles from "./Home.module.css";
 import AnimatedSearchBox from "./AnimatedSearchbox/AnimatedSearchBox";
-import Resources from "../../resources/resources";
+import ChooseAVibe from './ChooseAVibe/ChooseAVibe'
 
 const Home2 = () => {
-  const [uploadedImage, setUploadedImage] = useState(null);
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const removeImage = () => {
-    setUploadedImage(null);
-  };
-
   return (
     <div className={`${styles.Home2Wrapper} `}>
       <div className={`${styles.Home2} figtree`}>
         {/* Left Section */}
-        <div className={`${styles.Home2__ChooseAVibe} `}>
-          <Image
-            className={`${styles.Home2__Vibe} `}
-            src={Vintage}
-            alt="Vintage Patterns"
-            onClick={() => {
-              window.location.href =
-                Resources.config.redirect_url +
-                "/components/SearchResults?query=Vintage Patterns";
-            }}
-          />
-          <Image
-            className={`${styles.Home2__Vibe}`}
-            src={CoffeeLoving}
-            alt="Coffee Loving Bookworm"
-            onClick={() => {
-              window.location.href =
-                Resources.config.redirect_url +
-                "/components/SearchResults?query=Coffee Loving Bookworms";
-            }}
-          />
-          <Image
-            className={`${styles.Home2__Vibe} `}
-            src={CyberPunk}
-            alt="Cyberpunk Neon Outfits"
-            onClick={() => {
-              window.location.href =
-                Resources.config.redirect_url +
-                "/components/SearchResults?query=Cyberpunk Neon Outfits";
-            }}
-          />
-        </div>
-
+        <ChooseAVibe />
         {/* Right Section */}
         <div className={`${styles.Home2__Text}`}>
           <div className={styles.Home2__Title}>
@@ -150,12 +95,12 @@ const Home2 = () => {
           <div className={`${styles.Home2__ModelsFlex}`}>
             <div className={`${styles.Home2__Models}`}>
               <img
-                src={Model1.src}
+                src={home2Resources.Model1.src}
                 alt="Vibe Search Model 1"
                 className={`${styles.Home2__Model1}`}
               />
               <img
-                src={Model2.src}
+                src={home2Resources.Model2.src}
                 alt="Vibe Search Model 2"
                 className={`${styles.Home2__Model2}`}
               />
