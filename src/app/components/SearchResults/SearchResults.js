@@ -69,9 +69,12 @@ export default function SearchResults() {
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
   const toast = useToast();
   let [errorImages, setErrorImages] = useState(new Set([]));
+  const [touchStartY, setTouchStartY] = useState(0);
+
   useEffect(() => {
     services.authentication.getSession();
   }, []);
+
   useEffect(() => {
     callVibeIt(
       loadingBarRef,
@@ -109,9 +112,19 @@ export default function SearchResults() {
           <DrawerContent
             borderTopRadius="10px"
             display={{ base: "block", md: "none" }}
-            height="80vh" // Set the height to 80% of the viewport height
-            marginTop="10vh" // Add margin to create space above the drawer
+            height="80vh" 
+            marginTop="10vh" 
             overflowY="auto" // Enable vertical scrolling
+            onTouchStart={(e) => setTouchStartY(e.touches[0].clientY)} // Capture the starting Y position
+            onTouchMove={(e) => {
+            const currentY = e.touches[0].clientY;
+            const swipeDistance = currentY - touchStartY;
+
+            // Close drawer if swipe distance exceeds 100px (customize as needed)
+            if (swipeDistance > 100) {
+              onClose();
+            }
+          }}
           >
             <DrawerCloseButton />
             <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
@@ -137,7 +150,7 @@ export default function SearchResults() {
                   >
                     <ChakraImage
                       src={image}
-                      // alt={`${selectedProduct.product_title} - ${index + 1}`}
+                      alt={`${selectedProduct?.brand} - ${index + 1}`}
                       objectFit="contain"
                       boxSize="100%"
                     />
