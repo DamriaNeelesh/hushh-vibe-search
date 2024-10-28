@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import styles from "./Home.module.css";
-import ChooseAVibe from './ChooseAVibe/ChooseAVibe'
-import SearchLikeYouTalk from './SearchLikeYouTalk/SearchLikeYouTalk'
-import ImageUploadDialog from './ImageUploadDialog/ImageUploadDialog'
-import Models from './Models/Models'
+import ChooseAVibe from "./ChooseAVibe/ChooseAVibe";
+import SearchLikeYouTalk from "./SearchLikeYouTalk/SearchLikeYouTalk";
+import ImageUploadDialog from "./ImageUploadDialog/ImageUploadDialog";
+import Models from "./Models/Models";
 const Home2 = () => {
   return (
     <div className={`${styles.Home2Wrapper} `}>
@@ -15,8 +15,6 @@ const Home2 = () => {
       <div className={`${styles.Home2__ImageUploadWrapper}`}>
         <div className={`${styles.Home2__ImageUpload}`}>
           <ImageUploadDialog></ImageUploadDialog>
-
-          {/* Right Section - Models */}
           <Models></Models>
         </div>
       </div>
