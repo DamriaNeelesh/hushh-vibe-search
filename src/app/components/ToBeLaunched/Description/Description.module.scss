@@ -1,5 +1,6 @@
 .Description{
     margin-left: 8vw;
+    width: 40vw;
     @media screen and (max-width: 900px){
         margin-left: 0;
         display: flex;
@@ -49,9 +50,15 @@
         font-size: 20px;
         color: #596168;
     }
+    .Description__SignIn{
+        height: 5vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
     .Description__GoogleSignIn{
-        height: 54pt;
-        margin-top: 27pt;
+        height: 7vh;
         cursor: pointer;
     }
     .Description__EarlyAccessNotifier{

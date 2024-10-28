@@ -1,5 +1,5 @@
 import styles from "./Description.module.css";
-import gSignInButton from "./resources/gsign-button.svg";
+import gSignInButton from "./resources/gsignin-button.svg";
 import services from "../../../services/services";
 import { useEffect, useState } from "react";
 import utilities from "../../utilities/utilities";
@@ -26,16 +26,22 @@ export default function Description() {
       style={{ gap: "1rem", display: "flex", flexDirection: "column" }}
     >
       <div className={`${styles.Description__Tagline} figtree`}>
-          Find Your Vibe.
-          <br></br>
-          Shop Your Style.
+        Find Your Vibe.
+        <br></br>
+        Shop Your Style.
       </div>
-      <div className={`${styles.Description__SearchBox}`}>
-        <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
-      </div>
-      <div className={`${styles.Description__SearchBoxMobile}`}>
-        <utilities.SearchBox boxWidth={80}></utilities.SearchBox>
-      </div>
+      {isSignedIn ? (
+        <>
+          <div className={`${styles.Description__SearchBox}`}>
+            <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
+          </div>
+          <div className={`${styles.Description__SearchBoxMobile}`}>
+            <utilities.SearchBox boxWidth={80}></utilities.SearchBox>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       <div className={styles.Description__SignIn}>
         {!isSignedIn ? (
           <img

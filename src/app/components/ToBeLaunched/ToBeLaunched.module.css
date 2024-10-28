@@ -11,6 +11,9 @@
     justify-content: center;
   }
 }
+.ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
+  width: 60vw;
+}
 @media screen and (max-width: 900px) {
   .ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
     display: none;
