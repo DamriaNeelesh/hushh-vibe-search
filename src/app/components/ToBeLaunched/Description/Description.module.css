@@ -26,6 +26,7 @@
 .Description .Description__Tagline {
   font-weight: 700;
   font-size: 64px;
+  text-align: center;
 }
 @media screen and (max-width: 1340px) {
   .Description .Description__Tagline {
