@@ -7,7 +7,7 @@ import LandingScreenContent from "../LandingScreenContent/LandingScreenContent";
 import Resources from "../../resources/resources";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 import toBeLaunchedMetadata from './toBeLaunchedMetadata'
-
+import DownArrow from './DownArrow/DownArrow'
 export const metadata=toBeLaunchedMetadata;
 
 export default function ToBeLaunched() {
@@ -28,6 +28,7 @@ export default function ToBeLaunched() {
           <CompaniesMarquee isMobile={true}></CompaniesMarquee>
         </div>
       </div>
+      <DownArrow></DownArrow>
       <CheckYourVibe></CheckYourVibe>
       <LandingScreenContent></LandingScreenContent>
       <div className={styles.ToBeLaunched__Footer}>
