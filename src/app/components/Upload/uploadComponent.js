@@ -197,19 +197,32 @@ const ImageUpload = () => {
       </Flex>
 
       <Flex align="center" my={4}>
-        <Input id="uploadComponent__linkInput" placeholder="https://sharefile.xyz/file.jpg" flex="1" mr={2} />
+        <Input
+          id="uploadComponent__linkInput"
+          placeholder="https://sharefile.xyz/file.jpg"
+          flex="1"
+          mr={2}
+        />
         <Button
           bg="#2D0D3A"
           color={"white"}
           onClick={() => {
             console.log(fileInputElement);
             if (fileInputElement) {
-              let url=document.getElementById('uploadComponent__linkInput').value;
+              let url = document.getElementById(
+                "uploadComponent__linkInput"
+              ).value;
               // Create a File object
-              fetch(url)
-                .then(response => response.blob())
-                .then(blob => {
-                  const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+              fetch('https://proxy.cors.sh/'+url, {
+                headers:{
+                  'Access-Control-Allow-Origin': '*'
+                }
+              })
+                .then((response) => response.blob())
+                .then((blob) => {
+                  const file = new File([blob], "image.jpg", {
+                    type: "image/jpeg",
+                  });
 
                   // Create a DataTransfer object
                   const dataTransfer = new DataTransfer();
@@ -219,10 +232,12 @@ const ImageUpload = () => {
                   fileInputElement.files = dataTransfer.files;
 
                   // Trigger the onChange event
-                  const event = new Event('change', { bubbles: true });
+                  const event = new Event("change", { bubbles: true });
                   fileInputElement.dispatchEvent(event);
                 })
-                .catch(error => console.error('Error fetching the image:', error));
+                .catch((error) =>
+                  console.error("Error fetching the image:", error)
+                );
             }
           }}
         >
