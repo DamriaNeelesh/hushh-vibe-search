@@ -33,7 +33,7 @@ import brands from "../../../resources/config/brands";
 import { useMediaQuery } from "@chakra-ui/react";
 import diceAnimation from "../../gif/diceAnimation.json";
 
-const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
+const FilterUI = ({ setSelectedBrands, selectedBrands, applyFilter }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -195,6 +195,11 @@ const FilterUI = ({ setSelectedBrands, selectedBrands }) => {
               selectedBrands={selectedBrands}
               setSelectedBrands={setSelectedBrands}
               brands={brands}
+              onApplyFilter={() => {
+                applyFilter();
+                onClose(); // Close the drawer
+              }}
+              onClose={onClose}
             />
           </DrawerBody>
         </DrawerContent>

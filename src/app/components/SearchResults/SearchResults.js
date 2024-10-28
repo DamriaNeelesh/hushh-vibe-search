@@ -61,6 +61,7 @@ export default function SearchResults() {
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {brandDrawer, setIsBrandDrawer} = useState(false)
   const [brands, setBrands] = useState([]); // State to hold brands
   const router = useRouter();
   const loadingBarRef = useRef(null);
@@ -92,7 +93,22 @@ export default function SearchResults() {
   
   const allImages = [selectedProduct?.image, ...additionalImages];
 
-  
+  const applyFilter = () => {
+    // Logic to apply the filter
+    setSearchResults([]); // Reset search results
+    callVibeIt(
+      loadingBarRef,
+      searchParams,
+      currentPage,
+      setSearchResults,
+      setIsLoading,
+      searchResults,
+      selectedBrands,
+      noMoreResults,
+      setBrands
+    );
+  };
+
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
@@ -205,27 +221,6 @@ export default function SearchResults() {
           </DrawerContent>
         </Drawer>
       )}
-
-      {/* <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader
-            fontWeight={"400"}
-            fontSize={{ md: "1.2rem", base: "0.65rem" }}
-            lineHeight={"22px"}
-            color={"#222222"}
-            textAlign="left"
-          >
-            Search History
-          </DrawerHeader>
-          <DrawerBody>
-            <HistoryComponent
-              setSelectedBrands={setSelectedBrands}
-              selectedBrands={selectedBrands}
-            />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer> */}
       <utilities.Header />
       <HStack
         w="100%"
@@ -343,14 +338,10 @@ export default function SearchResults() {
       </HStack>
 
       <FilterUI
-        setSelectedBrands={(brands) => {
-          setSelectedBrands(brands);
-          setSearchResults([]); // Reset search results when brands are updated
-        }}
+        setSelectedBrands={setSelectedBrands}
         selectedBrands={selectedBrands}
-        resetSearchResults={() => {
-          setSearchResults([]);
-        }} // Pass the function as a prop
+        applyFilter={applyFilter} // Pass the apply filter function
+        onClose={brandDrawer}
       />
       <Box
         fontFamily="Figtree, sans-serif"
