@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
         name="google-site-verification"
         content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
       />
-
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429">
 </script>
 <script

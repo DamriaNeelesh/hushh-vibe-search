@@ -9,6 +9,7 @@
         justify-content: center;
     }
     .ToBeLaunched__CompaniesMarquee{
+        width: 60vw;
         @media screen and (max-width: 900px){
             display: none
         }
