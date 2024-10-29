@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import brands from "./brands";
-import queries from './queries'
+import queries from "./queries";
+import genders from './genders'
 const config = {
   SUPABASE_URL: "https://eaeokyefsdfamwqqzfko.supabase.co",
   SUPABASE_ANON_KEY:
@@ -8,9 +9,8 @@ const config = {
   supabaseClient: null,
   vibesearchAPIEndpoint:
     "https://vibe-search-service-53407187172.us-east4.run.app",
-
-  // vibesearchAPIEndpoint:" https://vibe-search-version3-yxfa6ba3aq-uc.a.run.app",
-
+  monitoringEndpoint:
+    "https://vibe-search-version3-53407187172.us-central1.run.app",
   guestModeAccessToken:
     "P2H8RNXPvIiPoeM0iJEDjJ2Skk37h5pScMQF5oMRUXm3dKoUC2wxrWImx5ccA9VOrOoeaLcMQqn57vYDPucTkYnkkH6icUQy09vtd5eIrAIXhBtmUfAmPI3thD2OoUeF",
   redirect_url:
@@ -18,7 +18,8 @@ const config = {
       ? "https://vibesearch.ai"
       : "http://localhost:3000",
   brands: brands,
-  queries: queries
+  queries: queries,
+  genders: genders
 };
 
 function createSupabaseClient() {

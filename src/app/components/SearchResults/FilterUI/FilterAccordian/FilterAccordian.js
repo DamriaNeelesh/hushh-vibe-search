@@ -22,11 +22,17 @@ const FilterAccordion = ({
   resetSearchResults,
   brands,
   onApplyFilter,
-  onClose
+  onClose,
+  selectedGenders,
+  setSelectedGenders,
+  genders,
+  onApplyGenderFilter,
+  onCloseGenderFilter
 }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
   const [isBrandSelected, setIsBrandSelected] = useState(false); // Track if any brand is selected
+  const [isGenderSelected, setIsGenderSelected] = useState(false); // Track if any brand is selected
   const [tempSelectedBrands, setTempSelectedBrands] = useState(selectedBrands); // Temporary state
 
   const handlePriceChange = (values) => {
@@ -37,6 +43,12 @@ const FilterAccordion = ({
     setSelectedBrands(brands);
     // resetSearchResults(); 
     setIsBrandSelected(brands.length > 0); // Update brand selection state
+
+  };
+  const handleGenderChange = (genders) => {
+    setSelectedGenders(genders);
+    // resetSearchResults(); 
+    setIsGenderSelected(genders.length > 0); // Update brand selection state
 
   };
   const applyFilter = () => {
@@ -142,6 +154,32 @@ const FilterAccordion = ({
           <Text>
             ${priceRange[0]} - ${priceRange[1]}
           </Text>
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <h2>
+          <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>
+            <Box
+              fontWeight={"400"}
+              flex="1"
+              fontSize={{ md: "1.2rem", base: "0.85rem" }}
+              lineHeight={"22px"}
+              color={"#222222"}
+              textAlign="left"
+            >
+              Gender
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel >
+          <BrandFilters
+            selectedBrands={selectedGenders}
+            setSelectedBrands={handleGenderChange}
+            brands={genders}
+            onApplyFilter={onApplyFilter}
+            onClose={onClose} 
+          />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

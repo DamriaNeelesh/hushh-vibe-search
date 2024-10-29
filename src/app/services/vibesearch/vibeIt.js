@@ -11,7 +11,11 @@ export default async function vibeIt(
   searchResults,
   selectedBrands,
   setNoMoreResults,
-  setBrands
+  setBrands,
+  gender_filter,
+  gender,
+  price_filter,
+  price_range
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
   let data = {
@@ -21,6 +25,10 @@ export default async function vibeIt(
     brand_filter: selectedBrands && selectedBrands.length != 0 ? 1 : 0,
     brand_list:
       selectedBrands && selectedBrands.length != 0 ? selectedBrands : [],
+    gender_filter: gender_filter,
+    gender: gender,
+    price_filter: price_filter,
+    price_range: price_range
   };
   let header = {
     headers: {
@@ -38,7 +46,6 @@ export default async function vibeIt(
       return;
     }
     let products = {};
-    console.log(results["data"]);
     for (let key in results["data"]) {
       if (results["data"].hasOwnProperty(key) && key!="brands") {
         products[currentPage + " " + key] = results["data"][key];

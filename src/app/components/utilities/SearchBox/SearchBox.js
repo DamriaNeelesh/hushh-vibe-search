@@ -8,33 +8,43 @@ import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
 
 export default function SearchBox(props) {
-  // console.log(props.content)
-  const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
+  // State to handle search input
+  const [searchQuery, setSearchQuery] = useState("");
+  // State to handle user login status
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   // Get initial query from the URL when the component mounts
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search); // Use window.location.search
-    const initialQuery = params.get("query"); // Get the 'query' parameter
+    // Get the query parameter from the URL
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("query");
+    // Set the state with the initial query
     if (initialQuery) {
-      setSearchQuery(initialQuery); // Set the state with the initial query
+      setSearchQuery(initialQuery);
     }
   }, []);
-
+  // Check if the user is logged in when the component mounts
   useEffect(() => {
-    setTimeout(() => {
-      !isLoggedIn ? services.authentication.isLoggedIn(setIsLoggedIn) : "";
+    let interval_id = setInterval(() => {
+      !isLoggedIn
+        ? services.authentication.isLoggedIn(setIsLoggedIn)
+        : clearInterval(interval_id);
     }, 1000);
   }, []);
+  // Handle search on Enter key press
   const handleSearch = (event) => {
     if (event.key === "Enter") {
-      isLoggedIn
-        ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
-        : alert("Please login to search");
+      if (searchQuery !== "") {
+        isLoggedIn
+          ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
+          : alert("Please login to search");
+      }else{
+        alert('Please enter a search query');
+      }
     }
   };
-
+  // Clear the search input
   const handleClearSearch = () => {
-    setSearchQuery(""); // Clear the search query state
+    setSearchQuery("");
   };
 
   return (

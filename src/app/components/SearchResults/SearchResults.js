@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import fashionDiceRoll from "./services/fashionDiceRoll";
-import ImageNotFound from './ImageNotFound/ImageNotFound'
+import ImageNotFound from "./ImageNotFound/ImageNotFound";
 import {
   Box,
   Text,
@@ -23,11 +23,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { FiHeart, FiUser, FiSearch, FiX } from "react-icons/fi";
+import {FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useRouter, useSearchParams } from "next/navigation";
 import Footer from "../footer";
-import VibeText from "../svg/vibeText.svg";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel styles
@@ -38,7 +37,6 @@ import Image from "next/image";
 import Dice from "../svg/dice.svg";
 import diceAnimation from "../gif/diceAnimation.json";
 import Lottie from "lottie-react";
-import HistoryComponent from "./FiltersAndHistory/HistoryComponent/HistoryComponent";
 import ClockIcon from "../svg/clockHistory.svg";
 import LoadingBar from "react-top-loading-bar";
 import FilterUI from "./FilterUI/FilterUI";
@@ -47,12 +45,12 @@ import handleProductClick from "./services/handleProductClick";
 import callVibeIt from "./services/callVibeIt";
 import openDrawer from "./services/openDrawer";
 import closeDrawer from "./services/closeDrawer";
-import handleScroll from "./services/handleScroll";
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedGenders, setSelectedGenders] = useState([]);
   const [noMoreResults, setNoMoreResults] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -61,7 +59,8 @@ export default function SearchResults() {
   const drawerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {brandDrawer, setIsBrandDrawer} = useState(false)
+  const { brandDrawer, setIsBrandDrawer } = useState(false);
+  const { genderDrawer, setIsGenderDrawer } = useState(false);
   const [brands, setBrands] = useState([]); // State to hold brands
   const router = useRouter();
   const loadingBarRef = useRef(null);
@@ -86,14 +85,19 @@ export default function SearchResults() {
       searchResults,
       selectedBrands,
       noMoreResults,
-      setBrands
+      setBrands,
+      false,
+      [0, 10000],
+      selectedGenders.length>0,
+      selectedGenders.length>0? selectedGenders[0]: null
+
     );
-  }, [searchParams, currentPage, selectedBrands, noMoreResults]);
+  }, [searchParams, currentPage, selectedBrands, noMoreResults, selectedGenders]);
 
   const additionalImages = selectedProduct?.additional_images
     ? JSON.parse(selectedProduct.additional_images)
     : [];
-  
+
   const allImages = [selectedProduct?.image, ...additionalImages];
 
   const applyFilter = () => {
@@ -108,10 +112,17 @@ export default function SearchResults() {
       searchResults,
       selectedBrands,
       noMoreResults,
-      setBrands
+      setBrands,
+      false,
+      [0, 10000],
+      selectedGenders.length>0,
+      selectedGenders.length>0? selectedGenders[0]: null
     );
   };
-
+  let [query, setQuery]=useState('')
+  useEffect(()=>{
+    setQuery(searchParams.get('query'))
+  }, [])
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
@@ -128,19 +139,19 @@ export default function SearchResults() {
           <DrawerContent
             borderTopRadius="10px"
             display={{ base: "block", md: "none" }}
-            height="80vh" 
-            marginTop="10vh" 
+            height="80vh"
+            marginTop="10vh"
             overflowY="auto" // Enable vertical scrolling
             onTouchStart={(e) => setTouchStartY(e.touches[0].clientY)} // Capture the starting Y position
             onTouchMove={(e) => {
-            const currentY = e.touches[0].clientY;
-            const swipeDistance = currentY - touchStartY;
+              const currentY = e.touches[0].clientY;
+              const swipeDistance = currentY - touchStartY;
 
-            // Close drawer if swipe distance exceeds 100px (customize as needed)
-            if (swipeDistance > 100) {
-              onClose();
-            }
-          }}
+              // Close drawer if swipe distance exceeds 100px (customize as needed)
+              if (swipeDistance > 100) {
+                onClose();
+              }
+            }}
           >
             <DrawerCloseButton />
             <DrawerHeader bg={"#F4EFEB"} borderTopRadius={"10px"}>
@@ -182,6 +193,14 @@ export default function SearchResults() {
                 </Text>
                 <Button
                   as={Link}
+                  onClick={async () => {
+                    let access_token =
+                      await services.authentication.getAccessToken();
+                    services.monitoring.redirect(
+                      access_token,
+                      selectedProduct.product_id
+                    );
+                  }}
                   href={selectedProduct?.product_url}
                   target="_blank" // Add this attribute to open in a new tab
                   rel="noopener noreferrer" // Add this for security reasons
@@ -355,6 +374,11 @@ export default function SearchResults() {
         selectedBrands={selectedBrands}
         applyFilter={applyFilter} // Pass the apply filter function
         onClose={brandDrawer}
+        query={query}
+        setSelectedGenders={setSelectedGenders}
+        selectedGenders={selectedGenders}
+        applyGenderFilter={applyFilter}
+        
       />
       <Box
         fontFamily="Figtree, sans-serif"
@@ -433,6 +457,14 @@ export default function SearchResults() {
                           minH="350px"
                           cursor="pointer"
                           className="product-card"
+                          onClick={async () => {
+                            let access_token =
+                              await services.authentication.getAccessToken();
+                            services.monitoring.clicked(
+                              access_token,
+                              product.product_id
+                            );
+                          }}
                         >
                           <Box
                             position="relative"
@@ -688,7 +720,6 @@ export default function SearchResults() {
           )}
         </Flex>
       </Box>
-
       <Footer />
     </>
   );

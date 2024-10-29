@@ -11,7 +11,7 @@ import { useState } from "react";
 import FilterAccordion from "./FilterAccordian/FilterAccordian";
 import Image from "next/image";
 import fashionDiceRoll from "../services/fashionDiceRoll";
-
+import styles from "./FilterUI.module.css";
 import {
   HStack,
   Button,
@@ -32,8 +32,17 @@ import FilterLine from "../../svg/filterLine.svg";
 import brands from "../../../resources/config/brands";
 import { useMediaQuery } from "@chakra-ui/react";
 import diceAnimation from "../../gif/diceAnimation.json";
-
-const FilterUI = ({ setSelectedBrands, selectedBrands, applyFilter }) => {
+import config from "../../../resources/config/config";
+const FilterUI = ({
+  setSelectedBrands,
+  selectedBrands,
+  applyFilter,
+  query,
+  setSelectedGenders,
+  selectedGenders,
+  applyGenderFilter,
+  onCloseGenders
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -103,7 +112,7 @@ const FilterUI = ({ setSelectedBrands, selectedBrands, applyFilter }) => {
           All Filters (1)
           <Image src={FilterLine} alt="Hushh Vibe Filters" />
         </Button>
-
+        <div className={`${styles.FilterUI__Query} figtree`}>{query}</div>
         <HStack
           align="center"
           flexDirection="row"
@@ -195,9 +204,16 @@ const FilterUI = ({ setSelectedBrands, selectedBrands, applyFilter }) => {
               selectedBrands={selectedBrands}
               setSelectedBrands={setSelectedBrands}
               brands={brands}
+              genders={config.genders}
+              setSelectedGenders={setSelectedGenders}
+              selectedGenders={selectedGenders}
               onApplyFilter={() => {
                 applyFilter();
                 onClose(); // Close the drawer
+              }}
+              onApplyGenderFilter={() => {
+                applyGenderFilter();
+                onClose();
               }}
               onClose={onClose}
             />

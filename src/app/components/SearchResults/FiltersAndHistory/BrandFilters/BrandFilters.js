@@ -8,6 +8,7 @@ export default function BrandFilters({
   selectedBrands,
   setSelectedBrands,
   brands,
+  onApplyFilter
 }) {
   const [showAll, setShowAll] = useState(false);
   const [tempSelectedBrands, setTempSelectedBrands] = useState(selectedBrands); // Temporary state

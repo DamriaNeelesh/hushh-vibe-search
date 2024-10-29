@@ -8,7 +8,11 @@ export default async function callVibeIt(
   searchResults,
   selectedBrands,
   noMoreResults,
-  setBrands
+  setBrands,
+  price_filter,
+  price_range,
+  gender_filter,
+  gender
 ) {
   loadingBarRef.current.continuousStart(); // Start the loading bar
   let search = searchParams.get("query");
@@ -31,6 +35,10 @@ export default async function callVibeIt(
     searchResults,
     selectedBrands,
     noMoreResults,
-    setBrands
+    setBrands,
+    gender_filter,
+    gender,
+    false,
+    [0, 10000]
   );
 }
