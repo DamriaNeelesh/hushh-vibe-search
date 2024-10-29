@@ -70,7 +70,7 @@ export default function SearchResults() {
   const toast = useToast();
   let [errorImages, setErrorImages] = useState(new Set([]));
   const [touchStartY, setTouchStartY] = useState(0);
-
+  const [priceRange, setPriceRange] = useState([10, 1050]);
   useEffect(() => {
     services.authentication.getSession();
   }, []);
@@ -86,13 +86,13 @@ export default function SearchResults() {
       selectedBrands,
       noMoreResults,
       setBrands,
-      false,
-      [0, 10000],
+      true,
+      priceRange,
       selectedGenders.length>0,
       selectedGenders.length>0? selectedGenders[0]: null
 
     );
-  }, [searchParams, currentPage, selectedBrands, noMoreResults, selectedGenders]);
+  }, [searchParams, currentPage, selectedBrands, noMoreResults, selectedGenders, priceRange]);
 
   const additionalImages = selectedProduct?.additional_images
     ? JSON.parse(selectedProduct.additional_images)
@@ -113,8 +113,8 @@ export default function SearchResults() {
       selectedBrands,
       noMoreResults,
       setBrands,
-      false,
-      [0, 10000],
+      true,
+      priceRange,
       selectedGenders.length>0,
       selectedGenders.length>0? selectedGenders[0]: null
     );
@@ -378,7 +378,8 @@ export default function SearchResults() {
         setSelectedGenders={setSelectedGenders}
         selectedGenders={selectedGenders}
         applyGenderFilter={applyFilter}
-        
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
       />
       <Box
         fontFamily="Figtree, sans-serif"

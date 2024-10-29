@@ -38,7 +38,7 @@ export default async function callVibeIt(
     setBrands,
     gender_filter,
     gender,
-    false,
-    [0, 10000]
+    true,
+    price_range
   );
 }

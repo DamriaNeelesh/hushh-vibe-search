@@ -27,16 +27,20 @@ const FilterAccordion = ({
   setSelectedGenders,
   genders,
   onApplyGenderFilter,
-  onCloseGenderFilter
+  onCloseGenderFilter,
+  priceRange,
+  setPriceRange
 }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
-  const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
+  // const [priceRange, setPriceRange] = useState([10, 1050]); // State for price range
   const [isBrandSelected, setIsBrandSelected] = useState(false); // Track if any brand is selected
   const [isGenderSelected, setIsGenderSelected] = useState(false); // Track if any brand is selected
   const [tempSelectedBrands, setTempSelectedBrands] = useState(selectedBrands); // Temporary state
-
+  const [tempSelectedPrices, setTempSelectedPrices]=useState([10, 1050])
   const handlePriceChange = (values) => {
-    setPriceRange(values);
+    console.log(values)
+    // setPriceRange(values);
+    setTempSelectedPrices(values)
   };
 
   const handleBrandChange = (brands) => {
@@ -59,7 +63,14 @@ const FilterAccordion = ({
   //   setSelectedBrands([]);
   //   resetSearchResults();
   // };
+  let applyPriceFilter=()=>{
+    setPriceRange(tempSelectedPrices)
 
+  }
+
+  let clearPriceFilter=()=>{
+    setPriceRange([10, 1050])
+  }
   return (
     <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
       <AccordionItem>
@@ -152,8 +163,26 @@ const FilterAccordion = ({
             <RangeSliderThumb borderColor={"black"} index={1} />
           </RangeSlider>
           <Text>
-            ${priceRange[0]} - ${priceRange[1]}
+            ${tempSelectedPrices[0]} - ${tempSelectedPrices[1]}
           </Text>
+          <div className="flex flex-row gap-3">
+            <Button
+              onClick={applyPriceFilter}
+              bg="#E0D3C8"
+              color={'black'}
+              mt={4}
+            >
+              Apply Filter
+            </Button>
+            <Button
+              onClick={clearPriceFilter}
+              bg={'#EDE4DE'}
+              color={'black'}
+              mt={4}
+            >
+              Clear Filter
+            </Button>
+          </div>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>

@@ -41,7 +41,9 @@ const FilterUI = ({
   setSelectedGenders,
   selectedGenders,
   applyGenderFilter,
-  onCloseGenders
+  onCloseGenders,
+  priceRange,
+  setPriceRange
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
@@ -216,6 +218,8 @@ const FilterUI = ({
                 onClose();
               }}
               onClose={onClose}
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
             />
           </DrawerBody>
         </DrawerContent>
