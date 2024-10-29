@@ -12,6 +12,7 @@ import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
 import { metadata } from "../components/pagesComponent/searchPage"; // Import metadata
+import fashionDiceRoll from '../components/SearchResults/services/fashionDiceRoll'
 import Head from "next/head";
 const Search = () => {
   const [fileImg, setFile] = useState(null);
@@ -143,7 +144,9 @@ const Search = () => {
             border={"1px solid #F8F9FA"}
             variant="outline"
             size="sm"
-            onClick={() => {}}
+            onClick={() => {
+              fashionDiceRoll();
+            }}
           >
             Fashion Dice Roll
           </Button>

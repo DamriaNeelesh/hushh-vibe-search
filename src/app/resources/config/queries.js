@@ -1,4 +1,4 @@
-let queries = [
+const queries = [
     "sleek black leather jacket with silver zippers",
     "lightweight floral summer dress with ruffle sleeves",
     "chunky white sneakers with platform soles",
@@ -17,7 +17,6 @@ let queries = [
     "light wash denim jacket with distressed look",
     "cropped top with puffed sleeves",
     "knee-high suede boots in dark brown",
-    "minimalist wristwatch with leather strap",
     "button-up shirt with tropical prints",
   ];
 

@@ -4,5 +4,5 @@ export default function fashionDiceRoll() {
   // choose a random query
   let index = Math.floor(Math.random() * Resources.config.queries.length);
   window.location.href =
-    config.redirect_url + "/components/SearchResults?query=" + queries[index];
+    config.redirect_url + "/components/SearchResults?query=" + Resources.config.queries[index];
 }
