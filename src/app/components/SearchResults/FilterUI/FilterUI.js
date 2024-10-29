@@ -29,7 +29,6 @@ import {
 import Lottie from "lottie-react";
 import Dice from "../../svg/dice.svg";
 import FilterLine from "../../svg/filterLine.svg";
-import brands from "../../../resources/config/brands";
 import { useMediaQuery } from "@chakra-ui/react";
 import diceAnimation from "../../gif/diceAnimation.json";
 import config from "../../../resources/config/config";
@@ -43,7 +42,8 @@ const FilterUI = ({
   applyGenderFilter,
   onCloseGenders,
   priceRange,
-  setPriceRange
+  setPriceRange,
+  brands
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedItems, setSelectedItems] = useState([]);
@@ -111,7 +111,7 @@ const FilterUI = ({
           fontSize={{ md: "1rem", base: "0.65rem" }}
           gap={{ md: "1rem", base: "0.5rem" }}
         >
-          All Filters (1)
+          All Filters
           <Image src={FilterLine} alt="Hushh Vibe Filters" />
         </Button>
         <div className={`${styles.FilterUI__Query} figtree`}>{query}</div>

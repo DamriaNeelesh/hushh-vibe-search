@@ -28,7 +28,7 @@ export default async function vibeIt(
     gender_filter: gender_filter,
     gender: gender,
     price_filter: price_filter,
-    price_range: price_range
+    price_range: price_range,
   };
   let header = {
     headers: {
@@ -47,14 +47,12 @@ export default async function vibeIt(
     }
     let products = {};
     for (let key in results["data"]) {
-      if (results["data"].hasOwnProperty(key) && key!="brands") {
+      if (results["data"].hasOwnProperty(key) && key != "brands") {
         products[currentPage + " " + key] = results["data"][key];
       }
     }
     setState({ ...searchResults, ...products });
 
-    setBrands(results.data.brands); // Update brands state
-  } catch (e) {
-    
-  }
+    results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
+  } catch (e) {}
 }

@@ -74,7 +74,6 @@ export default function SearchResults() {
   useEffect(() => {
     services.authentication.getSession();
   }, []);
-
   useEffect(() => {
     callVibeIt(
       loadingBarRef,
@@ -90,7 +89,6 @@ export default function SearchResults() {
       priceRange,
       selectedGenders.length>0,
       selectedGenders.length>0? selectedGenders[0]: null
-
     );
   }, [searchParams, currentPage, selectedBrands, noMoreResults, selectedGenders, priceRange]);
 
@@ -380,6 +378,7 @@ export default function SearchResults() {
         applyGenderFilter={applyFilter}
         priceRange={priceRange}
         setPriceRange={setPriceRange}
+        brands={brands}
       />
       <Box
         fontFamily="Figtree, sans-serif"
