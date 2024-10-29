@@ -12,7 +12,11 @@
         align-items: center;
         z-Index: 2000;
         margin: 0;
-
+        .AboutUs__RightWrapper{
+            @media screen and (max-width: 900px) {
+                display: none;
+            }
+        }
         .AboutUs__UpperFooterText {
             margin-left: 40px;
         }

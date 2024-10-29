@@ -8,6 +8,11 @@
   z-Index: 2000;
   margin: 0;
 }
+@media screen and (max-width: 900px) {
+  .Footer .AboutUs__UpperFooter .AboutUs__RightWrapper {
+    display: none;
+  }
+}
 .Footer .AboutUs__UpperFooter .AboutUs__UpperFooterText {
   margin-left: 40px;
 }
