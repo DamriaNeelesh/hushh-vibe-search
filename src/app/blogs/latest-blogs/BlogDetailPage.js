@@ -4,7 +4,7 @@ import { Box, Heading, Text, Avatar, Flex, Link, Container } from '@chakra-ui/re
 const BlogDetailPage = () => {
   return (
     <Container gap={{md:'0.5rem'}} display={'flex'} flexDirection={'column'} p={5} minW={{md:'70%',base:'100%'}} fontFamily={'Figtree, sans-serif'}>
-      <Text fontSize="sm" color="pink.500" mb="2">MACHINE LEARNING</Text>
+      <Text fontSize={{md:'13px',base:'11px'}} lineHeight={'25px'} fontWeight={'700'} color="#FFB6C1" mb="2">MACHINE LEARNING</Text>
       <Text color={'#000000'} fontWeight={'500'} fontSize={{md:'3rem',base:'1.5rem'}} lineHeight={{md:'60px',base:'40px'}}>Enhancing Customer Satisfaction: Controlling and Tailoring Semantic Search Results With Semantic Parsing</Text>
       <Text fontSize={{md:'1rem',base:'0.5rem'}} color={'#5F6367'} fontWeight={'500'} lineHeight={{md:'34px',base:'30px'}}>23 Oct, 2024 · 10 min read</Text>
       <Flex align="center" mb="6">
@@ -14,8 +14,8 @@ const BlogDetailPage = () => {
           <Text fontWeight={'500'}>ML Engineer, Hushh.ai</Text>
         </Box>
       </Flex>
-      <Heading as="h3" size="md" mb="4">The Power of Semantic Search for E-commerce</Heading>
-      <Text mb="4">
+      <Text mb="4" color={'#5F6367'} fontWeight={'500'} fontSize={{md:'2rem',base:'1rem'}} lineHeight={'28px'}>The Power of Semantic Search for E-commerce</Text>
+      <Text mb="4" color={'#5F6367'}>
         In the competitive world of e-commerce, customer satisfaction reigns supreme. A key driver of satisfaction? A seamless and intuitive search experience. This is where semantic search comes in, moving beyond simple keyword matching to understand the true intent behind a user's query. Unlike traditional keyword-based search, semantic search delves into the meaning and context of words, delivering highly relevant results that resonate with customer needs.
       </Text>
       <Heading as="h3" size="md" mb="4">What is Semantic Search?</Heading>
