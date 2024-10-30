@@ -7,7 +7,7 @@ const BlogCard = ({ category, title, description }) => (
     <Text fontSize={{md:'0.85rem',base:'0.48rem'}} lineHeight={'16.8px'} fontWeight={'700'} color="#86549A" mb="2">{category}</Text>
     <Heading lineHeight={'25px'} fontSize={{md:'1.25rem',base:'0.75rem'}} size="md" fontWeight={'500'} color={'#000000'} mb="2">{title}</Heading>
     <Text fontSize={{md:'0.85rem',base:'0.45rem'}} lineHeight={'20px'} mb="4" fontWeight={'400'} color={'#5F6367'}>{description}</Text>
-    <Link color="purple.500" href="#">Read more &rarr;</Link>
+    <Link color="purple.500" href="/blogs/latest-blogs">Read more &rarr;</Link>
   </Box>
 );
 
