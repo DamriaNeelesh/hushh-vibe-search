@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, SimpleGrid, Text, Heading, Link } from '@chakra-ui/react';
+import Header from './components/Header';
 
 const BlogCard = ({ category, title, description }) => (
   <Box borderWidth="1px" borderRadius="lg" display={'flex'} flexDirection={'column'} gap={{md:'1rem',base:'0.5rem'}} bg={'#FBFAF8'} overflow="hidden" p="6">
@@ -45,6 +46,8 @@ const BlogLandingPage = () => {
   ];
 
   return (
+  <>  
+    <Header/>
     <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} p={5}>
       {blogs.map((blog, index) => (
         <BlogCard
@@ -55,6 +58,7 @@ const BlogLandingPage = () => {
         />
       ))}
     </SimpleGrid>
+  </>  
   );
 }
 
