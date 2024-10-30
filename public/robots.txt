@@ -2,6 +2,10 @@
 User-agent: *
 Allow: /
 
+# Allow SEMrush bot
+User-agent: SemrushBot
+Allow: /
+
 # Host
 Host: https://www.vibesearch.ai/
 
