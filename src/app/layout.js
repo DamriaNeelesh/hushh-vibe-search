@@ -27,8 +27,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-{/* Google Tag Manager */}
-<script
+        {/* Google Tag Manager */}
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -40,8 +40,11 @@ export default function RootLayout({ children }) {
           }}
         />
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8	"></script>
-<script
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8	"
+        ></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -52,14 +55,21 @@ export default function RootLayout({ children }) {
           }}
         />
 
-<meta
-        name="google-site-verification"
-        content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
-      />
-<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429">
-</script>
-<script
+        <meta
+          name="google-site-verification"
+          content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
+        <meta name="verification" content="ec88987e0a554366fabd35acbae19efd" />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429"
+        ></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -69,8 +79,8 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-      <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
-        
+        <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -86,10 +96,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3KQ5QKZ"
-height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N3KQ5QKZ"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
 
-        <ChakraBaseProvider><ChakraProvider>{children}</ChakraProvider></ChakraBaseProvider>
+        <ChakraBaseProvider>
+          <ChakraProvider>{children}</ChakraProvider>
+        </ChakraBaseProvider>
       </body>
     </html>
   );
