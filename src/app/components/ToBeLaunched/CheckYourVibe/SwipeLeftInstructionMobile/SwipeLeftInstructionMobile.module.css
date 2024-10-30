@@ -1,0 +1,42 @@
+.CheckYourVibe__SwipeAnimWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.CheckYourVibe__SwipeAnimWrapper .CheckYourVibe__SwipeAnimWrapperLeft {
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+.CheckYourVibe__SwipeAnimWrapper .CheckYourVibe__SwipeAnimWrapperLeft .CheckYourVibe__SwipeLeftAnim {
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+  background-color: #FFB7B7;
+  animation-name: CheckYourVibe__SwipeRightAnim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes CheckYourVibe__SwipeRightAnim {
+  0% {
+    width: 40px;
+  }
+  100% {
+    width: 80px;
+  }
+}
+.CheckYourVibe__SwipeAnimWrapper .CheckYourVibe__SwipeText {
+  margin-top: 40pt;
+  text-align: center;
+}
+.CheckYourVibe__SwipeAnimWrapper .CheckYourVibe__SwipeTitle {
+  font-weight: 700;
+  font-size: 20px;
+  color: #606060;
+}
+.CheckYourVibe__SwipeAnimWrapper .CheckYourVibe__SwipeSubTitle {
+  font-weight: 400;
+  font-size: 20px;
+  color: #606060;
+}/*# sourceMappingURL=SwipeLeftInstructionMobile.module.css.map */

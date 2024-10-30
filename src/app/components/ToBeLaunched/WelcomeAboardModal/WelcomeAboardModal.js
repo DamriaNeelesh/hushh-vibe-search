@@ -7,9 +7,9 @@ import Card1 from "../../svg/card1.svg";
 import Card2 from "../../svg/card2.svg";
 import services from "../../../services/services";
 import Image from "next/image";
-export default function WelcomeABoardModal() {
+export default function WelcomeAboardModal() {
   const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
   useEffect(() => {
     const fetchUserDetails = async () => {

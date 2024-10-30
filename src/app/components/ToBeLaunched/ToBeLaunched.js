@@ -8,6 +8,7 @@ import Resources from "../../resources/resources";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 import toBeLaunchedMetadata from './toBeLaunchedMetadata'
 import DownArrow from './DownArrow/DownArrow'
+import WelcomeAboardModal from './WelcomeAboardModal/WelcomeAboardModal'
 export const metadata=toBeLaunchedMetadata;
 
 export default function ToBeLaunched() {
@@ -34,6 +35,7 @@ export default function ToBeLaunched() {
       <div className={styles.ToBeLaunched__Footer}>
         <utilities.Footer></utilities.Footer>
       </div>
+      
     </div>
   );
 }

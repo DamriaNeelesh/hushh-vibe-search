@@ -1,98 +1,19 @@
-"use client"
-import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import resources from "./resources/resources";
-import styles from './SwipeGame.module.css'
-import { useMediaQuery } from "@chakra-ui/react";
-const SwipeGame = () => {
-  const cardData = [
-    {
-      id: 1,
-      url: resources.Athleisure.src,
-    },
-    {
-      id: 2,
-      url: resources.Boho.src,
-    },
-    {
-      id: 3,
-      url: resources.Minimal.src,
-    },
-    {
-      id: 4,
-      url: resources.Streetwear.src,
-    },
-    {
-      id: 5,
-      url: resources.Vintage.src,
-    },
-  ];
-  const [cards, setCards] = useState(cardData);
+"use client";
+import React from "react";
+import SwipeCards from "./SwipeCards/SwipeCards";
 
+const SwipeGame = (props) => {
   return (
     <div className="grid place-items-center">
-      {cards.map((card) => {
-        return (
-          <Card key={card.id} cards={cards} setCards={setCards} {...card} />
-        );
-      })}
+      <SwipeCards
+        cards={props.cards}
+        rights={props.rights}
+        lefts={props.lefts}
+        setLefts={props.setLefts}
+        setRights={props.setRights}
+        setCards={props.setCards}
+      ></SwipeCards>
     </div>
-  );
-};
-
-const Card = ({ id, url, setCards, cards }) => {
-  const x = useMotionValue(0);
-  const [isMobile] = useMediaQuery("(max-width: 900px)");
-  let [windowWidth, setWindowWidth] = useState();
-  useEffect(() => { 
-    setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, [])
-  const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
-  const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
-
-  const isFront = id === cards[cards.length - 1].id;
-
-  const rotate = useTransform(() => {
-    const offset = isFront ? 0 : id % 2 ? 6 : -6;
-
-    return `${rotateRaw.get() + offset}deg`;
-  });
-
-  const handleDragEnd = () => {
-    if (Math.abs(x.get()) > 100) {
-      setCards((pv) => pv.filter((v) => v.id !== id));
-    }
-  };
-
-  return (
-    <motion.img
-      src={url}
-      alt="Placeholder alt"
-      className={`${styles.SwipeGame__Card}`}
-      style={{
-        gridRow: 1,
-        gridColumn: 1,
-        x,
-        opacity,
-        rotate,
-        transition: isMobile? "0.05s transform" :"0.125s transform",
-      }}
-      animate={{
-        scale: isFront ? 1 : 0.98,
-      }}
-      drag={isFront ? "x" : false}
-      dragConstraints={{
-        left: isMobile? (-50/393*windowWidth)+10: 0,
-        right: isMobile? 300/393*windowWidth :0,
-      }}
-      dragMomentum={true}
-      onDragEnd={handleDragEnd}
-      dragTransition={{  bounceDamping: 30, bounceStiffness: 1000 }}
-      dragElastic={1}
-    />
   );
 };
 

@@ -1,74 +1,63 @@
 import SwipeGame from "./SwipeGame/SwipeGame";
 import styles from "./CheckYourVibe.module.css";
+import SwipeLeftInstruction from "./SwipeLeftInstruction/SwipeLeftInstruction";
+import SwipeRightInstruction from "./SwipeRightInstruction/SwipeRightInstruction";
+import SwipeLeftInstructionMobile from "./SwipeLeftInstructionMobile/SwipeLeftInstructionMobile";
+import SwipeRightInstructionMobile from "./SwipeRightInstructionMobile/SwipeRightInstructionMobile";
+import { useState } from "react";
+import FashionCard from "./SwipeGame/FashionCard/FashionCard";
+import cardData from "./SwipeGame/resources/config/cardData";
+import { useEffect } from "react";
 export default function CheckYourVibe() {
+  let [isAllSwiped, setIsAllSwiped] = useState(false);
+  let [rights, setRights] = new useState([]);
+  let [lefts, setLefts] = new useState([]);
+  const [cards, setCards] = useState(cardData);
+  useEffect(() => {
+    cards.length == 0 ? setIsAllSwiped(true) : "";
+  }, [cards]);
   return (
-    <div className={`${styles.CheckYourVibe} figtree`}>
-      <div className={`${styles.CheckYourVibe__Title}`}>Vibe Check</div>
-      <div className={`${styles.CheckYourVibe__SubTitle}`}>
-        Tell us your style - Click and swipe through different styles
-      </div>
-      <div className={`${styles.CheckYourVibe__SwipeGameMobile} figtree`}>
-        <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
-          <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
-            <div className={`${styles.CheckYourVibe__SwipeAnimWrapperLeft}`}>
-              <div className={`${styles.CheckYourVibe__SwipeLeftAnim}`}></div>
+    <>
+      {isAllSwiped ? (
+        <FashionCard cardData={cardData} rights={rights}></FashionCard>
+      ) : (
+        <div className={`${styles.CheckYourVibe} figtree`}>
+          <div className={`${styles.CheckYourVibe__Title}`}>Vibe Check</div>
+          <div className={`${styles.CheckYourVibe__SubTitle}`}>
+            Tell us your style - Click and swipe through different styles
+          </div>
+          <div className={`${styles.CheckYourVibe__SwipeGameMobile} figtree`}>
+            <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
+              <SwipeLeftInstructionMobile></SwipeLeftInstructionMobile>
+              <SwipeRightInstructionMobile></SwipeRightInstructionMobile>
             </div>
-            <div className={`${styles.CheckYourVibe__SwipeText}`}>
-              <div className={`${styles.CheckYourVibe__SwipeTitle}`}>
-                Not your vibe?
-              </div>
-              <div className={`${styles.CheckYourVibe__SwipeSubTitle}`}>
-                Swipe Left
-              </div>
+            <div className={`${styles.CheckYourVibe__SwipeGameMobile}`}>
+              <SwipeGame
+                setIsAllSwiped={setIsAllSwiped}
+                rights={rights}
+                setRights={setRights}
+                lefts={lefts}
+                setLefts={setLefts}
+                cards={cards}
+                setCards={setCards}
+              ></SwipeGame>
             </div>
           </div>
-          <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
-            <div className={`${styles.CheckYourVibe__SwipeAnimWrapperRight}`}>
-              <div className={`${styles.CheckYourVibe__SwipeRightAnim}`}></div>
-            </div>
-            <div className={`${styles.CheckYourVibe__SwipeText}`}>
-              <div className={`${styles.CheckYourVibe__SwipeTitle}`}>
-                Sounds like your vibe?
-              </div>
-              <div className={`${styles.CheckYourVibe__SwipeSubTitle}`}>
-                Swipe Right
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`${styles.CheckYourVibe__SwipeGameMobile}`}>
-          <SwipeGame></SwipeGame>
-        </div>
-      </div>
-      <div className={`${styles.CheckYourVibe__SwipeGame} figtree`}>
-        <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
-          <div className={`${styles.CheckYourVibe__SwipeAnimWrapperLeft}`}>
-            <div className={`${styles.CheckYourVibe__SwipeLeftAnim}`}></div>
-          </div>
-          <div className={`${styles.CheckYourVibe__SwipeText}`}>
-            <div className={`${styles.CheckYourVibe__SwipeTitle}`}>
-              Not your vibe?
-            </div>
-            <div className={`${styles.CheckYourVibe__SwipeSubTitle}`}>
-              Swipe Left
-            </div>
+          <div className={`${styles.CheckYourVibe__SwipeGame} figtree`}>
+            <SwipeLeftInstruction></SwipeLeftInstruction>
+            <SwipeGame
+              setIsAllSwiped={setIsAllSwiped}
+              rights={rights}
+              setRights={setRights}
+              lefts={lefts}
+              setLefts={setLefts}
+              cards={cards}
+              setCards={setCards}
+            ></SwipeGame>
+            <SwipeRightInstruction></SwipeRightInstruction>
           </div>
         </div>
-        <SwipeGame></SwipeGame>
-        <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
-          <div className={`${styles.CheckYourVibe__SwipeAnimWrapperRight}`}>
-            <div className={`${styles.CheckYourVibe__SwipeRightAnim}`}></div>
-          </div>
-          <div className={`${styles.CheckYourVibe__SwipeText}`}>
-            <div className={`${styles.CheckYourVibe__SwipeTitle}`}>
-              Sounds like your vibe?
-            </div>
-            <div className={`${styles.CheckYourVibe__SwipeSubTitle}`}>
-              Swipe Right
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
