@@ -2,18 +2,6 @@
 User-agent: *
 Allow: /
 
-# Allow SEMrush bot
-User-agent: SemrushBot
-Allow: /
-
-# Allow SEMrush Audit bot
-User-agent: SiteAuditBot
-Allow: /
-
-# Allow SEMrush Backlink Tool
-User-agent: SemrushBot-BA
-Allow: /
-
 # Host
 Host: https://www.vibesearch.ai/
 
