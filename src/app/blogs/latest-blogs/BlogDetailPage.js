@@ -18,8 +18,9 @@ import Image10 from "../../../../public/blogImages/image10.png";
 import Image3 from "../../../../public/blogImages/image3.png";
 import Image11 from "../../../../public/blogImages/image11.png";
 import Image8 from "../../../../public/blogImages/image8.png";
-import Image6 from '../../../../public/blogImages/image6.png'
-import Image2 from '../../../../public/blogImages/image2.png'
+import Image6 from '../../../../public/blogImages/image6.png';
+import Image2 from '../../../../public/blogImages/image2.png';
+import Image7 from '../../../../public/blogImages/image7.png';
 
 const BlogDetailPage = () => {
   return (
@@ -437,11 +438,14 @@ const BlogDetailPage = () => {
         shoppers who prioritize getting the right shade
       </Text>
       <Image src={Image2} alt="Vibe Search Sematic Search AI" />
+
       <Text mb="4">
         Test 2: Patterns in Focus Shifting priority to floral patterns changed
         everything: Floral prints dominated the results Color became secondary
         Some non-red items appeared, but with beautiful floral designs
       </Text>
+      <Image src={Image7} alt="Vibe Search Sematic Search AI" />
+
       <Text mb="4">
         Test 3: Occasion-Driven Results When we emphasized "wedding" as the key
         factor: Formal and wedding-appropriate dresses rose to the top Color and
