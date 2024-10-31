@@ -15,8 +15,11 @@ import Image from "next/image";
 import Image1 from "../../../../public/blogImages/image1.png";
 import Image0 from "../../../../public/blogImages/image0.png";
 import Image10 from "../../../../public/blogImages/image10.png";
-import Image3 from '../../../../public/blogImages/image3.png';
-import Image11 from '../../../../public/blogImages/image11.png'
+import Image3 from "../../../../public/blogImages/image3.png";
+import Image11 from "../../../../public/blogImages/image11.png";
+import Image8 from "../../../../public/blogImages/image8.png";
+import Image6 from '../../../../public/blogImages/image6.png'
+import Image2 from '../../../../public/blogImages/image2.png'
 
 const BlogDetailPage = () => {
   return (
@@ -182,7 +185,6 @@ const BlogDetailPage = () => {
       </Text>
       <Image src={Image1} alt="Vibe Search" />
 
-
       <Heading as="h3" size="md" mb="4">
         Vanilla Semantic Search
       </Heading>
@@ -216,7 +218,7 @@ const BlogDetailPage = () => {
         This usually works well! The results are mostly relevant - we get
         dresses that could work for our shopper.
       </Text>
-      <Image src={Image3} alt="Vibe Search "/>
+      <Image src={Image3} alt="Vibe Search " />
 
       <Image src={Image11} alt="Vibe Search" />
       <Heading as="h3" size="lg" mb="4">
@@ -227,7 +229,7 @@ const BlogDetailPage = () => {
         understand user intent, prioritize features, and deliver precisely
         ranked results.
       </Text>
-      <Text color={'#073763'} fontWeight={'bold'} size="md" mb="4">
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="4">
         Core Concept: Query Parsing
       </Text>
       <Text mb="4">
@@ -236,29 +238,29 @@ const BlogDetailPage = () => {
         search query as one block of text, we break it down into meaningful
         pieces that our system can understand and prioritize.
       </Text>
-      <Text color={'#073763'} fontWeight={'bold'} size="md" mb="4">
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="4">
         Architecture Overview
       </Text>
-      <Text mb="2">
-        Here's how our enhanced search system works:
-      </Text>
-    <Box mb="4">
-  <Text fontWeight="bold">1. Dual Processing Pipeline</Text>
-  <List styleType="lower-alpha" pl="4">
-    <ListItem>Traditional semantic search path</ListItem>
-    <ListItem>New query parsing path for detailed analysis</ListItem>
-  </List>
-</Box>
+      <Text mb="2">Here's how our enhanced search system works:</Text>
+      <Box mb="4">
+        <Text fontWeight="bold">1. Dual Processing Pipeline</Text>
+        <List styleType="lower-alpha" pl="4">
+          <ListItem>Traditional semantic search path</ListItem>
+          <ListItem>New query parsing path for detailed analysis</ListItem>
+        </List>
+      </Box>
 
-<Box mb="4">
-  <Text fontWeight="bold">2. Semantic Parser Integration</Text>
-  <List styleType="lower-alpha" pl="4">
-    <ListItem>Breaks queries into logical components</ListItem>
-    <ListItem>Creates labeled sequences for specific features</ListItem>
-    <ListItem>Generates targeted embeddings for precise matching</ListItem>
-  </List>
-</Box>
-      <Text color={'#073763'} fontWeight={'bold'} size="md" mb="4">
+      <Box mb="4">
+        <Text fontWeight="bold">2. Semantic Parser Integration</Text>
+        <List styleType="lower-alpha" pl="4">
+          <ListItem>Breaks queries into logical components</ListItem>
+          <ListItem>Creates labeled sequences for specific features</ListItem>
+          <ListItem>
+            Generates targeted embeddings for precise matching
+          </ListItem>
+        </List>
+      </Box>
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="4">
         Building the Parser: Key Requirements
       </Text>
       <Text mb="4">
@@ -266,7 +268,7 @@ const BlogDetailPage = () => {
         rules out using Large Language Models (LLMs) directly in the processing
         pipeline, as they typically add 7-10 seconds of latency.
       </Text>
-      <Text color={'#073763'} fontWeight={'bold'} size="md" mb="4">
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
         Implementation Steps
       </Text>
       <Text mb="4">
@@ -274,13 +276,11 @@ const BlogDetailPage = () => {
         daunting, but it doesn't have to be. Here's a practical breakdown:
       </Text>
       <Text mb="4">
-       <b> 1. Feature Classification System:</b> Define a structured taxonomy for your
-        domain. For an e-commerce fashion site: 
-        - Color (red, blue, black)  <br></br>
-        - Season (winter, summer) <br></br>
-        - Occasion (wedding, business)  <br></br>
-        - Product Type (dress, pants) <br></br>
-        - Specifications (floral print, v-neck) <br></br>
+        <b> 1. Feature Classification System:</b> Define a structured taxonomy
+        for your domain. For an e-commerce fashion site: - Color (red, blue,
+        black) <br></br>- Season (winter, summer) <br></br>- Occasion (wedding,
+        business) <br></br>- Product Type (dress, pants) <br></br>-
+        Specifications (floral print, v-neck) <br></br>
       </Text>
       <Text mb="4">
         <b>2. Knowledge Base Development:</b> Begin by creating a comprehensive
@@ -293,29 +293,30 @@ const BlogDetailPage = () => {
         to improve continually.
       </Text>
       <Text mb="4">
-        <b>3. Phrase Matching Algorithm:</b> Implement a phrase matching algorithm to
-        identify chunks of phrases, trigrams, bigrams, and monograms present in
-        the feature corpus. Prioritize the longest chunk label; for instance,
-        phrases like 'beach party' should be categorized together under
-        'occasion' rather than as separate entities.
-        <br></br> 
-        <b>Example: </b>"beach party" → occasion (single category)   <br></br>
+        <b>3. Phrase Matching Algorithm:</b> Implement a phrase matching
+        algorithm to identify chunks of phrases, trigrams, bigrams, and
+        monograms present in the feature corpus. Prioritize the longest chunk
+        label; for instance, phrases like 'beach party' should be categorized
+        together under 'occasion' rather than as separate entities.
+        <br></br>
+        <b>Example: </b>"beach party" → occasion (single category) <br></br>
         <b>Rather than:</b> "beach" + "party" → two separate terms
       </Text>
       <Text mb="4">
-        <b>4. Grammar and Syntax Understanding:</b> Define grammatical rules to help
-        your parser interpret relationships between words. For instance, "long
-        sleeves" should be categorized as a single specification related to the
-        sleeve length. For instance, rules could specify that adjectives after
-        specifications (like 'long sleeves') should be classified as part of the
-        specification, with 'sleeves' as the entity and 'long' as a requirement.
-        This provides a robust foundation for a version 1.0 semantic parser. The
-        system can be enhanced with additional NLP techniques as your needs
-        grow.
+        <b>4. Grammar and Syntax Understanding:</b> Define grammatical rules to
+        help your parser interpret relationships between words. For instance,
+        "long sleeves" should be categorized as a single specification related
+        to the sleeve length. For instance, rules could specify that adjectives
+        after specifications (like 'long sleeves') should be classified as part
+        of the specification, with 'sleeves' as the entity and 'long' as a
+        requirement. This provides a robust foundation for a version 1.0
+        semantic parser. The system can be enhanced with additional NLP
+        techniques as your needs grow.
       </Text>
       <Text mb="4">
         Here you can see the result of semantic parsing for our example query:
       </Text>
+      <Image src={Image8} alt="Vibe Search Sematic" />
       <Heading as="h3" size="md" mb="4">
         Optimizing Search Results: The Final Steps
       </Heading>
@@ -332,54 +333,110 @@ const BlogDetailPage = () => {
       </Text>
       <Text mb="4">
         Not all search features are created equal. We need to make strategic
-        decisions about how to use each identified feature: Filtering Criteria
+        decisions about how to use each identified feature:
+      </Text>
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
+        Filtering Criteria
+      </Text>
+      <Text>
+        {" "}
         Some features act as hard requirements. For example: Brand names
         typically need exact matches Size specifications must be precise Price
-        range requirements are non-negotiable Boosting Factors Other features
-        influence ranking without excluding products: Color preferences Style
-        elements Seasonal appropriateness
+        range requirements are non-negotiable
+      </Text>
+
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
+        Boosting Factors{" "}
+      </Text>
+      <Text>Other features influence ranking without excluding products:</Text>
+      <UnorderedList>
+        <ListItem>Color preferences</ListItem>
+        <ListItem>Style elements</ListItem>
+        <ListItem> Seasonal appropriateness</ListItem>
+      </UnorderedList>
+
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
+        The Ranking Engine{" "}
       </Text>
       <Text mb="4">
-        The Ranking Engine Here's where it gets interesting. We convert each
-        feature chunk into its own embedding (a mathematical representation).
-        This allows us to: Compare products against specific features Generate
-        individual ranking scores Combine these scores intelligently
+        Here's where it gets interesting. We convert each feature chunk into its
+        own embedding (a mathematical representation). This allows us to:
+      </Text>
+      <UnorderedList>
+        <ListItem>Compare products against specific features </ListItem>
+        <ListItem>Generate individual ranking scores </ListItem>
+        <ListItem>Combine these scores intelligently </ListItem>
+      </UnorderedList>
+
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
+        Bringing It All Together
       </Text>
       <Text mb="4">
-        Bringing It All Together The final step is rank fusion - combining
-        multiple ranking signals into a single, coherent list. We can: Assign
-        different weights to different features Account for user preferences
-        Adapt to business priorities This creates a flexible system that can be
-        tuned for: Individual user preferences Business objectives Seasonal
-        priorities Market trends By balancing these elements, we create search
-        results that are both relevant and aligned with business goals.
+        The final step is rank fusion - combining multiple ranking signals into
+        a single, coherent list. We can:
       </Text>
-      <Text mb="4">
-        Product Ranking: Semantic parsing allows us to rank products based on
-        how well they align with the specific elements of a user's query. Query
-        Parsing: By identifying key attributes within a query (e.g., color,
+      <UnorderedList mb={4}>
+        <ListItem>Assign different weights to different features </ListItem>
+        <ListItem>Account for user preferences</ListItem>
+        <ListItem>Adapt to business priorities </ListItem>
+      </UnorderedList>
+
+      <Text>This creates a flexible system that can be tuned for:</Text>
+      <UnorderedList>
+        <ListItem>Individual user preferences </ListItem>
+        <ListItem>Business objectives</ListItem>
+        <ListItem>Seasonal priorities </ListItem>
+        <ListItem>Market trends</ListItem>
+      </UnorderedList>
+
+      <Text>
+        {" "}
+        By balancing these elements, we create search results that are both
+        relevant and aligned with business goals.
+      </Text>
+
+      <Image src={Image6} alt="Vibe Search Business Goals Sematic Parsing" />
+
+      <Text>
+        <b>Product Ranking: </b>Semantic parsing allows us to rank products based on
+        how well they align with the specific elements of a user's query.
+      </Text>
+      <Text>
+        <b>Query Parsing:</b> By identifying key attributes within a query (e.g., color,
         size, occasion), we can surface products that precisely match those
-        criteria. Rank Boosting: Weights assigned to different features empower
+        criteria. 
+       </Text> 
+       <Text>
+        <b>Rank Boosting: </b>Weights assigned to different features empower
         you to boost the visibility of products that align with the most
-        important aspects of a query. Techniques like the Rank Fusion Algorithm
+        important aspects of a query. 
+        </Text>
+        <Text>
+        Techniques like the <b>Rank Fusion Algorithm</b> 
         further refine this process, ensuring that the final product ranking
         reflects a balanced consideration of all relevant factors.
       </Text>
-      <Heading as="h3" size="md" mb="4">
+      <Heading as="h3" size="md" my="4">
         Fine-Tuning Search Results: The Magic of Feature Weighting
       </Heading>
+
+      <Text color={"#073763"} fontWeight={"bold"} size="md" mb="1" mt="2">
+        The Power of Precision Control
+      </Text>
       <Text mb="4">
-        The Power of Precision Control By breaking down queries into logical
+        By breaking down queries into logical
         features and controlling their importance, we can fine-tune search
         results with surgical precision. Let's see this in action with some real
         examples.
       </Text>
+      <Text> Experiment: Adjusting Feature Weights  </Text>
       <Text mb="4">
-        Experiment: Adjusting Feature Weights Test 1: Color Takes the Lead When
-        we amplified the importance of color in our search: Nearly all results
+        Test 1: Color Takes the Lead 
+        When we amplified the importance of color in our search: Nearly all results
         were red items Only 4-5 out of 18 products had floral prints Perfect for
         shoppers who prioritize getting the right shade
       </Text>
+      <Image src={Image2} alt="Vibe Search Sematic Search AI" />
       <Text mb="4">
         Test 2: Patterns in Focus Shifting priority to floral patterns changed
         everything: Floral prints dominated the results Color became secondary
