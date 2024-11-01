@@ -9,7 +9,6 @@ import toBeLaunchedMetadata from "./toBeLaunchedMetadata";
 import DownArrow from "./DownArrow/DownArrow";
 import Header from './Header/Header';
 
-
 export const metadata = toBeLaunchedMetadata;
 
 export default function ToBeLaunched() {

@@ -3,29 +3,33 @@ import services from "../../../services/services";
 import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 
+const GoogleSignIn = 
+dynamic(() => import("./GoogleSignIn/GoogleSignIn"), { ssr: false });
+
+const PostSignInSearchBox = 
+dynamic(() => import("./PostSignInSearchBox/PostSignInSearchBox"), {
+  ssr: false,
+});
+
 export default function Description() {
-  const GoogleSignIn = useMemo(
-    () => dynamic(() => import("./GoogleSignIn/GoogleSignIn"), { ssr: false }),
-    []
-  );
-  const PostSignInSearchBox = useMemo(
-    () =>
-      dynamic(() => import("./PostSignInSearchBox/PostSignInSearchBox"), {
-        ssr: false,
-      }),
-    []
-  );
   let [isSignedIn, setIsSignedIn] = useState(false);
   let [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    setInterval(() => {
-      isSignedIn ? "" : services.authentication.isLoggedIn(setIsSignedIn);
+    const intervalId = setInterval(() => {
+      if (!isSignedIn) {
+        services.authentication.isLoggedIn(setIsSignedIn);
+      }
     }, 500);
-  }, []);
-  useEffect(() => {
-    services.authentication.getFullName(setFullName);
+    return () => clearInterval(intervalId);
   }, [isSignedIn]);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      services.authentication.getFullName(setFullName);
+    }
+  }, [isSignedIn]);
+
   return (
     <div
       className={styles.Description}
@@ -38,9 +42,9 @@ export default function Description() {
       </div>
 
       {!isSignedIn ? (
-        <GoogleSignIn></GoogleSignIn>
+        <GoogleSignIn />
       ) : (
-        <PostSignInSearchBox fullName={fullName}></PostSignInSearchBox>
+        <PostSignInSearchBox fullName={fullName} />
       )}
     </div>
   );
