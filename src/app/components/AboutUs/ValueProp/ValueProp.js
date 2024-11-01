@@ -12,8 +12,6 @@ export default function ValueProp(props) {
           <></>
         )}
         <div>
-          {/* <div className={`${styles.ValueProp__Title}`}>{props.title}</div>
-        <div className={`${styles.ValueProp__Desc} ${props.title!=''?styles.ValueProp__DescSmall:''}`}>{props.desc}</div> */}
           {props.children}
         </div>
         {props.imageDirection == "right" ? (

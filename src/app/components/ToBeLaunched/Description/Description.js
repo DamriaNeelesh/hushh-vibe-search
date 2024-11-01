@@ -1,17 +1,7 @@
-"use client"
 import styles from "./Description.module.css";
 import services from "../../../services/services";
 import { useEffect, useState, useMemo } from "react";
-import dynamic from "next/dynamic";
-
-const GoogleSignIn = 
-dynamic(() => import("./GoogleSignIn/GoogleSignIn"), { ssr: false });
-
-const PostSignInSearchBox = 
-dynamic(() => import("./PostSignInSearchBox/PostSignInSearchBox"), {
-  ssr: false,
-});
-
+import DynamicSignInWrapper from "./DynamicSignInWrapper/DynamicSignInWrapper";
 export default function Description() {
   let [isSignedIn, setIsSignedIn] = useState(false);
   let [fullName, setFullName] = useState("");
@@ -41,12 +31,7 @@ export default function Description() {
         <br></br>
         Shop Your Style.
       </div>
-
-      {!isSignedIn ? (
-        <GoogleSignIn />
-      ) : (
-        <PostSignInSearchBox fullName={fullName} />
-      )}
+      <DynamicSignInWrapper></DynamicSignInWrapper>
     </div>
   );
 }
