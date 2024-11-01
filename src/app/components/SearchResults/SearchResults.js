@@ -76,14 +76,6 @@ export default function SearchResults() {
     services.authentication.getSession();
   }, []);
   useEffect(() => {
-    (async () => {
-      let isLoggedIn = await services.authentication.isLoggedIn();
-      if (!isLoggedIn) {
-        window.location.href = config.redirect_url + "/components/ErrorNoLogin";
-      }
-    })();
-  }, []);
-  useEffect(() => {
     callVibeIt(
       loadingBarRef,
       searchParams,

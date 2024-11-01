@@ -25,7 +25,7 @@ export default function Description() {
   }, []);
   useEffect(() => {
     services.authentication.getFullName(setFullName);
-  }, []);
+  }, [isSignedIn]);
   return (
     <div
       className={styles.Description}
