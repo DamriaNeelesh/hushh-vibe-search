@@ -27,7 +27,7 @@ const BlogDetailPage = () => {
     <Container
       gap={{ md: "0.5rem" }}
       display={"flex"}
-      flexDirection={"column"}
+      flexDirection={"column"}  
       p={5}
       minW={{ md: "70%", base: "100%" }}
       fontFamily={"Figtree, sans-serif"}
