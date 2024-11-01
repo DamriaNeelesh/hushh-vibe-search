@@ -1,10 +1,12 @@
 import styles from "./ValueProp.module.css";
+import dynamic from "next/dynamic";
+let Illustration = dynamic(() => import("./Illustration/Illustration"));
 export default function ValueProp(props) {
   return (
     <div className={`${styles.ValueProp} figtree`}>
       <div className={`${styles.ValueProp__Wrapper}`}>
         {props.imageDirection == "left" ? (
-          <img className={`${styles.ValueProp__Image}`} src={props.image} alt="Hushh Vibe Search"></img>
+          <Illustration image={props.image}></Illustration>
         ) : (
           <></>
         )}
@@ -14,7 +16,7 @@ export default function ValueProp(props) {
           {props.children}
         </div>
         {props.imageDirection == "right" ? (
-          <img src={props.image} className={`${styles.ValueProp__Image}`} alt="Hushh Vibe Search"></img>
+          <Illustration image={props.image}></Illustration>
         ) : (
           <></>
         )}
