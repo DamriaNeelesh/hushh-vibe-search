@@ -1,5 +1,5 @@
 import utilities from "../utilities/utilities";
-import error404 from './resources/error404.svg'
+import error404 from "./resources/error404.svg";
 export default function ErrorPage404() {
   return (
     <div>
@@ -8,7 +8,7 @@ export default function ErrorPage404() {
         subTitle={
           "Don't worry, your vibe is still on point. Head back to the homepage or explore some of our curated collections below."
         }
-        code={'404'}
+        code={"404"}
         image={error404.src}
       ></utilities.ErrorPage>
     </div>

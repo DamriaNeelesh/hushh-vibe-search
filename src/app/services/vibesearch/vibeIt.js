@@ -47,6 +47,10 @@ export default async function vibeIt(
       return;
     }
     let products = {};
+    if(results["data"]["message"] && currentPage==1) {
+      window.location.href=config.redirect_url+'/components/ErrorPage400';
+    }
+      
     for (let key in results["data"]) {
       if (results["data"].hasOwnProperty(key) && key != "brands") {
         products[currentPage + " " + key] = results["data"][key];
