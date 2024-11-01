@@ -19,7 +19,7 @@ export default function Description() {
   let [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
+    setInterval(() => {
       isSignedIn ? "" : services.authentication.isLoggedIn(setIsSignedIn);
     }, 500);
   }, []);
