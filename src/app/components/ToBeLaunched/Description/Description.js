@@ -1,3 +1,4 @@
+"use client"
 import styles from "./Description.module.css";
 import services from "../../../services/services";
 import { useEffect, useState, useMemo } from "react";

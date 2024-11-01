@@ -1,3 +1,4 @@
+"use client"
 import styles from "./ValueProp.module.css";
 import dynamic from "next/dynamic";
 let Illustration = dynamic(() => import("./Illustration/Illustration"));
