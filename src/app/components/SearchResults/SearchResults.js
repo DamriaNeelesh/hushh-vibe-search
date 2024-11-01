@@ -23,7 +23,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import {FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import services from "../../services/services";
 import { useRouter, useSearchParams } from "next/navigation";
 import Footer from "../footer";
@@ -45,6 +45,7 @@ import handleProductClick from "./services/handleProductClick";
 import callVibeIt from "./services/callVibeIt";
 import openDrawer from "./services/openDrawer";
 import closeDrawer from "./services/closeDrawer";
+import config from "../../resources/config/config";
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -75,6 +76,14 @@ export default function SearchResults() {
     services.authentication.getSession();
   }, []);
   useEffect(() => {
+    (async () => {
+      let isLoggedIn = await services.authentication.isLoggedIn();
+      if (!isLoggedIn) {
+        window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+      }
+    })();
+  }, []);
+  useEffect(() => {
     callVibeIt(
       loadingBarRef,
       searchParams,
@@ -87,10 +96,17 @@ export default function SearchResults() {
       setBrands,
       true,
       priceRange,
-      selectedGenders.length>0,
-      selectedGenders.length>0? selectedGenders[0]: null
+      selectedGenders.length > 0,
+      selectedGenders.length > 0 ? selectedGenders[0] : null
     );
-  }, [searchParams, currentPage, selectedBrands, noMoreResults, selectedGenders, priceRange]);
+  }, [
+    searchParams,
+    currentPage,
+    selectedBrands,
+    noMoreResults,
+    selectedGenders,
+    priceRange,
+  ]);
 
   const additionalImages = selectedProduct?.additional_images
     ? JSON.parse(selectedProduct.additional_images)
@@ -113,14 +129,14 @@ export default function SearchResults() {
       setBrands,
       true,
       priceRange,
-      selectedGenders.length>0,
-      selectedGenders.length>0? selectedGenders[0]: null
+      selectedGenders.length > 0,
+      selectedGenders.length > 0 ? selectedGenders[0] : null
     );
   };
-  let [query, setQuery]=useState('')
-  useEffect(()=>{
-    setQuery(searchParams.get('query'))
-  }, [])
+  let [query, setQuery] = useState("");
+  useEffect(() => {
+    setQuery(searchParams.get("query"));
+  }, []);
   return (
     <>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />

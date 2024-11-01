@@ -1,29 +1,31 @@
 import styles from "./Description.module.css";
 import services from "../../../services/services";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 
 export default function Description() {
-  const GoogleSignIn = dynamic(() => import("./GoogleSignIn/GoogleSignIn"), {
-    ssr: false,
-  });
-  const PostSignInSearchBox = dynamic(
-    () => import("./PostSignInSearchBox/PostSignInSearchBox"),
-    {
-      ssr: false,
-    }
+  const GoogleSignIn = useMemo(
+    () => dynamic(() => import("./GoogleSignIn/GoogleSignIn"), { ssr: false }),
+    []
+  );
+  const PostSignInSearchBox = useMemo(
+    () =>
+      dynamic(() => import("./PostSignInSearchBox/PostSignInSearchBox"), {
+        ssr: false,
+      }),
+    []
   );
   let [isSignedIn, setIsSignedIn] = useState(false);
   let [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       isSignedIn ? "" : services.authentication.isLoggedIn(setIsSignedIn);
     }, 500);
   }, []);
   useEffect(() => {
     services.authentication.getFullName(setFullName);
-  }, [isSignedIn]);
+  }, []);
   return (
     <div
       className={styles.Description}
