@@ -7,12 +7,11 @@ export default function Description() {
   let [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    setInterval(() => {
       if (!isSignedIn) {
         services.authentication.isLoggedIn(setIsSignedIn);
       }
     }, 500);
-    return () => clearInterval(intervalId);
   }, [isSignedIn]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function Description() {
         <br></br>
         Shop Your Style.
       </div>
-      <DynamicSignInWrapper></DynamicSignInWrapper>
+      <DynamicSignInWrapper isSignedIn={isSignedIn} fullName={fullName}></DynamicSignInWrapper>
     </div>
   );
 }
