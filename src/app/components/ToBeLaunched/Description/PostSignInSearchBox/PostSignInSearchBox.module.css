@@ -1,0 +1,34 @@
+@media screen and (max-width: 900px) {
+  .Description__SearchBox {
+    display: none;
+  }
+}
+
+.Description__SearchBoxMobile {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .Description__SearchBoxMobile {
+    display: block;
+  }
+}
+
+.Description__SignIn {
+  height: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Description__EarlyAccessNotifier {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(89, 97, 104, 0.8117647059);
+  margin-top: 5pt;
+}
+@media screen and (max-width: 900px) {
+  .Description__EarlyAccessNotifier {
+    text-align: center;
+  }
+}/*# sourceMappingURL=PostSignInSearchBox.module.css.map */

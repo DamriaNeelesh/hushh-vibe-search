@@ -1,21 +1,25 @@
 import styles from "./Description.module.css";
-import gSignInButton from "./resources/gsignin-button.svg";
 import services from "../../../services/services";
 import { useEffect, useState } from "react";
-import utilities from "../../utilities/utilities";
+import dynamic from "next/dynamic";
 
 export default function Description() {
+  const GoogleSignIn = dynamic(() => import("./GoogleSignIn/GoogleSignIn"), {
+    ssr: false,
+  });
+  const PostSignInSearchBox = dynamic(
+    () => import("./PostSignInSearchBox/PostSignInSearchBox"),
+    {
+      ssr: false,
+    }
+  );
   let [isSignedIn, setIsSignedIn] = useState(false);
   let [fullName, setFullName] = useState("");
-  const handleGoogleSignIn = async () => {
-    try {
-      await services.authentication.googleSignIn();
-    } catch (error) {}
-  };
+
   useEffect(() => {
     setInterval(() => {
       isSignedIn ? "" : services.authentication.isLoggedIn(setIsSignedIn);
-    }, 1000);
+    }, 500);
   }, []);
   useEffect(() => {
     services.authentication.getFullName(setFullName);
@@ -30,42 +34,12 @@ export default function Description() {
         <br></br>
         Shop Your Style.
       </div>
-      {isSignedIn ? (
-        <>
-          <div className={`${styles.Description__SearchBox}`}>
-            <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
-          </div>
-          <div className={`${styles.Description__SearchBoxMobile}`}>
-            <utilities.SearchBox boxWidth={80}></utilities.SearchBox>
-          </div>
-        </>
+
+      {!isSignedIn ? (
+        <GoogleSignIn></GoogleSignIn>
       ) : (
-        <></>
+        <PostSignInSearchBox fullName={fullName}></PostSignInSearchBox>
       )}
-      <div className={styles.Description__SignIn}>
-        {!isSignedIn ? (
-          <img
-            className={styles.Description__GoogleSignIn}
-            src={gSignInButton.src}
-            onClick={handleGoogleSignIn}
-            alt="Vibe Search Google SIgn In"
-          ></img>
-        ) : (
-          <></>
-        )}
-        <div className={`${styles.Description__EarlyAccessNotifier} figtree`}>
-          {!isSignedIn ? (
-            <div>
-              Get <strong>early access</strong> and{" "}
-              <strong>exclusive updates</strong>
-            </div>
-          ) : (
-            <div>
-              Welcome back <strong>{fullName}</strong>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 }

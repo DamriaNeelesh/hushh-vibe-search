@@ -1,3 +1,4 @@
+"use client"
 import resources from "../../../resources/resources";
 import styles from "./Header.module.css";
 import { useEffect } from "react";

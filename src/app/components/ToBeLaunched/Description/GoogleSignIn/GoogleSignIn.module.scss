@@ -1,0 +1,20 @@
+.Description__SignIn{
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.Description__GoogleSignIn{
+    height: 7vh;
+    cursor: pointer;
+}
+.Description__EarlyAccessNotifier{
+    font-weight: 400;
+    font-size: 16px;
+    color: #596168CF;
+    margin-top: 5pt;
+    @media screen and (max-width: 900px){
+        text-align: center;
+    }
+}

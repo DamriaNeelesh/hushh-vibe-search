@@ -1,0 +1,27 @@
+.Description__SearchBox{
+    @media screen and (max-width: 900px){
+        display: none;
+    }
+}
+.Description__SearchBoxMobile{
+    display: none;
+    @media screen and (max-width: 900px){
+        display: block;
+    }
+}
+.Description__SignIn{
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.Description__EarlyAccessNotifier{
+    font-weight: 400;
+    font-size: 16px;
+    color: #596168CF;
+    margin-top: 5pt;
+    @media screen and (max-width: 900px){
+        text-align: center;
+    }
+}

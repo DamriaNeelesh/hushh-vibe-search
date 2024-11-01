@@ -1,4 +1,3 @@
-import Header from "./Header/Header";
 import Description from "./Description/Description";
 import CompaniesMarquee from "./CompaniesMarquee/CompaniesMarquee";
 import utilities from "../utilities/utilities";
@@ -6,10 +5,12 @@ import styles from "./ToBeLaunched.module.css";
 import LandingScreenContent from "../LandingScreenContent/LandingScreenContent";
 import Resources from "../../resources/resources";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
-import toBeLaunchedMetadata from './toBeLaunchedMetadata'
-import DownArrow from './DownArrow/DownArrow'
-import WelcomeAboardModal from './WelcomeAboardModal/WelcomeAboardModal'
-export const metadata=toBeLaunchedMetadata;
+import toBeLaunchedMetadata from "./toBeLaunchedMetadata";
+import DownArrow from "./DownArrow/DownArrow";
+import Header from './Header/Header';
+
+
+export const metadata = toBeLaunchedMetadata;
 
 export default function ToBeLaunched() {
   return (
@@ -35,7 +36,6 @@ export default function ToBeLaunched() {
       <div className={styles.ToBeLaunched__Footer}>
         <utilities.Footer></utilities.Footer>
       </div>
-      
     </div>
   );
 }
