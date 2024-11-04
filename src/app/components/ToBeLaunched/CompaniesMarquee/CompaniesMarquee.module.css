@@ -1,6 +1,11 @@
 .CompaniesMarquee__Marquee {
   width: 49vw;
 }
+@media screen and (max-width: 900px) {
+  .CompaniesMarquee__Marquee {
+    margin-top: 35pt;
+  }
+}
 .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow {
   display: flex;
 }
@@ -8,4 +13,9 @@
   margin-left: 36pt;
   height: 40pt;
   margin-bottom: 22pt;
+}
+@media screen and (max-width: 900px) {
+  .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow .CompaniesMarquee__Logo {
+    height: 32pt;
+  }
 }/*# sourceMappingURL=CompaniesMarquee.module.css.map */
