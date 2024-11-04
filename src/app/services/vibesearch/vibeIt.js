@@ -43,21 +43,26 @@ export default async function vibeIt(
       data,
       header
     );
+    let products = {};
+    console.log(results)
+    if (results["data"]["message"] && currentPage == '1') {
+      window.location.href = config.redirect_url + "/components/ErrorPage400";
+    }
     if (results["data"]["message"]) {
       setNoMoreResults(true);
       return;
     }
-    let products = {};
-    if (results["data"]["message"] && currentPage == 1) {
-      window.location.href = config.redirect_url + "/components/ErrorPage400";
-    }
-
     for (let key in results["data"]) {
       if (results["data"].hasOwnProperty(key) && key != "brands") {
         products[currentPage + " " + key] = results["data"][key];
       }
     }
-    setState({ ...searchResults, ...products });
+
+    if (currentPage == 1) {
+      setState({ ...products });
+    } else {
+      setState({ ...searchResults, ...products });
+    }
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
@@ -68,7 +73,6 @@ export default async function vibeIt(
     } else if (e.response && e.response.status === 401) {
       window.location.href = config.redirect_url + "/components/ErrorNoLogin";
     } else {
-      
     }
   }
 }
