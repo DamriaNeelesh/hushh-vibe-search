@@ -92,6 +92,32 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <meta name="fo-verify" content="99078900-a479-470d-b88b-0b406b195229" />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function (m, a, z, e) {
+  var s, t;
+  try {
+    t = m.sessionStorage.getItem('maze-us');
+  } catch (err) {}
+
+  if (!t) {
+    t = new Date().getTime();
+    try {
+      m.sessionStorage.setItem('maze-us', t);
+    } catch (err) {}
+  }
+
+  s = a.createElement('script');
+  s.src = z + '?apiKey=' + e;
+  s.async = true;
+  a.getElementsByTagName('head')[0].appendChild(s);
+  m.mazeUniversalSnippetApiKey = e;
+})(window, document, 'https://snippet.maze.co/maze-universal-loader.js', 'f977b26b-7e1e-48b4-98f1-a3891a4a6943');
+            `,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
