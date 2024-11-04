@@ -16,7 +16,7 @@ import {
 
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
-import services from "../../../services/services";
+import services from "../../../../services/services";
 export default function ProductDrawer({
   isOpen,
   onClose,
