@@ -1,74 +1,98 @@
-.Description{
+.Description {
     margin-left: 8vw;
     width: 40vw;
-    @media screen and (max-width: 900px){
+
+    @media screen and (max-width: 900px) {
         margin-left: 0;
         display: flex;
         align-items: center;
         flex-direction: column;
     }
-    .Description__SearchBox{
-        @media screen and (max-width: 900px){
+
+    .Description__SearchBox {
+        @media screen and (max-width: 900px) {
             display: none;
         }
     }
-    .Description__SearchBoxMobile{
+
+    .Description__SearchBoxMobile {
         display: none;
-        @media screen and (max-width: 900px){
+
+        @media screen and (max-width: 900px) {
             display: block;
         }
     }
-    .Description__Tagline{
+
+    .Description__Tagline {
         font-weight: 700;
         font-size: 64px;
-        
-        @media screen and (max-width: 1340px){
+
+        @media screen and (max-width: 1340px) {
             font-size: 55px;
             font-weight: 700;
-            
+
         }
-        @media screen and (max-width: 1150px){
+
+        @media screen and (max-width: 1150px) {
             font-size: 45px;
             font-weight: 700;
         }
-        @media screen and (max-width: 950px){
+
+        @media screen and (max-width: 950px) {
             font-size: 35px;
             font-weight: 700;
         }
-        @media screen and (max-width: 900px){
-            font-size: 24px;
+
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+
+
+    }
+
+    .Description__TaglineMobile {
+        display: none;
+
+        @media screen and (max-width: 900px) {
+            font-size: 18px;
             font-weight: 300;
             text-align: center;
+            display: block;
+            width: 100vw;
         }
-        
     }
-    
-    .Description__LaunchDateWrapper{
+
+    .Description__LaunchDateWrapper {
         display: flex;
     }
-    .Description__LaunchDate{
+
+    .Description__LaunchDate {
         margin-left: 10pt;
         font-weight: 700;
         font-size: 20px;
         color: #596168;
     }
-    .Description__SignIn{
+
+    .Description__SignIn {
         height: 5vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
     }
-    .Description__GoogleSignIn{
+
+    .Description__GoogleSignIn {
         height: 7vh;
         cursor: pointer;
     }
-    .Description__EarlyAccessNotifier{
+
+    .Description__EarlyAccessNotifier {
         font-weight: 400;
         font-size: 16px;
         color: #596168CF;
         margin-top: 5pt;
-        @media screen and (max-width: 900px){
+
+        @media screen and (max-width: 900px) {
             text-align: center;
         }
     }

@@ -30,6 +30,9 @@ export default function Description() {
         <br></br>
         Shop Your Style.
       </div>
+      <div className={`${styles.Description__TaglineMobile} figtree`}>
+        Find Your Vibe. Shop Your Style.
+      </div>
       <DynamicSignInWrapper isSignedIn={isSignedIn} fullName={fullName}></DynamicSignInWrapper>
     </div>
   );

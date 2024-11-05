@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="fo-verify" content="99078900-a479-470d-b88b-0b406b195229" />
 
-        <script src="maze.js"></script>
+        <Script src="maze.js"></Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

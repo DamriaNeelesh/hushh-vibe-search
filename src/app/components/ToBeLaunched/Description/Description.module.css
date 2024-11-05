@@ -47,9 +47,19 @@
 }
 @media screen and (max-width: 900px) {
   .Description .Description__Tagline {
-    font-size: 24px;
+    display: none;
+  }
+}
+.Description .Description__TaglineMobile {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .Description .Description__TaglineMobile {
+    font-size: 18px;
     font-weight: 300;
     text-align: center;
+    display: block;
+    width: 100vw;
   }
 }
 .Description .Description__LaunchDateWrapper {
