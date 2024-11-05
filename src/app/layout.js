@@ -93,10 +93,8 @@ export default function RootLayout({ children }) {
         />
         <meta name="fo-verify" content="99078900-a479-470d-b88b-0b406b195229" />
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function (m, a, z, e) {
+        <script>
+(function (m, a, z, e) {
   var s, t;
   try {
     t = m.sessionStorage.getItem('maze-us');
@@ -115,9 +113,8 @@ export default function RootLayout({ children }) {
   a.getElementsByTagName('head')[0].appendChild(s);
   m.mazeUniversalSnippetApiKey = e;
 })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', 'f977b26b-7e1e-48b4-98f1-a3891a4a6943');
-            `,
-          }}
-        />
+</script>
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
