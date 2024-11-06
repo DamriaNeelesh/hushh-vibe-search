@@ -6,6 +6,7 @@ import {
   Image as ChakraImage,
   useToast,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import SearchResultWrapper from "./SearchResultsWrapper/SearchResultsWrapper";
 import services from "../../services/services";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -103,6 +104,11 @@ export default function SearchResults() {
   }, []);
   return (
     <>
+      <Head>
+        {Object.values(searchResults).map((product, index) => {
+          return <link rel="preload" href={product?.image} as="image"></link>;
+        })}
+      </Head>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
       {/* Mobile UI Drawer */}
       {isMobile && (
