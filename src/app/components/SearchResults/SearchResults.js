@@ -106,7 +106,14 @@ export default function SearchResults() {
     <>
       <Head>
         {Object.values(searchResults).map((product, index) => {
-          return <link rel="preload" href={product?.image} as="image"></link>;
+          return (
+            <link
+              key={index}
+              rel="preload"
+              href={product?.image}
+              as="image"
+            ></link>
+          );
         })}
       </Head>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
