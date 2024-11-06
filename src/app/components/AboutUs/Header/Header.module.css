@@ -8,6 +8,7 @@
 .Header .Header__Logo {
   margin-left: 45pt;
   display: flex;
+  height: 3vh;
 }
 .Header .Header__Pages {
   display: flex;

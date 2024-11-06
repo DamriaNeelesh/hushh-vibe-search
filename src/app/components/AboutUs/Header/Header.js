@@ -4,7 +4,7 @@ import resources from "../../../resources/resources";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Footer from "../../utilities/Footer/Footer";
-
+import Image from "next/image";
 export default function Header(props) {
   useEffect(() => {}, [props.page]);
   const router = useRouter();
@@ -16,11 +16,14 @@ export default function Header(props) {
         className={`${styles.Header} figtree`}
         style={{ position: "sticky", top: "0", background: "white" }}
       >
-        <img
-          className={styles.Header__Logo}
-          src={resources.images.VibeLogo.src}
-          alt="Vibe Logo"
-        />
+        <div className={styles.Header__Logo}>
+          <Image
+            src={resources.images.VibeLogo.src}
+            alt="Vibe Logo"
+            width={"69"}
+            height={"35"}
+          />
+        </div>
         <div className={styles.Header__Pages}>
           <div
             className={styles.Header__PageBox}

@@ -1,14 +1,18 @@
 import styles from "./YourTrust.module.css";
 import jigsawPuzzle from "./resources/jigsaw-puzzle.svg";
+import Image from "next/image";
 export default function YourTrust() {
   return (
     <div className={`${styles.YourTrust} figtree`}>
       <div className={`${styles.YourTrust__Wrapper}`}>
-        <img
-          className={`${styles.YourTrust__Image}`}
-          src={jigsawPuzzle.src}
-          alt="Hushh Vibe Search Trust"
-        ></img>
+        <div className={`${styles.YourTrust__Image}`}>
+          <Image
+            width={"223"}
+            height={"144"}
+            src={jigsawPuzzle.src}
+            alt="Hushh Vibe Search Trust"
+          />
+        </div>
         <div className={`${styles.YourTrust__Title}`}>
           Your Trust, Our Priority
         </div>

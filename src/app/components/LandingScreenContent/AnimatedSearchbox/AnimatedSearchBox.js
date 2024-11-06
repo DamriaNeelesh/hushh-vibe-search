@@ -14,9 +14,7 @@ export default function AnimatedSearchBox(props) {
       }
     }, 3000);
   }, []);
-//   useEffect(() => {
-//     console.log(searchQuery);
-//   }, [searchQuery]);
+
   return (
     <div>
       <utilities.SearchBox content={searchQuery} {...props}></utilities.SearchBox>

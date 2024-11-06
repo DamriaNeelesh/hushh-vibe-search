@@ -6,6 +6,9 @@
 }
 .OurMission .OurMission__SearchBox {
   height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .OurMission .OurMission__SearchBox .OurMission__SearchGif {
   position: relative;
@@ -29,10 +32,9 @@
   font-weight: 400;
 }
 .OurMission .OurMission__ScrollDown {
-  width: 100vw;
+  width: 85vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36.5px;
   margin-top: 50pt;
 }/*# sourceMappingURL=OurMission.module.css.map */

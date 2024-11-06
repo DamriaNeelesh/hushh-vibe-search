@@ -1,6 +1,14 @@
-import styles from './Illustration.module.css'
-export default function Illustration(props){
-    return (
-        <img className={`${styles.ValueProp__Image}`} src={props.image} alt="Hushh Vibe Search"></img>
-    )
+import styles from "./Illustration.module.css";
+import Image from "next/image";
+export default function Illustration(props) {
+  return (
+    <div className={`${styles.ValueProp__Image}`}>
+      <Image
+        src={props.image}
+        alt="Hushh Vibe Search"
+        width={"434"}
+        height={"458"}
+      />
+    </div>
+  );
 }

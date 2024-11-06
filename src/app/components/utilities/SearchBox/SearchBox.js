@@ -63,7 +63,7 @@ export default function SearchBox(props) {
           onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
           onKeyDown={handleSearch} // Handle Enter key for search
           style={{
-            width: props.boxWidth ? props.boxWidth - 20 + "vw" : "",
+            width: props.boxWidth ? props.boxWidth - 5 + "vw" : "",
           }}
         />
         {searchQuery !== "" ? (
@@ -85,7 +85,6 @@ export default function SearchBox(props) {
           }
         /> */}
       </div>
-      
     </Suspense>
   );
 }
