@@ -112,6 +112,7 @@ export default function SearchResults() {
           onClose={onClose}
           selectedProduct={selectedProduct}
           setTouchStartY={setTouchStartY}
+          touchStartY={touchStartY}
         ></ProductDrawerDynamic>
       )}
       <utilities.Header />
