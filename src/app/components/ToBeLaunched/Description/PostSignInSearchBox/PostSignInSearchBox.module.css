@@ -9,7 +9,10 @@
 }
 @media screen and (max-width: 900px) {
   .Description__SearchBoxMobile {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -31,4 +34,12 @@
   .Description__EarlyAccessNotifier {
     text-align: center;
   }
+}
+
+.Description__ImageAndFashionFlex {
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10pt;
 }/*# sourceMappingURL=PostSignInSearchBox.module.css.map */

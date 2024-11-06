@@ -6,7 +6,10 @@
 .Description__SearchBoxMobile{
     display: none;
     @media screen and (max-width: 900px){
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 .Description__SignIn{
@@ -24,4 +27,11 @@
     @media screen and (max-width: 900px){
         text-align: center;
     }
+}
+.Description__ImageAndFashionFlex{
+    display: flex;
+    width: 80vw;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10pt;
 }

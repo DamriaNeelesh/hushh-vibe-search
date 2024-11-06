@@ -8,6 +8,10 @@ export default function PostSignInSearchBox(props) {
       </div>
       <div className={`${styles.Description__SearchBoxMobile}`}>
         <utilities.SearchBox boxWidth={80}></utilities.SearchBox>
+        <div className={`${styles.Description__ImageAndFashionFlex}`}>
+          <utilities.ImageSearchButton></utilities.ImageSearchButton>
+          <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
+        </div>
       </div>
       <div className={styles.Description__SignIn}>
         <div className={`${styles.Description__EarlyAccessNotifier} figtree`}>

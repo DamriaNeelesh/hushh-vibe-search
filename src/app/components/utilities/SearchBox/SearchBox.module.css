@@ -2,7 +2,7 @@
   width: 46vw;
   height: 48pt;
   border-radius: 10pt;
-  border-color: #DFE1E5;
+  border-color: black;
   border-width: 1pt;
   display: flex;
   align-items: center;
@@ -11,7 +11,9 @@
   padding-right: 2px;
 }
 .SearchBox .SearchBox__Input {
-  width: 30vw;
+  width: 70vw;
+  font-size: 18px;
+  font-weight: 400;
 }
 .SearchBox .SearchBox__Input:focus {
   outline: none;

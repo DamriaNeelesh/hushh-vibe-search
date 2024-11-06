@@ -1,5 +1,5 @@
 import { HStack, Box } from "@chakra-ui/react";
-import FashionDiceRollButton from "./FashionDiceRollButton/FashionDiceRollButton";
+import FashionDiceRollButton from "../../utilities/FashionDiceRollButton/FashionDiceRollButton";
 import utilities from "../../utilities/utilities";
 export default function MenuBar() {
   return (

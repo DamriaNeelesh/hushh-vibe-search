@@ -1,0 +1,20 @@
+.SearchBox__ImageSearch{
+    width: 41vw;
+    background-color: #624737;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32pt;
+    border-radius: 3pt;
+    font-weight: 700;
+    font-size: 9pt;
+    color: white;
+    .SearchBox__ImageSearchWrapper{
+        width: 80pt;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.SearchBox__ImageSearch:hover{
+    cursor: pointer;
+}
