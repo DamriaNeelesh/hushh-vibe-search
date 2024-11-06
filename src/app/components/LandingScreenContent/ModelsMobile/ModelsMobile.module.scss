@@ -1,0 +1,21 @@
+.ModelsMobile {
+    @media screen and (min-width: 900px) {
+        display: none;
+        position: relative;
+        left: 21%;
+        margin-top: 24pt;
+        margin-bottom: 24pt;
+    }
+
+    .ModelsMobile__MaleModel {
+        position: relative;
+        z-index: 1;
+    }
+
+    .ModelsMobile__FemaleModel {
+        position: relative;
+        z-index: 2;
+        left: 25%;
+        top: -30pt;
+    }
+}

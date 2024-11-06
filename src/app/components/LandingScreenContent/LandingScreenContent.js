@@ -5,6 +5,7 @@ import ChooseAVibe from "./ChooseAVibe/ChooseAVibe";
 import SearchLikeYouTalk from "./SearchLikeYouTalk/SearchLikeYouTalk";
 import ImageUploadDialog from "./ImageUploadDialog/ImageUploadDialog";
 import Models from "./Models/Models";
+import ModelsMobile from './ModelsMobile/ModelsMobile'
 const LandingScreenContent = () => {
   return (
     <div className={`${styles.LandingScreenContentWrapper} `}>
@@ -18,6 +19,7 @@ const LandingScreenContent = () => {
           <Models></Models>
         </div>
       </div>
+      <ModelsMobile></ModelsMobile>
     </div>
   );
 };
