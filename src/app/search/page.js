@@ -12,7 +12,7 @@ import VibeText from "../components/svg/vibeText.svg";
 import IntroModal from "../components/primitive/introModal";
 import { useRouter } from "next/navigation";
 import { metadata } from "../components/pagesComponent/searchPage"; // Import metadata
-import fashionDiceRoll from '../components/SearchResults/services/fashionDiceRoll'
+import fashionDiceRoll from "../components/utilities/FashionDiceRollButton/fashionDiceRoll/fashionDiceRoll";
 import Head from "next/head";
 const Search = () => {
   const [fileImg, setFile] = useState(null);
