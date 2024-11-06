@@ -32,9 +32,6 @@ export default function ToBeLaunched() {
       <DownArrow></DownArrow>
       <CheckYourVibe></CheckYourVibe>
       <LandingScreenContent></LandingScreenContent>
-      <div className={styles.ToBeLaunched__Footer}>
-        <utilities.Footer></utilities.Footer>
-      </div>
     </div>
   );
 }

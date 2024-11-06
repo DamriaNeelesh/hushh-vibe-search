@@ -1,8 +1,10 @@
 .ModelsMobile {
-    @media screen and (min-width: 900px) {
-        display: none;
-        position: relative;
-        left: 21%;
+    display: none;
+    @media screen and (max-width: 900px) {
+        display: flex;
+        flex-direction: column;;
+        justify-content: flex-start;
+        align-items: center;
         margin-top: 24pt;
         margin-bottom: 24pt;
     }
