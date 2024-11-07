@@ -8,6 +8,7 @@
 }
 .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow {
   display: flex;
+  align-items: center;
 }
 .CompaniesMarquee__Marquee .CompaniesMarquee__logoRow .CompaniesMarquee__Logo {
   margin-left: 36pt;

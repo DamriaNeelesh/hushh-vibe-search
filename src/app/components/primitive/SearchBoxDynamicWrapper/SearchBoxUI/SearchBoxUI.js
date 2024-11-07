@@ -1,6 +1,7 @@
 import styles from "./searchBoxUI.module.css";
 import Resources from "../../../../resources/resources";
 import Link from "next/link";
+import AddToHistory from "./services/AddToHistory";
 export default function SearchBoxUI({
   openMenu,
   searchQuery,
@@ -18,16 +19,9 @@ export default function SearchBoxUI({
           background: openMenu ? "rgba(255,255,255,.5)" : "#E7E7E7",
         }}
       >
-        <Link
+        {/* <Link
           onClick={() => {
-            if (localStorage && searchQuery !== "") {
-              const searchHistory =
-                localStorage.getItem("vibesearch-history") || "";
-              localStorage.setItem(
-                "vibesearch-history",
-                searchHistory + "," + searchQuery
-              );
-            }
+            AddToHistory(searchQuery);
           }}
           href={
             "SearchResults?" +
@@ -39,7 +33,7 @@ export default function SearchBoxUI({
             src={Resources.sendButton.src}
             alt="Hushh Vibe Share"
           ></img>
-        </Link>
+        </Link> */}
         <input
           type="text"
           id="searchBox__search"

@@ -7,8 +7,8 @@ import Resources from "../../resources/resources";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 import toBeLaunchedMetadata from "./toBeLaunchedMetadata";
 import DownArrow from "./DownArrow/DownArrow";
-import Header from './Header/Header';
-
+import Header from "./Header/Header";
+import Image from "next/image";
 export const metadata = toBeLaunchedMetadata;
 
 export default function ToBeLaunched() {
@@ -16,11 +16,14 @@ export default function ToBeLaunched() {
     <div>
       <Header></Header>
       <div className={styles.ToBeLaunched__Content} style={{ gap: "2rem" }}>
-        <img
-          className={styles.ToBeLaunched__VibeLogoMobile}
-          alt="Vibe Search Logo"
-          src={Resources.images.VibeLogo.src}
-        ></img>
+        <div className={styles.ToBeLaunched__VibeLogoMobile}>
+          <Image
+            alt="Vibe Search Logo"
+            src={Resources.images.VibeLogo.src}
+            width={"125"}
+            height={"51"}
+          />
+        </div>
         <Description></Description>
         <div className={styles.ToBeLaunched__CompaniesMarquee}>
           <CompaniesMarquee></CompaniesMarquee>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import resources from "../../../resources/resources";
 import styles from "./Header.module.css";
 import { useEffect } from "react";
@@ -6,16 +6,16 @@ import services from "../../../services/services";
 import { useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
+import Image from "next/image";
 export default function Header() {
   let [userDetails, setUserDetails] = useState(null);
   const items = [
     {
       key: "1",
       label: "Logout",
-      onClick: ()=>{
-        services.authentication.signOut()
-      }
-      
+      onClick: () => {
+        services.authentication.signOut();
+      },
     },
   ];
   useEffect(() => {
@@ -25,31 +25,34 @@ export default function Header() {
         : "";
     }, 1000);
   }, []);
-
   return (
     <div className={`${styles.Header}`}>
       <div className={`${styles.Header__Wrapper}`}>
-        <img
+        <Image
           className={`${styles.Header__VibeLogo}`}
           src={resources.images.VibeLogo.src}
           alt="Vibe Search"
-        ></img>
+          width={"69"}
+          height={"35"}
+        />
         <Dropdown
           menu={{
             items,
           }}
         >
           <Space>
-            <img
-              className={`${styles.Header__GuestAccount}`}
-              src={
-                userDetails?.data?.user?.user_metadata?.avatar_url
-                  ? userDetails?.data?.user?.user_metadata?.avatar_url
-                  : resources.images.GuestAccount.src
-              }
-              alt="user profile"
-            ></img>
-
+            <div className={`${styles.Header__GuestAccount}`}>
+              <Image
+                src={
+                  userDetails?.data?.user?.user_metadata?.avatar_url
+                    ? userDetails?.data?.user?.user_metadata?.avatar_url
+                    : resources.images.GuestAccount.src
+                }
+                alt="user profile"
+                width={"50"}
+                height={"50"}
+              />
+            </div>
             <DownOutlined />
           </Space>
         </Dropdown>

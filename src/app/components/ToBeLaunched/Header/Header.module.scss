@@ -1,25 +1,32 @@
-.Header{
+.Header {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 13pt;
-    .Header__Wrapper{
+
+    .Header__Wrapper {
         width: 90vw;
         display: flex;
         justify-content: space-between;
-        @media screen and (max-width: 900px){
+
+        @media screen and (max-width: 900px) {
             justify-content: flex-end;
         }
-        .Header__VibeLogo{
+
+        .Header__VibeLogo {
             width: 69px;
-            @media screen and (max-width: 900px){
-                display: none;  
+
+            @media screen and (max-width: 900px) {
+                display: none;
             }
         }
-        .Header__GuestAccount{
+
+        .Header__GuestAccount {
             height: 50px;
             border-radius: 50%;
-            
+            overflow: hidden;
+            border-color: black;
+
         }
     }
 }

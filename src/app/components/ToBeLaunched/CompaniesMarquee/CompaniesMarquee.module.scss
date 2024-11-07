@@ -1,15 +1,19 @@
 .CompaniesMarquee__Marquee {
     width: 49vw;
+
     @media screen and (max-width: 900px) {
         margin-top: 35pt;
     }
+
     .CompaniesMarquee__logoRow {
         display: flex;
+        align-items: center;
 
         .CompaniesMarquee__Logo {
             margin-left: 36pt;
             height: 40pt;
             margin-bottom: 22pt;
+
             @media screen and (max-width: 900px) {
                 height: 32pt;
             }

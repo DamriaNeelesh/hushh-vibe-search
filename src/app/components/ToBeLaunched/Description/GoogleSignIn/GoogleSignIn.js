@@ -1,6 +1,7 @@
 import styles from "./GoogleSignIn.module.css";
 import gSignInButton from "../resources/gsignin-button.svg";
 import services from "../../../../services/services";
+import Image from "next/image";
 export default function GoogleSignIn() {
   const handleGoogleSignIn = async () => {
     try {
@@ -9,12 +10,15 @@ export default function GoogleSignIn() {
   };
   return (
     <div className={styles.Description__SignIn}>
-      <img
-        className={styles.Description__GoogleSignIn}
-        src={gSignInButton.src}
-        onClick={handleGoogleSignIn}
-        alt="Vibe Search Google SIgn In"
-      ></img>
+      <div className={styles.Description__GoogleSignIn}>
+        <Image
+          src={gSignInButton.src}
+          onClick={handleGoogleSignIn}
+          alt="Vibe Search Google Sign In"
+          width={"281"}
+          height={"51"}
+        />
+      </div>
       <div className={`${styles.Description__EarlyAccessNotifier} figtree`}>
         <div>
           Get <strong>early access</strong> and{" "}

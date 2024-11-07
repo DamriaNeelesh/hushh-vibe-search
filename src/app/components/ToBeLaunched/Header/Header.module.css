@@ -25,4 +25,6 @@
 .Header .Header__Wrapper .Header__GuestAccount {
   height: 50px;
   border-radius: 50%;
+  overflow: hidden;
+  border-color: black;
 }/*# sourceMappingURL=Header.module.css.map */

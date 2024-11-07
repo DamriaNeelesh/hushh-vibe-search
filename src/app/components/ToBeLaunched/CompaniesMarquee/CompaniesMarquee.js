@@ -16,7 +16,7 @@ import puma from "./resources/puma.svg";
 import FoG from "./resources/FOG.svg";
 import hugoBoss from "./resources/hugo-boss.svg";
 import michealKors from "./resources/micheal-kors.svg";
-
+import Image from "next/image";
 export default function CompaniesMarquee(props) {
   let logos = props.isMobile
     ? [
