@@ -5,7 +5,7 @@ import Image from "next/image";
 import Header from "../header";
 import Card1 from "../svg/card1.svg";
 import getUserDetails from "../../services/authentication/getUserDetails";
-
+import figtree from "../../fonts/Figtree";
 const IntroSlide3 = ({ userName }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [name, setName] = useState();
@@ -30,7 +30,7 @@ const IntroSlide3 = ({ userName }) => {
           gap={{ md: "2rem", base: "1rem" }}
           textAlign={"center"}
           alignItems={"center"}
-          fontFamily={"Figtree, sans-serif"}
+          className={figtree.className}
           mt={{ md: "4rem", base: "1.5rem" }}
         >
           <Text
@@ -100,7 +100,7 @@ const IntroSlide3 = ({ userName }) => {
                 fontSize={{ md: "1rem", base: "0.5rem" }}
                 color={"#FBFAF8"}
                 lineHeight={"20.8px"}
-                fontFamily={"Figtree, sans-serif"}
+                
               >
                 Get ready to elevate your fashion game. As a Vibe pioneer,
                 you'll have <span style={{ fontWeight: "700" }}>exclusive</span>{" "}

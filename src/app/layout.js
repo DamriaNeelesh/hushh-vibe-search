@@ -68,16 +68,16 @@ export default function RootLayout({ children }) {
         />
         <GoogleTagManager gtmId="G-JG6C3FQ2N8	" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="true"
-        />
-        <link
+        /> */}
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
           rel="stylesheet"
-        />
+        /> */}
         <meta name="fo-verify" content="99078900-a479-470d-b88b-0b406b195229" />
       </head>
       <body

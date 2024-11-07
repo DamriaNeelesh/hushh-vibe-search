@@ -25,7 +25,7 @@ import { Link } from "react-scroll";
 import Header from "../AboutUs/Header/Header";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Head from "next/head";
-
+import figtree from "../../fonts/Figtree";
 const PrivacyPolicyPage = () => {
   const headerHeight = 80;
   const introductionRef = useRef(null);
@@ -51,7 +51,7 @@ const PrivacyPolicyPage = () => {
 
   return (
     <>
-     {/* <Head>
+      {/* <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
@@ -64,11 +64,7 @@ const PrivacyPolicyPage = () => {
 
       <Header page={page} setPage={setPage}></Header>
 
-      <Container
-        minW={"100%"}
-        bg={"#FFFFFF"}
-        fontFamily={"Figtree, sans-serif"}
-      >
+      <Container minW={"100%"} bg={"#FFFFFF"} className={figtree.className}>
         <Stack direction={{ base: "column", lg: "row" }} spacing={10}>
           {/* Left sidebar for table of contents */}
 
@@ -394,7 +390,7 @@ const PrivacyPolicyPage = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   fontSize={{ md: "1rem", base: "0.65rem" }}
                   color={"#C9AD9D"}
-                  as={'h1'}
+                  as={"h1"}
                 >
                   Vibe Search Privacy Policy
                 </Heading>
@@ -405,7 +401,7 @@ const PrivacyPolicyPage = () => {
                   letterSpacing={"0.005rem"}
                   fontSize={{ md: "1.5rem", base: "0.8rem" }}
                   lineHeight={{ md: "40px", base: "32px" }}
-                  as={'h2'}
+                  as={"h2"}
                 >
                   Your style choices and searches help us tailor Vibe Search
                   just for you. We use this information responsibly to deliver a
@@ -852,4 +848,3 @@ const PrivacyPolicyPage = () => {
 };
 
 export default PrivacyPolicyPage;
-

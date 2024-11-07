@@ -9,6 +9,7 @@ import { useState } from "react";
 import FashionCard from "./SwipeGame/FashionCard/FashionCard";
 import cardData from "./SwipeGame/resources/config/cardData";
 import { useEffect } from "react";
+import figtree from "../../../fonts/Figtree";
 export default function CheckYourVibe() {
   let [isAllSwiped, setIsAllSwiped] = useState(false);
   let [rights, setRights] = new useState([]);
@@ -22,12 +23,12 @@ export default function CheckYourVibe() {
       {isAllSwiped ? (
         <FashionCard cardData={cardData} rights={rights}></FashionCard>
       ) : (
-        <div className={`${styles.CheckYourVibe} figtree`}>
+        <div className={`${styles.CheckYourVibe} ${figtree.className}`}>
           <div className={`${styles.CheckYourVibe__Title}`}>Vibe Check</div>
           <div className={`${styles.CheckYourVibe__SubTitle}`}>
             Tell us your style - Click and swipe through different styles
           </div>
-          <div className={`${styles.CheckYourVibe__SwipeGameMobile} figtree`}>
+          <div className={`${styles.CheckYourVibe__SwipeGameMobile}  ${figtree.className}`}>
             <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
               <SwipeLeftInstructionMobile></SwipeLeftInstructionMobile>
               <SwipeRightInstructionMobile></SwipeRightInstructionMobile>
@@ -44,7 +45,7 @@ export default function CheckYourVibe() {
               ></SwipeGame>
             </div>
           </div>
-          <div className={`${styles.CheckYourVibe__SwipeGame} figtree`}>
+          <div className={`${styles.CheckYourVibe__SwipeGame}  ${figtree.className}`}>
             <SwipeLeftInstruction></SwipeLeftInstruction>
             <SwipeGame
               setIsAllSwiped={setIsAllSwiped}

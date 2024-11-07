@@ -2,9 +2,8 @@ import utilities from "../../../utilities/utilities";
 import FilterButton from "./FilterButton/FilterButton";
 import styles from "./FeatureBar.module.css";
 import { HStack } from "@chakra-ui/react";
-export default function FeatureBar({
-    onOpen, query
-}) {
+import figtree from "../../../../fonts/Figtree";
+export default function FeatureBar({ onOpen, query }) {
   return (
     <HStack
       my={{ md: "1.25rem", base: "0.65rem" }}
@@ -15,7 +14,7 @@ export default function FeatureBar({
       justifyContent={{ base: "space-between", md: "flex-start" }}
     >
       <FilterButton onOpen={onOpen}></FilterButton>
-      <div className={`${styles.FilterUI__Query} figtree`}>{query}</div>
+      <div className={`${styles.FilterUI__Query} ${figtree.className}`}>{query}</div>
       <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
     </HStack>
   );

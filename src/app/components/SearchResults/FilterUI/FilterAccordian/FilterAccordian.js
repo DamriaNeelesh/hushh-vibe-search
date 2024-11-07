@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import BrandFilters from "../../FiltersAndHistory/BrandFilters/BrandFilters";
+import figtree from "../../../../fonts/Figtree";
 const FilterAccordion = ({
   setSelectedBrands,
   selectedBrands,
@@ -72,7 +73,7 @@ const FilterAccordion = ({
     setPriceRange([10, 1050])
   }
   return (
-    <Accordion allowToggle fontFamily={"Figtree, sans-serif"}>
+    <Accordion allowToggle className={figtree.className}>
       <AccordionItem>
         <h2>
           <AccordionButton height={{ md: "3.4rem", base: "2rem" }}>

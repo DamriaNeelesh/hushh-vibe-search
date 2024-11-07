@@ -1,3 +1,4 @@
+import figtree from "../../../../../../fonts/Figtree";
 import services from "../../../../../../services/services";
 import { Box } from "@chakra-ui/react";
 export default function FavouritesButton({ selectedProduct }) {
@@ -9,7 +10,7 @@ export default function FavouritesButton({ selectedProduct }) {
       textAlign="center"
       p={2}
       borderRadius={"10px"}
-      fontFamily="Figtree, sans-serif"
+      className={figtree.className}
       cursor="pointer"
       onClick={async () => {
         let access_token = await services.authentication.getAccessToken();

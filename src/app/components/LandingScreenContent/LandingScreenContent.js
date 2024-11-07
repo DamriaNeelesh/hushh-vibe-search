@@ -7,10 +7,11 @@ import ImageUploadDialog from "./ImageUploadDialog/ImageUploadDialog";
 import Models from "./Models/Models";
 import ModelsMobile from "./ModelsMobile/ModelsMobile";
 import utilities from "../utilities/utilities";
+import figtree from "../../fonts/Figtree";
 const LandingScreenContent = () => {
   return (
     <div className={`${styles.LandingScreenContentWrapper} `}>
-      <div className={`${styles.LandingScreenContent} figtree`}>
+      <div className={`${styles.LandingScreenContent} ${figtree.className}`}>
         <ChooseAVibe />
         <SearchLikeYouTalk></SearchLikeYouTalk>
       </div>

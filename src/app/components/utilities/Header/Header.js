@@ -4,9 +4,11 @@ import { FiHeart } from "react-icons/fi";
 import utilities from "../utilities";
 import VibeText from "../../svg/vibeText.svg";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Resources from "../../../resources/resources";
 export default function Header() {
-  let router=useRouter();
-  
+  let router = useRouter();
+
   return (
     <HStack
       bg="white"
@@ -48,12 +50,14 @@ export default function Header() {
         flex={1}
         mx={6}
       >
-        <Image
-          src={VibeText.src}
-          width={"60"}
-          height={"20px"}
-          alt="Vibe Search"
-        />
+        <Link href={"/"}>
+          <Image
+            src={Resources.images.VibeLogo.src}
+            width={"60"}
+            height={"20px"}
+            alt="Vibe Search"
+          />
+        </Link>
         {/* <utilities.SearchBox></utilities.SearchBox> */}
       </Flex>
       <HStack spacing={6}>

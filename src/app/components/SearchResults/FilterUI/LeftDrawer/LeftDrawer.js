@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import FilterAccordion from "../FilterAccordian/FilterAccordian";
 import config from "../../../../resources/config/config";
+import figtree from "../../../../fonts/Figtree";
 export default function LeftDrawer({
   onClose,
   isOpen,
@@ -19,7 +20,7 @@ export default function LeftDrawer({
   applyGenderFilter,
   priceRange,
   setPriceRange,
-  selectedGenders
+  selectedGenders,
 }) {
   return (
     <Drawer
@@ -39,7 +40,7 @@ export default function LeftDrawer({
           textOverflow={"ellipsis"}
           whiteSpace={"nowrap"}
           fontWeight={"400"}
-          fontFamily={"Figtree, sans-serif"}
+          className={figtree.className}
         >
           All Filters
         </DrawerHeader>

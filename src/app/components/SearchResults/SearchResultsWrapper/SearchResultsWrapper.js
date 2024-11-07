@@ -17,6 +17,7 @@ import services from "../../../services/services";
 import Skeleton from "react-loading-skeleton";
 import ImageNotFound from "../ImageNotFound/ImageNotFound";
 import openDrawer from "../services/openDrawer";
+import figtree from "../../../fonts/Figtree";
 export default function SearchResultsWrapper({
   isDrawerOpen,
   setCurrentPage,
@@ -38,7 +39,7 @@ export default function SearchResultsWrapper({
 }) {
   return (
     <Box
-      fontFamily="Figtree, sans-serif"
+      className={figtree.className}
       mx={{ md: "2rem", base: "0rem" }}
       pos={"relative"}
       h="100vh" // Ensure the container takes the full viewport height
@@ -168,7 +169,7 @@ export default function SearchResultsWrapper({
                             />
                           )}
                           <Box
-                            className="favorite-button"
+                            className={`favorite-button ${figtree.className}`}
                             position="absolute"
                             bottom="0"
                             width="100%"
@@ -176,7 +177,6 @@ export default function SearchResultsWrapper({
                             color="white"
                             textAlign="center"
                             p={2}
-                            fontFamily={"Figtree, sans-serif"}
                             transform="translateY(100%)"
                             transition="transform 0.3s ease"
                             cursor={"pointer"}
@@ -318,7 +318,7 @@ export default function SearchResultsWrapper({
                 <Box
                   bg={"#FBFAF8"}
                   p={6}
-                  fontFamily={"Figtree, sans-serif"}
+                  className={figtree.className}
                   gap={{ md: "0.5rem" }}
                   display={"flex"}
                   flexDirection={"column"}

@@ -1,3 +1,4 @@
+import figtree from "../../../fonts/Figtree";
 import styles from "./ImageNotFound.module.css";
 import QuestionMark from "./resources/QuestionMark.svg";
 import Image from "next/image";
@@ -7,7 +8,7 @@ export default function ImageNotFound(props) {
       onClick={() => {
         props.onClick();
       }}
-      className={`${styles.ImageNotFound} figtree`}
+      className={`${styles.ImageNotFound} ${figtree.className}`}
     >
       <div className={`${styles.ImageNotFound__Question}`}>
         <Image src={QuestionMark.src} width={"40"} height={"42"} />

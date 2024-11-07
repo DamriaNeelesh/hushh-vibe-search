@@ -2,10 +2,11 @@ import Image from "next/image";
 import resources from "../../../resources/resources";
 import AnimatedSearchBox from "../../LandingScreenContent/AnimatedSearchbox/AnimatedSearchBox";
 import styles from "./OurMission.module.css";
+import figtree from "../../../fonts/Figtree";
 export default function OurMission() {
   return (
-    <div className={`${styles.OurMission} figtree`}>
-      <div className={`${styles.OurMission__SearchBox} figtree`}>
+    <div className={`${styles.OurMission} ${figtree.className}`}>
+      <div className={`${styles.OurMission__SearchBox}`}>
         <AnimatedSearchBox boxWidth={"40"} />
       </div>
       <div className={`${styles.OurMission__Description}`}>

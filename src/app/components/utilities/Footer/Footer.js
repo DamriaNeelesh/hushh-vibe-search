@@ -1,10 +1,11 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
 import config from "../../../resources/config/config";
+import figtree from "../../../fonts/Figtree";
 export default function Footer() {
   return (
     <div className={`${styles.Footer}`}>
-      <div className={`${styles.AboutUs__UpperFooter} figtree`}>
+      <div className={`${styles.AboutUs__UpperFooter} ${figtree.className}`}>
         <div className={`${styles.AboutUs__UpperFooterText}`}>
           Powered by{" "}
           <strong>
@@ -16,7 +17,7 @@ export default function Footer() {
         <div className={`${styles.AboutUs__RightWrapper}`}>
           <Link
             className={`${styles.AboutUs__UpperFooterText}`}
-            href={'/about-us'}
+            href={"/about-us"}
           >
             About
           </Link>
@@ -30,7 +31,7 @@ export default function Footer() {
             className={`${styles.AboutUs__UpperFooterText}`}
             href={"/terms-of-use"}
           >
-             Terms
+            Terms
           </Link>
           <Link
             className={`${styles.AboutUs__UpperFooterText}`}

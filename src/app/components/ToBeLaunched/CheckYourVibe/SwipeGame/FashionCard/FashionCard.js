@@ -5,15 +5,18 @@ import services from "../../../../../services/services";
 import Card1 from "../../../../svg/card1.svg";
 import Image from "next/image";
 import styles from "./FashionCard.module.css";
+import figtree from "../../../../../fonts/Figtree";
 export default function FashionCard({ cardData, rights }) {
   let [userDetails, setUserDetails] = useState(null);
   useEffect(() => {
     services.authentication.getUserDetails(setUserDetails);
   }, []);
   return (
-    <div className={`${styles.FashionCard} figtree`}>
-      <div className={`${styles.FashionCard__Title} figtree`}>Vibe Check</div>
-      <div className={`${styles.FashionCard__SubTitle} figtree`}>
+    <div className={`${styles.FashionCard}  ${figtree.className}`}>
+      <div className={`${styles.FashionCard__Title}  ${figtree.className}`}>
+        Vibe Check
+      </div>
+      <div className={`${styles.FashionCard__SubTitle}  ${figtree.className}`}>
         Love that aesthetic,
         <strong>
           {" " + userDetails?.data?.user?.user_metadata?.full_name}
@@ -27,7 +30,7 @@ export default function FashionCard({ cardData, rights }) {
           zIndex={"1"}
           pos={"relative"}
           py={{ md: "4rem", base: "2rem" }}
-          className="card card-back figtree"
+          className={`card card-back  ${figtree.className}`}
           px={{ md: "2.5rem", base: "1rem" }}
           gap={{ md: "1rem", base: "0.65rem" }}
           width={"100%"}
@@ -43,7 +46,7 @@ export default function FashionCard({ cardData, rights }) {
             zIndex={"2"}
             w={"100%"}
             textAlign={"left"}
-            className={`figtree`}
+            className={`${figtree.className}`}
             color={"#C9AD9D"}
             fontSize={{ md: "1.5rem", base: "1rem" }}
             fontWeight={"600"}
@@ -92,7 +95,7 @@ export default function FashionCard({ cardData, rights }) {
           </Box>
         </Box>
       </div>
-      <div className={`${styles.FashionCard__Desc} figtree`}>
+      <div className={`${styles.FashionCard__Desc}  ${figtree.className}`}>
         Stay tuned for a smarter way to shop that's tailored to your unique
         taste. We'll notify you as soon as we're ready to introduce you to your
         personalised shopping experience.

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 export default function Header() {
   let [userDetails, setUserDetails] = useState(null);
   const items = [
@@ -28,13 +29,15 @@ export default function Header() {
   return (
     <div className={`${styles.Header}`}>
       <div className={`${styles.Header__Wrapper}`}>
-        <Image
-          className={`${styles.Header__VibeLogo}`}
-          src={resources.images.VibeLogo.src}
-          alt="Vibe Search"
-          width={"69"}
-          height={"35"}
-        />
+        <Link href={"/"}>
+          <Image
+            className={`${styles.Header__VibeLogo}`}
+            src={resources.images.VibeLogo.src}
+            alt="Vibe Search"
+            width={"69"}
+            height={"35"}
+          />
+        </Link>
         <Dropdown
           menu={{
             items,

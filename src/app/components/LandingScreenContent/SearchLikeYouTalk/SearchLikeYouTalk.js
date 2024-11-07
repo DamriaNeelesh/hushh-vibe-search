@@ -1,6 +1,7 @@
 import AnimatedSearchBox from "../AnimatedSearchbox/AnimatedSearchBox";
 import { Text } from "@chakra-ui/react";
 import styles from "./SearchLikeYouTalk.module.css";
+import figtree from "../../../fonts/Figtree";
 export default function SearchLikeYouTalk() {
   return (
     <div className={`${styles.SearchLikeYouTalk__Text}`}>
@@ -15,7 +16,9 @@ export default function SearchLikeYouTalk() {
           Search like you talk...
         </Text>
       </div>
-      <div className={`${styles.SearchLikeYouTalk__TitleMobile} figtree`}>
+      <div
+        className={`${styles.SearchLikeYouTalk__TitleMobile} ${figtree.className}`}
+      >
         Search like you talk...
       </div>
       <div className={`${styles.SearchLikeYouTalk__Desc} `}>
@@ -26,7 +29,7 @@ export default function SearchLikeYouTalk() {
         <AnimatedSearchBox />
       </div>
       <div className={`${styles.SearchLikeYouTalk__SearchBoxMobile} `}>
-        <AnimatedSearchBox boxWidth={95}/>
+        <AnimatedSearchBox boxWidth={95} />
       </div>
       <div className={`${styles.SearchLikeYouTalk__Tagline} `}>
         <Text

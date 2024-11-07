@@ -2,6 +2,7 @@ import styles from "./GoogleSignIn.module.css";
 import gSignInButton from "../resources/gsignin-button.svg";
 import services from "../../../../services/services";
 import Image from "next/image";
+import figtree from "../../../../fonts/Figtree";
 export default function GoogleSignIn() {
   const handleGoogleSignIn = async () => {
     try {
@@ -19,7 +20,7 @@ export default function GoogleSignIn() {
           height={"51"}
         />
       </div>
-      <div className={`${styles.Description__EarlyAccessNotifier} figtree`}>
+      <div className={`${styles.Description__EarlyAccessNotifier}  ${figtree.className}`}>
         <div>
           Get <strong>early access</strong> and{" "}
           <strong>exclusive updates</strong>

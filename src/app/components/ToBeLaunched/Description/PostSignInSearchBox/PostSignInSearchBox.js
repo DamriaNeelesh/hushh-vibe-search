@@ -1,5 +1,6 @@
 import utilities from "../../../utilities/utilities";
 import styles from "./PostSignInSearchBox.module.css";
+import figtree from "../../../../fonts/Figtree";
 export default function PostSignInSearchBox(props) {
   return (
     <>
@@ -14,7 +15,7 @@ export default function PostSignInSearchBox(props) {
         </div>
       </div>
       <div className={styles.Description__SignIn}>
-        <div className={`${styles.Description__EarlyAccessNotifier} figtree`}>
+        <div className={`${styles.Description__EarlyAccessNotifier}  ${figtree.className}`}>
           <div>
             Welcome back <strong>{props.fullName}</strong>
           </div>

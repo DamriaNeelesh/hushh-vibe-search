@@ -18,19 +18,20 @@ import Image10 from "../../../../public/blogImages/image10.png";
 import Image3 from "../../../../public/blogImages/image3.png";
 import Image11 from "../../../../public/blogImages/image11.png";
 import Image8 from "../../../../public/blogImages/image8.png";
-import Image6 from '../../../../public/blogImages/image6.png';
-import Image2 from '../../../../public/blogImages/image2.png';
-import Image7 from '../../../../public/blogImages/image7.png';
-
+import Image6 from "../../../../public/blogImages/image6.png";
+import Image2 from "../../../../public/blogImages/image2.png";
+import Image7 from "../../../../public/blogImages/image7.png";
+import figtree from "../../fonts/Figtree";
 const BlogDetailPage = () => {
   return (
     <Container
       gap={{ md: "0.5rem" }}
       display={"flex"}
-      flexDirection={"column"}  
+      flexDirection={"column"}
       p={5}
       minW={{ md: "70%", base: "100%" }}
-      fontFamily={"Figtree, sans-serif"}
+      // fontFamily={"Figtree, sans-serif"}
+      className={figtree.className}
     >
       <Text
         fontSize={{ md: "13px", base: "11px" }}
@@ -399,21 +400,22 @@ const BlogDetailPage = () => {
       <Image src={Image6} alt="Vibe Search Business Goals Sematic Parsing" />
 
       <Text>
-        <b>Product Ranking: </b>Semantic parsing allows us to rank products based on
-        how well they align with the specific elements of a user's query.
+        <b>Product Ranking: </b>Semantic parsing allows us to rank products
+        based on how well they align with the specific elements of a user's
+        query.
       </Text>
       <Text>
-        <b>Query Parsing:</b> By identifying key attributes within a query (e.g., color,
-        size, occasion), we can surface products that precisely match those
-        criteria. 
-       </Text> 
-       <Text>
-        <b>Rank Boosting: </b>Weights assigned to different features empower
-        you to boost the visibility of products that align with the most
-        important aspects of a query. 
-        </Text>
-        <Text>
-        Techniques like the <b>Rank Fusion Algorithm</b> 
+        <b>Query Parsing:</b> By identifying key attributes within a query
+        (e.g., color, size, occasion), we can surface products that precisely
+        match those criteria.
+      </Text>
+      <Text>
+        <b>Rank Boosting: </b>Weights assigned to different features empower you
+        to boost the visibility of products that align with the most important
+        aspects of a query.
+      </Text>
+      <Text>
+        Techniques like the <b>Rank Fusion Algorithm</b>
         further refine this process, ensuring that the final product ranking
         reflects a balanced consideration of all relevant factors.
       </Text>
@@ -425,17 +427,16 @@ const BlogDetailPage = () => {
         The Power of Precision Control
       </Text>
       <Text mb="4">
-        By breaking down queries into logical
-        features and controlling their importance, we can fine-tune search
-        results with surgical precision. Let's see this in action with some real
-        examples.
+        By breaking down queries into logical features and controlling their
+        importance, we can fine-tune search results with surgical precision.
+        Let's see this in action with some real examples.
       </Text>
-      <Text> Experiment: Adjusting Feature Weights  </Text>
+      <Text> Experiment: Adjusting Feature Weights </Text>
       <Text mb="4">
-        Test 1: Color Takes the Lead 
-        When we amplified the importance of color in our search: Nearly all results
-        were red items Only 4-5 out of 18 products had floral prints Perfect for
-        shoppers who prioritize getting the right shade
+        Test 1: Color Takes the Lead When we amplified the importance of color
+        in our search: Nearly all results were red items Only 4-5 out of 18
+        products had floral prints Perfect for shoppers who prioritize getting
+        the right shade
       </Text>
       <Image src={Image2} alt="Vibe Search Sematic Search AI" />
 

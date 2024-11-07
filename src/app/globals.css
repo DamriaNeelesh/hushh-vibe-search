@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap'); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +18,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Figtree', sans-serif;
+  /* font-family: 'Figtree', sans-serif; */
 }
 
 @layer utilities {
@@ -136,8 +136,8 @@ body.no-scroll {
   overscroll-behavior: contain;
   overflow: auto;
 }
-.figtree {
+/* .figtree {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-}
+} */

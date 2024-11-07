@@ -7,6 +7,7 @@ import Card1 from "../../svg/card1.svg";
 import Card2 from "../../svg/card2.svg";
 import services from "../../../services/services";
 import Image from "next/image";
+import figtree from "../../../fonts/Figtree";
 export default function WelcomeAboardModal() {
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -91,7 +92,7 @@ export default function WelcomeAboardModal() {
                 fontSize={{ md: "1rem", base: "0.5rem" }}
                 color={"#FBFAF8"}
                 lineHeight={"20.8px"}
-                fontFamily={"Figtree, sans-serif"}
+                className={figtree.className}
               >
                 Get ready to elevate your fashion game. As a Vibe pioneer,
                 you'll have <span style={{ fontWeight: "700" }}>exclusive</span>{" "}
