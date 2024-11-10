@@ -9,6 +9,7 @@
     justify-content: space-around;
     padding-left: 2px;
     padding-right: 2px;
+
     .SearchBox__Input {
         width: 70vw;
         font-size: 18px;
@@ -18,9 +19,14 @@
     .SearchBox__Input:focus {
         outline: none;
     }
-    
 
-    .SearchBox__Icon{
+
+    .SearchBox__Icon {
+        @media screen and (max-width: 900px) {
+            display: none;
+
+        }
+
         cursor: pointer;
     }
 }
@@ -34,9 +40,10 @@
 
 @keyframes fadeInPlaceholder {
     from {
-      opacity: 0;
+        opacity: 0;
     }
+
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}

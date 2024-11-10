@@ -76,14 +76,14 @@ export default function SearchBox(props) {
         ) : (
           <></>
         )}
-        {/* <img
+        <img
           src={resources.camera.src}
           className={styles.SearchBox__Icon}
           alt="Camera Icon"
           onClick={() =>
             document.getElementById("searchBox__fileInput").click()
           }
-        /> */}
+        />
       </div>
     </Suspense>
   );

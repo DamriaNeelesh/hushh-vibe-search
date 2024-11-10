@@ -21,6 +21,11 @@
 .SearchBox .SearchBox__Icon {
   cursor: pointer;
 }
+@media screen and (max-width: 900px) {
+  .SearchBox .SearchBox__Icon {
+    display: none;
+  }
+}
 
 .SearchBox__Input:-moz-placeholder {
   animation: fadeInPlaceholder 2s forwards;
