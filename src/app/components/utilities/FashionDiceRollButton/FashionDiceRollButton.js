@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { HStack, Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Lottie from "lottie-react";
@@ -17,7 +17,7 @@ export default function FashionDiceRoll() {
       onMouseLeave={() => setIsHovered(false)}
       alignItems="center"
       cursor="pointer"
-      display={{ md: "none", base: "flex" }}
+      display={{ md: "flex", base: "flex" }}
       border="1px solid #DFE1E5"
       borderRadius="10px"
       gap={0}

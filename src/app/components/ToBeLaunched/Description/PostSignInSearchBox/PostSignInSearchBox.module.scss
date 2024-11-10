@@ -1,34 +1,40 @@
-.Description__SearchBox{
-    @media screen and (max-width: 900px){
+.Description__SearchBox {
+    @media screen and (max-width: 900px) {
         display: none;
     }
 }
-.Description__SearchBoxMobile{
+
+.Description__SearchBoxMobile {
     display: none;
-    @media screen and (max-width: 900px){
+
+    @media screen and (max-width: 900px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 }
-.Description__SignIn{
+
+.Description__SignIn {
     height: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
 }
-.Description__EarlyAccessNotifier{
+
+.Description__EarlyAccessNotifier {
     font-weight: 400;
     font-size: 16px;
     color: #596168CF;
     margin-top: 5pt;
-    @media screen and (max-width: 900px){
+
+    @media screen and (max-width: 900px) {
         text-align: center;
     }
 }
-.Description__ImageAndFashionFlex{
+
+.Description__ImageAndFashionFlex {
     display: flex;
     width: 80vw;
     justify-content: space-between;
