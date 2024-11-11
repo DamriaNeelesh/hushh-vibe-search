@@ -8,6 +8,7 @@
   border-radius: 10px;
   gap: 0;
   width: 17vw;
+  height: 32pt;
 }
 @media screen and (max-width: 900px) {
   .FashionDiceRoll {

@@ -19,6 +19,7 @@
   width: 80pt;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .SearchBox__ImageSearch:hover {

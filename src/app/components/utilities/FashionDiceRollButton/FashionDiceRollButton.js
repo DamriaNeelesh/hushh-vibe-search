@@ -21,13 +21,17 @@ export default function FashionDiceRoll() {
       {isHovered ? (
         <Lottie
           animationData={diceAnimation}
-          style={{ width: "34px", height: "34px" }}
+          style={{ width: "32pt", height: "32pt" }}
           width="34"
           height="34"
           loop={true}
         />
       ) : (
-        <Image className={styles.FashionDiceRoll__Dice} src={Dice} alt="Hushh Fashion Dice" />
+        <Image
+          className={styles.FashionDiceRoll__Dice}
+          src={Dice}
+          alt="Hushh Fashion Dice"
+        />
       )}
       <Text
         color="#222222"
