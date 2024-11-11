@@ -1,8 +1,1 @@
-.DownArrow {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-}
-.DownArrow .DownArrow__Image {
-  height: 30pt;
-}/*# sourceMappingURL=DownArrow.module.css.map */
+.DownArrow{width:100vw;display:flex;justify-content:center}.DownArrow .DownArrow__Image{height:30pt}

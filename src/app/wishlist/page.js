@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Grid, Text } from "@chakra-ui/react";
 import getWishList from "../services/wishlist/getWishlist";
 import Image from "next/image";
+import services from "../services/services";
 
 export default function Wishlist() {
   const [wishlistItems, setWishlistItems] = useState([]);

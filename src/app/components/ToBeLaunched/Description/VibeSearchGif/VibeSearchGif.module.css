@@ -1,12 +1,1 @@
-.Description__SearchboxGif {
-  position: relative;
-  z-index: -1;
-  top: -352px;
-  left: -449px;
-  min-width: 1400px;
-}
-
-.Description__SearchboxGifWrapper {
-  width: 50vw;
-  height: 100px;
-}/*# sourceMappingURL=VibeSearchGif.module.css.map */
+.Description__SearchboxGif{position:relative;z-index:-1;top:-352px;left:-449px;min-width:1400px}.Description__SearchboxGifWrapper{width:50vw;height:100px}

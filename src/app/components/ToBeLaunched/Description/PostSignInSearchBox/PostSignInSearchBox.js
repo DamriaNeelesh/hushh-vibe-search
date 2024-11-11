@@ -1,6 +1,7 @@
 import utilities from "../../../utilities/utilities";
 import styles from "./PostSignInSearchBox.module.css";
 import figtree from "../../../../fonts/Figtree";
+import AnimatedSearchBox from "../../../LandingScreenContent/AnimatedSearchbox/AnimatedSearchBox";
 export default function PostSignInSearchBox(props) {
   return (
     <>
@@ -13,10 +14,7 @@ export default function PostSignInSearchBox(props) {
         </div>
       </div>
       <div className={`${styles.Description__SearchBoxMobile}`}>
-        <utilities.SearchBox
-          boxWidth={87}
-          inputWidth={68}
-        ></utilities.SearchBox>
+        <AnimatedSearchBox boxWidth={87} inputWidth={68}></AnimatedSearchBox>
         <div className={`${styles.Description__ImageAndFashionFlexMobile}`}>
           <utilities.ImageSearchButton></utilities.ImageSearchButton>
           <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
