@@ -1,18 +1,1 @@
-.AboutUs__Desc {
-  font-weight: 400;
-  font-size: 32px;
-  width: 31vw;
-}
-
-.AboutUs__Title {
-  font-weight: 700;
-  font-size: 40px;
-  color: #273434;
-}
-
-.AboutUs__DescSmall {
-  font-weight: 400;
-  font-size: 20px;
-  color: #606060;
-  width: 31vw;
-}/*# sourceMappingURL=AboutUs.module.css.map */
+.AboutUs__Desc{font-weight:400;font-size:32px;width:31vw}.AboutUs__Title{font-weight:700;font-size:40px;color:#273434}.AboutUs__DescSmall{font-weight:400;font-size:20px;color:#606060;width:31vw}

@@ -1,9 +1,1 @@
-.FilterUI__Query {
-  font-weight: 700;
-  font-size: 16px;
-  width: 27vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 70vw;
-}/*# sourceMappingURL=FeatureBar.module.css.map */
+.FilterUI__Query{font-weight:700;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:70vw}
