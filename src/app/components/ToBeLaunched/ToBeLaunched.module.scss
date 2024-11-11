@@ -1,36 +1,52 @@
-.ToBeLaunched__Content{
-    display: flex;
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    // overflow: hidden;
-    @media screen and (max-width: 900px){
-        flex-direction: column;
-        justify-content: center;
-    }
-    .ToBeLaunched__CompaniesMarquee{
-        width: 60vw;
-        @media screen and (max-width: 900px){
-            display: none
+.ToBeLaunched {
+    width: 94vw;
+    height: 100vh;
+    overflow: hidden;
+
+    .ToBeLaunched__Content {
+        display: flex;
+        height: 75vh;
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            justify-content: center;
+            width: 95vw;
+            overflow: hidden;
+        }
+
+        .ToBeLaunched__CompaniesMarquee {
+            width: 60vw;
+
+            @media screen and (max-width: 900px) {
+                display: none
+            }
+        }
+
+        .ToBeLaunched__CompaniesMarqueeMobile {
+            display: none;
+
+            @media screen and (max-width: 900px) {
+                display: block;
+                width: 98vw;
+            }
+        }
+
+        .ToBeLaunched__VibeLogoMobile {
+            display: none;
+
+            @media screen and (max-width: 900px) {
+                display: block;
+                width: 30vw;
+            }
         }
     }
-    .ToBeLaunched__CompaniesMarqueeMobile{
-        display: none;
-        @media screen and (max-width: 900px){
-            display: block
-        }
-    }
-    .ToBeLaunched__VibeLogoMobile{
-        display: none;
-        @media screen and (max-width: 900px){
-            display: block;
-            width: 30vw;
-        }
-    }
+
+    // .ToBeLaunched__Footer{
+    //     position: relative;
+    //     bottom: 0;
+    //     height: 42px;
+    //     overflow: hidden;
+    // }
 }
-// .ToBeLaunched__Footer{
-//     position: relative;
-//     bottom: 0;
-//     height: 42px;
-//     overflow: hidden;
-// }

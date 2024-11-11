@@ -1,36 +1,44 @@
-.ToBeLaunched__Content {
+.ToBeLaunched {
+  width: 94vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.ToBeLaunched .ToBeLaunched__Content {
   display: flex;
   height: 75vh;
   display: flex;
   align-items: center;
 }
 @media screen and (max-width: 900px) {
-  .ToBeLaunched__Content {
+  .ToBeLaunched .ToBeLaunched__Content {
     flex-direction: column;
     justify-content: center;
+    width: 95vw;
+    overflow: hidden;
   }
 }
-.ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
+.ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
   width: 60vw;
 }
 @media screen and (max-width: 900px) {
-  .ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
+  .ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
     display: none;
   }
 }
-.ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
+.ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
   display: none;
 }
 @media screen and (max-width: 900px) {
-  .ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
+  .ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
     display: block;
+    width: 98vw;
   }
 }
-.ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
+.ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
   display: none;
 }
 @media screen and (max-width: 900px) {
-  .ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
+  .ToBeLaunched .ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
     display: block;
     width: 30vw;
   }
