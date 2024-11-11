@@ -36,9 +36,16 @@
   }
 }
 
+.Description__ImageAndFashionFlexMobile {
+  display: flex;
+  width: 86vw;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10pt;
+}
+
 .Description__ImageAndFashionFlex {
   display: flex;
-  width: 80vw;
   justify-content: space-between;
   align-items: center;
   margin-top: 10pt;

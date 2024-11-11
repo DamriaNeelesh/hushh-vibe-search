@@ -7,14 +7,17 @@ export default function PostSignInSearchBox(props) {
       <div className={`${styles.Description__SearchBox}`}>
         <utilities.SearchBox boxWidth={36}></utilities.SearchBox>
         <br></br>
-        <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
+        <div className={`${styles.Description__ImageAndFashionFlex}`}>
+          <utilities.ImageSearchButton></utilities.ImageSearchButton>
+          <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
+        </div>
       </div>
       <div className={`${styles.Description__SearchBoxMobile}`}>
         <utilities.SearchBox
           boxWidth={87}
           inputWidth={68}
         ></utilities.SearchBox>
-        <div className={`${styles.Description__ImageAndFashionFlex}`}>
+        <div className={`${styles.Description__ImageAndFashionFlexMobile}`}>
           <utilities.ImageSearchButton></utilities.ImageSearchButton>
           <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
         </div>

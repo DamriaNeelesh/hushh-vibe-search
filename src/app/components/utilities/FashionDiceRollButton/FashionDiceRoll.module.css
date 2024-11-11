@@ -1,0 +1,16 @@
+.FashionDiceRoll {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  border: 1px solid #DFE1E5;
+  border-radius: 10px;
+  gap: 0;
+  width: 17vw;
+}
+@media screen and (max-width: 900px) {
+  .FashionDiceRoll {
+    width: 41vw;
+  }
+}/*# sourceMappingURL=FashionDiceRoll.module.css.map */
