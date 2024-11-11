@@ -2,7 +2,7 @@
   width: 46vw;
   height: 48pt;
   border-radius: 10pt;
-  border-color: black;
+  border-color: #624737;
   border-width: 1pt;
   display: flex;
   align-items: center;
@@ -10,10 +10,20 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+@media screen and (max-width: 900px) {
+  .SearchBox {
+    width: 87vw;
+  }
+}
 .SearchBox .SearchBox__Input {
   width: 70vw;
   font-size: 18px;
   font-weight: 400;
+}
+@media screen and (max-width: 900px) {
+  .SearchBox .SearchBox__Input {
+    width: 68vw;
+  }
 }
 .SearchBox .SearchBox__Input:focus {
   outline: none;
@@ -24,20 +34,5 @@
 @media screen and (max-width: 900px) {
   .SearchBox .SearchBox__Icon {
     display: none;
-  }
-}
-
-.SearchBox__Input:-moz-placeholder {
-  animation: fadeInPlaceholder 2s forwards;
-  -moz-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-}
-
-@keyframes fadeInPlaceholder {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }/*# sourceMappingURL=SearchBox.module.css.map */

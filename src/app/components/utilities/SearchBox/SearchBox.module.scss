@@ -2,18 +2,23 @@
     width: 46vw;
     height: 48pt;
     border-radius: 10pt;
-    border-color: black;
+    border-color: #624737;
     border-width: 1pt;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding-left: 2px;
     padding-right: 2px;
-
+    @media screen and (max-width: 900px) {
+        width: 87vw;
+    }
     .SearchBox__Input {
         width: 70vw;
         font-size: 18px;
         font-weight: 400;
+        @media screen and (max-width: 900px) {
+            width: 68vw;
+        }
     }
 
     .SearchBox__Input:focus {
@@ -28,22 +33,5 @@
         }
 
         cursor: pointer;
-    }
-}
-
-.SearchBox__Input:-moz-placeholder {
-    animation: fadeInPlaceholder 2s forwards;
-    transition: opacity 0.5s ease-in-out;
-}
-
-
-
-@keyframes fadeInPlaceholder {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
     }
 }
