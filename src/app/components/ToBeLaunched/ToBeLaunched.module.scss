@@ -1,8 +1,9 @@
 .ToBeLaunched {
-    width: 94vw;
-    height: 100vh;
-    overflow: hidden;
-
+    @media screen and (max-width: 900px) {
+        width: 94vw;
+        height: 100vh;
+        overflow: hidden;
+    }
     .ToBeLaunched__Content {
         display: flex;
         height: 75vh;
