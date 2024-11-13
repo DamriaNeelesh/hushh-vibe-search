@@ -1,17 +1,15 @@
-"use client"
+"use client";
 import Resources from "../../resources/resources";
 import Header from "./Header/Header";
 import OurMission from "./OurMission/OurMission";
 import ValueProp from "./ValueProp/ValueProp";
-import styles from "./AboutUs.module.css";
+import styles from "./AboutUs.module.scss";
 import YourTrust from "./YourTrust/YourTrust";
-import Link from "next/link";
-import Head from 'next/head'
 import utilities from "../utilities/utilities";
 import { useState } from "react";
 
 export default function AboutUs() {
-  let [page, setPage]=useState('about')
+  let [page, setPage] = useState("about");
   return (
     <div>
       <Header page={page} setPage={setPage}></Header>
@@ -22,8 +20,11 @@ export default function AboutUs() {
       >
         <div>
           <div className={`${styles.AboutUs__Desc}`}>
-            <h2> The digital world is constantly evolving, and so should the way we
-            search and shop online.</h2>
+            <h2>
+              {" "}
+              The digital world is constantly evolving, and so should the way we
+              search and shop online.
+            </h2>
           </div>
         </div>
       </ValueProp>

@@ -6,6 +6,7 @@ import VibeText from "../../svg/vibeText.svg";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Resources from "../../../resources/resources";
+
 export default function Header() {
   let router = useRouter();
 
@@ -75,13 +76,12 @@ export default function Header() {
             fill="#222222"
           />
         </svg>
-        <FiHeart
-          size={24}
-          cursor="pointer"
-          onClick={() => {
-            utilities.ComingSoonToast(toast);
-          }}
-        />
+        {
+          Resources.config.featureFlags.wishlist &&
+          <Link href={"/wishlist"}>
+            <FiHeart size={24} cursor="pointer" />
+          </Link>
+        }
       </HStack>
     </HStack>
   );

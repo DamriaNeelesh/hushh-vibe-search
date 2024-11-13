@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import brands from "./brands";
 import queries from "./queries";
 import genders from './genders'
+import featureFlags from './featureFlags'
 const config = {
   SUPABASE_URL: "https://eaeokyefsdfamwqqzfko.supabase.co",
   SUPABASE_ANON_KEY:
@@ -19,7 +20,8 @@ const config = {
       : "http://localhost:3000",
   brands: brands,
   queries: queries,
-  genders: genders
+  genders: genders,
+  featureFlags: featureFlags
 };
 
 function createSupabaseClient() {
