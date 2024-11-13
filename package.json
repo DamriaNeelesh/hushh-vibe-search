@@ -12,41 +12,31 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.10.3",
-    "@eduardosmarcal/webcam-easy": "^2.0.3",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@next/third-parties": "^14.2.15",
-    "@react-spring/web": "^9.7.5",
     "@supabase/supabase-js": "^2.45.4",
     "antd": "^5.21.3",
+    "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.10",
     "lottie-react": "^2.4.0",
     "next": "14.2.15",
-    "next-images": "^1.8.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-draggable": "^4.4.6",
     "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.3.0",
     "react-loading-skeleton": "^3.5.0",
-    "react-media-recorder": "^1.7.1",
     "react-responsive-carousel": "^3.2.23",
     "react-scroll": "^1.9.0",
-    "react-tinder-card": "^1.6.4",
-    "react-toastify": "^10.0.6",
-    "react-top-loading-bar": "^2.3.1",
-    "react-use-gesture": "^9.1.3"
+    "react-top-loading-bar": "^2.3.1"
   },
   "devDependencies": {
     "@types/node": "22.7.5",
     "@types/react": "18.3.11",
-    "autoprefixer": "^10.4.20",
-    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "next-sitemap": "^4.2.3",
-    "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13"
   }
 }

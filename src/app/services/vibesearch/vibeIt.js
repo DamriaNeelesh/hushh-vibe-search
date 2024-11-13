@@ -1,6 +1,7 @@
 import config from "../../resources/config/config";
 import resources from "../../resources/resources";
 import axios from "axios";
+import hasValidImage from "./hasValidImage";
 export default async function vibeIt(
   mainQuery,
   secondaryQuery,
@@ -52,8 +53,32 @@ export default async function vibeIt(
       setNoMoreResults(true);
       return;
     }
+
     for (let key in results["data"]) {
+      let cachedErrors = localStorage.getItem("errorImages");
+      if (!cachedErrors) {
+        localStorage.setItem("errorImages", JSON.stringify([]));
+      }
+      let temp =
+        localStorage.getItem("errorImages") == "{}"
+          ? "[]"
+          : localStorage.getItem("errorImages");
+
+      cachedErrors = new Set(JSON.parse(temp));
+      if (cachedErrors.has(results["data"][key].image)) {
+        continue;
+      }
       if (results["data"].hasOwnProperty(key) && key != "brands") {
+        let isValidImg = await hasValidImage(results["data"][key].image);
+
+        if (!isValidImg) {
+          cachedErrors.add(results["data"][key].image);
+          localStorage.setItem(
+            "errorImages",
+            JSON.stringify([...cachedErrors])
+          );
+          continue;
+        }
         products[currentPage + " " + key] = results["data"][key];
       }
     }
@@ -66,13 +91,13 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    if (e.response && e.response.status === 500) {
-      window.location.href = config.redirect_url + "/components/ErrorPage500";
-    } else if (e.response && e.response.status === 400) {
-      window.location.href = config.redirect_url + "/components/ErrorPage400";
-    } else if (e.response && e.response.status === 401) {
-      window.location.href = config.redirect_url + "/components/ErrorNoLogin";
-    } else {
-    }
+    // if (e.response && e.response.status === 500) {
+    //   window.location.href = config.redirect_url + "/components/ErrorPage500";
+    // } else if (e.response && e.response.status === 400) {
+    //   window.location.href = config.redirect_url + "/components/ErrorPage400";
+    // } else if (e.response && e.response.status === 401) {
+    //   window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+    // } else {
+    // }
   }
 }

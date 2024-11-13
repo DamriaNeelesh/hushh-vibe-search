@@ -1,50 +1,33 @@
 "use client";
-import { useState } from "react";
-import config from "../../../../resources/config/config";
+import { useEffect, useState } from "react";
 import styles from "./BrandFilters.module.css";
-import { Button } from "@chakra-ui/react";
-
+import Brand from "./Brand/Brand";
+import ApplyFilterButton from "./ApplyFilterButton/ApplyFilterButton";
+import ClearFilter from "./ClearFilter/ClearFilter";
 export default function BrandFilters({
   selectedBrands,
   setSelectedBrands,
   brands,
-  onApplyFilter
+  onApplyFilter,
 }) {
   const [showAll, setShowAll] = useState(false);
-  const [tempSelectedBrands, setTempSelectedBrands] = useState(selectedBrands); // Temporary state
-
+  const [tempSelectedBrands, setTempSelectedBrands] = useState([]); // Temporary state
   const displayedBrands = showAll ? brands : brands.slice(0, 10);
-
-  const handleCheckboxChange = (brand, isChecked) => {
-    if (isChecked) {
-      setTempSelectedBrands([...tempSelectedBrands, brand]);
-    } else {
-      setTempSelectedBrands(tempSelectedBrands.filter((b) => b !== brand));
-    }
-  };
-
-  const applyFilter = () => {
-    setSelectedBrands(tempSelectedBrands); // Update the actual selected brands
-  };
-  const clearFilter = () => {
-    setTempSelectedBrands([]); // Clear temporary selections
-    setSelectedBrands([]); // Clear actual selections
-  };
-
+  useEffect(() => {
+    setTempSelectedBrands(selectedBrands);
+  }, []);
   return (
     <div className={`${styles.BrandFilters}`}>
-      {displayedBrands.map((brand, index) => (
-        <div key={index}>
-          <input
-            type="checkbox"
-            checked={tempSelectedBrands.includes(brand)}
-            onChange={(event) =>
-              handleCheckboxChange(brand, event.target.checked)
-            }
-          />
-          &nbsp; {brand}
-        </div>
-      ))}
+      {displayedBrands.map((brand, index) => {
+        return (
+          <Brand
+            brand={brand}
+            index={index}
+            setTempSelectedBrands={setTempSelectedBrands}
+            tempSelectedBrands={tempSelectedBrands}
+          ></Brand>
+        );
+      })}
       {/* Show More button if there are more than 10 brands */}
       {brands.length > 10 && !showAll && (
         <div onClick={() => setShowAll(true)} className={styles.showMoreButton}>
@@ -61,27 +44,17 @@ export default function BrandFilters({
         </button>
       )}
       {/* Apply Filter button */}
-      {tempSelectedBrands.length > 0 && (
-        <>
-          <div className="flex flex-row gap-3">
-            <Button
-              onClick={applyFilter}
-              bg="#E0D3C8"
-              color={'black'}
-              mt={4}
-            >
-              Apply Filter
-            </Button>
-            <Button
-              onClick={clearFilter}
-              bg={'#EDE4DE'}
-              color={'black'}
-              mt={4}
-            >
-              Clear Filter
-            </Button>
-          </div>
-        </>
+      {tempSelectedBrands && tempSelectedBrands.length > 0 && (
+        <div className="flex flex-row gap-3">
+          <ApplyFilterButton
+            setSelectedBrands={setSelectedBrands}
+            tempSelectedBrands={tempSelectedBrands}
+          ></ApplyFilterButton>
+          <ClearFilter
+            setSelectedBrands={setSelectedBrands}
+            setTempSelectedBrands={setTempSelectedBrands}
+          ></ClearFilter>
+        </div>
       )}
     </div>
   );

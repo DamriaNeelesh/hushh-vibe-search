@@ -20,6 +20,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 import callVibeIt from "./services/callVibeIt";
 import ProductDrawerDynamic from "./ProductDrawerDynamic/ProductDrawerDynamic";
 import MenuBar from "./MenuBar/MenuBar";
+import PreloadImageLink from "./PreloadImageLinks/PreloadImageLinks";
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,17 +32,16 @@ export default function SearchResults() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const searchParams = useSearchParams();
   const gridRef = useRef(null);
-  const drawerRef = useRef(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { brandDrawer, setIsBrandDrawer } = useState(false);
-  const { genderDrawer, setIsGenderDrawer } = useState(false);
+
   const [brands, setBrands] = useState([]); // State to hold brands
-  const router = useRouter();
+
   const loadingBarRef = useRef(null);
-  const [isMobileProductDrawer, setIsMobileProductDrawer] = useState();
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
-  const toast = useToast();
+
   let [errorImages, setErrorImages] = useState(new Set([]));
   const [touchStartY, setTouchStartY] = useState(0);
   const [priceRange, setPriceRange] = useState([10, 1050]);
@@ -106,14 +106,7 @@ export default function SearchResults() {
     <>
       <Head>
         {Object.values(searchResults).map((product, index) => {
-          return (
-            <link
-              key={index}
-              rel="preload"
-              href={product?.image}
-              as="image"
-            ></link>
-          );
+          <PreloadImageLink index={index} product={product}></PreloadImageLink>;
         })}
       </Head>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
