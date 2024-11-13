@@ -4,7 +4,7 @@ import { useState } from "react";
 import services from "../../../../../services/services";
 import Card1 from "../../../../svg/card1.svg";
 import Image from "next/image";
-import styles from "./FashionCard.module.css";
+import styles from "./FashionCard.module.scss";
 import figtree from "../../../../../fonts/Figtree";
 export default function FashionCard({ cardData, rights }) {
   let [userDetails, setUserDetails] = useState(null);

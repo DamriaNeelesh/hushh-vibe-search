@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@chakra-ui/react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-import styles from "./SwipeCard.module.css";
+import styles from "./SwipeCard.module.scss";
 import React from "react";
 import handleDragEnd from "./services/handleDragEnd";
 const SwipeCard = ({

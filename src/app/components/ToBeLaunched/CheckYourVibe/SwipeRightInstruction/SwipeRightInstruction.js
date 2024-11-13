@@ -1,4 +1,4 @@
-import styles from './SwipeRightInstruction.module.css'
+import styles from './SwipeRightInstruction.module.scss'
 export default function SwipeRightInstruction(){
     return (
         <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>

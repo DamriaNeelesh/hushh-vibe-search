@@ -1,4 +1,4 @@
-import styles from "./GoogleSignIn.module.css";
+import styles from "./GoogleSignIn.module.scss";
 import gSignInButton from "../resources/gsignin-button.svg";
 import services from "../../../../services/services";
 import Image from "next/image";

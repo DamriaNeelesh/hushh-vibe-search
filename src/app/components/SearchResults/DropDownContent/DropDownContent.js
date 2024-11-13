@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./DropDownContent.module.css";
+import styles from "./DropDownContent.module.scss";
 import Image from "next/image";
 export default function DropDownContent(props) {
   let [showFilter, setShowFilter] = useState(false);

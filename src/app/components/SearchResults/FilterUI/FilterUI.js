@@ -1,7 +1,6 @@
 "use client";
-import { DrawerCloseButton, useDisclosure } from "@chakra-ui/react";
+import {useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import FilterAccordion from "./FilterAccordian/FilterAccordian";
 import FeatureBar from "./FeatureBar/FeatureBar";
 import Categories from "./Categories/Categories";
 import LeftDrawer from "./LeftDrawer/LeftDrawer";

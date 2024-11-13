@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./BrandFilters.module.css";
+import styles from "./BrandFilters.module.scss";
 import Brand from "./Brand/Brand";
 import ApplyFilterButton from "./ApplyFilterButton/ApplyFilterButton";
 import ClearFilter from "./ClearFilter/ClearFilter";

@@ -1,5 +1,5 @@
 import figtree from "../../../fonts/Figtree";
-import styles from "./ImageNotFound.module.css";
+import styles from "./ImageNotFound.module.scss";
 import QuestionMark from "./resources/QuestionMark.svg";
 import Image from "next/image";
 export default function ImageNotFound(props) {

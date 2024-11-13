@@ -1,6 +1,6 @@
 "use client";
 import resources from "../../../resources/resources";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import { useEffect } from "react";
 import services from "../../../services/services";
 import { useState } from "react";

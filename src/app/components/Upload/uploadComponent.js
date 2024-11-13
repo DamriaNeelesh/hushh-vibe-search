@@ -12,7 +12,7 @@ import {
 import { FiUpload, FiX } from "react-icons/fi";
 import Image from "next/image";
 import CameraIcon from "../svg/colorcameraIcon.svg";
-import styles from "./uploadComponent.module.css";
+import styles from "./uploadComponent.module.scss";
 const ImageUpload = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const toast = useToast();

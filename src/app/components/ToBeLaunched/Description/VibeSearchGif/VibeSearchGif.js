@@ -1,5 +1,5 @@
 import resources from "../../../../resources/resources";
-import styles from "./VibeSearchGif.module.css";
+import styles from "./VibeSearchGif.module.scss";
 export default function VibeSearchGif() {
   return (
     <div className={`${styles.Description__SearchboxGifWrapper}`}>

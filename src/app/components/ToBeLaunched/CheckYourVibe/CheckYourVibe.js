@@ -1,6 +1,6 @@
 "use client"
 import SwipeGame from "./SwipeGame/SwipeGame";
-import styles from "./CheckYourVibe.module.css";
+import styles from "./CheckYourVibe.module.scss";
 import SwipeLeftInstruction from "./SwipeLeftInstruction/SwipeLeftInstruction";
 import SwipeRightInstruction from "./SwipeRightInstruction/SwipeRightInstruction";
 import SwipeLeftInstructionMobile from "./SwipeLeftInstructionMobile/SwipeLeftInstructionMobile";

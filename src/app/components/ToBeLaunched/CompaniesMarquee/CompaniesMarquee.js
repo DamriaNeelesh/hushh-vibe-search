@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import styles from "./CompaniesMarquee.module.css";
+import styles from "./CompaniesMarquee.module.scss";
 import adidas from "./resources/adidas.svg";
 import balenciaga from "./resources/balenciaga.svg";
 import calvinKlien from "./resources/calvin-klein.svg";

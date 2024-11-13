@@ -1,4 +1,4 @@
-import styles from "./DownArrow.module.css";
+import styles from "./DownArrow.module.scss";
 import DownArrowImage from "./resources/DownArrow.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";

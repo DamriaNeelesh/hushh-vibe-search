@@ -1,4 +1,4 @@
-import styles from "./Description.module.css";
+import styles from "./Description.module.scss";
 import services from "../../../services/services";
 import { useEffect, useState, useMemo } from "react";
 import DynamicSignInWrapper from "./DynamicSignInWrapper/DynamicSignInWrapper";

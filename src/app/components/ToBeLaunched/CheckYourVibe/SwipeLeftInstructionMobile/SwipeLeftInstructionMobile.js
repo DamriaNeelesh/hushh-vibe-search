@@ -1,4 +1,4 @@
-import styles from './SwipeLeftInstructionMobile.module.css'
+import styles from './SwipeLeftInstructionMobile.module.scss'
 export default function SwipeLeftInstructionMobile() {
   return (
     <div className={`${styles.CheckYourVibe__SwipeAnimWrapper}`}>
