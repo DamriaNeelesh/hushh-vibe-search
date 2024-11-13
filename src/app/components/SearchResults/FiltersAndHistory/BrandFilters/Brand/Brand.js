@@ -5,7 +5,6 @@ export default function Brand({
   tempSelectedBrands,
   setTempSelectedBrands,
 }) {
-  console.log(tempSelectedBrands);
   return (
     <div key={index}>
       <input

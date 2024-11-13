@@ -1,7 +1,7 @@
 import Image from "next/image";
 import resources from "../../../resources/resources";
 import AnimatedSearchBox from "../../LandingScreenContent/AnimatedSearchbox/AnimatedSearchBox";
-import styles from "./OurMission.module.css";
+import styles from "./OurMission.module.scss";
 import figtree from "../../../fonts/Figtree";
 export default function OurMission() {
   return (

@@ -1,4 +1,4 @@
-import styles from "./YourTrust.module.css";
+import styles from "./YourTrust.module.scss";
 import jigsawPuzzle from "./resources/jigsaw-puzzle.svg";
 import Image from "next/image";
 import figtree from "../../../fonts/Figtree";

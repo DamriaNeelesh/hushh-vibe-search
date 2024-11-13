@@ -1,5 +1,5 @@
 "use client";
-import styles from "./ValueProp.module.css";
+import styles from "./ValueProp.module.scss";
 import dynamic from "next/dynamic";
 import figtree from "../../../fonts/Figtree";
 let Illustration = dynamic(() => import("./Illustration/Illustration"));

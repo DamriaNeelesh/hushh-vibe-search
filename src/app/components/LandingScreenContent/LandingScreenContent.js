@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "./LandingScreenContent.module.css";
+import styles from "./LandingScreenContent.module.scss";
 import ChooseAVibe from "./ChooseAVibe/ChooseAVibe";
 import SearchLikeYouTalk from "./SearchLikeYouTalk/SearchLikeYouTalk";
 import ImageUploadDialog from "./ImageUploadDialog/ImageUploadDialog";

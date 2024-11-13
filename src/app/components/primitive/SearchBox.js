@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import styles from "./SearchBox.module.css";
+import styles from "./SearchBox.module.scss";
 import Resources from "../../../resources/resources";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";

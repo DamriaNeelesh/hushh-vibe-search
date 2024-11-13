@@ -1,4 +1,4 @@
-import styles from "./Illustration.module.css";
+import styles from "./Illustration.module.scss";
 import Image from "next/image";
 export default function Illustration(props) {
   return (

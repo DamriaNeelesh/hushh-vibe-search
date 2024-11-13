@@ -21,6 +21,7 @@ export default function BrandFilters({
       {displayedBrands.map((brand, index) => {
         return (
           <Brand
+          key={index}
             brand={brand}
             index={index}
             setTempSelectedBrands={setTempSelectedBrands}

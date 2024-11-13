@@ -1,7 +1,6 @@
-import styles from "./searchBoxUI.module.css";
+import styles from "./searchBoxUI.module.scss";
 import Resources from "../../../../resources/resources";
-import Link from "next/link";
-import AddToHistory from "./services/AddToHistory";
+
 export default function SearchBoxUI({
   openMenu,
   searchQuery,

@@ -1,9 +1,8 @@
 "use client";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import resources from "../../../resources/resources";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Footer from "../../utilities/Footer/Footer";
 import Image from "next/image";
 import figtree from "../../../fonts/Figtree";
 import Link from "next/link";
