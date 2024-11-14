@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 import { GoogleTagManager } from "@next/third-parties/google";
-
+import Script from "next/script";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <script
+        <Script
         defer
           dangerouslySetInnerHTML={{
             __html: `
@@ -30,10 +30,10 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <script
+        <Script
           defer
           src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8	"
-        ></script>
+        />
         <script
         defer
           dangerouslySetInnerHTML={{
@@ -54,10 +54,10 @@ export default function RootLayout({ children }) {
           content="width=device-width, initial-scale=1"
         ></meta>
         <meta name="verification" content="ec88987e0a554366fabd35acbae19efd" />
-        <script
+        <Script
           defer
           src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429"
-        ></script>
+        />
         <script
         defer
           dangerouslySetInnerHTML={{
