@@ -1,4 +1,4 @@
-import AnimatedSearchBox from "../AnimatedSearchbox/AnimatedSearchBox";
+import AnimatedSearchBox from "../../utilities/AnimatedSearchbox/AnimatedSearchBox";
 import { Text } from "@chakra-ui/react";
 import styles from "./SearchLikeYouTalk.module.css";
 import figtree from "../../../fonts/Figtree";

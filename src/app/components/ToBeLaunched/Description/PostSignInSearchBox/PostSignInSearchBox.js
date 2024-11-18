@@ -1,7 +1,7 @@
 import utilities from "../../../utilities/utilities";
 import styles from "./PostSignInSearchBox.module.scss";
 import figtree from "../../../../fonts/Figtree";
-import AnimatedSearchBox from "../../../LandingScreenContent/AnimatedSearchbox/AnimatedSearchBox";
+import AnimatedSearchBox from "../../../utilities/AnimatedSearchbox/AnimatedSearchBox";
 export default function PostSignInSearchBox(props) {
   return (
     <>

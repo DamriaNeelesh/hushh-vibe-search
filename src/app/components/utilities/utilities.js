@@ -5,6 +5,7 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import Header from "./Header/Header";
 import ImageSearchButton from "./ImageSearchButton/ImageSearchButton";
 import FashionDiceRoll from "./FashionDiceRollButton/FashionDiceRollButton";
+import AnimatedSearchBox from "./AnimatedSearchbox/AnimatedSearchBox";
 const utilities = {
   SearchBox: SearchBox,
   Footer: Footer,
@@ -12,6 +13,7 @@ const utilities = {
   ErrorPage: ErrorPage,
   Header: Header,
   ImageSearchButton: ImageSearchButton,
-  FashionDiceRoll: FashionDiceRoll
+  FashionDiceRoll: FashionDiceRoll,
+  AnimatedSearchBox: AnimatedSearchBox,
 };
 export default utilities;

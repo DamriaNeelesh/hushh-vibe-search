@@ -1,5 +1,4 @@
 import { HStack, Box } from "@chakra-ui/react";
-import FashionDiceRollButton from "../../utilities/FashionDiceRollButton/FashionDiceRollButton";
 import utilities from "../../utilities/utilities";
 export default function MenuBar() {
   return (
@@ -22,9 +21,11 @@ export default function MenuBar() {
         zIndex={100}
         my={{ md: "2rem", base: "2rem" }}
       >
-        <utilities.SearchBox />
+        <utilities.AnimatedSearchBox
+          boxWidth={35}
+        ></utilities.AnimatedSearchBox>
       </Box>
-      <FashionDiceRollButton></FashionDiceRollButton>
+      {/* <FashionDiceRollButton></FashionDiceRollButton> */}
     </HStack>
   );
 }

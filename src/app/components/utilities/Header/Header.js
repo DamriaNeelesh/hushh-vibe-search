@@ -59,7 +59,6 @@ export default function Header() {
             alt="Vibe Search"
           />
         </Link>
-        {/* <utilities.SearchBox></utilities.SearchBox> */}
       </Flex>
       <HStack spacing={6}>
         <svg
@@ -76,12 +75,11 @@ export default function Header() {
             fill="#222222"
           />
         </svg>
-        {
-          Resources.config.featureFlags.wishlist &&
+        {Resources.config.featureFlags.wishlist && (
           <Link href={"/wishlist"}>
             <FiHeart size={24} cursor="pointer" />
           </Link>
-        }
+        )}
       </HStack>
     </HStack>
   );

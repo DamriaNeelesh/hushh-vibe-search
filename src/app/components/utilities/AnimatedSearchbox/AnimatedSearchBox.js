@@ -1,8 +1,8 @@
 "use client";
-import utilities from "../../utilities/utilities";
+import utilities from "../utilities";
 import Resources from "../../../resources/resources";
 import { useEffect, useState } from "react";
-export default function AnimatedSearchBox(props) {
+export default function AnimatedSearchBox({ boxWidth, inputWidth, content }) {
   let [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     let index = 0;
@@ -18,8 +18,9 @@ export default function AnimatedSearchBox(props) {
   return (
     <div>
       <utilities.SearchBox
-        content={searchQuery}
-        {...props}
+        content={content ? content : searchQuery}
+        boxWidth={boxWidth}
+        inputWidth={inputWidth}
       ></utilities.SearchBox>
     </div>
   );
