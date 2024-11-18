@@ -27,11 +27,11 @@ const config = {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZW9reWVmc2RmYW13cXF6ZmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDkzNzExODYsImV4cCI6MjAyNDk0NzE4Nn0.iqWMB0debYgPRX5PjtJuIfy5ImxZfC9ol7A4EPFXmFU",
   supabaseClient: null,
   vibesearchAPIEndpoint:
-    vibesearchAPIEndpoints[process.env.NEXT_PUBLIC_SITE_ENV],
-  monitoringEndpoint: monitoringEndpoints[process.env.NEXT_PUBLIC_SITE_ENV],
+    vibesearchAPIEndpoints[process.env.NEXT_PUBLIC_SITE_ENV?process.env.NEXT_PUBLIC_SITE_ENV:"production"],
+  monitoringEndpoint: monitoringEndpoints[process.env.NEXT_PUBLIC_SITE_ENV?process.env.NEXT_PUBLIC_SITE_ENV:"production"],
   guestModeAccessToken:
     "P2H8RNXPvIiPoeM0iJEDjJ2Skk37h5pScMQF5oMRUXm3dKoUC2wxrWImx5ccA9VOrOoeaLcMQqn57vYDPucTkYnkkH6icUQy09vtd5eIrAIXhBtmUfAmPI3thD2OoUeF",
-  redirect_url: redirect_urls[process.env.NEXT_PUBLIC_SITE_ENV],
+  redirect_url: redirect_urls[process.env.NEXT_PUBLIC_SITE_ENV?process.env.NEXT_PUBLIC_SITE_ENV:"production"],
   brands: brands,
   queries: queries,
   genders: genders,

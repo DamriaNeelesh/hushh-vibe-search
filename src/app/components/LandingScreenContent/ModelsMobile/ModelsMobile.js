@@ -1,4 +1,4 @@
-import styles from "./ModelsMobile.module.css";
+import styles from "./ModelsMobile.module.scss";
 import home2Resources from "../resources/home2Resources";
 import Image from "next/image";
 export default function ModelsMobile() {

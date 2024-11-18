@@ -6,7 +6,7 @@ import fashionDiceRoll from "./fashionDiceRoll/fashionDiceRoll";
 import Dice from "../../svg/dice.svg";
 import diceAnimation from "../../gif/diceAnimation.json";
 import { useState } from "react";
-import styles from "./FashionDiceRoll.module.css";
+import styles from "./FashionDiceRoll.module.scss";
 export default function FashionDiceRoll() {
   const [isHovered, setIsHovered] = useState(false);
   return (
