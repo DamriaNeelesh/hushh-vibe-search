@@ -37,7 +37,6 @@ export default function ToBeLaunched() {
       <DownArrow></DownArrow>
       {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <></>}
       <LandingScreenContent></LandingScreenContent>
-      <utilities.Footer></utilities.Footer>
     </div>
   );
 }

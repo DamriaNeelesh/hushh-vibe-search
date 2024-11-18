@@ -42,6 +42,7 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
         className={styles.SearchBox}
         style={{
           width: boxWidth ? boxWidth + "vw" : "",
+          justifyContent: searchQuery == "" ? "flex-start" : "space-between",
         }}
       >
         <Image

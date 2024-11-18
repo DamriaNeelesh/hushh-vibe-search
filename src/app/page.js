@@ -10,7 +10,7 @@ import VibeSearchGif from "../app/resources/images/VibeSearch.gif";
 import getUserDetails from "./services/authentication/getUserDetails";
 import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
 import Head from "next/head";
-
+import utilities from "./components/utilities/utilities";
 const slides = [
   {
     image: Slide1,
@@ -29,13 +29,16 @@ const slides = [
   },
 ];
 
- const metadata = {
+const metadata = {
   title: "Vibe Search - match your perfect outfit with us",
-  description: "Find perfect items to express your individuality in just one click with our vibe search",
-  keywords: "AI shopping, semantic search, personalized shopping, privacy protection, global fashion brands",
+  description:
+    "Find perfect items to express your individuality in just one click with our vibe search",
+  keywords:
+    "AI shopping, semantic search, personalized shopping, privacy protection, global fashion brands",
   openGraph: {
     title: "Home - Vibe Search",
-    description: "Explore Vibe Search, a platform that revolutionizes online shopping with AI and privacy-focused features.",
+    description:
+      "Explore Vibe Search, a platform that revolutionizes online shopping with AI and privacy-focused features.",
     images: [Resources.images.VibeLogo.src],
     url: "https://www.vibesearch.ai",
   },
@@ -126,7 +129,10 @@ export default function Home() {
         <meta property="og:url" content={metadata.openGraph.url} />
         <meta name="twitter:card" content={metadata.twitter.card} />
       </Head>
+
       <ToBeLaunched></ToBeLaunched>
+
+      <utilities.Footer></utilities.Footer>
     </>
   );
 }
