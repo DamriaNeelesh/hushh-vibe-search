@@ -22,8 +22,6 @@ const LandingScreenContent = () => {
         </div>
       </div>
       <ModelsMobile></ModelsMobile>
-
-      <utilities.Footer></utilities.Footer>
     </div>
   );
 };

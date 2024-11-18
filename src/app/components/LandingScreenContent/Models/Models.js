@@ -1,4 +1,4 @@
-import styles from "./Models.module.css";
+import styles from "./Models.module.scss";
 import home2Resources from "../resources/home2Resources";
 import Image from "next/image";
 export default function Models() {
@@ -18,8 +18,8 @@ export default function Models() {
             <Image
               src={home2Resources.Model2.src}
               alt="Vibe Search Model 2"
-              width={"320"}
-              height={"427"}
+              width={"250"}
+              height={"237"}
             />
           </div>
         </div>
