@@ -1,0 +1,18 @@
+.BrandFilters{
+    margin-top:10pt
+}
+
+.showMoreButton {
+  background-color: #f0f0f0; /* Light grey background */
+  border: none; /* Remove default border */
+  padding: 8px 16px; /* Padding for the button */
+  font-size: 14px; /* Font size */
+  color: #333; /* Text color */
+  text-decoration: underline;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.showMoreButton:hover {
+  background-color: #e0e0e0; /* Darker grey on hover */
+}

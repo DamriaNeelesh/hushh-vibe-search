@@ -9,20 +9,22 @@ export default function SwipeCards({
 }) {
   return (
     <>
-      {cards.map((card) => {
-        return (
-          <SwipeCard
-            key={card.id}
-            cards={cards}
-            setCards={setCards}
-            {...card}
-            rights={rights}
-            lefts={lefts}
-            setRights={setRights}
-            setLefts={setLefts}
-          />
-        );
-      })}
+      {cards
+        .map((card) => {
+          return (
+            <SwipeCard
+              key={card.id}
+              cards={cards}
+              setCards={setCards}
+              {...card}
+              rights={rights}
+              lefts={lefts}
+              setRights={setRights}
+              setLefts={setLefts}
+            />
+          );
+        })
+        .reverse()}
     </>
   );
 }

@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <Script
-        defer
+          id="gtm3"
+          defer
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -31,11 +32,12 @@ export default function RootLayout({ children }) {
           }}
         />
         <Script
+          id="gtm1"
           defer
           src="https://www.googletagmanager.com/gtag/js?id=G-JG6C3FQ2N8	"
         />
         <script
-        defer
+          defer
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -55,11 +57,12 @@ export default function RootLayout({ children }) {
         ></meta>
         <meta name="verification" content="ec88987e0a554366fabd35acbae19efd" />
         <Script
+          id="gtm2"
           defer
           src="https://www.googletagmanager.com/gtag/js?id=AW-16746454429"
         />
         <script
-        defer
+          defer
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

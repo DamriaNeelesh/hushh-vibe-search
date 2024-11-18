@@ -1,6 +1,7 @@
 import config from "../../resources/config/config";
 import resources from "../../resources/resources";
 import axios from "axios";
+import process from "process";
 import hasValidImage from "./hasValidImage";
 export default async function vibeIt(
   mainQuery,
@@ -19,8 +20,13 @@ export default async function vibeIt(
   price_range
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
-  if (!access_token)
-    window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+
+  if (process.env.NEXT_PUBLIC_SITE_ENV == "staging") {
+  } else {
+    if (!access_token) {
+      window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+    }
+  }
   let data = {
     query: mainQuery,
     current_page: currentPage,
@@ -45,15 +51,14 @@ export default async function vibeIt(
       header
     );
     let products = {};
-    console.log(results)
-    if (results["data"]["message"] && currentPage == '1') {
+
+    if (results["data"]["message"] && currentPage == "1") {
       window.location.href = config.redirect_url + "/components/ErrorPage400";
     }
     if (results["data"]["message"]) {
       setNoMoreResults(true);
       return;
     }
-
     for (let key in results["data"]) {
       let cachedErrors = localStorage.getItem("errorImages");
       if (!cachedErrors) {
@@ -69,15 +74,17 @@ export default async function vibeIt(
         continue;
       }
       if (results["data"].hasOwnProperty(key) && key != "brands") {
-        let isValidImg = await hasValidImage(results["data"][key].image);
+        if (config.featureFlags.isValidImageCheck) {
+          let isValidImg = await hasValidImage(results["data"][key].image);
 
-        if (!isValidImg) {
-          cachedErrors.add(results["data"][key].image);
-          localStorage.setItem(
-            "errorImages",
-            JSON.stringify([...cachedErrors])
-          );
-          continue;
+          if (!isValidImg) {
+            cachedErrors.add(results["data"][key].image);
+            localStorage.setItem(
+              "errorImages",
+              JSON.stringify([...cachedErrors])
+            );
+            continue;
+          }
         }
         products[currentPage + " " + key] = results["data"][key];
       }
@@ -91,13 +98,16 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    // if (e.response && e.response.status === 500) {
-    //   window.location.href = config.redirect_url + "/components/ErrorPage500";
-    // } else if (e.response && e.response.status === 400) {
-    //   window.location.href = config.redirect_url + "/components/ErrorPage400";
-    // } else if (e.response && e.response.status === 401) {
-    //   window.location.href = config.redirect_url + "/components/ErrorNoLogin";
-    // } else {
-    // }
+    if (process.env.NEXT_PUBLIC_SITE_ENV != "staging") {
+      console.log(e);
+      if (e.response && e.response.status === 500) {
+        window.location.href = config.redirect_url + "/components/ErrorPage500";
+      } else if (e.response && e.response.status === 400) {
+        window.location.href = config.redirect_url + "/components/ErrorPage400";
+      } else if (e.response && e.response.status === 401) {
+        window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+      } else {
+      }
+    }
   }
 }

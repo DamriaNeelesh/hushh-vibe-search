@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.vibesearch.ai/components/ErrorNoLogin</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/components/ErrorPage400</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/blogs</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/blogs/latest-blogs</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/components/ToBeLaunched/CheckYourVibe</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/components/ErrorPage500</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/search</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/components/SearchResults</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/wishlist</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/privacy-policy</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/about-us</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/terms-of-use</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.vibesearch.ai/components/ErrorPage404</loc><lastmod>2024-11-06T10:57:53.550Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/blogs</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/ErrorNoLogin</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/ErrorPage400</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/blogs/latest-blogs</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/ErrorPage500</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/SearchResults</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/search</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/ToBeLaunched/CheckYourVibe</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/privacy-policy</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/wishlist</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/about-us</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/terms-of-use</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.vibesearch.ai/components/ErrorPage404</loc><lastmod>2024-11-18T09:36:39.098Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import SwipeGame from "./SwipeGame/SwipeGame";
 import styles from "./CheckYourVibe.module.scss";
 import SwipeLeftInstruction from "./SwipeLeftInstruction/SwipeLeftInstruction";
@@ -28,7 +28,9 @@ export default function CheckYourVibe() {
           <div className={`${styles.CheckYourVibe__SubTitle}`}>
             Tell us your style - Click and swipe through different styles
           </div>
-          <div className={`${styles.CheckYourVibe__SwipeGameMobile}  ${figtree.className}`}>
+          <div
+            className={`${styles.CheckYourVibe__SwipeGameMobile}  ${figtree.className}`}
+          >
             <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
               <SwipeLeftInstructionMobile></SwipeLeftInstructionMobile>
               <SwipeRightInstructionMobile></SwipeRightInstructionMobile>
@@ -45,7 +47,9 @@ export default function CheckYourVibe() {
               ></SwipeGame>
             </div>
           </div>
-          <div className={`${styles.CheckYourVibe__SwipeGame}  ${figtree.className}`}>
+          <div
+            className={`${styles.CheckYourVibe__SwipeGame}  ${figtree.className}`}
+          >
             <SwipeLeftInstruction></SwipeLeftInstruction>
             <SwipeGame
               setIsAllSwiped={setIsAllSwiped}

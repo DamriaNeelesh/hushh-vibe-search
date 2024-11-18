@@ -12,6 +12,7 @@ const SwipeGame = (props) => {
         setLefts={props.setLefts}
         setRights={props.setRights}
         setCards={props.setCards}
+        setIsAllSwiped={props.setIsAllSwiped}
       ></SwipeCards>
     </div>
   );

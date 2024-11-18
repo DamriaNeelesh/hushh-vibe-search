@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/services/monitoring/clicked.js"  ],
+, "src/app/services/monitoring/clicked.js", "jest.config.ts"  ],
   "exclude": [
     "node_modules"
   ]

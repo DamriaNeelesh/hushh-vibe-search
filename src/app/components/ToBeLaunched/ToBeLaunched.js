@@ -9,6 +9,7 @@ import toBeLaunchedMetadata from "./toBeLaunchedMetadata";
 import DownArrow from "./DownArrow/DownArrow";
 import Header from "./Header/Header";
 import Image from "next/image";
+import config from "../../resources/config/config";
 
 export const metadata = toBeLaunchedMetadata;
 
@@ -34,7 +35,7 @@ export default function ToBeLaunched() {
         </div>
       </div>
       <DownArrow></DownArrow>
-      <CheckYourVibe></CheckYourVibe>
+      {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <></>}
       <LandingScreenContent></LandingScreenContent>
     </div>
   );

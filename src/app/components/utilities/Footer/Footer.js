@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./Footer.module.css";
+import styles from "./Footer.module.scss";
 import config from "../../../resources/config/config";
 import figtree from "../../../fonts/Figtree";
 export default function Footer() {

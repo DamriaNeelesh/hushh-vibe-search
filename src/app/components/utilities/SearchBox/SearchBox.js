@@ -1,11 +1,12 @@
 "use client"; // Ensure that this is a client component
-import styles from "./SearchBox.module.css";
+import styles from "./SearchBox.module.scss";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
 import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
 import figtree from "../../../fonts/Figtree";
 import Image from "next/image";
+import handleSearch from "./services/handleSearch";
 export default function SearchBox({ boxWidth, inputWidth, content }) {
   // State to handle search input
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,18 +30,7 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
         : clearInterval(interval_id);
     }, 1000);
   }, []);
-  // Handle search on Enter key press
-  const handleSearch = (event) => {
-    if (event.key === "Enter") {
-      if (searchQuery !== "") {
-        isLoggedIn
-          ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
-          : alert("Please login to search");
-      } else {
-        alert("Please enter a search query");
-      }
-    }
-  };
+
   // Clear the search input
   const handleClearSearch = () => {
     setSearchQuery("");
@@ -55,12 +45,14 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
         }}
       >
         <Image
+          className={styles.SearchBox__QuestionMark}
           src={resources.magnifyingGlass.src}
-          width={14}
-          height={14}
+          width={18}
+          height={18}
           alt="Vibe Search Icon"
         />
         <input
+          data-testid="SearchBox__Input"
           className={`${styles.SearchBox__Input} ${figtree.className}`}
           id="SearchBox__Input"
           value={searchQuery} // Controlled input for search query
@@ -77,26 +69,29 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
         />
         {searchQuery !== "" ? (
           <Image
+            data-testid="SearchBox__Icon"
             src={resources.cross.src}
             className={styles.SearchBox__Icon}
             alt="Clear Icon"
-            width={14}
-            height={14}
+            width={20}
+            height={20}
             onClick={handleClearSearch} // Clear search input
           />
         ) : (
           <></>
         )}
-        <Image
-          src={resources.camera.src}
-          className={styles.SearchBox__Icon}
-          alt="Camera Icon"
-          width={14}
-          height={14}
-          onClick={() =>
-            document.getElementById("searchBox__fileInput").click()
-          }
-        />
+        {config.featureFlags.cameraInSearchBox && (
+          <Image
+            src={resources.camera.src}
+            className={styles.SearchBox__Icon}
+            alt="Camera Icon"
+            width={14}
+            height={14}
+            onClick={() =>
+              document.getElementById("searchBox__fileInput").click()
+            }
+          />
+        )}
       </div>
     </Suspense>
   );

@@ -6,16 +6,19 @@
     border-width: 1pt;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding-left: 2px;
-    padding-right: 2px;
+    justify-content: flex-start;
+    
     @media screen and (max-width: 900px) {
         width: 87vw;
     }
+    .SearchBox__QuestionMark{
+        margin-left: 13pt;
+    }
     .SearchBox__Input {
-        width: 70vw;
+        width: max-content;
         font-size: 18px;
         font-weight: 400;
+        margin-left: 10pt;
         @media screen and (max-width: 900px) {
             width: 68vw;
         }
@@ -28,7 +31,7 @@
 
     .SearchBox__Icon {
         @media screen and (max-width: 900px) {
-            display: none;
+            margin-right: 13pt;
 
         }
 

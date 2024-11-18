@@ -25,7 +25,7 @@ const SwipeCard = ({
   }, []);
   const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
-  const isFront = id === cards[cards.length - 1].id;
+  const isFront = id === cards[0].id;
   const rotate = useTransform(() => {
     const offset = isFront ? 0 : id % 2 ? 6 : -6;
     return `${rotateRaw.get() + offset}deg`;
@@ -43,6 +43,7 @@ const SwipeCard = ({
         opacity,
         rotate,
         transition: isMobile ? "0.05s transform" : "0.125s transform",
+        zIndex: isFront ? 1 : 0,
       }}
       animate={{
         scale: isFront ? 1 : 0.98,
