@@ -17,7 +17,8 @@ export default async function vibeIt(
   gender_filter,
   gender,
   price_filter,
-  price_range
+  price_range,
+  retries
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
 
@@ -101,7 +102,11 @@ export default async function vibeIt(
     if (process.env.NEXT_PUBLIC_SITE_ENV != "staging") {
       console.log(e);
       if (e.response && e.response.status === 500) {
-        window.location.href = config.redirect_url + "/components/ErrorPage500";
+        if(retries<1){
+          vibeIt(mainQuery, secondaryQuery, currentPage, result_count, setState, access_token, searchResults, selectedBrands, setNoMoreResults, setBrands, gender_filter, gender, price_filter, retries+1);
+        }else{
+          window.location.href = config.redirect_url + "/components/ErrorPage500";
+        }
       } else if (e.response && e.response.status === 400) {
         window.location.href = config.redirect_url + "/components/ErrorPage400";
       } else if (e.response && e.response.status === 401) {

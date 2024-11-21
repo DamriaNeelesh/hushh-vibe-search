@@ -1,8 +1,10 @@
 .ToBeLaunched {
     height: 351vh;
     overflow: hidden;
+
     @media screen and (max-width: 900px) {
         width: 100vw;
+        max-width: 100%;
         overflow: hidden;
     }
 
@@ -17,6 +19,7 @@
             justify-content: center;
             width: 100vw;
             overflow: hidden;
+            max-width: 100%;
         }
 
         .ToBeLaunched__CompaniesMarquee {
@@ -33,6 +36,7 @@
             @media screen and (max-width: 900px) {
                 display: block;
                 width: 100vw;
+                max-width: 100%;
             }
         }
 

@@ -12,7 +12,8 @@ export default async function callVibeIt(
   price_filter,
   price_range,
   gender_filter,
-  gender
+  gender,
+  retries
 ) {
   loadingBarRef.current.continuousStart(); // Start the loading bar
   let search = searchParams.get("query");
@@ -39,6 +40,7 @@ export default async function callVibeIt(
     gender_filter,
     gender,
     true,
-    price_range
+    price_range,
+    retries
   );
 }

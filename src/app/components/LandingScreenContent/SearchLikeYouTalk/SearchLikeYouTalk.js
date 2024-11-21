@@ -1,6 +1,6 @@
 import AnimatedSearchBox from "../../utilities/AnimatedSearchbox/AnimatedSearchBox";
 import { Text } from "@chakra-ui/react";
-import styles from "./SearchLikeYouTalk.module.css";
+import styles from "./SearchLikeYouTalk.module.scss";
 import figtree from "../../../fonts/Figtree";
 export default function SearchLikeYouTalk() {
   return (

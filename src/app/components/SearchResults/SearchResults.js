@@ -62,7 +62,8 @@ export default function SearchResults() {
       true,
       priceRange,
       selectedGenders.length > 0,
-      selectedGenders.length > 0 ? selectedGenders[0] : null
+      selectedGenders.length > 0 ? selectedGenders[0] : null,
+      0
     );
   }, [
     searchParams,
@@ -96,7 +97,7 @@ export default function SearchResults() {
       priceRange,
       selectedGenders.length > 0,
       selectedGenders.length > 0 ? selectedGenders[0] : null
-    );
+    ,0);
   };
   let [query, setQuery] = useState("");
   useEffect(() => {
