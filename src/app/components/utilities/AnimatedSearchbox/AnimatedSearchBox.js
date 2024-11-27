@@ -2,7 +2,7 @@
 import utilities from "../utilities";
 import Resources from "../../../resources/resources";
 import { useEffect, useState } from "react";
-export default function AnimatedSearchBox({ boxWidth, inputWidth, content }) {
+export default function AnimatedSearchBox({ boxWidth, inputWidth, content, boxHeight }) {
   let [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     let index = 0;
@@ -21,6 +21,7 @@ export default function AnimatedSearchBox({ boxWidth, inputWidth, content }) {
         content={content ? content : searchQuery}
         boxWidth={boxWidth}
         inputWidth={inputWidth}
+        boxHeight={boxHeight}
       ></utilities.SearchBox>
     </div>
   );

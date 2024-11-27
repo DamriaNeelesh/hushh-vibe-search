@@ -1,11 +1,12 @@
-import styles from "./ImageSearchButton.module.css";
+import styles from "./ImageSearchButton.module.scss";
 import camera from "./resources/camera.svg";
 import FileInputBox from "./FileInputBox/FileInputBox";
 import Image from "next/image";
 import figtree from "../../../fonts/Figtree";
-export default function ImageSearchButton() {
+export default function ImageSearchButton({ width, title }) {
   return (
     <div
+      style={{ width: width ? width + "vw" : "inherit" }}
       className={`${styles.SearchBox__ImageSearch} ${figtree.className}`}
       onClick={() => document.getElementById("searchBox__fileInput").click()}
     >
@@ -24,7 +25,7 @@ export default function ImageSearchButton() {
             height={"25"}
           />
         </div>
-        <div>Image Search</div>
+        <div>{title? title: "Image Search"}</div>
       </div>
     </div>
   );

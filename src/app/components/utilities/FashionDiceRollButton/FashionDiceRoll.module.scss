@@ -9,10 +9,16 @@
     gap: 0;
     width: 17vw;
     height: 32pt;
+    margin-left: 10pt;
 
     @media screen and (max-width: 900px) {
-        width: 41vw;
+        width: 90pt;
+        height: 24pt;
     }
 
-    .FashionDiceRoll__Dice {}
+    .FashionDiceRoll__Dice {
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+    }
 }

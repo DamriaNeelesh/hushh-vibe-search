@@ -1,8 +1,11 @@
 .SearchBox__ImageSearch {
-    width: 17vw;
+    height: 3rem;
+    cursor: pointer;
+    width: 100pt;
 
     @media screen and (max-width: 900px) {
         width: 41vw;
+        height: auto;
     }
 
     background-color: #624737;
@@ -16,13 +19,22 @@
     color: white;
 
     .SearchBox__ImageSearchWrapper {
-        width: 80pt;
+        @media screen and (max-width: 900px) {
+
+            justify-content: center;
+        }
+
+        width: 36vw;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 }
 
 .SearchBox__ImageSearch:hover {
     cursor: pointer;
+}
+
+.SearchBox__Icon {
+    margin-right: 10pt;
 }

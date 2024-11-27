@@ -32,16 +32,12 @@ export default function SearchResults() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const searchParams = useSearchParams();
   const gridRef = useRef(null);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { brandDrawer, setIsBrandDrawer } = useState(false);
-
   const [brands, setBrands] = useState([]); // State to hold brands
-
   const loadingBarRef = useRef(null);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
-
   let [errorImages, setErrorImages] = useState(new Set([]));
   const [touchStartY, setTouchStartY] = useState(0);
   const [priceRange, setPriceRange] = useState([10, 1050]);
@@ -96,8 +92,9 @@ export default function SearchResults() {
       true,
       priceRange,
       selectedGenders.length > 0,
-      selectedGenders.length > 0 ? selectedGenders[0] : null
-    ,0);
+      selectedGenders.length > 0 ? selectedGenders[0] : null,
+      0
+    );
   };
   let [query, setQuery] = useState("");
   useEffect(() => {
@@ -156,7 +153,7 @@ export default function SearchResults() {
         selectedProduct={selectedProduct}
         allImages={allImages}
       ></SearchResultWrapper>
-      <Footer />
+      <utilities.Footer />
     </>
   );
 }

@@ -7,11 +7,13 @@ import Dice from "../../svg/dice.svg";
 import diceAnimation from "../../gif/diceAnimation.json";
 import { useState } from "react";
 import styles from "./FashionDiceRoll.module.scss";
-export default function FashionDiceRoll() {
+import figtree from "../../../fonts/Figtree";
+export default function FashionDiceRoll({ buttonWidth }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={styles.FashionDiceRoll}
+      className={`${styles.FashionDiceRoll} ${figtree.className}`}
+      style={{ minWidth: buttonWidth ? buttonWidth : "inherit" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -20,6 +22,7 @@ export default function FashionDiceRoll() {
     >
       {isHovered ? (
         <Lottie
+          className={styles.FashionDiceRoll__Dice}
           animationData={diceAnimation}
           style={{ width: "32pt", height: "32pt" }}
           width="34"

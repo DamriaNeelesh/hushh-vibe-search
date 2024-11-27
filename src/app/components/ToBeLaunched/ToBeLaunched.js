@@ -10,12 +10,15 @@ import DownArrow from "./DownArrow/DownArrow";
 import Header from "./Header/Header";
 import Image from "next/image";
 import config from "../../resources/config/config";
-
+import { Figtree } from "next/font/google";
 export const metadata = toBeLaunchedMetadata;
 
+const figtree = Figtree({ subsets: ["latin"] });
+
 export default function ToBeLaunched() {
+  console.log(process.env.NEXT_PUBLIC_SITE_ENV);
   return (
-    <div className={styles.ToBeLaunched}>
+    <div className={`${styles.ToBeLaunched} ${figtree.className}`}>
       <Header></Header>
       <div className={styles.ToBeLaunched__Content} style={{ gap: "2rem" }}>
         <div className={styles.ToBeLaunched__VibeLogoMobile}>

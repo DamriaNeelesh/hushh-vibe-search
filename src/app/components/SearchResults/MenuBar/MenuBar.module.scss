@@ -1,0 +1,21 @@
+.MenuBar {
+
+    width: 100vw;
+    z-index: 100;
+    position: fixed;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 900px) {
+        display: none;
+
+    }
+
+    .MenuBar__PostImageSearch {
+        display: flex;
+        align-items: center;
+        margin-left: 18pt;
+    }
+}

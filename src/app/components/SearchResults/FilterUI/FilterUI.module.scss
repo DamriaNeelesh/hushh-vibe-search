@@ -1,0 +1,40 @@
+.FilterUI__SearchBoxAndDiceRollWrapper {
+    margin-top: 25pt;
+}
+
+.FilterUI__ImageSearchButtonWrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10pt;
+}
+
+.FilterUI__SearchBoxWrapper {}
+
+.FilterUI__SearchBoxAndDiceRollWrapper {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+
+    .FilterUI__SearchBoxAndDiceRoll {
+        display: none;
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            width: 93vw;
+            justify-content: space-between;
+        }
+    }
+}
+
+.FilterUI__PostImageSearchMobile {
+    display: none;
+    @media screen and (max-width: 900px) {
+        display: flex;
+    }
+}
+.FilterUI__PostImageSearch{
+    display: flex;
+}

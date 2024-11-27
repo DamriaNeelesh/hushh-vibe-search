@@ -7,7 +7,12 @@ import services from "../../../services/services";
 import figtree from "../../../fonts/Figtree";
 import Image from "next/image";
 import handleSearch from "./services/handleSearch";
-export default function SearchBox({ boxWidth, inputWidth, content }) {
+export default function SearchBox({
+  boxWidth,
+  inputWidth,
+  content,
+  boxHeight,
+}) {
   // State to handle search input
   const [searchQuery, setSearchQuery] = useState("");
   // State to handle user login status

@@ -1,31 +1,43 @@
-import { HStack, Box } from "@chakra-ui/react";
 import utilities from "../../utilities/utilities";
+import styles from "./MenuBar.module.scss";
+import QueryImage from "../QueryImage/QueryImage";
+import { useEffect, useState } from "react";
+import services from "../../../services/services";
 export default function MenuBar() {
+  let [isImageSearch, setIsImageSearch] = useState(false);
+  useEffect(() => {
+    (async () => {
+      setIsImageSearch(await services.vibesearch.isImageSearch(null));
+    })();
+  }, []);
+  let [queryImage, setQueryImage] = useState("");
+  useEffect(() => {
+    (async () => {
+      isImageSearch
+        ? setQueryImage(await services.vibesearch.getQueryImage())
+        : "";
+    })();
+  }, [isImageSearch]);
   return (
-    <HStack
-      w="100%"
-      zIndex={100}
-      gap={{ md: "1rem" }}
-      alignItems="center"
-      display={{ md: "flex", base: "none" }}
-      justifyContent="space-evenly"
-      position="relative"
-      my={{ md: "0.5rem", base: "1rem" }}
-      h={{ md: "3rem" }}
-      // mb={'4rem'}
-    >
-      <Box
-        position="absolute"
-        left="50%"
-        transform="translateX(-50%)"
-        zIndex={100}
-        my={{ md: "2rem", base: "2rem" }}
-      >
-        <utilities.AnimatedSearchBox
-          boxWidth={35}
-        ></utilities.AnimatedSearchBox>
-      </Box>
-      {/* <FashionDiceRollButton></FashionDiceRollButton> */}
-    </HStack>
+    <div className={styles.MenuBar}>
+      <utilities.AnimatedSearchBox boxWidth={35}></utilities.AnimatedSearchBox>
+      <div className={styles.MenuBar__PostImageSearch}>
+        {!isImageSearch ? (
+          <utilities.ImageSearchButton width={33}></utilities.ImageSearchButton>
+        ) : (
+          <>
+            <QueryImage
+              queryImage={queryImage}
+              setIsImageSearch={setIsImageSearch}
+            ></QueryImage>
+            <utilities.ImageSearchButton
+              width={20}
+              title={"Change Image"}
+            ></utilities.ImageSearchButton>
+          </>
+        )}
+        <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
+      </div>
+    </div>
   );
 }

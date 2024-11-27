@@ -1,0 +1,32 @@
+.FilterUI__QueryImageWrapper {
+    height: 42pt;
+    width: 3vw;
+    margin-right: 18pt;
+
+    @media screen and (max-width: 900px) {
+        height: 42pt;
+        width: 18vw;
+        margin-right: 6pt;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .FilterUI__ClearImage {
+        width: 15pt;
+        position: absolute;
+        left: 90%;
+        top: -6px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .FilterUI__QueryImage {
+        position: relative;
+
+        @media screen and (max-width: 900px) {
+            height: 42pt;
+            display: block;
+        }
+    }
+}
