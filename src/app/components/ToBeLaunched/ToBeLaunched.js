@@ -23,7 +23,7 @@ export default function ToBeLaunched() {
       <div className={styles.ToBeLaunched__Content} style={{ gap: "2rem" }}>
         <div className={styles.ToBeLaunched__VibeLogoMobile}>
           <Image
-            alt="Vibe Search Logo"
+            alt="Vibe Search"
             src={Resources.images.VibeLogo.src}
             width={"125"}
             height={"51"}
