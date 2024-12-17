@@ -14,6 +14,7 @@ export default function PostSignInSearchBox(props) {
       </div>
       <div className={`${styles.Description__SearchBoxMobile}`}>
         <AnimatedSearchBox boxWidth={87} inputWidth={68}></AnimatedSearchBox>
+        <div style={{fontWeight:'600',fontSize:'9px',lineHeight:'12.22px', textAlign:'left',display:'flex',alignSelf:'baseline'}}>**you can also add links here to search</div>
         <div className={`${styles.Description__ImageAndFashionFlexMobile}`}>
           <utilities.ImageSearchButton></utilities.ImageSearchButton>
         </div>

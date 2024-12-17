@@ -10,31 +10,70 @@ import FashionCard from "./SwipeGame/FashionCard/FashionCard";
 import cardData from "./SwipeGame/resources/config/cardData";
 import { useEffect } from "react";
 import figtree from "../../../fonts/Figtree";
+import Lottie from 'react-lottie';
+import TickAnimation from "../../../components/gif/tickAnimation.json"
+import { useBreakpointValue } from '@chakra-ui/react';
+
 export default function CheckYourVibe() {
   let [isAllSwiped, setIsAllSwiped] = useState(false);
   let [rights, setRights] = new useState([]);
   let [lefts, setLefts] = new useState([]);
   const [cards, setCards] = useState(cardData);
+  const [showCheckYourVibe, setShowCheckYourVibe] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: TickAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCheckYourVibe(true);
+    }, 3000); // 3 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleSkip = () => {
+    setShowCheckYourVibe(false);
+    setShowSuccess(true);
+  };
+
   useEffect(() => {
     cards.length == 0 ? setIsAllSwiped(true) : "";
   }, [cards]);
+
   return (
     <>
       {isAllSwiped ? (
-        <FashionCard cardData={cardData} rights={rights}></FashionCard>
+        // <FashionCard cardData={cardData} rights={rights}></FashionCard>
+        <div className={styles.SuccessMessage}>
+          <div className={styles.SuccessAnimation}>
+            <Lottie options={defaultOptions} height={100} width={100} />
+            <p>Success! Your vibe has been checked.</p>
+          </div>
+        </div>
       ) : (
         <div className={`${styles.CheckYourVibe} ${figtree.className}`}>
-          <div className={`${styles.CheckYourVibe__Title}`}>Vibe Check</div>
+          <div className={`${styles.CheckYourVibe__Title}`}>Find items from your photos videos or  
+          shown in your favorite social media </div>
           <div className={`${styles.CheckYourVibe__SubTitle}`}>
-            Tell us your style - Click and swipe through different styles
+          is simply dummy text of the printing and typesetting 
+          industry. Lorem Ipsum has been the industry's standard 
           </div>
           <div
             className={`${styles.CheckYourVibe__SwipeGameMobile}  ${figtree.className}`}
           >
-            <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
+            {/* <div className={`${styles.CheckYourVibe__AnimsWrapperMobile}`}>
               <SwipeLeftInstructionMobile></SwipeLeftInstructionMobile>
               <SwipeRightInstructionMobile></SwipeRightInstructionMobile>
-            </div>
+            </div> */}
             <div className={`${styles.CheckYourVibe__SwipeGameMobile}`}>
               <SwipeGame
                 setIsAllSwiped={setIsAllSwiped}
@@ -60,7 +99,10 @@ export default function CheckYourVibe() {
               cards={cards}
               setCards={setCards}
             ></SwipeGame>
-            <SwipeRightInstruction></SwipeRightInstruction>
+            {/* <SwipeRightInstruction></SwipeRightInstruction> */}
+            <button onClick={handleSkip} className={styles.SkipButton}>
+                Skip For Now
+            </button>
           </div>
         </div>
       )}

@@ -11,16 +11,49 @@ import Header from "./Header/Header";
 import Image from "next/image";
 import config from "../../resources/config/config";
 import { Figtree } from "next/font/google";
+import { useEffect, useState } from "react";
+import { CloseButton } from "@chakra-ui/react";
+import { useBreakpointValue } from '@chakra-ui/react';
+
 export const metadata = toBeLaunchedMetadata;
 
 const figtree = Figtree({ subsets: ["latin"] });
 
 export default function ToBeLaunched() {
   console.log(process.env.NEXT_PUBLIC_SITE_ENV);
+  const [showCheckYourVibe, setShowCheckYourVibe] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCheckYourVibe(true);
+    }, 3000); // 3 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
+    setShowCheckYourVibe(false);
+  };
+
+  const handleSkip = () => {
+    setShowCheckYourVibe(false);
+    setShowSuccess(true);
+  };
+
   return (
-    <div className={`${styles.ToBeLaunched} ${figtree.className}`}>
+    <>
+             {/* {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <CheckYourVibe></CheckYourVibe>} */}
+             {showCheckYourVibe && isMobile && (
+        <div className={styles.CheckYourVibePopup}>
+          <button onClick={handleClose} className={styles.CloseButton}><CloseButton/></button>
+            <CheckYourVibe />
+        </div>
+      )}
+             <div className={`${styles.ToBeLaunched} ${figtree.className}`}>
       <Header></Header>
-      <div className={styles.ToBeLaunched__Content} style={{ gap: "2rem" }}>
+      <div className={styles.ToBeLaunched__Content} >
         <div className={styles.ToBeLaunched__VibeLogoMobile}>
           <Image
             alt="Vibe Search"
@@ -38,8 +71,10 @@ export default function ToBeLaunched() {
         </div>
       </div>
       <DownArrow></DownArrow>
-      {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <></>}
+      
       <LandingScreenContent></LandingScreenContent>
     </div>
+    </>
+   
   );
 }

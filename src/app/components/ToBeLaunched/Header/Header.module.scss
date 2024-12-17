@@ -2,9 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 13pt;
+    margin-top: 10pt;
 
-
+ @media screen and (max-width: 600px) {
+    height: 3rem; // Adjust the height as needed
+    padding: 10px; // Adjust padding to reduce overall height
+  }
     @media screen and (max-width: 900px) {
         justify-content: flex-start;
         width: 100vw;
@@ -34,7 +37,16 @@
             border-radius: 50%;
             overflow: hidden;
             border-color: black;
-
+            
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+    .Header__GuestAccount img {
+      width: 25px; // Ensure width is equal to height
+      height: 25px; // Ensure height is equal to width
+      border-radius: 50%; // Make the image a perfect circle
+      object-fit: cover; // Ensure the image covers the entire area
+    }
+  }

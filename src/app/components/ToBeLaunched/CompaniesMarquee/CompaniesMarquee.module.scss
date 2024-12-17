@@ -15,7 +15,8 @@
             margin-bottom: 22pt;
 
             @media screen and (max-width: 900px) {
-                height: 32pt;
+                height: auto;
+                width: 40px;
             }
         }
     }
