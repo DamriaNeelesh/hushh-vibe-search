@@ -67,7 +67,7 @@ export default function CheckYourVibe() {
         <div className={styles.SuccessMessage}>
           <div className={styles.SuccessAnimation}>
             <Lottie options={defaultOptions} height={100} width={100} />
-            <p>Success! Your vibe has been checked.</p>
+            <p style={{fontWeight:'700', fontSize:'1.2rem',lineHeight:'23px'}}>Your preferences have been Saved</p>
           </div>
         </div>
       ) : (
