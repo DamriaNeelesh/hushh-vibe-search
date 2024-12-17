@@ -1,7 +1,12 @@
 .LandingScreenContentWrapper {
-    height: 100vh
+    height: 100vh 
 }
 
+@media screen and (max-width: 900px) {
+        .LandingScreenContentWrapper {
+    height: auto; 
+}
+    }
 .LandingScreenContent {
     display: flex;
     justify-content: space-around;
@@ -12,6 +17,7 @@
     @media screen and (max-width: 900px) {
         flex-direction: column-reverse;
         align-items: center;
+        height: auto;
     }
 }
 

@@ -8,6 +8,7 @@ import Models from "./Models/Models";
 import ModelsMobile from "./ModelsMobile/ModelsMobile";
 import utilities from "../utilities/utilities";
 import figtree from "../../fonts/Figtree";
+
 const LandingScreenContent = () => {
   return (
     <div className={`${styles.LandingScreenContentWrapper} `}>
@@ -21,7 +22,7 @@ const LandingScreenContent = () => {
           <Models></Models>
         </div>
       </div>
-      <ModelsMobile></ModelsMobile>
+      {/* <ModelsMobile></ModelsMobile> */}
     </div>
   );
 };

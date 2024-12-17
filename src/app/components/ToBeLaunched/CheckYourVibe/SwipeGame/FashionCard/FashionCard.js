@@ -12,6 +12,7 @@ export default function FashionCard({ cardData, rights }) {
     services.authentication.getUserDetails(setUserDetails);
   }, []);
   return (
+    <>
     <div className={`${styles.FashionCard}  ${figtree.className}`}>
       <div className={`${styles.FashionCard__Title}  ${figtree.className}`}>
         Vibe Check
@@ -101,5 +102,6 @@ export default function FashionCard({ cardData, rights }) {
         personalised shopping experience.
       </div>
     </div>
+    </>
   );
 }
