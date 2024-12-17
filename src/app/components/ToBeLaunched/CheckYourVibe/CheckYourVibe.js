@@ -40,6 +40,17 @@ export default function CheckYourVibe() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (isAllSwiped) {
+      setShowSuccess(true);
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000); // 5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAllSwiped]);
+
   const handleSkip = () => {
     setShowCheckYourVibe(false);
     setShowSuccess(true);
