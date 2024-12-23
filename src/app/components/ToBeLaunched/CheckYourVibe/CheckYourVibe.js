@@ -25,7 +25,6 @@ export default function CheckYourVibe() {
   const [showSuccess, setShowSuccess] = useState(false);  
   const [showVibeUpload, setShowVibeUpload] = useState(false); // State to manage VibeUpload visibility
   let [isSignedIn, setIsSignedIn] = useState(false);
-  let [fullName, setFullName] = useState("");
 
   useEffect(() => {
     setInterval(() => {
@@ -37,11 +36,6 @@ export default function CheckYourVibe() {
     }, 500);
   }, [isSignedIn]);
 
-  useEffect(() => {
-    if (isSignedIn) {
-      services.authentication.getFullName(setFullName);
-    }
-  }, [isSignedIn]);
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   const defaultOptions = {
@@ -68,13 +62,12 @@ export default function CheckYourVibe() {
         setShowSuccess(false);
         setShowVibeUpload(true); // Show VibeUpload after 5 seconds
       }, 5000); // 5 seconds delay
-
+      
       return () => clearTimeout(successTimer);
     }
   }, [isAllSwiped]);
 
   
-
   const handleSkip = () => {
     setShowCheckYourVibe(false);
     setShowSuccess(true);
@@ -87,7 +80,7 @@ export default function CheckYourVibe() {
   return (
     <>
           {showVibeUpload && isSignedIn && <VibeUpload onClose={() => setShowVibeUpload(false)} />}
-
+    
       {isAllSwiped  && showSuccess && !showVibeUpload ? (
         // <FashionCard cardData={cardData} rights={rights}></FashionCard>
         <div className={styles.SuccessMessage}>
