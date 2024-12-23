@@ -14,17 +14,36 @@ import { Figtree } from "next/font/google";
 import { useEffect, useState } from "react";
 import { CloseButton } from "@chakra-ui/react";
 import { useBreakpointValue } from '@chakra-ui/react';
+import services from "../../services/services";
 
 export const metadata = toBeLaunchedMetadata;
 
 const figtree = Figtree({ subsets: ["latin"] });
 
 export default function ToBeLaunched() {
-  console.log(process.env.NEXT_PUBLIC_SITE_ENV);
+  // console.log(process.env.NEXT_PUBLIC_SITE_ENV);
   const [showCheckYourVibe, setShowCheckYourVibe] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const isMobile = useBreakpointValue({ base: true, md: false });
+  let [isSignedIn, setIsSignedIn] = useState(false);
+  let [fullName, setFullName] = useState("");
 
+  useEffect(() => {
+    setInterval(() => {
+      if (!isSignedIn) {
+        services.authentication.isLoggedIn(setIsSignedIn);
+        console.log('Signed In:',isSignedIn)
+      }
+      // setIsSignedIn(true)
+    }, 500);
+  }, [isSignedIn]);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      services.authentication.getFullName(setFullName);
+    }
+  }, [isSignedIn]);
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowCheckYourVibe(true);
@@ -45,7 +64,7 @@ export default function ToBeLaunched() {
   return (
     <>
              {/* {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <CheckYourVibe></CheckYourVibe>} */}
-             {showCheckYourVibe && isMobile && (
+             {showCheckYourVibe && isMobile && isSignedIn && (
         <div className={styles.CheckYourVibePopup}>
           <button onClick={handleClose} className={styles.CloseButton}><CloseButton/></button>
             <CheckYourVibe />

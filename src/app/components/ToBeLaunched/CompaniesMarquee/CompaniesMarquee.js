@@ -17,6 +17,9 @@ import FoG from "./resources/FOG.svg";
 import hugoBoss from "./resources/hugo-boss.svg";
 import michealKors from "./resources/micheal-kors.svg";
 import Image from "next/image";
+import services from "../../../services/services";
+import { useEffect, useState } from "react";
+
 export default function CompaniesMarquee(props) {
   let logos = props.isMobile
     ? [
@@ -45,10 +48,23 @@ export default function CompaniesMarquee(props) {
         [armani, gucci, hermes, hugoBoss],
         [lv, nike, prada, michealKors],
       ];
+      let [isSignedIn, setIsSignedIn] = useState(false);
+    
+      useEffect(() => {
+        setInterval(() => {
+          if (!isSignedIn) {
+            services.authentication.isLoggedIn(setIsSignedIn);
+            console.log('Signed In:',isSignedIn)
+          }
+          // setIsSignedIn(true)
+        }, 500);
+      }, [isSignedIn]);
+    
+    
 
   return (
     <div
-      className={`${styles.CompaniesMarquee}`}
+      className={`${styles.CompaniesMarquee} ${!isSignedIn ? styles.notSignedIn : ''}`}
       style={{
         borderLeft: "1px solid black",
         display: "flex",

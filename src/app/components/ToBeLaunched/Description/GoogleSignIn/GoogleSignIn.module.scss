@@ -4,6 +4,15 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+
+    @media screen and (max-width: 900px){
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        align-items: center;
+    }
 }
 .Description__GoogleSignIn{
     height: 7vh;

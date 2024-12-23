@@ -13,6 +13,8 @@ import figtree from "../../../fonts/Figtree";
 import Lottie from 'react-lottie';
 import TickAnimation from "../../../components/gif/tickAnimation.json"
 import { useBreakpointValue } from '@chakra-ui/react';
+import VibeUpload from '../VibeUpload/VibeUpload'
+import services from "../../../services/services";
 
 export default function CheckYourVibe() {
   let [isAllSwiped, setIsAllSwiped] = useState(false);
@@ -20,7 +22,26 @@ export default function CheckYourVibe() {
   let [lefts, setLefts] = new useState([]);
   const [cards, setCards] = useState(cardData);
   const [showCheckYourVibe, setShowCheckYourVibe] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);  
+  const [showVibeUpload, setShowVibeUpload] = useState(false); // State to manage VibeUpload visibility
+  let [isSignedIn, setIsSignedIn] = useState(false);
+  let [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setInterval(() => {
+      if (!isSignedIn) {
+        services.authentication.isLoggedIn(setIsSignedIn);
+        console.log('Signed In:',isSignedIn)
+      }
+      // setIsSignedIn(true)
+    }, 500);
+  }, [isSignedIn]);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      services.authentication.getFullName(setFullName);
+    }
+  }, [isSignedIn]);
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   const defaultOptions = {
@@ -43,13 +64,16 @@ export default function CheckYourVibe() {
   useEffect(() => {
     if (isAllSwiped) {
       setShowSuccess(true);
-      const timer = setTimeout(() => {
+      const successTimer = setTimeout(() => {
         setShowSuccess(false);
+        setShowVibeUpload(true); // Show VibeUpload after 5 seconds
       }, 5000); // 5 seconds delay
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(successTimer);
     }
   }, [isAllSwiped]);
+
+  
 
   const handleSkip = () => {
     setShowCheckYourVibe(false);
@@ -62,7 +86,9 @@ export default function CheckYourVibe() {
 
   return (
     <>
-      {isAllSwiped ? (
+          {showVibeUpload && isSignedIn && <VibeUpload onClose={() => setShowVibeUpload(false)} />}
+
+      {isAllSwiped  && showSuccess && !showVibeUpload ? (
         // <FashionCard cardData={cardData} rights={rights}></FashionCard>
         <div className={styles.SuccessMessage}>
           <div className={styles.SuccessAnimation}>
