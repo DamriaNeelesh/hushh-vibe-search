@@ -4,7 +4,7 @@
     z-index: 2;
     margin-top: 20pt;
     @media screen and (max-width: 900px) {
-        position: relative;
+        position: fixed;
         bottom: 0;
     }
     .AboutUs__UpperFooter {

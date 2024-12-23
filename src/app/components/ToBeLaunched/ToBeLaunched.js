@@ -20,7 +20,7 @@ export const metadata = toBeLaunchedMetadata;
 const figtree = Figtree({ subsets: ["latin"] });
 
 export default function ToBeLaunched() {
-  console.log(process.env.NEXT_PUBLIC_SITE_ENV);
+  // console.log(process.env.NEXT_PUBLIC_SITE_ENV);
   const [showCheckYourVibe, setShowCheckYourVibe] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const isMobile = useBreakpointValue({ base: true, md: false });
