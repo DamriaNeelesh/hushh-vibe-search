@@ -4,10 +4,10 @@ import queries from "./queries";
 import genders from "./genders";
 import featureFlags from "./featureFlags";
 
-console.log(
-  "process.env.NEXT_PUBLIC_SITE_ENV",
-  process.env.NEXT_PUBLIC_SITE_ENV
-);
+// console.log(
+//   "process.env.NEXT_PUBLIC_SITE_ENV",
+//   process.env.NEXT_PUBLIC_SITE_ENV
+// );
 let redirect_urls = {
   production: "https://vibesearch.ai",
   development: "http://192.168.1.7:3000",

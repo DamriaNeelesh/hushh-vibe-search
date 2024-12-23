@@ -8,6 +8,8 @@ import WomanLooking from "./Woman looking at wadrobe.svg";
 import AISearch from "./AI search.svg";
 import GuestAccount from "./GuestAccount.svg";
 import CrossIcon from "./crossIcon.svg";
+import AddImge from "./addImage.svg";
+
 const images = {
   VibeSearchGif: VibeSearchGif,
   VibeLogo: VibeLogo,
@@ -18,5 +20,6 @@ const images = {
   AISearch: AISearch,
   GuestAccount: GuestAccount,
   CrossIcon: CrossIcon,
+  AddImge: AddImge
 };
 export default images;
