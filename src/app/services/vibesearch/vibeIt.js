@@ -28,7 +28,7 @@ export default async function vibeIt(
       window.location.href = config.redirect_url + "/components/ErrorNoLogin";
     }
   }
-  let data = {
+  let data = { 
     query: mainQuery,
     current_page: currentPage,
     result_count: result_count,

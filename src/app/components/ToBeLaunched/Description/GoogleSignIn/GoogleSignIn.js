@@ -5,7 +5,7 @@ import Image from "next/image";
 import figtree from "../../../../fonts/Figtree";
 export default function GoogleSignIn() {
   const handleGoogleSignIn = async () => {
-    try {
+    try { 
       await services.authentication.googleSignIn();
     } catch (error) {}
   };

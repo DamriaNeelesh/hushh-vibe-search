@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 export default function CloseButton({ selectedProduct }) {
   return (
+    
     <Button
       as={Link}
       onClick={async () => {
