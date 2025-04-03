@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['hushh-button-sdk-1'],
   images: {
     remotePatterns: [
       {

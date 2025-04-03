@@ -11,6 +11,7 @@ import getUserDetails from "./services/authentication/getUserDetails";
 import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
 import Head from "next/head";
 import utilities from "./components/utilities/utilities";
+import { HushhButton } from "hushh-button-sdk-1";
 const slides = [
   {
     image: Slide1,
@@ -129,7 +130,17 @@ export default function Home() {
         <meta property="og:url" content={metadata.openGraph.url} />
         <meta name="twitter:card" content={metadata.twitter.card} />
       </Head>
-
+      {/* {typeof window !== 'undefined' && (
+        <HushhButton
+          questions={[
+            {
+              question: "What are you looking for?",
+              options: ["Products", "Services", "Information"],
+              answer: []
+            }
+          ]} 
+        />
+      )} */}
       <ToBeLaunched></ToBeLaunched>
 
       <utilities.Footer></utilities.Footer>

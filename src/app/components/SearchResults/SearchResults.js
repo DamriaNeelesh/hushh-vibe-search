@@ -85,7 +85,7 @@ export default function SearchResults() {
       currentPage,
       setSearchResults,
       setIsLoading,
-      searchResults,
+    searchResults,
       selectedBrands,
       noMoreResults,
       setBrands,

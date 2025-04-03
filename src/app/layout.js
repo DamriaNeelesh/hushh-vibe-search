@@ -3,6 +3,7 @@ import "./globals.css";
 import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+import HushhButtonWrapper from "./components/HushhButtonWrapper";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -98,7 +99,10 @@ export default function RootLayout({ children }) {
           ></iframe>
         </noscript>
         <ChakraBaseProvider>
-          <ChakraProvider>{children}</ChakraProvider>
+          <ChakraProvider>
+            {children}
+            <HushhButtonWrapper />
+          </ChakraProvider>
         </ChakraBaseProvider>
       </body>
     </html>
