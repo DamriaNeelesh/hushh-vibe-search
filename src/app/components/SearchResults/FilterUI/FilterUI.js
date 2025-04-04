@@ -75,7 +75,7 @@ const FilterUI = ({
           ></utilities.FashionDiceRoll>
         </div>
       </div>
-      <div className={styles.FilterUI__ImageSearchButtonWrapper}>
+      {/* <div className={styles.FilterUI__ImageSearchButtonWrapper}>
         {!isImageSearch ? (
           <utilities.ImageSearchButton width={93}></utilities.ImageSearchButton>
         ) : (
@@ -90,7 +90,7 @@ const FilterUI = ({
             ></utilities.ImageSearchButton>
           </div>
         )}
-      </div>
+      </div> */}
       <FeatureBar onOpen={onOpen} query={query}></FeatureBar>
       <Divider
         mx={{ md: "4rem", base: "1rem" }}

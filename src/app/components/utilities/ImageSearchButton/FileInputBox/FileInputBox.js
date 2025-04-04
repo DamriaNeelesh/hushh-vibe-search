@@ -20,7 +20,7 @@ export default function FileInputBox(){
                     
                     // You can do whatever you want with the base64String here
                     localStorage.setItem("image-file", temp[1]);
-                    window.location.href=(config.redirect_url+`/components/SearchResults?imageSearch=${temp[1].slice(-5)}`);
+                    window.location.href=(`/components/SearchResults?imageSearch=${temp[1].slice(-5)}`);
                   };
                   reader.readAsDataURL(file);
                 }
