@@ -6,7 +6,7 @@ import figtree from "../../../../fonts/Figtree";
 export default function FeatureBar({ onOpen, query }) {
   return (
     <HStack
-      my={{ md: "1.25rem", base: "0.65rem" }}
+      // my={{ md: "1.25rem", base: "0.65rem" }}
       mx={{ md: "4rem", base: "1rem" }}
       spacing={{ md: 4, base: 0 }}
       display="flex"
