@@ -64,12 +64,12 @@ export default function ToBeLaunched() {
   return (
     <>
              {/* {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <CheckYourVibe></CheckYourVibe>} */}
-             {showCheckYourVibe && isMobile && isSignedIn && (
+             {/* {showCheckYourVibe && isMobile && isSignedIn && (
         <div className={styles.CheckYourVibePopup}>
           <button onClick={handleClose} className={styles.CloseButton}><CloseButton/></button>
             <CheckYourVibe />
         </div>
-      )}
+      )} */}
              <div className={`${styles.ToBeLaunched} ${figtree.className}`}>
       <Header></Header>
       <div className={styles.ToBeLaunched__Content} >

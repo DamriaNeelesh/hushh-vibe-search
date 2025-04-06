@@ -13,7 +13,7 @@ export default function FilterButton({ onOpen }) {
       borderColor="#222222"
       onClick={onOpen}
       fontSize={{ md: "1rem", base: "0.65rem" }}
-      gap={{ md: "1rem", base: "0.5rem" }}
+      gap={{ md: "1rem", base: "0rem" }}
     >
       All Filters
       <Image src={FilterLine} alt="Hushh Vibe Filters" />

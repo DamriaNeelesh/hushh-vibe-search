@@ -42,7 +42,7 @@ export default function SearchResultsWrapper({
       className={figtree.className}
       mx={{ md: "2rem", base: "0rem" }}
       pos={"relative"}
-      h="100vh" // Ensure the container takes the full viewport height
+      h="100vh"
     >
       <Flex
         h="100%"
