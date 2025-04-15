@@ -2,23 +2,32 @@
 import { HStack, Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Lottie from "lottie-react";
-import fashionDiceRoll from "./fashionDiceRoll/fashionDiceRoll";
 import Dice from "../../svg/dice.svg";
 import diceAnimation from "../../gif/diceAnimation.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./FashionDiceRoll.module.scss";
 import figtree from "../../../fonts/Figtree";
+import fashionDiceRoll from "./fashionDiceRoll/fashionDiceRoll";
+import { useRouter } from 'next/navigation';
+
 export default function FashionDiceRoll({ buttonWidth }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div
       className={`${styles.FashionDiceRoll} ${figtree.className}`}
       style={{ minWidth: buttonWidth ? buttonWidth : "inherit" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => {
-        fashionDiceRoll();
-      }}
+      onClick={() => fashionDiceRoll(router)}
     >
       {isHovered ? (
         <Lottie
