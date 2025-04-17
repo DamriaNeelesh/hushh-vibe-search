@@ -34,8 +34,8 @@ export default function Header() {
             className={`${styles.Header__VibeLogo}`}
             src={resources.images.VibeLogo.src}
             alt="Vibe Search"
-            width={"69"}
-            height={"35"}
+            width={"89"}
+            height={"55"}
           />
         </Link>
         <Dropdown

@@ -89,14 +89,14 @@ export default function ToBeLaunched() {
         setUserDetails={setUserDetails}
       />
       <div className={styles.ToBeLaunched__Content} >
-        <div className={styles.ToBeLaunched__VibeLogoMobile}>
+        {/* <div className={styles.ToBeLaunched__VibeLogoMobile}>
           <Image
             alt="Vibe Search"
             src={Resources.images.VibeLogo.src}
             width={"125"}
             height={"51"}
           />
-        </div>
+        </div> */}
         <Description></Description>
         <div className={styles.ToBeLaunched__CompaniesMarquee}>
           <CompaniesMarquee></CompaniesMarquee>
