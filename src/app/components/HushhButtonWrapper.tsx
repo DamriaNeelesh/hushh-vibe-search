@@ -17,9 +17,10 @@ const questionsArray = [
   }
 ];
 
-const HushhButton = dynamic(() => import('hushh-button-private-1').then(mod => mod.HushhButton), {
-  ssr: false
-});
+const HushhButton: React.ComponentType<any> = dynamic(
+  () => import('hushh-button-private-1').then(mod => mod.HushhButton), 
+  { ssr: false }
+);
 
 export default function HushhButtonWrapper() {
   const searchParams = useSearchParams();

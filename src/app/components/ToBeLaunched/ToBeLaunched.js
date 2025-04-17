@@ -1,3 +1,6 @@
+'use client';
+
+import React, { useState, useEffect } from "react";
 import Description from "./Description/Description";
 import CompaniesMarquee from "./CompaniesMarquee/CompaniesMarquee";
 import utilities from "../utilities/utilities";
@@ -10,15 +13,13 @@ import DownArrow from "./DownArrow/DownArrow";
 import Header from "./Header/Header";
 import Image from "next/image";
 import config from "../../resources/config/config";
-import { Figtree } from "next/font/google";
-import { useEffect, useState } from "react";
 import { CloseButton } from "@chakra-ui/react";
 import { useBreakpointValue } from '@chakra-ui/react';
 import services from "../../services/services";
+import WelcomeAboardModal from "./WelcomeAboardModal/WelcomeAboardModal";
+import HushhButtonWrapper from "../HushhButtonWrapper";
 
 export const metadata = toBeLaunchedMetadata;
-
-const figtree = Figtree({ subsets: ["latin"] });
 
 export default function ToBeLaunched() {
   // console.log(process.env.NEXT_PUBLIC_SITE_ENV);
@@ -27,6 +28,9 @@ export default function ToBeLaunched() {
   const isMobile = useBreakpointValue({ base: true, md: false });
   let [isSignedIn, setIsSignedIn] = useState(false);
   let [fullName, setFullName] = useState("");
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     setInterval(() => {
@@ -52,6 +56,13 @@ export default function ToBeLaunched() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    // Check if the user has just signed up
+    if (isSignedUp) {
+      setIsModalOpen(true);
+    }
+  }, [isSignedUp]);
+
   const handleClose = () => {
     setShowCheckYourVibe(false);
   };
@@ -70,8 +81,13 @@ export default function ToBeLaunched() {
             <CheckYourVibe />
         </div>
       )} */}
-             <div className={`${styles.ToBeLaunched} ${figtree.className}`}>
-      <Header></Header>
+             <div className={styles.container}>
+      <Header
+        isSignedUp={isSignedUp}
+        setIsSignedUp={setIsSignedUp}
+        userDetails={userDetails}
+        setUserDetails={setUserDetails}
+      />
       <div className={styles.ToBeLaunched__Content} >
         <div className={styles.ToBeLaunched__VibeLogoMobile}>
           <Image
@@ -92,6 +108,12 @@ export default function ToBeLaunched() {
       <DownArrow></DownArrow>
       
       <LandingScreenContent></LandingScreenContent>
+      <CheckYourVibe />
+      <WelcomeAboardModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+      <HushhButtonWrapper />
     </div>
     </>
    
