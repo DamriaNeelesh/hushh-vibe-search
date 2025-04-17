@@ -743,32 +743,6 @@ const TermsPage = () => {
                   lineHeight={{ md: "40px", base: "32px" }}
                   color={"#624737"}
                 >
-                  Limitation of Liability
-                </Text>
-                <Text
-                  mt={4}
-                  fontWeight={"400"}
-                  fontSize={{ md: "1rem", base: "0.5rem" }}
-                  lineHeight={"25px"}
-                  letterSpacing={"0.005rem"}
-                >
-                  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, VIBE SEARCH
-                  AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS,
-                  AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT,
-                  INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
-                  ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE
-                  THE SERVICE.
-                </Text>
-              </Box>
-
-              <Box id="changes-policy" ref={changesPolicyRef}>
-                <Text
-                  fontSize={{ md: "1.5rem", base: "0.75rem" }}
-                  letterSpacing={"0.005rem"}
-                  fontWeight={"700"}
-                  lineHeight={{ md: "40px", base: "32px" }}
-                  color={"#624737"}
-                >
                   Entire Agreement
                 </Text>
                 <Text
@@ -851,7 +825,6 @@ const TermsPage = () => {
           </Box>
         </Stack>
       </Container>
-      <utilities.Footer></utilities.Footer>
     </>
   );
 };

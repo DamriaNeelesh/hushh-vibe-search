@@ -158,7 +158,7 @@ export default function SearchResults() {
         selectedProduct={selectedProduct}
         allImages={allImages}
       />
-      <utilities.Footer />
+      {/* Footer is now in the global layout */}
     </>
   );
 }

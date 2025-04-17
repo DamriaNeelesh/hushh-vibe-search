@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
-import utilities from "./components/utilities/utilities";
 import Head from "next/head";
 
 export default function HomeClient() {
@@ -23,7 +22,6 @@ export default function HomeClient() {
         <meta name="description" content="Find perfect items to express your individuality in just one click with our vibe search" />
       </Head>
       <ToBeLaunched />
-      <utilities.Footer />
     </>
   );
 } 

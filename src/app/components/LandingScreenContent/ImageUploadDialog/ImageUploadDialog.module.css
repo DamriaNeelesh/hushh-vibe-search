@@ -4,18 +4,40 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
 }
 .ImageUploadDialog__ImageUploadText .ImageUploadDialog__ImageUploadTitle {
   color: #273434;
   font-weight: 700;
   font-size: 40px;
 }
+.ImageUploadDialog__ImageUploadDialog {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+.ImageUploadDialog__Tagline {
+  margin-top: 15px;
+  width: 100%;
+  text-align: right;
+}
 @media screen and (max-width: 900px) {
   .ImageUploadDialog__ImageUploadText {
     align-items: center;
-    display: none;
+    text-align: center;
+    margin-bottom: 40px;
   }
   .ImageUploadDialog__ImageUploadText .ImageUploadDialog__ImageUploadTitle {
-    font-size: 32px;
+    font-size: 28px;
+    text-align: center;
+  }
+  .ImageUploadDialog__ImageUploadDialog {
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  .ImageUploadDialog__Tagline {
+    text-align: center;
   }
 }

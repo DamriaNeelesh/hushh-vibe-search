@@ -3,10 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Description from "./Description/Description";
 import CompaniesMarquee from "./CompaniesMarquee/CompaniesMarquee";
-import utilities from "../utilities/utilities";
 import styles from "./ToBeLaunched.module.scss";
 import LandingScreenContent from "../LandingScreenContent/LandingScreenContent";
-import Resources from "../../resources/resources";
+import Resources from "../../resources/config/config";
 import CheckYourVibe from "./CheckYourVibe/CheckYourVibe";
 import toBeLaunchedMetadata from "./toBeLaunchedMetadata";
 import DownArrow from "./DownArrow/DownArrow";
@@ -17,7 +16,6 @@ import { CloseButton } from "@chakra-ui/react";
 import { useBreakpointValue } from '@chakra-ui/react';
 import services from "../../services/services";
 import WelcomeAboardModal from "./WelcomeAboardModal/WelcomeAboardModal";
-import HushhButtonWrapper from "../HushhButtonWrapper";
 
 export const metadata = toBeLaunchedMetadata;
 
@@ -73,30 +71,14 @@ export default function ToBeLaunched() {
   };
 
   return (
-    <>
-             {/* {config.featureFlags.vibeCheck ? <CheckYourVibe></CheckYourVibe> : <CheckYourVibe></CheckYourVibe>} */}
-             {/* {showCheckYourVibe && isMobile && isSignedIn && (
-        <div className={styles.CheckYourVibePopup}>
-          <button onClick={handleClose} className={styles.CloseButton}><CloseButton/></button>
-            <CheckYourVibe />
-        </div>
-      )} */}
-             <div className={styles.container}>
+    <div className={styles.container}>
       <Header
         isSignedUp={isSignedUp}
         setIsSignedUp={setIsSignedUp}
         userDetails={userDetails}
         setUserDetails={setUserDetails}
       />
-      <div className={styles.ToBeLaunched__Content} >
-        {/* <div className={styles.ToBeLaunched__VibeLogoMobile}>
-          <Image
-            alt="Vibe Search"
-            src={Resources.images.VibeLogo.src}
-            width={"125"}
-            height={"51"}
-          />
-        </div> */}
+      <div className={styles.ToBeLaunched__Content}>
         <Description></Description>
         <div className={styles.ToBeLaunched__CompaniesMarquee}>
           <CompaniesMarquee></CompaniesMarquee>
@@ -107,15 +89,14 @@ export default function ToBeLaunched() {
       </div>
       <DownArrow></DownArrow>
       
-      <LandingScreenContent></LandingScreenContent>
-      {/* <CheckYourVibe /> */}
+      <div className={styles.contentWrapper}>
+        <LandingScreenContent></LandingScreenContent>
+      </div>
+      
       <WelcomeAboardModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <HushhButtonWrapper />
     </div>
-    </>
-   
   );
 }

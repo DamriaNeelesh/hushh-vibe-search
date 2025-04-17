@@ -73,7 +73,6 @@ export default function AboutUs() {
         </div>
       </ValueProp>
       <YourTrust></YourTrust>
-      <utilities.Footer></utilities.Footer>
     </div>
   );
 }

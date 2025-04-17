@@ -6,6 +6,7 @@ import Script from "next/script";
 import ClientOnly from "./components/ClientOnly";
 import HushhButtonWrapper from "./components/HushhButtonWrapper";
 import { Figtree } from 'next/font/google';
+import Footer from "./components/utilities/Footer/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -69,10 +70,7 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="cvDzqg4M4DKJ9-KIoqCURxixD0sDERxPq67fY0n55Ng"
         />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="verification" content="ec88987e0a554366fabd35acbae19efd" />
         <Script
           id="gtm2"
@@ -118,7 +116,10 @@ export default function RootLayout({ children }) {
         </noscript>
         <ChakraBaseProvider>
           <ChakraProvider>
-            {children}
+            <div className="page-content">
+              {children}
+            </div>
+            <Footer />
             <ClientOnly fallback={<div>Loading Button...</div>}>
               <HushhButtonWrapper />
             </ClientOnly>
