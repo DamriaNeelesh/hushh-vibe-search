@@ -108,7 +108,7 @@ export default function ToBeLaunched() {
       <DownArrow></DownArrow>
       
       <LandingScreenContent></LandingScreenContent>
-      <CheckYourVibe />
+      {/* <CheckYourVibe /> */}
       <WelcomeAboardModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
