@@ -1,8 +1,10 @@
 'use client';
 
+import React from 'react';
 import utilities from "../utilities/utilities";
 import error400 from "./resources/error400.svg";
-export default function ErrorPage400() {
+
+export default function ErrorPage400Client() {
   return (
     <div>
       <utilities.ErrorPage
@@ -12,7 +14,7 @@ export default function ErrorPage400() {
         }
         code={"400"}
         image={error400.src}
-      ></utilities.ErrorPage>
+      />
     </div>
   );
-}
+} 

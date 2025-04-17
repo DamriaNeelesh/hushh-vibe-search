@@ -1,6 +1,8 @@
-import TermsPage from '../components/pagesComponent/termsPage'
+import React from 'react';
+import TermsOfUseClient from './TermsOfUseClient';
 import Resources from '../resources/resources';
 
+// Metadata can be exported from server components
 export const metadata = {
   title: "Terms of Service - Vibe Search",
   description: "Review the terms of service for using Vibe Search and understand your rights and responsibilities.",
@@ -16,12 +18,8 @@ export const metadata = {
   },
 };
 
-
-const TermsOfUse = () => {
-
-  return (
-     <TermsPage></TermsPage>
-  );
-};
-
-export default TermsOfUse;
+// This is a server component that can export metadata
+export default function TermsOfUsePage() {
+  // Render the client component
+  return <TermsOfUseClient />;
+}

@@ -1,57 +1,20 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Box, Grid, Text } from "@chakra-ui/react";
-import getWishList from "../services/wishlist/getWishlist";
-import Image from "next/image";
-import services from "../services/services";
+import dynamic from 'next/dynamic';
+import Resources from "../resources/resources"; // Assuming usage for metadata
 
-export default function Wishlist() {
-  const [wishlistItems, setWishlistItems] = useState([]);
+// Metadata for the wishlist page
+export const metadata = {
+  title: "My Wishlist - Vibe Search",
+  description: "View and manage your saved items on Vibe Search.",
+  // Add other relevant metadata
+};
 
-  useEffect(() => {
-    async function fetchWishlist() {
-      let access_token = await services.authentication.getAccessToken();
-      getWishList(access_token, setWishlistItems);
-    }
+// Dynamically import the client component with SSR disabled
+const WishlistClient = dynamic(() => import('./WishlistClient'), {
+  ssr: false,
+  loading: () => <div>Loading wishlist...</div> // Or a proper skeleton loader
+});
 
-    fetchWishlist();
-  }, []);
-
-  return (
-    <Box p={6} minH={"100vh"} color={"white"}>
-      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {wishlistItems.map((item, index) => (
-          <Box
-            key={index}
-            borderRadius="md"
-            overflow="hidden"
-            bg="#F8F4F2"
-            minH="350px"
-            cursor="pointer"
-          >
-            <Image
-              src={item.image || "/path/to/default-image.jpg"}
-              alt={item.product_title}
-              objectFit="cover"
-              height="300px"
-              width="100%"
-            />
-            <Box p={3}>
-              <Text fontWeight="600" fontSize="sm">
-                {item.brand}
-              </Text>
-              <Text color="gray.600" fontSize="sm" noOfLines={1}>
-                {item.product_title}
-              </Text>
-              {item.price_available && (
-                <Text fontWeight="600" fontSize="sm" mt={1}>
-                  {item.currency} {item.price}
-                </Text>
-              )}
-            </Box>
-          </Box>
-        ))}
-      </Grid>
-    </Box>
-  );
+// Server component entry point for the route
+export default function WishlistPage() {
+  return <WishlistClient />;
 }

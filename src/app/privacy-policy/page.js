@@ -1,32 +1,30 @@
+import dynamic from 'next/dynamic';
+import Resources from "../resources/resources"; // Assuming you use this for metadata images
 
-import React from "react";
-import PrivacyPolicyPage from "../components/pagesComponent/privacyPage";
-import utilities from "../components/utilities/utilities";
-import Resources from '../resources/resources'
-
+// Metadata for the privacy policy page
 export const metadata = {
   title: "Privacy Policy - Vibe Search",
-  description: "Read our privacy policy to understand how Vibe Search collects, uses, and protects your personal information.",
-  keywords: "privacy policy, data protection, personal information, Vibe Search",
+  description: "Understand how Vibe Search collects, uses, and protects your personal information.",
+  keywords: "privacy policy, data protection, user privacy, Vibe Search",
   openGraph: {
     title: "Privacy Policy - Vibe Search",
-    description: "Learn about Vibe Search's privacy practices and how we safeguard your data.",
-    images: [Resources.images.VibeLogo.src],
-    url: "https://www.vibesearch.ai/privacy-policy",
+    description: "Review our commitment to protecting your privacy.",
+    // Make sure Resources.images.VibeLogo.src is valid or replace it
+    images: [Resources?.images?.VibeLogo?.src || '/default-og-image.png'], 
+    url: "https://www.vibesearch.ai/privacy-policy", // Update with your actual URL
   },
   twitter: {
     card: "summary_large_image",
   },
 };
 
-const PrivacyPolicy = () => {
-  return (
-    <>
-     <PrivacyPolicyPage></PrivacyPolicyPage>
-     <utilities.Footer></utilities.Footer>
+// Dynamically import the client component with SSR disabled
+const PrivacyPolicyClient = dynamic(() => import('./PrivacyPolicyClient'), {
+  ssr: false,
+  loading: () => <div>Loading...</div> // Or a proper skeleton loader
+});
 
-    </>
-  );
-};
-
-export default PrivacyPolicy;
+// Server component entry point for the route
+export default function PrivacyPolicyPage() {
+  return <PrivacyPolicyClient />;
+}

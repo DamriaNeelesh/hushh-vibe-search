@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { isBrowser } from '../utils/browserUtils';
 
 const questionsArray = [
   {
@@ -33,62 +34,37 @@ export default function HushhButtonWrapper() {
   useEffect(() => {
     setMounted(true);
 
-    if (typeof window !== 'undefined') {
-      const query = searchParams.get('query') || '';
-      setSearchQuery(query);
+    const query = searchParams?.get('query') || '';
+    setSearchQuery(query);
 
-      try {
-        const stored = localStorage.getItem('selectedOptions');
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          setSelectedOptions(parsed);
-          lastStoredOptions.current = stored;
-        }
-      } catch (e) {
-        console.error('Error reading from localStorage:', e);
+    try {
+      const stored = localStorage.getItem('selectedOptions');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        setSelectedOptions(parsed);
+        lastStoredOptions.current = stored;
       }
+    } catch (e) {
+      console.error('Error reading from localStorage:', e);
     }
   }, [searchParams]);
 
-  // Poll localStorage for changes to hushhSelectedOptions
-  useEffect(() => {
-    if (!mounted) return;
+  const handleResponse = useCallback((response: any) => {
+    console.log("Received response:", response);
+    const newOptions = response?.answer || [];
+    setSelectedOptions(newOptions);
 
-    const interval = setInterval(() => {
+    if (isBrowser()) {
       try {
-        const currentStored = localStorage.getItem('selectedOptions');
-        if (currentStored && currentStored !== lastStoredOptions.current) {
-          lastStoredOptions.current = currentStored;
-          const newOptions = JSON.parse(currentStored);
-          setSelectedOptions(newOptions);
-
-          // Update URL query param
-          const newQuery = newOptions.join(' ');
-          const currentUrl = new URL(window.location.href);
-          currentUrl.searchParams.set('query', newQuery);
-          router.push(currentUrl.pathname + currentUrl.search);
-          setSearchQuery(newQuery);
-
-          console.log('Detected new options in localStorage. Updated query:', newQuery);
+        const optionsString = JSON.stringify(newOptions);
+        if (optionsString !== lastStoredOptions.current) {
+          localStorage.setItem('selectedOptions', optionsString);
+          lastStoredOptions.current = optionsString;
+          console.log("Stored options:", optionsString);
         }
       } catch (e) {
-        console.error('Error parsing selectedOptions:', e);
+        console.error('Error writing to localStorage:', e);
       }
-    }, 1000); // poll every 1 second
-
-    return () => clearInterval(interval);
-  }, [mounted, router]);
-
-  const handleOptionsSelected = useCallback((options: string[]) => {
-    setSelectedOptions(options);
-
-    try {
-      const json = JSON.stringify(options);
-      localStorage.setItem('selectedOptions', json);
-      lastStoredOptions.current = json;
-      console.log('Options saved to localStorage:', options);
-    } catch (e) {
-      console.error('Error saving to localStorage:', e);
     }
   }, []);
 
@@ -98,8 +74,7 @@ export default function HushhButtonWrapper() {
     <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, pointerEvents: 'auto' }}>
       <HushhButton
         questions={questionsArray}
-        searchTerm={searchQuery}
-        onOptionsSelected={handleOptionsSelected}
+        onResponse={handleResponse}
       />
     </div>
   );

@@ -3,7 +3,10 @@ import "./globals.css";
 import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+import ClientOnly from "./components/ClientOnly";
 import HushhButtonWrapper from "./components/HushhButtonWrapper";
+import { Figtree } from 'next/font/google';
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -15,13 +18,27 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// Configure the Figtree font
+const figtree = Figtree({
+  subsets: ['latin'],
+  weights: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-figtree', // Optional: if you want to use it as a CSS variable
+});
+
+// Default metadata (can be overridden by pages)
+export const metadata = {
+  title: 'Vibe Search',
+  description: 'AI-powered semantic search for shopping.',
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${figtree.className}`}>
       <head>
         <Script
           id="gtm3"
-          defer
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -102,7 +119,9 @@ export default function RootLayout({ children }) {
         <ChakraBaseProvider>
           <ChakraProvider>
             {children}
-            <HushhButtonWrapper />
+            <ClientOnly fallback={<div>Loading Button...</div>}>
+              <HushhButtonWrapper />
+            </ClientOnly>
           </ChakraProvider>
         </ChakraBaseProvider>
       </body>

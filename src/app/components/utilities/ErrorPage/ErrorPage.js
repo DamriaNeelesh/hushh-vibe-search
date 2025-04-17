@@ -1,13 +1,13 @@
-import figtree from "../../../fonts/Figtree";
 import utilities from "../utilities";
 import styles from "./ErrorPage.module.css";
 import Image from "next/image";
+
 export default function ErrorPage(props) {
   return (
     <div>
       <utilities.Header />
-      <div className={`${styles.ErrorPage} ${figtree.className}`}>
-        <div className={`${styles.ErrorPage__Wrapper} ${figtree.className}`}>
+      <div className={`${styles.ErrorPage}`}>
+        <div className={`${styles.ErrorPage__Wrapper}`}>
           <div className={`${styles.ErrorPage__Title}`}>{props.title}</div>
           <div className={`${styles.ErrorPage__SubTitle}`}>
             {props.subTitle}

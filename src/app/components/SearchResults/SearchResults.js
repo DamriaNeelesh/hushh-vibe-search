@@ -21,6 +21,7 @@ import callVibeIt from "./services/callVibeIt";
 import ProductDrawerDynamic from "./ProductDrawerDynamic/ProductDrawerDynamic";
 import MenuBar from "./MenuBar/MenuBar";
 import PreloadImageLink from "./PreloadImageLinks/PreloadImageLinks";
+
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +34,7 @@ export default function SearchResults() {
   const searchParams = useSearchParams();
   const gridRef = useRef(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { brandDrawer, setIsBrandDrawer } = useState(false);
+  const [brandDrawer, setIsBrandDrawer] = useState(false);
   const [brands, setBrands] = useState([]); // State to hold brands
   const loadingBarRef = useRef(null);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
@@ -41,9 +42,12 @@ export default function SearchResults() {
   let [errorImages, setErrorImages] = useState(new Set([]));
   const [touchStartY, setTouchStartY] = useState(0);
   const [priceRange, setPriceRange] = useState([10, 1050]);
+  let [query, setQuery] = useState("");
+
   useEffect(() => {
     services.authentication.getSession();
   }, []);
+  
   useEffect(() => {
     callVibeIt(
       loadingBarRef,
@@ -85,7 +89,7 @@ export default function SearchResults() {
       currentPage,
       setSearchResults,
       setIsLoading,
-    searchResults,
+      searchResults,
       selectedBrands,
       noMoreResults,
       setBrands,
@@ -96,16 +100,17 @@ export default function SearchResults() {
       0
     );
   };
-  let [query, setQuery] = useState("");
+  
   useEffect(() => {
     setQuery(searchParams.get("query"));
-  }, []);
+  }, [searchParams]);
+  
   return (
     <>
       <Head>
-        {Object.values(searchResults).map((product, index) => {
-          <PreloadImageLink index={index} product={product}></PreloadImageLink>;
-        })}
+        {Object.values(searchResults).map((product, index) => (
+          <PreloadImageLink key={index} index={index} product={product} />
+        ))}
       </Head>
       <LoadingBar color="#E0D3C8" height={"0.35rem"} ref={loadingBarRef} />
       {/* Mobile UI Drawer */}
@@ -117,10 +122,10 @@ export default function SearchResults() {
           selectedProduct={selectedProduct}
           setTouchStartY={setTouchStartY}
           touchStartY={touchStartY}
-        ></ProductDrawerDynamic>
+        />
       )}
       <utilities.Header />
-      <MenuBar></MenuBar>
+      <MenuBar />
       <FilterUI
         setSelectedBrands={setSelectedBrands}
         selectedBrands={selectedBrands}
@@ -152,7 +157,7 @@ export default function SearchResults() {
         isLargerThanMobile={isLargerThanMobile}
         selectedProduct={selectedProduct}
         allImages={allImages}
-      ></SearchResultWrapper>
+      />
       <utilities.Footer />
     </>
   );

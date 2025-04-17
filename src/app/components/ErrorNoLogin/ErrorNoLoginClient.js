@@ -1,9 +1,11 @@
 'use client';
 
+import React from 'react';
 import utilities from "../utilities/utilities";
 import error400 from "./resources/error400.svg";
 import config from "../../resources/config/config";
-export default function ErrorPage400() {
+
+export default function ErrorNoLoginClient() {
   return (
     <div>
       <utilities.ErrorPage
@@ -22,7 +24,7 @@ export default function ErrorPage400() {
         }
         code={"401"}
         image={error400.src}
-      ></utilities.ErrorPage>
+      />
     </div>
   );
-}
+} 

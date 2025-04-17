@@ -1,16 +1,17 @@
-"use client";
+// "use client";
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useState } from "react";
+import React from "react"; 
 import Slide1 from "./components/svg/slideImage1.svg";
 import Slide3 from "./components/svg/slideImage3.svg";
-import { useRouter } from "next/navigation";
-import services from "./services/services";
+// import { useRouter } from "next/navigation";
+// import services from "./services/services";
 import Resources from "./resources/resources";
 import VibeSearchGif from "../app/resources/images/VibeSearch.gif";
-import getUserDetails from "./services/authentication/getUserDetails";
-import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
-import Head from "next/head";
-import utilities from "./components/utilities/utilities";
+// import getUserDetails from "./services/authentication/getUserDetails";
+// import ToBeLaunched from "./components/ToBeLaunched/ToBeLaunched";
+// import Head from "next/head";
+// import utilities from "./components/utilities/utilities";
+import dynamic from 'next/dynamic';
 // import { HushhButton } from "hushh-button-private-1";
 const slides = [
   {
@@ -30,7 +31,8 @@ const slides = [
   },
 ];
 
-const metadata = {
+// Metadata for the home page
+export const metadata = {
   title: "Vibe Search - match your perfect outfit with us",
   description:
     "Find perfect items to express your individuality in just one click with our vibe search",
@@ -48,102 +50,12 @@ const metadata = {
   },
 };
 
+// Dynamically import the client component with SSR disabled
+const HomeClient = dynamic(() => import('./HomeClient'), {
+  ssr: false,
+  loading: () => <div>Loading...</div>
+});
+
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userDetails, setUserDetails] = useState(null); // State for user details
-
-  const handleSlideChange = (index) => {
-    setCurrentSlide(index);
-  };
-
-  useEffect(() => {
-    // Check if the user has just signed up
-    if (isSignedUp) {
-      setIsModalOpen(true);
-    }
-  }, [isSignedUp]);
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const user = await getUserDetails(setUserDetails);
-      if (!user) {
-      } else {
-        return user;
-      }
-    };
-    fetchUserDetails();
-  }, []); // Ensure this runs only on component mount
-
-  useEffect(() => {
-    setInterval(() => {
-      isSignedUp ? "" : services.authentication.isLoggedIn(setIsSignedUp);
-    }, 1000);
-  }, []);
-
-  useEffect(() => {
-    isSignedUp ? setIsModalOpen(true) : "";
-  }, [isSignedUp]);
-
-  const handleGoogleSignIn = async () => {
-    try {
-      await services.authentication.googleSignIn();
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 1000); // Show modal after 1 second
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 7000); //7 seconds delay for slide change
-
-    return () => {
-      clearTimeout(timer);
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    services.authentication.getSession();
-  }, []);
-
-  return (
-    <>
-      {/* <Home2/> */}
-      {/* <IntroSlide3/> */}
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta
-          property="og:description"
-          content={metadata.openGraph.description}
-        />
-        <meta property="og:image" content={metadata.openGraph.images[0]} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta name="twitter:card" content={metadata.twitter.card} />
-      </Head>
-      {/* {typeof window !== 'undefined' && (
-        <HushhButton
-          questions={[
-            {
-              question: "What are you looking for?",
-              options: ["Products", "Services", "Information"],
-              answer: []
-            }
-          ]} 
-        />
-      )} */}
-      <ToBeLaunched></ToBeLaunched>
-
-      <utilities.Footer></utilities.Footer>
-    </>
-  );
+  return <HomeClient />;
 }

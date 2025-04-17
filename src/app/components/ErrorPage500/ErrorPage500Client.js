@@ -1,8 +1,10 @@
 'use client';
 
+import React from 'react';
 import utilities from "../utilities/utilities";
 import error500 from "./resources/error500.svg";
-export default function ErrorPage500() {
+
+export default function ErrorPage500Client() {
   return (
     <div>
       <utilities.ErrorPage
@@ -12,7 +14,7 @@ export default function ErrorPage500() {
         }
         code={"500"}
         image={error500.src}
-      ></utilities.ErrorPage>
+      />
     </div>
   );
 }

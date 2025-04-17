@@ -1,7 +1,8 @@
-import React from "react";
-
+import React from 'react';
+import AboutUsClient from './AboutUsClient';
 import Resources from "../resources/resources";
-import AboutUs from "../components/AboutUs/AboutUs";
+
+// Metadata can be exported from server components
 export const metadata = {
   title: "About Us - Vibe Search",
   description:
@@ -20,8 +21,8 @@ export const metadata = {
   },
 };
 
-const about = () => {
-  return <AboutUs />;
-};
-
-export default about;
+// This is a server component that can export metadata
+export default function AboutUsPage() {
+  // Render the client component
+  return <AboutUsClient />;
+}

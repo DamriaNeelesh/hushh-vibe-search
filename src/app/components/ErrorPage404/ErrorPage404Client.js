@@ -1,8 +1,10 @@
-'use client';
+// 'use client';
 
+import React from 'react';
 import utilities from "../utilities/utilities";
 import error404 from "./resources/error404.svg";
-export default function ErrorPage404() {
+
+export default function ErrorPage404Client() {
   return (
     <div>
       <utilities.ErrorPage
@@ -12,7 +14,7 @@ export default function ErrorPage404() {
         }
         code={"404"}
         image={error404.src}
-      ></utilities.ErrorPage>
+      />
     </div>
   );
-}
+} 
