@@ -4,6 +4,17 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams, useRouter } from 'next/navigation';
 
+// Define types for the HushhButton props
+interface HushhButtonProps {
+  questions: Array<{
+    question: string;
+    options: string[];
+    answer: any[];
+  }>;
+  searchTerm: string;
+  onOptionsSelected: (options: string[]) => void;
+}
+
 const questionsArray = [
   {
     question: "What are your plans for today?",
@@ -17,9 +28,14 @@ const questionsArray = [
   }
 ];
 
-const HushhButton = dynamic(() => import('hushh-button-private-1').then(mod => mod.HushhButton), {
-  ssr: false
-});
+// Use the correct approach for typing dynamic imports
+const HushhButton = dynamic<HushhButtonProps>(
+  () => import('hushh-button-private-1').then(mod => {
+    // Ensure component has the proper type before returning
+    return mod.HushhButton as React.ComponentType<HushhButtonProps>;
+  }),
+  { ssr: false }
+);
 
 export default function HushhButtonWrapper() {
   const searchParams = useSearchParams();
