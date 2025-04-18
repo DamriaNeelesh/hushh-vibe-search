@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { isBrowser } from '../utils/browserUtils';
 
 const questionsArray = [
   {
@@ -18,10 +17,9 @@ const questionsArray = [
   }
 ];
 
-const HushhButton: React.ComponentType<any> = dynamic(
-  () => import('hushh-button-private-1').then(mod => mod.HushhButton), 
-  { ssr: false }
-);
+const HushhButton = dynamic(() => import('hushh-button-private-1').then(mod => mod.HushhButton), {
+  ssr: false
+});
 
 export default function HushhButtonWrapper() {
   const searchParams = useSearchParams();
@@ -34,37 +32,62 @@ export default function HushhButtonWrapper() {
   useEffect(() => {
     setMounted(true);
 
-    const query = searchParams?.get('query') || '';
-    setSearchQuery(query);
+    if (typeof window !== 'undefined') {
+      const query = searchParams?.get('query') || '';
+      setSearchQuery(query);
 
-    try {
-      const stored = localStorage.getItem('selectedOptions');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setSelectedOptions(parsed);
-        lastStoredOptions.current = stored;
+      try {
+        const stored = localStorage.getItem('selectedOptions');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          setSelectedOptions(parsed);
+          lastStoredOptions.current = stored;
+        }
+      } catch (e) {
+        console.error('Error reading from localStorage:', e);
       }
-    } catch (e) {
-      console.error('Error reading from localStorage:', e);
     }
   }, [searchParams]);
 
-  const handleResponse = useCallback((response: any) => {
-    console.log("Received response:", response);
-    const newOptions = response?.answer || [];
-    setSelectedOptions(newOptions);
+  // Poll localStorage for changes to hushhSelectedOptions
+  useEffect(() => {
+    if (!mounted) return;
 
-    if (isBrowser()) {
+    const interval = setInterval(() => {
       try {
-        const optionsString = JSON.stringify(newOptions);
-        if (optionsString !== lastStoredOptions.current) {
-          localStorage.setItem('selectedOptions', optionsString);
-          lastStoredOptions.current = optionsString;
-          console.log("Stored options:", optionsString);
+        const currentStored = localStorage.getItem('selectedOptions');
+        if (currentStored && currentStored !== lastStoredOptions.current) {
+          lastStoredOptions.current = currentStored;
+          const newOptions = JSON.parse(currentStored);
+          setSelectedOptions(newOptions);
+
+          // Update URL query param
+          const newQuery = newOptions.join(' ');
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.set('query', newQuery);
+          router.push(currentUrl.pathname + currentUrl.search);
+          setSearchQuery(newQuery);
+
+          console.log('Detected new options in localStorage. Updated query:', newQuery);
         }
       } catch (e) {
-        console.error('Error writing to localStorage:', e);
+        console.error('Error parsing selectedOptions:', e);
       }
+    }, 1000); // poll every 1 second
+
+    return () => clearInterval(interval);
+  }, [mounted, router]);
+
+  const handleOptionsSelected = useCallback((options: string[]) => {
+    setSelectedOptions(options);
+
+    try {
+      const json = JSON.stringify(options);
+      localStorage.setItem('selectedOptions', json);
+      lastStoredOptions.current = json;
+      console.log('Options saved to localStorage:', options);
+    } catch (e) {
+      console.error('Error saving to localStorage:', e);
     }
   }, []);
 
@@ -74,7 +97,8 @@ export default function HushhButtonWrapper() {
     <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, pointerEvents: 'auto' }}>
       <HushhButton
         questions={questionsArray}
-        onResponse={handleResponse}
+        searchTerm={searchQuery}
+        onOptionsSelected={handleOptionsSelected}
       />
     </div>
   );
